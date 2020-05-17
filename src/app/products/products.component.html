@@ -1,0 +1,18 @@
+<div class="" *ngIf="products.length > 0">
+  <div class="box" *ngFor="let product of products">
+    <div class="box-header">
+      <h3>{{product.name}}</h3>
+    </div>
+    <div class="box-body">
+      <p>{{product.description}}
+      <div class="img-thumbnail">
+          <img [defaultImage]="'/assets/images/loading.gif'" [lazyLoad]="product.thumbnail" style="max-width: 50%">
+      </div>
+
+    </div>
+    <div class="box-footer">
+      <p><strong>category ID: {{product.category}}</strong></p>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="products.length<=0"></app-loader>

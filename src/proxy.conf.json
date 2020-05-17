@@ -1,0 +1,7 @@
+{
+  "/productsdemo/api/*": {
+    "target": "https://demo.innfinity.com/",
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

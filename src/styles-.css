@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import '~angular-tree-component/dist/angular-tree-component.css';
+
+.row-custom{
+    padding-top: 30px;
+  }
+  .row-custom > div:first-child{
+    width: 350px;
+    max-width: inherit;
+    flex: initial;
+  }
+  .row-custom > div:nth-child(2){
+    width: calc(100% - 400px);
+    max-width: inherit;
+    flex: initial;
+    margin-left: auto;
+  }
+  .sidebar ul{
+    list-style: none;
+    padding-left: 15px;
+  }
+  .sidebar ul li{
+    margin: 0 0 5px;
+  }
+  .sidebar ul a{
+    display: block;
+    padding: 3px 5px 5px 10px;
+    background: rgba(0,0,0, 0.7);
+    color: #fff;
+    text-decoration: none;
+  }
+  .sidebar ul ul{
+    margin-top: 5px;
+  }
+  h3{
+    font-weight: bold;
+    margin: 0 0 30px;
+  }
