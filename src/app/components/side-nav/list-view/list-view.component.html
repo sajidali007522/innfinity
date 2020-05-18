@@ -1,6 +1,6 @@
 <ul *ngIf="nodes" >
   <li *ngFor="let node of nodes">
-    <a routerLink="{{node.hasChildren ? '' : '/products/'+node.id}}" (click)="node.open= !node.open; myCallback(node, $event)">
+    <a routerLink="{{node.hasChildren ? '#' : '/products/'+node.id}}" (click)="node.open= !node.open; myCallback(node, $event)">
       <span *ngIf="node.hasChildren && !node.isLoading"
             [ngClass]="{'fa-caret-right' : !node.open, 'fa-caret-down' : node.open }"
             class="fa">
