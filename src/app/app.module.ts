@@ -16,6 +16,7 @@ import { ContactListComponent } from './contacts/contact-list/contact-list.compo
 import { ProductsComponent } from './products/products.component';
 import { ListViewComponent } from "./components/side-nav/list-view/list-view.component";
 import { LoaderComponent } from './components/loader/loader.component';
+import { I18nModule } from './i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     TreeModule.forRoot(),
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
-    })
+    }),
+    I18nModule
   ],
   providers: [],
   bootstrap: [AppComponent]

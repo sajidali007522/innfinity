@@ -4,21 +4,22 @@
   <div class="header-right">
     <ul class="d-flex flex-wrap">
       <li class="has-dropdown">
-        <a href="#">Language <em class="flagicon flag-us"></em></a>
+        <a href="#">{{ 'language' | translate}} <em class="flagicon flag-us"></em></a>
         <ul class="dropdown-menu-wrap">
-          <li><a href="#" (click)="setLocale($event, 'en')" ><em class="flagicon flag-us"></em> <span>English</span></a></li>
-          <li><a href="#" (click)="setLocale($event, 'sp')"><em class="flagicon flag-sn"></em> <span>Spanish</span></a></li>
+          <li><a href="javascript:;" (click)="translate.use('en')" ><em class="flagicon flag-us"></em> <span>English</span></a></li>
+          <li><a href="javascript:;" (click)="translate.use('es')"><em class="flagicon flag-sn"></em> <span>Spanish</span></a></li>
+          <li><a href="javascript:;" (click)="translate.use('fr')"><em class="flagicon flag-sn"></em> <span>French</span></a></li>
         </ul>
       </li>
       <li class="has-dropdown">
-        <a href="#">Theme <i class="fa fa-themeisle"></i> </a>
+        <a href="#">{{'theme' | translate}} <i class="fa fa-themeisle"></i> </a>
         <ul class="dropdown-menu-wrap">
-          <li><a href="#" (click)="setTheme($event)" [ngClass]="{ 'active': !isLightTheme }" class="theme-dark">Theme Dark</a></li>
-          <li><a href="#" (click)="setTheme($event, true)" [ngClass]="{'active':isLightTheme }" class="theme-light">Theme Light</a></li>
+          <li><a href="#" (click)="setTheme($event)" [ngClass]="{ 'active': !isLightTheme }" class="theme-dark">{{'theme_dark' | translate}}</a></li>
+          <li><a href="#" (click)="setTheme($event, true)" [ngClass]="{'active':isLightTheme }" class="theme-light">{{'theme_light' | translate}}</a></li>
         </ul>
       </li>
       <li class="has-dropdown">
-        <a href="#">Login</a>
+        <a href="#">{{'login' | translate}}</a>
         <ul class="dropdown-menu-wrap">
           <li><a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
           <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>

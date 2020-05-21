@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   isFullWidth;
   language;
 
-  constructor( private renderer: Renderer2) { }
+  constructor( private renderer: Renderer2, public translate: TranslateService) { }
 
   ngOnInit(): void {
     this.switchSkinColor();
