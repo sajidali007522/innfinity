@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import {HttpClientModule} from "@angular/common/http";
+import {DataTablesModule} from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from "@angular/forms";
@@ -17,6 +18,8 @@ import { ProductsComponent } from './products/products.component';
 import { ListViewComponent } from "./components/side-nav/list-view/list-view.component";
 import { LoaderComponent } from './components/loader/loader.component';
 import { I18nModule } from './i18n/i18n.module';
+import { HtmlElementsComponent } from './components/html-elements/html-elements.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { I18nModule } from './i18n/i18n.module';
     ContactListComponent,
     ProductsComponent,
     ListViewComponent,
-    LoaderComponent
+    LoaderComponent,
+    HtmlElementsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { I18nModule } from './i18n/i18n.module';
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
     }),
-    I18nModule
+    I18nModule,
+    DataTablesModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

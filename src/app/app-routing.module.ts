@@ -4,6 +4,7 @@ import {HomeComponent} from "./home/home.component";
 import {ContactCreateComponent} from "./contacts/contact-create/contact-create.component";
 import {ContactListComponent} from "./contacts/contact-list/contact-list.component";
 import {ProductsComponent} from "./products/products.component";
+import {HtmlElementsComponent} from "./components/html-elements/html-elements.component";
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "home"},
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: "contact-create", component: ContactCreateComponent},
   {path: "contact-list", component: ContactListComponent},
   {path: "products", component:ProductsComponent },
-  {path: "products/:category", component:ProductsComponent }
+  {path: "products/:category", component:ProductsComponent },
+  {path: "html_components", component:HtmlElementsComponent }
 ];
 
 @NgModule({
