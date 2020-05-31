@@ -324,6 +324,11 @@ h3{
   background: url(/assets/images/sn.svg) no-repeat;
   background-size: 100% auto;
 }
+.flag-fr{
+  background: url(/assets/images/fr.png) no-repeat;
+  background-size: 100% auto;
+  height: 28px;
+}
 .header-right .dropdown-menu-wrap li a .fa{
   color: #999;
   font-size: 15px;
@@ -372,3 +377,78 @@ h3{
 .theme-light{
 }
 /* Header end */
+
+
+body .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+  background:#09425d !important;
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_length select{
+  border:1px solid #999;
+  padding: 5px 10px;
+}
+.btn-success{
+  background: #09425d;
+  border-color: #09425d;
+}
+  .btn-success:hover,
+  .btn-success:focus,
+  .btn-success:active{
+    background: #3f7892 !important;
+    box-shadow: none !important;
+  }
+.fileUpload {
+  background: #09425d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 3px 8px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+    .fileUpload:hover, .fileUpload:active, .fileUpload:focus {
+      background: #00a2a4;
+      cursor: pointer;
+    }
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        width: 148px;
+        height: 46px;
+      cursor: pointer;
+    }
+    input[type="file"] {
+        position: fixed;
+        right: 100%;
+        bottom: 100%;
+    }
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
+@media(max-width:767px){
+  .header-right{
+    display: none;
+  }
+  .menu-icon{
+    top: 13px;
+    left: auto;
+    right: 25px;
+  }
+}

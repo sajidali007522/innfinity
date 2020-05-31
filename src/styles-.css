@@ -4,7 +4,7 @@
 
 .row-custom{
     padding-top: 30px;
-  }
+}
   .row-custom > div:first-child{
     width: 350px;
     max-width: inherit;
@@ -36,4 +36,8 @@
   h3{
     font-weight: bold;
     margin: 0 0 30px;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    background-color:#09425d;
+    color: #fff !important;
   }

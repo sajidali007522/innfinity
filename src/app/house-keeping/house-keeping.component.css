@@ -1,0 +1,15 @@
+.filter-section{
+    background: rgba(0,0,0,.05);
+    padding: 15px 30px;
+    margin: 0 0 35px;;
+}
+.room-table th:last-child{
+    min-width: 100px !important;
+}
+.room-table td:last-child{
+    text-align: center;
+}
+.room-table td:last-child .fa{
+    color: #09425d;
+    margin: 0 5px;
+}

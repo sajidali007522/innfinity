@@ -39,6 +39,193 @@ const HOUSEKEEEPING: HouseKeeping[] = [
     linen_status: false,
     viewMode: true
   },
+  {
+    room_no: '4',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '5',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '6',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '7',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '8',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '9',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '10',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '11',
+    features: 'feature',
+    fd_status: false,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 1,
+    shift: 112,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '12',
+    features: 'Management, Doom 1',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1245,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '13',
+    features: 'featManagement, Doom 1ure',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '14',
+    features: 'Management, Doom 1',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '15',
+    features: 'Management, Doom 1',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '16',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '17',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '18',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '19',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
+  {
+    room_no: '20',
+    features: 'feature',
+    fd_status: true,
+    hs_status: 3,
+    admin_status: 1,
+    housekeeper: 2,
+    shift: 2,
+    linen_status: false,
+    viewMode: true
+  },
 ];
 const SHIFTS: Shift [] = [
   {id: 1, title: "Day"},
