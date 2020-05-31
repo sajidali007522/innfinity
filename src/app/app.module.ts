@@ -4,6 +4,7 @@ import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import {HttpClientModule} from "@angular/common/http";
 import {DataTablesModule} from 'angular-datatables';
+import { NgInitDirective } from "./directives/NgInitDirective";
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from "@angular/forms";
@@ -20,6 +21,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { I18nModule } from './i18n/i18n.module';
 import { HtmlElementsComponent } from './components/html-elements/html-elements.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductsComponent,
     ListViewComponent,
     LoaderComponent,
-    HtmlElementsComponent
+    HtmlElementsComponent,
+    HouseKeepingComponent,
+    NgInitDirective
   ],
   imports: [
     BrowserModule,

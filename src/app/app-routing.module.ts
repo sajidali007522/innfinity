@@ -5,6 +5,7 @@ import {ContactCreateComponent} from "./contacts/contact-create/contact-create.c
 import {ContactListComponent} from "./contacts/contact-list/contact-list.component";
 import {ProductsComponent} from "./products/products.component";
 import {HtmlElementsComponent} from "./components/html-elements/html-elements.component";
+import {HouseKeepingComponent} from "./house-keeping/house-keeping.component";
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "home"},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: "contact-list", component: ContactListComponent},
   {path: "products", component:ProductsComponent },
   {path: "products/:category", component:ProductsComponent },
-  {path: "html_components", component:HtmlElementsComponent }
+  {path: "html_components", component:HtmlElementsComponent },
+  {path: "house-keeping", component:HouseKeepingComponent }
 ];
 
 @NgModule({

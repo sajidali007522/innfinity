@@ -1,0 +1,83 @@
+<div class="">
+  <div class="box">
+    <div class="box-header">
+      <h3>
+        Room Status
+      </h3>
+    </div>
+    <div class="box-body">
+
+      <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
+        <thead>
+        <tr>
+          <th>Room #</th>
+          <th>Feature</th>
+          <th>FD Status</th>
+          <th>HS Status</th>
+          <th>Admin Status</th>
+          <th>HouseKeeper</th>
+          <th>Shift</th>
+          <th>Linen Status</th>
+          <th>Image</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of data;index as $index;">
+          <td>
+            <span>{{row.room_no}}</span>
+          </td>
+          <td>
+            <span>{{row.features}}</span>
+          </td>
+          <td>
+            <span>{{row.fd_status ? 'StayOver' : 'Available'}}</span>
+          </td>
+          <td>
+            <span *ngIf="row.viewMode">{{textFormattedObjects['hs_status'][row.hs_status]}}</span>
+            <span *ngIf="!row.viewMode">
+              <select [(ngModel)]="row.hs_status" class="form-control">
+                <option *ngFor="let status of hsStatus" [ngValue]="status.id">{{status.title}}</option>
+              </select>
+            </span>
+          </td>
+          <td>
+            <span *ngIf="row.viewMode">{{textFormattedObjects['admin_statuses'][row.admin_status]}}</span>
+            <span *ngIf="!row.viewMode">
+              <select [(ngModel)]="row.admin_status" class="form-control">
+                <option *ngFor="let adStatus of adminStatuses" [ngValue]="adStatus.id">{{adStatus.title}}</option>
+              </select>
+            </span>
+          </td>
+          <td>
+            <span *ngIf="row.viewMode">{{textFormattedObjects['house_keepers'][row.housekeeper]}}</span>
+            <span *ngIf="!row.viewMode">
+              <select [(ngModel)]="row.housekeeper" class="form-control"  >
+                <option *ngFor="let hk of houseKeepers" [ngValue]="hk.id">{{hk.name}}</option>
+              </select>
+            </span>
+          </td>
+          <td>
+            <span *ngIf="row.viewMode">{{textFormattedObjects['shifts'][row.shift]}}</span>
+            <span *ngIf="!row.viewMode">
+              <select [(ngModel)]="row.shift" class="form-control">
+                <option *ngFor="let shift of shifts" [ngValue]="shift.id">{{shift.title}}</option>
+              </select>
+            </span>
+          </td>
+          <td>{{row.linen_status}}</td>
+          <td></td>
+          <td>
+            <span class="fa fa-pencil" *ngIf="row.viewMode" (click)="toggleProperty(row, 'viewMode')" ></span>
+            <span class="fa fa-save" *ngIf="!row.viewMode"></span>
+            <span class="fa fa-ban" *ngIf="!row.viewMode" (click)="toggleProperty(row, 'viewMode')"></span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <pre>
+        {{data | json}}
+      </pre>
+    </div>
+  </div>
+</div>
