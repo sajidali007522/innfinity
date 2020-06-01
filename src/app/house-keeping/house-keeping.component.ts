@@ -123,7 +123,7 @@ const HOUSEKEEEPING: HouseKeeping[] = [
     hs_status: 3,
     admin_status: 1,
     housekeeper: 1,
-    shift: 112,
+    shift: 2,
     linen_status: false,
     viewMode: true
   },
@@ -132,7 +132,7 @@ const HOUSEKEEEPING: HouseKeeping[] = [
     features: 'Management, Doom 1',
     fd_status: true,
     hs_status: 3,
-    admin_status: 1245,
+    admin_status: 2,
     housekeeper: 2,
     shift: 2,
     linen_status: false,

@@ -11,7 +11,7 @@
         <input type="checkbox" class="custom-control-input" id="customCheck1">
         <label class="custom-control-label" for="customCheck1">Admin Mode</label>
       </div>
-      
+
 
       <div class="filter-section">
         <div class="row">
@@ -116,11 +116,11 @@
             <td>{{row.linen_status}}</td>
             <td></td>
             <td>
-  
+
             <div class="fileUpload">
               <input type="file" class="upload" />
               <span>Upload</span>
-            </div>          
+            </div>
               <span class="fa fa-pencil" *ngIf="row.viewMode" (click)="toggleProperty(row, 'viewMode')" ></span>
               <span class="fa fa-save" *ngIf="!row.viewMode"></span>
               <span class="fa fa-ban" *ngIf="!row.viewMode" (click)="toggleProperty(row, 'viewMode')"></span>
@@ -129,9 +129,7 @@
           </tbody>
         </table>
       </div>
-      <pre>
-        {{data | json}}
-      </pre>
+
     </div>
   </div>
 </div>
