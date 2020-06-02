@@ -22,6 +22,7 @@ import { I18nModule } from './i18n/i18n.module';
 import { HtmlElementsComponent } from './components/html-elements/html-elements.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
     LoaderComponent,
     HtmlElementsComponent,
     HouseKeepingComponent,
-    NgInitDirective
+    NgInitDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
