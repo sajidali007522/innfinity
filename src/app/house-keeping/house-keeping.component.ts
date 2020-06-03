@@ -315,6 +315,10 @@ export class HouseKeepingComponent implements OnInit {
     this.textFormattedObjects['admin_statuses'] = obj;
   }
 
+  updateHouseKeeping(roomId, roomRow, key) {
+    console.log(roomId, roomRow, key)
+  }
+
   initValue (obj, key, value) {
     obj[key] = value
   }

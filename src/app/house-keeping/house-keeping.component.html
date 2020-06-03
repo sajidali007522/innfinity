@@ -81,33 +81,33 @@
             <td>
               <span>{{row.fd_status ? 'StayOver' : 'Available'}}</span>
             </td>
-            <td>
-              <span *ngIf="row.viewMode">{{textFormattedObjects['hs_status'][row.hs_status]}}</span>
-              <span *ngIf="!row.viewMode">
-                <select [(ngModel)]="row.hs_status" class="form-control">
+            <td (click)="row.$editHsStatus=!row.$editHsStatus">
+              <span *ngIf="!row.$editHsStatus">{{textFormattedObjects['hs_status'][row.hs_status]}}</span>
+              <span *ngIf="row.$editHsStatus">
+                <select [(ngModel)]="row.hs_status" class="form-control" (change)="updateHouseKeeping(row.id, row, 'hs_status')">
                   <option *ngFor="let status of hsStatus" [ngValue]="status.id">{{status.title}}</option>
                 </select>
               </span>
             </td>
-            <td>
-              <span *ngIf="row.viewMode">{{textFormattedObjects['admin_statuses'][row.admin_status]}}</span>
-              <span *ngIf="!row.viewMode">
+            <td (click)="row.$editAdminStatus=!row.$editAdminStatus">
+              <span *ngIf="!row.$editAdminStatus">{{textFormattedObjects['admin_statuses'][row.admin_status]}}</span>
+              <span *ngIf="row.$editAdminStatus">
                 <select [(ngModel)]="row.admin_status" class="form-control">
                   <option *ngFor="let adStatus of adminStatuses" [ngValue]="adStatus.id">{{adStatus.title}}</option>
                 </select>
               </span>
             </td>
-            <td>
-              <span *ngIf="row.viewMode">{{textFormattedObjects['house_keepers'][row.housekeeper]}}</span>
-              <span *ngIf="!row.viewMode">
+            <td (click)="row.$editHousekeeper=!row.$editHousekeeper">
+              <span *ngIf="!row.$editHousekeeper">{{textFormattedObjects['house_keepers'][row.housekeeper]}}</span>
+              <span *ngIf="row.$editHousekeeper">
                 <select [(ngModel)]="row.housekeeper" class="form-control"  >
                   <option *ngFor="let hk of houseKeepers" [ngValue]="hk.id">{{hk.name}}</option>
                 </select>
               </span>
             </td>
-            <td>
-              <span *ngIf="row.viewMode">{{textFormattedObjects['shifts'][row.shift]}}</span>
-              <span *ngIf="!row.viewMode">
+            <td (click)="row.$editShift=!row.$editShift">
+              <span *ngIf="!row.$editShift">{{textFormattedObjects['shifts'][row.shift]}}</span>
+              <span *ngIf="row.$editShift">
                 <select [(ngModel)]="row.shift" class="form-control">
                   <option *ngFor="let shift of shifts" [ngValue]="shift.id">{{shift.title}}</option>
                 </select>
@@ -121,9 +121,6 @@
               <input type="file" class="upload" />
               <span>Upload</span>
             </div>
-              <span class="fa fa-pencil" *ngIf="row.viewMode" (click)="toggleProperty(row, 'viewMode')" ></span>
-              <span class="fa fa-save" *ngIf="!row.viewMode"></span>
-              <span class="fa fa-ban" *ngIf="!row.viewMode" (click)="toggleProperty(row, 'viewMode')"></span>
             </td>
           </tr>
           </tbody>

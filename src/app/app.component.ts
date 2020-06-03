@@ -10,6 +10,9 @@ import {
   RouterEvent
 } from "@angular/router";
 
+import { AuthenticationService } from './_services/authentication.service';
+import { User } from './_models/user';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +23,12 @@ export class AppComponent {
   categories;
   loading;
 
-  constructor(public router: Router) {
+  currentUser: User;
+
+  constructor(public router: Router,
+              private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     router.events.subscribe((routerEvent) => {
       this.checkRouterEvent(routerEvent);
     });
@@ -28,6 +36,10 @@ export class AppComponent {
 
   ngOnInit(): void {
 
+  }
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
   checkRouterEvent(routerEvent): void {

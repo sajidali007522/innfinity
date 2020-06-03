@@ -2,12 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {DataTablesModule} from 'angular-datatables';
 import { NgInitDirective } from "./directives/NgInitDirective";
 
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import  { ErrorInterceptor } from './_helpers/error.interceptor';
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers/fake-backend';
+
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,6 +28,8 @@ import { HtmlElementsComponent } from './components/html-elements/html-elements.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
 import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,9 @@ import { LoginComponent } from './login/login.component';
     HtmlElementsComponent,
     HouseKeepingComponent,
     NgInitDirective,
-    LoginComponent
+    LoginComponent,
+    AlertComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +56,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     TreeModule.forRoot(),
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
@@ -55,7 +65,13 @@ import { LoginComponent } from './login/login.component';
     DataTablesModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
