@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService} from './../_services/alert.service';
 import { AuthenticationService } from './../_services/authentication.service';
+import { BackgroundSwitchService} from "../_services/background-switch";
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public bgSwitch: BackgroundSwitchService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.bgSwitch.switchBackground();
   }
 
   // convenience getter for easy access to form fields

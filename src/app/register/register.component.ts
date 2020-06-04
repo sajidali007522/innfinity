@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { AlertService } from './../_services/alert.service';
 import { UserService } from './../_services/user.service';
 import { AuthenticationService } from './../_services/authentication.service';
+import { BackgroundSwitchService} from "../_services/background-switch";
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public bgSwitch: BackgroundSwitchService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -33,6 +35,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+    this.bgSwitch.switchBackground();
   }
 
   // convenience getter for easy access to form fields

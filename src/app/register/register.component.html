@@ -1,39 +1,109 @@
-<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html>
+<!--<![endif]-->
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Index</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900" rel="stylesheet">
+  <!-- This css file need to include only -->
+  <link type="text/css" rel="stylesheet" href="/assets/css/login.css" />
+</head>
+
+<body>
+
+
+<!-- Login Component Start -->
+
+<div class="overlay-bg"></div>
+<div class="login-wrap">
+  <h1>Your Home to Home Solution for Journey Management</h1>
+  <div class="login-section">
+    <div class="login-sidebar">
+      <div class="login-nav" id="tabsCustom">
+        <ul>
+          <li class="active">
+            <a href="#content-1"><em class="fa fa-user-circle"></em> <span>Register</span></a>
+          </li>
+          <li>
+            <a href="#content-2"><em class="fa fa-lock"></em> <span>Forget Password?</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="customer-logo">
+        <img src="/assets/images/login/customer-logo.png" alt="">
+      </div>
+    </div>
+    <div class="login-main">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="text" id="firstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name" />
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="lastName" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name" />
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username"/>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-success btn-block">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+          </button>
+          <a routerLink="/login" class="btn btn-link">Cancel</a>
+        </div>
+      </form>
+      <div class="forget-content tabs-content" id="content-2">
+        <div class="login-title">
+          <h2><span>Reset Password</span></h2>
+        </div>
+        <p>
+          Enter your email address below and we'll send you an email with instructions.
+        </p>
+        <br>
+        <div class="field-wrap">
+          <input type="text" class="form-control" placeholder="Email">
+          <span class="fa fa-envelope-o"></span>
+        </div>
+        <input type="submit" class="btn btn-success btn-block" value="Reset">
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-      <div *ngIf="f.username.errors.required">Username is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
-      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button [disabled]="loading" class="btn btn-primary">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-      Register
-    </button>
-    <a routerLink="/login" class="btn btn-link">Cancel</a>
-  </div>
-</form>
+</div><!-- login-wrap -->
+
+<div class="login-footer">&copy; 2020 Innfinity</div>
+
+<script src="/assets/js/login.js" defer></script>
+
+<!-- Login Component End -->
+</body>
+</html>
