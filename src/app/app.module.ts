@@ -30,6 +30,8 @@ import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { UsersComponent } from './users/users.component';
+import { MainComponent } from './main/main.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { UsersComponent } from './users/users.component';
     NgInitDirective,
     LoginComponent,
     AlertComponent,
-    UsersComponent
+    UsersComponent,
+    MainComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

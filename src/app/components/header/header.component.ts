@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../_services/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,11 @@ export class HeaderComponent implements OnInit {
   isFullWidth;
   language;
 
-  constructor( private renderer: Renderer2, public translate: TranslateService) { }
+  constructor( private renderer: Renderer2,
+               public translate: TranslateService,
+               public router: Router,
+               private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit(): void {
     this.switchSkinColor();
@@ -54,6 +60,11 @@ export class HeaderComponent implements OnInit {
     if(this.isLightTheme === 'light') {
       this.renderer.addClass(document.body, 'theme-light');
     }
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

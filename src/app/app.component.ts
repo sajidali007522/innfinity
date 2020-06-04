@@ -29,31 +29,11 @@ export class AppComponent {
               private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    router.events.subscribe((routerEvent) => {
-      this.checkRouterEvent(routerEvent);
-    });
+    
   }
 
   ngOnInit(): void {
 
-  }
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
-  }
-
-  checkRouterEvent(routerEvent): void {
-    if (routerEvent instanceof NavigationStart) {
-      this.loading = true;
-      console.log('navigation started');
-    }
-
-    if (routerEvent instanceof NavigationEnd ||
-      routerEvent instanceof NavigationCancel ||
-      routerEvent instanceof NavigationError) {
-      console.log('navigation end');
-      this.loading = false;
-    }
   }
 
 

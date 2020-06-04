@@ -8,17 +8,24 @@ import {HtmlElementsComponent} from "./components/html-elements/html-elements.co
 import {HouseKeepingComponent} from "./house-keeping/house-keeping.component";
 import {LoginComponent} from "./login/login.component";
 import { AuthGuard} from "./_helpers/auth.guard";
+import {MainComponent} from "./main/main.component";
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
-  {path:  "", pathMatch:  "full",redirectTo:  "home", canActivate: [AuthGuard]},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  {path: "contact-create", component: ContactCreateComponent, canActivate: [AuthGuard]},
-  {path: "contact-list", component: ContactListComponent, canActivate: [AuthGuard]},
-  {path: "products", component:ProductsComponent, canActivate: [AuthGuard] },
-  {path: "products/:category", component:ProductsComponent, canActivate: [AuthGuard] },
-  {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
-  {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
+  {path:  "", pathMatch:  "full", component: MainComponent,  canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      {path: "contact-create", component: ContactCreateComponent, canActivate: [AuthGuard]},
+      {path: "contact-list", component: ContactListComponent, canActivate: [AuthGuard]},
+      {path: "products", component:ProductsComponent, canActivate: [AuthGuard] },
+      {path: "products/:category", component:ProductsComponent, canActivate: [AuthGuard] },
+      {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
+      {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
+    ]
+  },
+
   {path: "login", component:LoginComponent },
+  {path: "register", component:RegisterComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
