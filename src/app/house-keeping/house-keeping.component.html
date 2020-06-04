@@ -81,36 +81,40 @@
             <td>
               <span>{{row.fd_status ? 'StayOver' : 'Available'}}</span>
             </td>
-            <td (click)="row.$editHsStatus=!row.$editHsStatus">
-              <span *ngIf="!row.$editHsStatus">{{textFormattedObjects['hs_status'][row.hs_status]}}</span>
+            <td>
+              <span (click)="row.$editHsStatus= true" *ngIf="!row.$editHsStatus">{{textFormattedObjects['hs_status'][row.hs_status]}}</span>
               <span *ngIf="row.$editHsStatus">
-                <select [(ngModel)]="row.hs_status" class="form-control" (change)="updateHouseKeeping(row.id, row, 'hs_status')">
+                <select [(ngModel)]="row.hs_status" class="form-control" (change)="updateHouseKeeping(row.id, row, 'hs_status', '$editHsStatus')">
                   <option *ngFor="let status of hsStatus" [ngValue]="status.id">{{status.title}}</option>
                 </select>
+                <span class="fa fa-close" (click)= "row.$editHsStatus = false;"></span>
               </span>
             </td>
-            <td (click)="row.$editAdminStatus=!row.$editAdminStatus">
-              <span *ngIf="!row.$editAdminStatus">{{textFormattedObjects['admin_statuses'][row.admin_status]}}</span>
+            <td>
+              <span (click)="row.$editAdminStatus= true" *ngIf="!row.$editAdminStatus">{{textFormattedObjects['admin_statuses'][row.admin_status]}}</span>
               <span *ngIf="row.$editAdminStatus">
-                <select [(ngModel)]="row.admin_status" class="form-control">
+                <select [(ngModel)]="row.admin_status" class="form-control" (change)="updateHouseKeeping(row.id, row, 'admin_status', '$editAdminStatus')" >
                   <option *ngFor="let adStatus of adminStatuses" [ngValue]="adStatus.id">{{adStatus.title}}</option>
                 </select>
+                <span class="fa fa-close" (click)= "row.$editAdminStatus = false;"></span>
               </span>
             </td>
-            <td (click)="row.$editHousekeeper=!row.$editHousekeeper">
-              <span *ngIf="!row.$editHousekeeper">{{textFormattedObjects['house_keepers'][row.housekeeper]}}</span>
+            <td>
+              <span *ngIf="!row.$editHousekeeper" (click)="row.$editHousekeeper= true">{{textFormattedObjects['house_keepers'][row.housekeeper]}}</span>
               <span *ngIf="row.$editHousekeeper">
-                <select [(ngModel)]="row.housekeeper" class="form-control"  >
+                <select [(ngModel)]="row.housekeeper" class="form-control" (change)= "updateHouseKeeping(row.id, row, 'housekeeper', '$editHousekeeper')" >
                   <option *ngFor="let hk of houseKeepers" [ngValue]="hk.id">{{hk.name}}</option>
                 </select>
+                <span class="fa fa-close" (click)="row.$editHousekeeper = false"></span>
               </span>
             </td>
-            <td (click)="row.$editShift=!row.$editShift">
-              <span *ngIf="!row.$editShift">{{textFormattedObjects['shifts'][row.shift]}}</span>
+            <td>
+              <span (click)="row.$editShift= true" *ngIf="!row.$editShift">{{textFormattedObjects['shifts'][row.shift]}}</span>
               <span *ngIf="row.$editShift">
-                <select [(ngModel)]="row.shift" class="form-control">
+                <select [(ngModel)]="row.shift" class="form-control" (change) = "updateHouseKeeping(row.id, row, 'shift', '$editShift')">
                   <option *ngFor="let shift of shifts" [ngValue]="shift.id">{{shift.title}}</option>
                 </select>
+                <span class="fa fa-close" (click)= "row.$editShift = false;"></span>
               </span>
             </td>
             <td>{{row.linen_status}}</td>
