@@ -12,7 +12,7 @@ import {MainComponent} from "./main/main.component";
 import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
-  {path:  "", pathMatch:  "full", component: MainComponent,  canActivate: [AuthGuard],
+  {path:  "", component: MainComponent,  canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       {path: "contact-create", component: ContactCreateComponent, canActivate: [AuthGuard]},
