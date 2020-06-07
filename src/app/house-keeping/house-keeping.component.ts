@@ -320,6 +320,12 @@ export class HouseKeepingComponent implements OnInit {
     roomRow[editKey] = false;
   }
 
+  enableEditMode (row, key, ele) {
+    console.log(ele);
+    row[key] = true;
+    $("#"+ele).trigger('mousedown');
+  }
+
   initValue (obj, key, value) {
     obj[key] = value
   }

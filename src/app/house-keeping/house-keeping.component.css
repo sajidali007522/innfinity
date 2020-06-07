@@ -13,3 +13,9 @@
     color: #09425d;
     margin: 0 5px;
 }
+
+td select.view-mode,td select.view-mode:focus  {
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+}
