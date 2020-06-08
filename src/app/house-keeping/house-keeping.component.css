@@ -14,7 +14,9 @@
     margin: 0 5px;
 }
 
-td select.view-mode,td select.view-mode:focus  {
+td select.view-mode,
+td select.view-mode:focus,
+td select.view-mode:active{
   border: none;
   background: transparent;
   -webkit-appearance: none;
