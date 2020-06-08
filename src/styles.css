@@ -334,15 +334,6 @@ h3{
   font-size: 15px;
   margin-right: 10px;
 }
-.menu-fullwidth .row-custom > div:first-child{
-  display: none;
-}
-.menu-fullwidth .row-custom > div:nth-child(2){
-  width: 100%;
-}
-.menu-fullwidth .row-custom:before{
-  display: none;
-}
 .theme-light{
 }
 .theme-light .row-custom:before{
@@ -441,23 +432,79 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
         padding: 6px 12px;
         cursor: pointer;
     }
-  .dataTable td{
-    position: relative;
-  }
-  .dataTable .fa-close{
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: rgba(0,0,0, 0.4);
+.nav.nav-tabs{
+  margin-bottom: 25px;  
+}
+  .nav.nav-tabs a{
+    display: inline-block;
     color: #fff;
-    font-size: 12px;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
+    width: 100%;
+    background: #3f7892;
+    border:none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+  }
+  .nav.nav-tabs .nav-link.active{
+    background: #09425d;
+    color: #fff;
+  }
+  .nav-three li{width: 33.33%;}
+  .nav-four li{width: 25%;}
+  .nav-five li{width: 20%;}
+  .nav-six li{width: 16.66%;}
+
+  .tx-lg-modal{
     text-align: center;
-    border-radius: 50%;
+    padding: 0 50px;
+    font-size: 20px;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .tx-lg-modal p{
+    line-height: 1.4;
   }
 
+@media(min-width:767px){
+  .modal-md{
+    max-width: 700px;
+  }
+}
+@media(min-width:1060px){
+  .menu-fullwidth .row-custom > div:first-child{
+    display: none;
+  }
+  .menu-fullwidth .row-custom > div:nth-child(2){
+    width: 100%;
+  }
+  .menu-fullwidth .row-custom:before{
+    display: none;
+  }
+}
+
+@media(max-width:1060px){
+  .row-custom:before{
+    display: none;
+  }
+  .row-custom > div:first-child{
+    display: none;
+  }
+  .row-custom > div:nth-child(2){
+    width: 100%;
+  }
+    .menu-active .row-custom > div:first-child{
+      display: block;
+    }
+    .menu-active .row-custom > div:nth-child(2){
+      width: calc(100% - 260px);
+    }
+    .menu-active .row-custom:before{
+      display: block;
+    }
+}
 @media(max-width:767px){
   .header-right{
     display: none;
@@ -466,5 +513,8 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     top: 13px;
     left: auto;
     right: 25px;
+  }
+  .tx-lg-modal{
+    padding: 0;
   }
 }
