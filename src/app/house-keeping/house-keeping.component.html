@@ -83,25 +83,25 @@
               <span>{{row.fd_status ? 'StayOver' : 'Available'}}</span>
             </td>
             <td>
-              <span class="fa fa-close" *ngIf="row.$editHsStatus" (click)= "row.$editHsStatus = false;"></span>
               <span>
                 <select id="hs_status_{{$index}}"
                         [(ngModel)]="row.hs_status"
                         [ngClass]="{'view-mode': !row.$editHsStatus, 'form-control': row.$editHsStatus}"
                         (focus)= "row.$editHsStatus = true;"
+                        (focusout)="row.$editHsStatus = false;"
                         (change)="updateHouseKeeping(row.id, row, 'hs_status', '$editHsStatus')">
                   <option *ngFor="let status of hsStatus" [ngValue]="status.id">{{status.title}}</option>
                 </select>
               </span>
             </td>
             <td>
-              <span class="fa fa-close" *ngIf="row.$editAdminStatus" (click)= "row.$editAdminStatus = false;"></span>
               <span>
                 <select id="admin_status"
                         [(ngModel)]="row.admin_status"
                         (change)="updateHouseKeeping(row.id, row, 'admin_status', '$editAdminStatus')"
                         [ngClass]="{'view-mode': !row.$editAdminStatus, 'form-control': row.$editAdminStatus}"
                         (focus)= "row.$editAdminStatus = true;"
+                        (focusout)= "row.$editAdminStatus = false;"
                         >
                   <option *ngFor="let adStatus of adminStatuses" [ngValue]="adStatus.id">{{adStatus.title}}</option>
                 </select>
@@ -109,11 +109,11 @@
               </span>
             </td>
             <td>
-              <span class="fa fa-close" *ngIf="row.$editHousekeeper" (click)="row.$editHousekeeper = false"></span>
               <span>
                 <select [(ngModel)]="row.housekeeper"
                         [ngClass]="{'view-mode': !row.$editHousekeeper, 'form-control': row.$editHousekeeper}"
                         (focus)= "row.$editHousekeeper = true;"
+                        (focusout)= "row.$editHousekeeper = false;"
                         (change)= "updateHouseKeeping(row.id, row, 'housekeeper', '$editHousekeeper')" >
                   <option *ngFor="let hk of houseKeepers" [ngValue]="hk.id">{{hk.name}}</option>
                 </select>
@@ -121,11 +121,11 @@
               </span>
             </td>
             <td>
-              <span class="fa fa-close" *ngIf="row.$editShift " (click)= "row.$editShift = false;"></span>
               <span>
                 <select [(ngModel)]="row.shift"
                         [ngClass]="{'view-mode': !row.$editShift, 'form-control': row.$editShift}"
                         (focus)= "row.$editShift = true;"
+                        (focusout)= "row.$editShift = false;"
                         (change) = "updateHouseKeeping(row.id, row, 'shift', '$editShift')">
                   <option *ngFor="let shift of shifts" [ngValue]="shift.id">{{shift.title}}</option>
                 </select>
@@ -238,7 +238,7 @@
           </li>
         </ul>
 
-        
+
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="content-1" role="tabpanel">
             <div class="tx-lg-modal">
