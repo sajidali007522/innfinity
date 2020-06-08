@@ -14,8 +14,28 @@
     margin: 0 5px;
 }
 
-td select.view-mode,td select.view-mode:focus  {
+td select.view-mode,
+td select.view-mode:focus  {
   border: none;
   background: transparent;
   -webkit-appearance: none;
+  outline: none;
+  width: 100%;
+}
+
+.dataTable td{
+position: relative;
+}
+.dataTable .fa-close{
+position: absolute;
+right: 0;
+top: 0;
+background: rgba(0,0,0, 0.4);
+color: #fff;
+font-size: 12px;
+width: 20px;
+height: 20px;
+line-height: 20px;
+text-align: center;
+border-radius: 50%;
 }
