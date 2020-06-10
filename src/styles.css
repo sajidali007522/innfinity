@@ -476,6 +476,7 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     font-size: 20px;
     font-weight: normal;
     background: #09425d;
+    background-image: linear-gradient(to right, #3f7892 , #09425d);
     color: #fff;
     padding: 15px 20px;
     cursor: pointer;
@@ -489,7 +490,65 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     right: 15px;
     top: 15px;
   }
+.custom-accordion-wrap{
+  background: #fff;
+  -moz-box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+  box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+}
+  .custom-accordion > h3{
+    font-size: 18px;
+    margin: 0 0 10px;
+  }
+    .custom-accordion > h3 a{
+      display: block;
+      padding: 13px 15px 15px 40px;
+      color: #212529;
+      text-decoration: none;
+      font-weight: normal;
+      position: relative;
+      background: #efefef;
+    }
+    .custom-accordion > h3 a:before{
+      content: "\f196";
+      font:normal normal normal 14px/1 FontAwesome;
+      position: absolute;
+      left: 15px;
+      top: 17px;
+    }
+    .custom-accordion > h3.active a:before{
+      content: "\f147";
+    }
+  .custom-accordion-content{
+    display: none;
+    padding: 10px 30px 25px;
+  }
+  .custom-accordion-content.exp{
+    display: block;
+  }
+.form-style{
 
+}
+.combine-wrap{
+  position: relative;
+  margin: 0 0 15px;
+}
+  .combine-wrap .form-control{
+    padding: 35px 10px 14px 15px;
+    height: auto;
+  }
+  .combine-wrap label{
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    font-size: 13px;
+    color: #999;
+  }
+
+.custom-control-input:checked~.custom-control-label::before{
+  background: #09425d;
+  border-color: #09425d;
+}
 @media(min-width:767px){
   .modal-md{
     max-width: 700px;

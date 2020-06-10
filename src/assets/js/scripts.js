@@ -36,4 +36,17 @@ $(document).ready(function () {
     return false;
   });
 
+  // custom accordion
+  $(".custom-accordion > h3 > a").click (function () {
+    if( $(this).parent().hasClass('active') ){
+      $(this).parent().removeClass('active');
+      $(this).parent().next('.custom-accordion-content').slideUp();
+    }
+    else{
+      $(this).parent().addClass('active');
+      $(this).parent().next('.custom-accordion-content').slideDown();
+    }
+    return false;
+  });
+
 });
