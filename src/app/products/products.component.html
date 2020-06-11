@@ -1,17 +1,32 @@
 <div class="" *ngIf="products.length > 0">
-  <div class="box" *ngFor="let product of products">
-    <div class="box-header">
-      <h3>{{product.name}}</h3>
-    </div>
-    <div class="box-body">
-      <p>{{product.description}}
-      <div class="img-thumbnail">
-          <img [defaultImage]="'/assets/images/loading.gif'" [lazyLoad]="product.thumbnail" style="max-width: 50%">
+  <div *ngFor="let product of products">
+    <div class="box">
+      <div class="box-header">
+        <h3>{{product.name}}</h3>
       </div>
+      <div class="box-body">
+        <p>{{product.description}}
+        <div class="img-thumbnail" *ngIf="product.thumbnail">
+            <img [defaultImage]="'/assets/images/loading.gif'" [lazyLoad]="product.thumbnail" style="max-width: 50%">
+        </div>
 
+      </div>
+      <div class="box-footer">
+        <p><strong>category ID: {{product.category}}</strong></p>
+      </div>
     </div>
-    <div class="box-footer">
-      <p><strong>category ID: {{product.category}}</strong></p>
+    <div class="box" *ngIf="product.fields">
+      <div class="box-body">
+        <div class="form-group" *ngFor="let field of product.fields">
+          <label class="control-label">{{field.description}}</label>
+          <input *ngIf="field.fieldType == 'Boolean'" type="checkbox" [(ngModel)]="field.value" />
+          <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
+          <textarea *ngIf="field.fieldType == 'String'" class="form-control"  [(ngModel)]="field.value"></textarea>
+        </div>
+        <div class="form-group text-center">
+          <div class="btn btn-primary btn-block">Save</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
