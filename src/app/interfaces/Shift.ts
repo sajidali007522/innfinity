@@ -1,4 +1,4 @@
 export interface Shift {
-  id: number;
-  title: string;
+  value: number;
+  text: string;
 }

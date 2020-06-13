@@ -1,254 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { HouseKeeping} from "../interfaces/HouseKeeping";
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {Shift} from "../interfaces/Shift";
-import {HsStatus} from "../interfaces/HsStatus";
-import {HouseKeeper} from "../interfaces/HouseKeeper";
-import {AdminStatus} from "../interfaces/AdminStatus";
+import {HouseKeepingService} from "../_services/house-keeping.service";
+import {RoomsService} from "../_services/rooms.service";
 
-const HOUSEKEEEPING: HouseKeeping[] = [
-  {
-    room_no: '1',
-    features: 'feature 1',
-    fd_status: true,
-    hs_status: 1,
-    admin_status: 1,
-    housekeeper: 1,
-    shift: 1,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '2',
-    features: 'feature 2',
-    fd_status: true,
-    hs_status: 2,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '3',
-    features: 'feature 3',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '4',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '5',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '6',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '7',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '8',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '9',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '10',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '11',
-    features: 'feature',
-    fd_status: false,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 1,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '12',
-    features: 'Management, Doom 1',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 2,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '13',
-    features: 'featManagement, Doom 1ure',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '14',
-    features: 'Management, Doom 1',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '15',
-    features: 'Management, Doom 1',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '16',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '17',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '18',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '19',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-  {
-    room_no: '20',
-    features: 'feature',
-    fd_status: true,
-    hs_status: 3,
-    admin_status: 1,
-    housekeeper: 2,
-    shift: 2,
-    linen_status: false,
-    viewMode: true
-  },
-];
 const SHIFTS: Shift [] = [
-  {id: 1, title: "Day"},
-  {id: 2, title: "TimeOut"},
-  {id: 3, title: "Night"},
+  {value: 1, text: "Day"},
+  {value: 2, text: "TimeOut"},
+  {value: 3, text: "Night"},
 ];
-const HSSTATUS: HsStatus[] = [
-  {id: 1, title: 'Occupied/Clean'},
-  {id: 2, title: 'Vacant/Clean'},
-  {id: 3, title: 'Dirty'},
-];
-const HOUSEKEEPERS: HouseKeeper[]=[
-  {id: 1, name: 'House Keeper 1'},
-  {id: 2, name: 'House Keeper 2'},
-  {id: 3, name: 'House Keeper 3'},
-  {id: 4, name: 'House Keeper 4'},
-  {id: 5, name: 'House Keeper 5'},
-];
-
-const ADMINSTATUS: AdminStatus[]=[
-  {id: 1, title: 'Available'},
-  {id: 2, title: 'Not Available'},
-]
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -259,78 +18,110 @@ const ADMINSTATUS: AdminStatus[]=[
 export class HouseKeepingComponent implements OnInit {
 
   data;
-  houseKeepers;
-  shifts;
-  hsStatus;
-  adminStatuses;
-
+  pageFilters= {
+    isHousekeeperAdmin: true,
+    sites:'',
+    features: '00000000-0000-0000-0000-000000000000',
+    housekeepingStatuses: '',
+    adminStatuses: '',
+    housekeepers: ''
+  }
+  state = {
+    isLoading: false,
+    filterConfigs: {
+      sites: [],
+      houseKeepers: [],
+      features: [],
+      shifts: [],
+      hsStatus: [],
+      adminStatuses: [],
+    }
+  }
   textFormattedObjects={};
   dtOptions: DataTables.Settings = {};
-  constructor() {
-    this.data = Array.from(HOUSEKEEEPING);
-    this.houseKeepers=Array.from(HOUSEKEEPERS);
-    this.shifts = Array.from(SHIFTS);
-    this.hsStatus = Array.from(HSSTATUS);
-    this.adminStatuses = Array.from(ADMINSTATUS);
+  constructor (private HKService: HouseKeepingService,
+               private roomService: RoomsService,
+               private ref: ChangeDetectorRef
+  ) {
 
-    //
-    this.formatHouseKeepers();
-    this.formatHsStatus();
-    this.formatShift();
-    this.formatAdminStatuses();
   }
 
   ngOnInit(): void {
+    this.state.isLoading = true;
+    this.HKService.loadInitialConfig().subscribe(data => {
+
+        this.pageFilters.isHousekeeperAdmin = data['isHousekeeperAdmin'];
+        this.state.filterConfigs.shifts = SHIFTS;
+        this.state.filterConfigs.sites = data['sites'];
+        this.state.filterConfigs.houseKeepers = data['housekeepers'];
+        this.state.filterConfigs.features = data['features'];
+        this.state.filterConfigs.hsStatus = data['housekeepingStatuses'];
+        this.state.filterConfigs.adminStatuses = data['adminStatuses'];
+        this.pageFilters.sites = data['sites'][0]['value'];
+        this.state.isLoading=false;
+        this.ref.detectChanges();
+        this.loadRooms();
+      },
+      err => {
+        //handle errors here
+        console.log(err);
+        this.state.isLoading = false;
+      });
   }
 
-  formatHouseKeepers () {
-    let obj ={};
-    for(let i=0; i<this.houseKeepers.length; i++) {
-      obj[this.houseKeepers[i].id] =this.houseKeepers[i].name;
-    }
-    this.textFormattedObjects['house_keepers'] = obj;
+  public reloadConfigs () {
+    this.state.isLoading=true;
+    this.ref.detectChanges();
+    this.HKService.loadSiteconfig(this.pageFilters.sites, {featureId : this.pageFilters.features}).subscribe(data => {
+        this.state.filterConfigs.shifts = SHIFTS;
+        this.state.filterConfigs.houseKeepers = data['housekeepers'];
+        this.state.filterConfigs.features = data['features'];
+        this.state.filterConfigs.hsStatus = data['housekeepingStatuses'];
+        this.state.filterConfigs.adminStatuses = data['adminStatuses'];
+        this.pageFilters.features =  '00000000-0000-0000-0000-000000000000';
+        this.state.isLoading = false;
+        this.ref.detectChanges();
+        this.loadRooms();
+      },
+      err => {
+        //handle errors here
+        console.log(err);
+        this.state.isLoading = false;
+      });
   }
 
-  formatHsStatus () {
-    let obj ={};
-    for(let i=0; i < this.hsStatus.length; i++) {
-      obj[this.hsStatus[i].id] =this.hsStatus[i].title;
-    }
-    this.textFormattedObjects['hs_status'] = obj;
+  public loadRooms () {
+    this.state.isLoading = true;
+    this.ref.detectChanges();
+    this.roomService.loadRooms(this.pageFilters.sites, {featureId : this.pageFilters.features}).subscribe(data => {
+        console.log("processed")
+        this.data = data;
+        this.state.isLoading = false;
+        this.ref.detectChanges();
+      },
+      err => {
+        //handle errors here
+        console.log(err);
+        this.state.isLoading = false;
+      });
   }
 
-  formatShift () {
-    let obj ={};
-    for(let i=0; i < this.shifts.length; i++) {
-      obj[this.shifts[i].id] =this.shifts[i].title;
-    }
-    this.textFormattedObjects['shifts'] = obj;
-  }
-
-  formatAdminStatuses () {
-    let obj ={};
-    for(let i=0; i < this.adminStatuses.length; i++) {
-      obj[this.adminStatuses[i].id] =this.adminStatuses[i].title;
-    }
-    this.textFormattedObjects['admin_statuses'] = obj;
-  }
-
-  updateHouseKeeping(roomId, roomRow, key, editKey) {
+  public updateHouseKeeping(roomId, roomRow, key, editKey) {
     console.log(roomId, roomRow, key, editKey);
     roomRow[editKey] = false;
   }
 
-  enableEditMode (row, key, ele) {
+  public enableEditMode (row, key, ele) {
     console.log(ele);
     row[key] = true;
     $("#"+ele).trigger('mousedown');
   }
 
-  initValue (obj, key, value) {
+  public initValue (obj, key, value) {
     obj[key] = value
   }
 
-  toggleProperty (obj, key) {
+  public toggleProperty (obj, key) {
     obj[key] = !obj[key];
     console.log("clicked....",obj);
   }

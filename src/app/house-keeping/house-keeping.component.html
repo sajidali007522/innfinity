@@ -1,5 +1,5 @@
-
-<div class="">
+<app-loader *ngIf="state.isLoading "></app-loader>
+<div class="" *ngIf="!state.isLoading">
   <div class="box">
     <div class="box-header">
       <h3>
@@ -7,11 +7,23 @@
       </h3>
     </div>
     <div class="box-body">
-
-      <div class="custom-control custom-checkbox mb-2">
-        <input type="checkbox" class="custom-control-input" id="customCheck1">
-        <label class="custom-control-label" for="customCheck1">Admin Mode</label>
+      <div class="filter-section">
+        <div class="row">
+          <div class="custom-control custom-checkbox mb-2 col-lg-3">
+            <input type="checkbox" class="custom-control-input" [(ngModel)]="pageFilters.isHousekeeperAdmin" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Admin Mode</label>
+          </div>
+          <div class="col-lg-3">
+            <label>Sites</label>
+            <p>
+              <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
+                <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
+              </select>
+            </p>
+          </div>
+        </div>
       </div>
+
 
 
       <div class="filter-section">
@@ -20,23 +32,17 @@
             <label>Shift</label>
             <p>
               <select class="form-control">
-                <option>Any</option>
+                <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.value">{{shift.text}}</option>
               </select>
             </p>
           </div>
+
           <div class="col-lg-3">
-            <label>Camp</label>
+            <label>Feature</label>
             <p>
-              <select class="form-control">
-                <option>Main Camp</option>
-              </select>
-            </p>
-          </div>
-          <div class="col-lg-3">
-            <label>Room Type</label>
-            <p>
-              <select class="form-control">
-                <option>Management</option>
+              <select class="form-control" [(ngModel)]="pageFilters.features">
+                <option value="00000000-0000-0000-0000-000000000000"> ANY </option>
+                <option *ngFor="let feature of state.filterConfigs.features" value="{{feature.value}}">{{feature.text}}</option>
               </select>
             </p>
           </div>
@@ -90,7 +96,7 @@
                         (focus)= "row.$editHsStatus = true;"
                         (focusout)="row.$editHsStatus = false;"
                         (change)="updateHouseKeeping(row.id, row, 'hs_status', '$editHsStatus')">
-                  <option *ngFor="let status of hsStatus" [ngValue]="status.id">{{status.title}}</option>
+                  <option *ngFor="let status of state.filterConfigs.hsStatus" [ngValue]="status.value">{{status.text}}</option>
                 </select>
               </span>
             </td>
@@ -103,7 +109,7 @@
                         (focus)= "row.$editAdminStatus = true;"
                         (focusout)= "row.$editAdminStatus = false;"
                         >
-                  <option *ngFor="let adStatus of adminStatuses" [ngValue]="adStatus.id">{{adStatus.title}}</option>
+                  <option *ngFor="let adStatus of state.filterConfigs.adminStatuses" [ngValue]="adStatus.value">{{adStatus.text}}</option>
                 </select>
 
               </span>
@@ -115,7 +121,7 @@
                         (focus)= "row.$editHousekeeper = true;"
                         (focusout)= "row.$editHousekeeper = false;"
                         (change)= "updateHouseKeeping(row.id, row, 'housekeeper', '$editHousekeeper')" >
-                  <option *ngFor="let hk of houseKeepers" [ngValue]="hk.id">{{hk.name}}</option>
+                  <option *ngFor="let hk of state.filterConfigs.houseKeepers" [ngValue]="hk.value">{{hk.text}}</option>
                 </select>
 
               </span>
@@ -127,7 +133,7 @@
                         (focus)= "row.$editShift = true;"
                         (focusout)= "row.$editShift = false;"
                         (change) = "updateHouseKeeping(row.id, row, 'shift', '$editShift')">
-                  <option *ngFor="let shift of shifts" [ngValue]="shift.id">{{shift.title}}</option>
+                  <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.value">{{shift.text}}</option>
                 </select>
               </span>
             </td>
