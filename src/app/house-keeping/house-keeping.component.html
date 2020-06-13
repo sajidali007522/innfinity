@@ -28,7 +28,7 @@
 
       <div class="filter-section">
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <label>Shift</label>
             <p>
               <select class="form-control">
@@ -37,16 +37,16 @@
             </p>
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <label>Feature</label>
             <p>
-              <select class="form-control" [(ngModel)]="pageFilters.features">
+              <select class="form-control" [(ngModel)]="pageFilters.features" (change)="loadRooms()">
                 <option value="00000000-0000-0000-0000-000000000000"> ANY </option>
                 <option *ngFor="let feature of state.filterConfigs.features" value="{{feature.value}}">{{feature.text}}</option>
               </select>
             </p>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <label>Doom</label>
             <p>
               <select class="form-control">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <button type="button" class="btn btn-block btn-success">Refresh</button>
           </div>
         </div>
@@ -80,18 +80,18 @@
           <tbody>
           <tr *ngFor="let row of data;index as $index;">
             <td>
-              <span>{{row.room_no}}</span>
+              <span>{{row.roomNumber}}</span>
             </td>
             <td>
               <span>{{row.features}}</span>
             </td>
             <td>
-              <span>{{row.fd_status ? 'StayOver' : 'Available'}}</span>
+              <span>{{row.fdStatus}}</span>
             </td>
             <td>
               <span>
                 <select id="hs_status_{{$index}}"
-                        [(ngModel)]="row.hs_status"
+                        [(ngModel)]="row.housekeepingStatusID"
                         [ngClass]="{'view-mode': !row.$editHsStatus, 'form-control': row.$editHsStatus}"
                         (focus)= "row.$editHsStatus = true;"
                         (focusout)="row.$editHsStatus = false;"
@@ -103,7 +103,7 @@
             <td>
               <span>
                 <select id="admin_status"
-                        [(ngModel)]="row.admin_status"
+                        [(ngModel)]="row.adminStatusID"
                         (change)="updateHouseKeeping(row.id, row, 'admin_status', '$editAdminStatus')"
                         [ngClass]="{'view-mode': !row.$editAdminStatus, 'form-control': row.$editAdminStatus}"
                         (focus)= "row.$editAdminStatus = true;"
@@ -116,7 +116,7 @@
             </td>
             <td>
               <span>
-                <select [(ngModel)]="row.housekeeper"
+                <select [(ngModel)]="row.housekeeperID"
                         [ngClass]="{'view-mode': !row.$editHousekeeper, 'form-control': row.$editHousekeeper}"
                         (focus)= "row.$editHousekeeper = true;"
                         (focusout)= "row.$editHousekeeper = false;"

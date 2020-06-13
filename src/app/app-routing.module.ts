@@ -10,6 +10,7 @@ import {LoginComponent} from "./login/login.component";
 import { AuthGuard} from "./_helpers/auth.guard";
 import {MainComponent} from "./main/main.component";
 import {RegisterComponent} from "./register/register.component";
+import {LoaderComponent} from "./components/loader/loader.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: "products/:category", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
+      {path: "loader", component:LoaderComponent },
     ]
   },
 
