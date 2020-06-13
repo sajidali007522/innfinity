@@ -22,7 +22,7 @@ const routes: Routes = [
       {path: "products/:category", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
-      {path: "loader", component:LoaderComponent },
+      {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
     ]
   },
 
