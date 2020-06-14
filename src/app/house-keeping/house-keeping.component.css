@@ -3,6 +3,10 @@
     padding: 15px 30px;
     margin: 0 0 35px;;
 }
+.filter-gradient{
+    background: #09425d;
+    background-image: linear-gradient(#eee, #ddd);
+}
 .room-table th:last-child{
     min-width: 100px !important;
 }

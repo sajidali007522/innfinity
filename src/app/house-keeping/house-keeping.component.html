@@ -7,19 +7,29 @@
       </h3>
     </div>
     <div class="box-body">
-      <div class="filter-section">
+      <div class="filter-section filter-gradient">
         <div class="row">
-          <div class="custom-control custom-checkbox mb-2 col-lg-3">
-            <input type="checkbox" class="custom-control-input" [(ngModel)]="pageFilters.isHousekeeperAdmin" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Admin Mode</label>
+          <div class="custom-control custom-checkbox mb-2 col-lg-7">
+            <p>
+              <input type="checkbox" class="custom-control-input" [(ngModel)]="pageFilters.isHousekeeperAdmin" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Admin Mode</label>
+            </p>
+
+            
+            <div class="row">
+              <div class="col-md-2">
+                <label>Sites</label>
+              </div>
+              <div class="col-md-8">
+                <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
+                  <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
+                </select>
+              </div>
+            </div>
+
           </div>
           <div class="col-lg-3">
-            <label>Sites</label>
-            <p>
-              <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
-                <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
-              </select>
-            </p>
+            
           </div>
         </div>
       </div>
