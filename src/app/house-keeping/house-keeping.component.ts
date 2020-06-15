@@ -60,7 +60,7 @@ export class HouseKeepingComponent implements OnInit {
         this.pageFilters.sites = data['sites'][0]['value'];
         this.state.isLoading=false;
         this.ref.detectChanges();
-        //this.loadRooms();
+        this.loadRooms();
       },
       err => {
         //handle errors here
