@@ -32,6 +32,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { UsersComponent } from './users/users.component';
 import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RegisterComponent } from './register/register.component';
     AlertComponent,
     UsersComponent,
     MainComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
