@@ -1,1 +1,128 @@
-<p>reservation works!</p>
+<link type="text/css" rel="stylesheet" href="/assets/css/reservation.css" />
+
+<div class="overlay-bg"></div>
+<div class="custom-section-wrap">
+  <h1>Book</h1>
+  <div class="custom-section">
+    <div class="custom-sidebar">
+      <div class="custom-nav" id="tabsCustom">
+        <ul>
+          <li class="active">
+            <a href="#content-1"><em class="fa fa-plane"></em> <span>Flight</span></a>
+          </li>
+          <li>
+            <a href="#content-2"><em class="fa fa-hotel"></em> <span>Hotel</span></a>
+          </li>
+          <li>
+            <a href="#content-2"><em class="fa fa-car"></em> <span>Car</span></a>
+          </li>
+          <li>
+            <a href="#content-2"><em class="fa fa-home"></em> <span>Bundle</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="custom-main">
+      <form>
+        <div class="custom-content tabs-content" id="content-1" style="display: block;">
+            <div class="field-wrap-outer">
+                <label>Business Profile*</label>
+                <div class="field-wrap">
+                    <select class="form-control">
+                        <option>Select Business Profile</option>
+                    </select>
+                    <span class="fa fa-user-o"></span>
+                </div>
+            </div>
+            <div class="field-wrap-outer">
+                <label>Traveler*</label>
+                <div class="field-wrap">
+                    <input type="text" placeholder="Select Business Profile First" class="form-control">
+                    <span class="fa fa-paper-plane-o"></span>
+                </div>
+            </div>
+
+            <div class="trip-radio-wrap">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="Roundtrip" name="trip" class="custom-control-input">
+                    <label class="custom-control-label" for="Roundtrip">Roundtrip</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="oneWay" name="trip" class="custom-control-input">
+                    <label class="custom-control-label" for="oneWay">One-Way</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="multiCity" name="trip" class="custom-control-input">
+                    <label class="custom-control-label" for="multiCity">Multi-city</label>
+                </div>
+            </div>
+
+            <div class="book-time-wrap">
+              <div class="row">
+                <div class="col-6">
+                  <h3>From*</h3>
+                  <div class="field-wrap-outer">
+                    <label>Departure*</label>
+                    <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control">
+                        <span class="fa fa-calendar-o"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <h3>To*</h3>
+                  <div class="field-wrap-outer">
+                    <label>Departure Time*</label>
+                    <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control">
+                        <span class="fa fa-clock-o"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="field-wrap-outer">
+                    <label>Departure*</label>
+                    <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control">
+                        <span class="fa fa-calendar-o"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="field-wrap-outer">
+                    <label>Departure Time*</label>
+                    <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control">
+                        <span class="fa fa-clock-o"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Search</button>
+        </div>
+      </form>
+
+      <div class="forget-content tabs-content" id="content-2">
+        <div class="custom-title">
+          <h2><span>Reset Password</span></h2>
+        </div>
+        <p>
+          Enter your email address below and we'll send you an email with instructions.
+        </p>
+        <br>
+        <div class="field-wrap">
+          <input type="text" class="form-control" placeholder="Email">
+          <span class="fa fa-envelope-o"></span>
+        </div>
+        <input type="submit" class="btn btn-success btn-block" value="Reset">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/assets/js/reservation.js" defer></script>
