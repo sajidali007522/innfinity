@@ -33,6 +33,7 @@ import { UsersComponent } from './users/users.component';
 import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ReservationComponent } from './reservation/reservation.component';
     UsersComponent,
     MainComponent,
     RegisterComponent,
-    ReservationComponent
+    ReservationComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
