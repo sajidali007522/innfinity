@@ -12,6 +12,7 @@ import {MainComponent} from "./main/main.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoaderComponent} from "./components/loader/loader.component";
 import {ReservationComponent} from "./reservation/reservation.component";
+import {CarouselComponent} from "./carousel/carousel.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -25,6 +26,7 @@ const routes: Routes = [
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
       {path: "reservation", component:ReservationComponent, canActivate: [AuthGuard] },
+      {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },
     ]
   },
 
