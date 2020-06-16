@@ -334,7 +334,36 @@
       <button class="btn btn-sm btn-outline-primary mr-2" (click)="dp.navigateTo({year: 2021, month: 2})">To Feb 2021</button>
 
       <hr/>
-
+      <div class="row">
+        <div class="col-xs-12">
+          <timepicker [(ngModel)]="mytime"></timepicker>
+          <pre class="alert alert-info">Time is: {{mytime}}</pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text"
+                 placeholder="Datepicker"
+                 class="form-control"
+                 bsDatepicker
+                 #dp="bsDatepicker"
+                 [bsConfig]="bsConfig">
+        </div>
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <select class="form-control" [(ngModel)]="chosenDateFormat" (ngModelChange)="applyFormat(dp)">
+            <option *ngFor="let item of dateFormats" value="{{item.label}}"> {{item.value}} - {{item.label}} </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text"
+                 placeholder="Daterangepicker"
+                 class="form-control"
+                 bsDaterangepicker
+                 [bsConfig]="{ isAnimated: true }">
+        </div>
+      </div>
       <pre>Month: {{ date.month }}.{{ date.year }}</pre>
       <pre>Model: {{ dateModel | json }}</pre>
     </div>

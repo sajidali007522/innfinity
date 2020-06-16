@@ -1,6 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import { BsDatepickerDirective } from "ngx-bootstrap/datepicker";
+
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import {DateFormatsService} from "../../_services/date-formats.service";
 
 interface Alert {
   type: string;
@@ -47,18 +49,24 @@ export class HtmlElementsComponent implements OnInit {
     {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
   ];
 
+  mytime;
   title = 'Angular Datatables';
   dtOptions: DataTables.Settings = {};
   alerts: Alert[];
 
   dateModel: NgbDateStruct;
   date: {year: number, month: number};
-
-  constructor(private calendar: NgbCalendar, private renderer: Renderer2) {
+  bsConfig: Partial<BsDatepickerConfig>;
+  chosenDateFormat;
+  dateFormats;
+  constructor(private calendar: NgbCalendar, private renderer: Renderer2, private DFService: DateFormatsService) {
     this.reset();
     this.addJsToElement('https://widgets.skyscanner.net/widget-server/js/loader.js').onload = () => {
       console.log('SkyScanner Tag loaded');
     }
+    this.bsConfig = { containerClass: 'theme-dark-blue', isAnimated: true }
+    this.dateFormats = this.DFService.dateFormats;
+    //this.addJsToElement('assets/js/datepicker-lib.js');
   }
 
   ngOnInit(): void {
@@ -80,6 +88,9 @@ export class HtmlElementsComponent implements OnInit {
     this.alerts = Array.from(ALERTS);
   }
 
+  applyFormat (dp) {
+    this.bsConfig = Object.assign(this.bsConfig, { dateInputFormat: this.chosenDateFormat });
+  }
   addJsToElement(src: string): HTMLScriptElement {
     const script = document.createElement('script');
     script.type = 'text/javascript';

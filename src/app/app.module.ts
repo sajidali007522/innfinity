@@ -34,6 +34,9 @@ import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 @NgModule({
   declarations: [
@@ -66,12 +69,15 @@ import { CarouselComponent } from './carousel/carousel.component';
     FormsModule,
     ReactiveFormsModule,
     TreeModule.forRoot(),
+    BrowserAnimationsModule,
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
     }),
     I18nModule,
     DataTablesModule,
-    NgbModule
+    NgbModule,
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
