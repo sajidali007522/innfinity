@@ -61,9 +61,6 @@ export class HtmlElementsComponent implements OnInit {
   dateFormats;
   constructor(private calendar: NgbCalendar, private renderer: Renderer2, private DFService: DateFormatsService) {
     this.reset();
-    this.addJsToElement('https://widgets.skyscanner.net/widget-server/js/loader.js').onload = () => {
-      console.log('SkyScanner Tag loaded');
-    }
     this.bsConfig = { containerClass: 'theme-dark-blue', isAnimated: true }
     this.dateFormats = this.DFService.dateFormats;
     //this.addJsToElement('assets/js/datepicker-lib.js');

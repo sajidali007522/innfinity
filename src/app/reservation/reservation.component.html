@@ -7,23 +7,22 @@
     <div class="custom-sidebar">
       <div class="custom-nav" id="tabsCustom">
         <ul>
-          <li class="active">
-            <a href="#content-1"><em class="fa fa-plane"></em> <span>Flight</span></a>
+          <li [ngClass]="{'active': tab == 'flight'}">
+            <a href="javascript:void(0)" (click)="tab = 'flight'"><em class="fa fa-plane"></em> <span>Flight</span></a>
           </li>
-          <li>
-            <a href="#content-2"><em class="fa fa-hotel"></em> <span>Hotel</span></a>
+          <li [ngClass]="{'active': tab == 'hotel'}">
+            <a href="javascript:void(0)" (click)="tab = 'hotel'"><em class="fa fa-hotel"></em> <span>Hotel</span></a>
           </li>
-          <li>
-            <a href="#content-2"><em class="fa fa-car"></em> <span>Car</span></a>
+          <li [ngClass]="{'active': tab == 'car'}">
+            <a href="javascript:void(0)" (click)="tab = 'car'"><em class="fa fa-car"></em> <span>Car</span></a>
           </li>
-          <li>
-            <a href="#content-2"><em class="fa fa-home"></em> <span>Bundle</span></a>
+          <li [ngClass]="{'active': tab == 'bundle'}">
+            <a href="javascript:void(0)" (click)="tab = 'bundle'"><em class="fa fa-home"></em> <span>Bundle</span></a>
           </li>
         </ul>
       </div>
     </div>
     <div class="custom-main">
-      <form>
           <div class="field-wrap-outer">
               <label>Business Profile*</label>
               <div class="field-wrap">
@@ -64,7 +63,12 @@
                   <div class="field-wrap-outer">
                     <label>Departure*</label>
                     <div class="field-wrap">
-                        <input type="text" placeholder="" class="form-control">
+                        <input type="text"
+                               [(ngModel)]="form.dateFrom"
+                               bsDatepicker
+                               [bsConfig]="bsConfig"
+                               placeholder="Date From"
+                               class="form-control">
                         <span class="fa fa-calendar-o"></span>
                     </div>
                   </div>
@@ -74,8 +78,9 @@
                   <div class="field-wrap-outer">
                     <label>Departure Time*</label>
                     <div class="field-wrap">
-                        <input type="text" placeholder="" class="form-control">
-                        <span class="fa fa-clock-o"></span>
+                        <timepicker [(ngModel)]="form.timeFrom" [mousewheel]="true" [arrowkeys]="true"></timepicker>
+<!--                        <input type="text" placeholder="" class="form-control">-->
+<!--                        <span class="fa fa-clock-o"></span>-->
                     </div>
                   </div>
                 </div>
@@ -85,7 +90,12 @@
                   <div class="field-wrap-outer">
                     <label>Departure*</label>
                     <div class="field-wrap">
-                        <input type="text" placeholder="" class="form-control">
+                        <input type="text"
+                               [(ngModel)]="form.dateTo"
+                               bsDatepicker
+                               [bsConfig]="bsConfig"
+                               placeholder="Date To"
+                               class="form-control">
                         <span class="fa fa-calendar-o"></span>
                     </div>
                   </div>
@@ -94,8 +104,10 @@
                   <div class="field-wrap-outer">
                     <label>Departure Time*</label>
                     <div class="field-wrap">
-                        <input type="text" placeholder="" class="form-control">
-                        <span class="fa fa-clock-o"></span>
+                        <timepicker [(ngModel)]="form.timeTo" [mousewheel]="true" [arrowkeys]="true"></timepicker>
+
+<!--                        <input type="text" placeholder="" class="form-control">-->
+<!--                        <span class="fa fa-clock-o"></span>-->
                     </div>
                   </div>
                 </div>
@@ -103,55 +115,6 @@
             </div>
             <button type="submit" class="btn btn-success btn-block">Search</button>
         </div>
-      </form>
-
-      <div class="forget-content tabs-content" id="content-2">
-        <div class="book-time-wrap">
-          <div class="row">
-            <div class="col-6">
-              <h3>From*</h3>
-              <div class="field-wrap-outer">
-                <label>Departure*</label>
-                <div class="field-wrap">
-                    <input type="text" placeholder="" class="form-control">
-                    <span class="fa fa-calendar-o"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <h3>To*</h3>
-              <div class="field-wrap-outer">
-                <label>Departure Time*</label>
-                <div class="field-wrap">
-                    <input type="text" placeholder="" class="form-control">
-                    <span class="fa fa-clock-o"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="field-wrap-outer">
-                <label>Departure*</label>
-                <div class="field-wrap">
-                    <input type="text" placeholder="" class="form-control">
-                    <span class="fa fa-calendar-o"></span>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="field-wrap-outer">
-                <label>Departure Time*</label>
-                <div class="field-wrap">
-                    <input type="text" placeholder="" class="form-control">
-                    <span class="fa fa-clock-o"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-success btn-block">Search</button>
-      </div><!-- content-2 -->
 
     </div>
   </div>
