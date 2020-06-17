@@ -47,7 +47,7 @@ img{
     .custom-nav a{
         display: block;
         font-size: 17px;
-        padding: 45px 20px;
+        padding: 47px 20px 48px;
         color: #111;
         text-decoration: none;
     }
@@ -140,6 +140,21 @@ img{
         padding: 0 0 7px;
         margin: 0 0 15px;
     }
+.field-wrap .bs-timepicker-field{
+  padding: 12px 5px;
+}
+
+/* hide arrow of time picker */
+.time-picker-wrap tbody > tr:nth-child(1),
+.time-picker-wrap tbody > tr:nth-child(3){
+    display: none !important;
+}
+.time-picker-wrap .btn-default{
+    background: #eeeeee;
+    color: #495057;
+    font-size: 16px;
+    padding: 12px 14px;
+}
 
 @media(max-width: 991px){
     .custom-section-wrap{
@@ -147,11 +162,17 @@ img{
     }
 }
 @media(max-width: 767px){
+    .row-custom > div:nth-child(2){
+        padding: 60px 15px 25px;;
+    }
     .custom-section-wrap{
+        width: 100%;
         padding-bottom: 30px;
     }
     .custom-section-wrap h1{
-        margin: 0 0 35px;
+        font-size: 24px;
+        padding: 12px 10px 15px;
+        margin: 0 0 25px;
     }
     .custom-section{
         display: block;
@@ -163,6 +184,7 @@ img{
     }
     .custom-main{
         width: 100%;
+        padding: 35px 15px;
     }
     .custom-nav ul{
         display: flex;
@@ -183,5 +205,9 @@ img{
     }
     .custom-title h2{
         font-size: 24px;
+    }
+    .field-wrap .bs-timepicker-field{
+        width: 45px;
+        padding: 12px 4px;
     }
 }

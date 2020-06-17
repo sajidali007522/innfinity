@@ -543,11 +543,22 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     font-size: 13px;
     color: #999;
   }
-
 .custom-control-input:checked~.custom-control-label::before{
   background: #09425d;
   border-color: #09425d;
 }
+.theme-dark-blue .bs-datepicker-head{
+  background: #09425d;
+  background-image: linear-gradient(#09425d, #3f7892);
+}
+.theme-dark-blue .bs-datepicker-body table td span.selected, 
+.theme-dark-blue .bs-datepicker-body table td.selected span, 
+.theme-dark-blue .bs-datepicker-body table td span[class*="select-"]:after, 
+.theme-dark-blue .bs-datepicker-body table td[class*="select-"] span:after{
+  background: #09425d;
+  background-image: linear-gradient(#09425d, #3f7892);
+}
+
 @media(min-width:767px){
   .modal-md{
     max-width: 700px;
