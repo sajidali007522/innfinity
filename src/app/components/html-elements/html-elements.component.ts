@@ -3,6 +3,7 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import {DateFormatsService} from "../../_services/date-formats.service";
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 interface Alert {
   type: string;
@@ -94,6 +95,27 @@ export class HtmlElementsComponent implements OnInit {
     script.src = src;
     this.renderer.appendChild(document.body, script);
     return script;
+  }
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    console.log("image cropped");
+  }
+  imageLoaded() {
+    console.log("image has loaded")
+  }
+  cropperReady() {
+    // cropper ready
+    console.log("CRopper ready")
+  }
+  loadImageFailed() {
+    // show message
+    console.log("image loading failed")
   }
 
 }

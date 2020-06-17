@@ -669,6 +669,27 @@
     </div>
   </div>
 
+  <div class="box">
+    <div class="box-header">Image Crop</div>
+    <div class="box-body">
+        <div class="row">
+          <div class="col-sm-12">
 
+            <input style="position: initial" type="file" class="form-control" (change)="fileChangeEvent($event)" /> <!-- Image Upload -->
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="4 / 3"
+              format="png|jpeg|jpg"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded()"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>  <!-- Image Cropper -->
+            <img [src]="croppedImage" />  <!-- Image Preview -->
+          </div>
+        </div>
+    </div>
+  </div>
 </div>
 
