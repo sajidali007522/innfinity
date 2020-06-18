@@ -46,4 +46,7 @@ export class ReservationComponent implements OnInit {
     this.bsConfig = Object.assign(this.bsConfig, { dateInputFormat: this.chosenDateFormat });
   }
 
+  submitIt () {
+    console.log(this.form);
+  }
 }

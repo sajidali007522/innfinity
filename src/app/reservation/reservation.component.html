@@ -64,7 +64,6 @@
                     <label>Departure*</label>
                     <div class="field-wrap">
                         <input type="text"
-                               (ngModelChange) = "setDateTo()"
                                [(ngModel)]="form.dateFrom"
                                bsDatepicker
                                [bsConfig]="bsConfig"
@@ -95,7 +94,7 @@
                         <input type="text"
                                [(ngModel)]="form.dateTo"
                                bsDatepicker
-                               [minDate]="minDateTo"
+                               [minDate]="form.dateFrom"
                                [bsConfig]="bsConfig"
                                placeholder="Date To"
                                class="form-control">
@@ -116,9 +115,8 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-success btn-block">Search</button>
+            <button type="submit" class="btn btn-success btn-block" (click)="submitIt()">Search</button>
         </div>
-
     </div>
   </div>
 </div>
