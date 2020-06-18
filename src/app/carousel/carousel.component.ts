@@ -8,8 +8,8 @@ import {Component, OnInit, Renderer2} from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   constructor (private renderer: Renderer2) {
-    this.addJsToElement('assets/carousel/assets/js/slick.min.js');
-    this.addJsToElement('assets/carousel/assets/js/hp.js');
+    this.addJsToElement('assets/js/slick.min.js');
+    this.addJsToElement('assets/js/hp.js');
   }
 
   ngOnInit(): void {

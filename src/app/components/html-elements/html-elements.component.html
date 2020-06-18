@@ -675,18 +675,27 @@
         <div class="row">
           <div class="col-sm-12">
 
-            <input style="position: initial" type="file" class="form-control" (change)="fileChangeEvent($event)" /> <!-- Image Upload -->
-            <image-cropper
-              [imageChangedEvent]="imageChangedEvent"
-              [maintainAspectRatio]="true"
-              [aspectRatio]="4 / 3"
-              format="png|jpeg|jpg"
-              (imageCropped)="imageCropped($event)"
-              (imageLoaded)="imageLoaded()"
-              (cropperReady)="cropperReady()"
-              (loadImageFailed)="loadImageFailed()"
-            ></image-cropper>  <!-- Image Cropper -->
-            <img [src]="croppedImage" />  <!-- Image Preview -->
+            <label for="file-upload" class="btn btn-success"><i class="fa fa-cloud-upload"></i> Custom Upload</label>
+            <input style="position: initial" type="file" id="file-upload" (change)="fileChangeEvent($event)" />
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <img [src]="croppedImage" />  <!-- Image Preview -->
+              </div>
+              <div class="col-md-6">
+                <image-cropper
+                  [imageChangedEvent]="imageChangedEvent"
+                  [maintainAspectRatio]="true"
+                  [aspectRatio]="4 / 3"
+                  format="png|jpeg|jpg"
+                  (imageCropped)="imageCropped($event)"
+                  (imageLoaded)="imageLoaded()"
+                  (cropperReady)="cropperReady()"
+                  (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>  <!-- Image Cropper -->
+              </div>
+            </div>
           </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    font-family: 'open_sansregular';
 }
     .variation-2{
         background: url(../images/login/banner-2.jpg) center top no-repeat;
