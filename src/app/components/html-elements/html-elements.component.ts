@@ -4,6 +4,7 @@ import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import {DateFormatsService} from "../../_services/date-formats.service";
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import * as $ from 'jquery';
 
 interface Alert {
   type: string;
@@ -101,6 +102,7 @@ export class HtmlElementsComponent implements OnInit {
   croppedImage: any = '';
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
+    $(".trigger-image-crop-model").trigger('click');
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
@@ -120,6 +122,11 @@ export class HtmlElementsComponent implements OnInit {
 
   doneWithCrop () {
     this.imageChangedEvent = null;
+  }
+
+  cancelImageCrop () {
+    this.imageChangedEvent = null;
+    this.croppedImage = null;
   }
 
 }

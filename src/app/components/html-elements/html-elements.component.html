@@ -684,20 +684,55 @@
                 <img [src]="croppedImage" />  <!-- Image Preview -->
               </div>
               <div class="col-md-6">
-                <image-cropper
-                  *ngIf="imageChangedEvent"
-                  [imageChangedEvent]="imageChangedEvent"
-                  [maintainAspectRatio]="true"
-                  [aspectRatio]="4 / 3"
-                  format="png|jpeg|jpg"
-                  (imageCropped)="imageCropped($event)"
-                  (imageLoaded)="imageLoaded()"
-                  (cropperReady)="cropperReady()"
-                  (loadImageFailed)="loadImageFailed()"
-                ></image-cropper>  <!-- Image Cropper -->
+<!--                <image-cropper-->
+<!--                  *ngIf="imageChangedEvent"-->
+<!--                  [imageChangedEvent]="imageChangedEvent"-->
+<!--                  [maintainAspectRatio]="true"-->
+<!--                  [aspectRatio]="4 / 3"-->
+<!--                  format="png|jpeg|jpg"-->
+<!--                  (imageCropped)="imageCropped($event)"-->
+<!--                  (imageLoaded)="imageLoaded()"-->
+<!--                  (cropperReady)="cropperReady()"-->
+<!--                  (loadImageFailed)="loadImageFailed()"-->
+<!--                ></image-cropper>  &lt;!&ndash; Image Cropper &ndash;&gt;-->
               </div>
               <div class="col-sm-12" *ngIf="imageChangedEvent">
-                <button class="btn btn-block btn-primary" (click)="doneWithCrop()">Confirm</button>
+                <button class="btn btn-block btn-success" (click)="doneWithCrop()">Confirm</button>
+              </div>
+            </div>
+            <p style="position: absolute;z-index: -1; width:1px; height: 1px; overflow: hidden; ">
+              <button type="button" class="trigger-image-crop-model" data-toggle="modal" data-target="#imageCropModal">
+                &nbsp;
+              </button>
+            </p>
+            <!-- Modal -->
+            <div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crop Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelImageCrop()" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <image-cropper
+                      *ngIf="imageChangedEvent"
+                      [imageChangedEvent]="imageChangedEvent"
+                      [maintainAspectRatio]="true"
+                      [aspectRatio]="4 / 3"
+                      format="png|jpeg|jpg"
+                      (imageCropped)="imageCropped($event)"
+                      (imageLoaded)="imageLoaded()"
+                      (cropperReady)="cropperReady()"
+                      (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)= "cancelImageCrop()" >Close</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" (click)="doneWithCrop()">Save</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
