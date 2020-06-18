@@ -118,4 +118,8 @@ export class HtmlElementsComponent implements OnInit {
     console.log("image loading failed")
   }
 
+  doneWithCrop () {
+    this.imageChangedEvent = null;
+  }
+
 }

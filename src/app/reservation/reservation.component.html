@@ -64,9 +64,11 @@
                     <label>Departure*</label>
                     <div class="field-wrap">
                         <input type="text"
+                               (ngModelChange) = "setDateTo()"
                                [(ngModel)]="form.dateFrom"
                                bsDatepicker
                                [bsConfig]="bsConfig"
+                               [minDate]="minDateFrom"
                                placeholder="Date From"
                                class="form-control">
                         <span class="fa fa-calendar-o"></span>
@@ -93,6 +95,7 @@
                         <input type="text"
                                [(ngModel)]="form.dateTo"
                                bsDatepicker
+                               [minDate]="minDateTo"
                                [bsConfig]="bsConfig"
                                placeholder="Date To"
                                class="form-control">

@@ -38,6 +38,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NgbModule,
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
+    PopoverModule.forRoot(),
     ImageCropperModule  //ImageCropperModule
   ],
   providers: [

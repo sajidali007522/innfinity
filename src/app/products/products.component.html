@@ -18,7 +18,8 @@
     <div class="box" *ngIf="product.fields">
       <div class="box-body">
         <div class="form-group" *ngFor="let field of product.fields">
-          <label class="control-label">{{field.description}}</label>
+          <label class="control-label" popover="{{field.description}}"
+                 triggers="mouseenter:mouseleave">{{field.name}}</label>
           <input *ngIf="field.fieldType == 'Boolean'" type="checkbox" [(ngModel)]="field.value" />
           <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
           <textarea *ngIf="field.fieldType == 'String'" class="form-control"  [(ngModel)]="field.value"></textarea>
