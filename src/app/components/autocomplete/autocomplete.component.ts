@@ -65,7 +65,6 @@ export class AutocompleteComponent implements OnInit {
 
     this.http.get("/assets/js/data.json?" + event)
       .subscribe(data => {
-        console.log(data['Search']);
         console.log(data['Search'] == undefined);
         if (data['Search'] == undefined) {
           this.remoteData = [];

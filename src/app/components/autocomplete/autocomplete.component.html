@@ -21,38 +21,38 @@
   <div class="box-header">Auto Complete Remote API</div>
   <div class="box-body">
     <div class="ng-autocomplete">
-  <ng-autocomplete
-    [data]="remoteData"
-    [searchKeyword]="keyword"
-    (selected)='selectEvent($event)'
-    (inputChanged)='getServerResponse($event)'
-    (inputFocused)='onFocused($event)'
-    [itemTemplate]="itemTemplate"
-    (inputCleared)="searchCleared()"
-    [notFoundTemplate]="notFoundTemplate"
-    [debounceTime]="600"
-    [isLoading]="isLoadingResult"
-    [minQueryLength]="2"
-    placeHolder="Search Movies. eg 'gun'"
-  >
-  </ng-autocomplete>
+      <ng-autocomplete
+        [data]="remoteData"
+        [searchKeyword]="keyword"
+        (selected)='selectEvent($event)'
+        (inputChanged)='getServerResponse($event)'
+        (inputFocused)='onFocused($event)'
+        [itemTemplate]="itemTemplateRemote"
+        (inputCleared)="searchCleared()"
+        [notFoundTemplate]="notFoundTemplate"
+        [debounceTime]="600"
+        [isLoading]="isLoadingResult"
+        [minQueryLength]="2"
+        placeHolder="Search. eg 'DA'"
+      >
+      </ng-autocomplete>
 
-  <ng-template #itemTemplate let-item>
-    <a href="javascript:void(0)">
-      <div class="row">
-        <div class="col-2">
-          <img [src]="item.Poster" style="width:50px" />
-        </div>
-        <div class="col-10">
-          <span [innerHTML]="item.Title"></span><i>({{item.Year}})</i>
-        </div>
-      </div>
-    </a>
-  </ng-template>
+      <ng-template #itemTemplateRemote let-item>
+        <a href="javascript:void(0)">
+          <div class="row">
+            <div class="col-2">
+              <span class="fa" [ngClass]="{'fa-plane': item.icon == 'airport', 'fa-map-marker': item.icon == 'location' }"></span>
+            </div>
+            <div class="col-10">
+              <span [innerHTML]="item.name"></span><i>({{item.address}})</i>
+            </div>
+          </div>
+        </a>
+      </ng-template>
 
-  <ng-template #notFoundTemplate let-notFound>
-    {{errorMsg}}
-  </ng-template>
-</div>
+      <ng-template #notFoundTemplate let-notFound>
+        {{errorMsg}}
+      </ng-template>
+    </div>
   </div>
 </div>
