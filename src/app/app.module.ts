@@ -39,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     MainComponent,
     RegisterComponent,
     ReservationComponent,
-    CarouselComponent
+    CarouselComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     PopoverModule.forRoot(),
-    ImageCropperModule  //ImageCropperModule
+    ImageCropperModule,  //ImageCropperModule
+    AutocompleteLibModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

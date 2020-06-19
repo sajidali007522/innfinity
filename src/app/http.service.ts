@@ -11,7 +11,15 @@ export class HttpService {
 
   constructor(private http: HttpClient, private _auth:AuthService, private _config: ConfigService) {}
 
-  public _get(url, params={}){
+  public _get(url, params={}) {
+    let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
+    return this.http.get(this._config.apiBaseUrl+url, {
+      params: params,
+      headers: headers
+    })
+  }
+
+  public _getApi (url, params={}) {
     let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
     return this.http.get(this._config.apiBaseUrl+url, {
       params: params,
