@@ -649,6 +649,62 @@ input[type="file"] {
       content: "\f105";
   }
 /* carousal pages style end */
+.autocomplete-container{
+  box-shadow: none !important;
+}
+.auto-txtwrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+  .autocomplete-container .input-container input{
+    border:1px solid #ced4da !important;
+    -moz-border-radius: .25rem;
+    -webkit-border-radius: .25rem;
+    border-radius: .25rem;
+  }
+  .autocomplete-container .input-container input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  .autocomplete-container .input-container{
+    position: relative;
+  }
+  .autocomplete-container .input-container .x{
+    right: 0 !important;
+    height: 100%;
+    width: 40px;
+    text-align: center;
+    line-height: 35px;
+    background: #09425d;
+  }
+  .autocomplete-container .input-container .x i{
+    color: #fff !important;
+  }
+  .autoicon{
+    width: 20px;
+    text-align: center;
+    color: #09425d;
+    padding: 2px 0 0;
+  }
+  .autotxt{
+    width: calc(100% - 25px);
+    margin-left: auto;
+  }
+  .autotxt strong{
+    display: block;
+    color: #000;
+  }
+  .search-icon-contain .autocomplete-container .suggestions-container ul li a{
+    position: relative;
+    padding-left: 40px;
+  }
+  .search-icon-contain .autocomplete-container .suggestions-container ul li a:before{
+    content: "\f002";
+    font:normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    color:#999;
+  }
 
 @media(min-width:767px){
   .modal-md{

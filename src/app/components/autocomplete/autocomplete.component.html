@@ -1,7 +1,9 @@
 <div class="box">
-  <div class="box-header">Auto Complete Static Data</div>
+  <div class="box-header">
+    <h3>Auto Complete Static Data</h3>
+  </div>
   <div class="box-body">
-    <div class="ng-autocomplete">
+    <div class="ng-autocomplete search-icon-contain">
       <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
                        (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
                        [notFoundTemplate]="notFoundTemplate">
@@ -18,7 +20,9 @@
   </div>
 </div>
 <div class="box">
-  <div class="box-header">Auto Complete Remote API</div>
+  <div class="box-header">
+    <h3>Auto Complete Remote API</h3>
+  </div>
   <div class="box-body">
     <div class="ng-autocomplete">
       <ng-autocomplete
@@ -39,12 +43,12 @@
 
       <ng-template #itemTemplateRemote let-item>
         <a href="javascript:void(0)">
-          <div class="row">
-            <div class="col-2">
+          <div class="auto-txtwrap">
+            <div class="autoicon">
               <span class="fa" [ngClass]="{'fa-plane': item.icon == 'airport', 'fa-map-marker': item.icon == 'location' }"></span>
             </div>
-            <div class="col-10">
-              <span [innerHTML]="item.name"></span><i>({{item.address}})</i>
+            <div class="autotxt">
+              <strong [innerHTML]="item.name"></strong><span>({{item.address}})</span>
             </div>
           </div>
         </a>
