@@ -1,0 +1,7 @@
+{
+  "apiBaseUrl": "https://demo.innfinity.com/productsdemo/api2/",
+  "ui_configs1" : {
+    "header_bg": "gray",
+    "sidebar_bg": "green"
+  }
+}

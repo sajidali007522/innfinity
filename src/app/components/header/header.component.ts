@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
+import {ConfigService} from "../../config.service";
+
 
 @Component({
   selector: 'app-header',
@@ -12,16 +14,20 @@ export class HeaderComponent implements OnInit {
   isLightTheme;
   isFullWidth;
   language;
-
+  custom_configs;
   constructor( private renderer: Renderer2,
                public translate: TranslateService,
                public router: Router,
-               private authenticationService: AuthenticationService
-  ) { }
+               private authenticationService: AuthenticationService,
+               private appConfigService: ConfigService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.switchSkinColor();
     this.switchContainerWidth();
+    this.custom_configs = this.appConfigService.ui_configs;
   }
 
   setTheme ($event, lightTheme=false) {

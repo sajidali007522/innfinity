@@ -4,6 +4,8 @@ import {CategoriesService} from "../../categories.service";
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {ListViewComponent} from "./list-view/list-view.component";
+import {AuthenticationService} from "../../_services/authentication.service";
+import {ConfigService} from "../../config.service";
 
 @Component({
   selector: 'app-side-nav',
@@ -13,7 +15,13 @@ import {ListViewComponent} from "./list-view/list-view.component";
 export class SideNavComponent implements OnInit {
   categories;
   isLoading;
-  constructor(public catService: CategoriesService) { }
+  custom_configs;
+
+  constructor(public catService: CategoriesService,
+              private appConfigService: ConfigService
+  ) {
+    this.custom_configs = this.appConfigService.ui_configs;
+  }
 
   ngOnInit(): void {
 
