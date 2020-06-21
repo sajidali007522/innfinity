@@ -1,4 +1,4 @@
-<div class="header-wrap">
+<div class="header-wrap" style="" [ngStyle]="{background: (custom_configs.header_bg ? custom_configs.header_bg : '')}">
   <a href="#" class="menu-icon" [ngClass]="{'active': isFullWidth == 'no'}" (click)="setWidth($event, isFullWidth == 'full' ? false : true)"><span class="fa fa-navicon"></span></a>
   <div class="logo"><a href="#">Innfinity</a></div>
   <div class="header-right">

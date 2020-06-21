@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
@@ -41,6 +41,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import {ConfigService} from "./config.service";
 
 @NgModule({
   declarations: [
@@ -88,9 +89,19 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     AutocompleteLibModule
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [ConfigService],
+      useFactory: (appConfigService: ConfigService) => {
+        return () => {
+          //Make sure to return a promise!
+          return appConfigService.loadAppConfig();
+        };
+      }
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
     // provider used to create fake backend
     fakeBackendProvider
   ],
