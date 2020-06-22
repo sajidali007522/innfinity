@@ -101,7 +101,7 @@
             <td>
               <span>
                 <select id="hs_status_{{$index}}"
-                        [(ngModel)]="row.housekeepingStatusID"
+                        [(ngModel)]="row.hkStatusId"
                         [ngClass]="{'view-mode': !row.$editHsStatus, 'form-control': row.$editHsStatus}"
                         (focus)= "row.$editHsStatus = true;"
                         (focusout)="row.$editHsStatus = false;"
@@ -113,7 +113,7 @@
             <td>
               <span>
                 <select id="admin_status"
-                        [(ngModel)]="row.adminStatusID"
+                        [(ngModel)]="row.adminStatusId"
                         (change)="updateHouseKeeping(row.id, row, 'admin_status', '$editAdminStatus')"
                         [ngClass]="{'view-mode': !row.$editAdminStatus, 'form-control': row.$editAdminStatus}"
                         (focus)= "row.$editAdminStatus = true;"
@@ -126,7 +126,7 @@
             </td>
             <td>
               <span>
-                <select [(ngModel)]="row.housekeeperID"
+                <select [(ngModel)]="row.housekeeperId"
                         [ngClass]="{'view-mode': !row.$editHousekeeper, 'form-control': row.$editHousekeeper}"
                         (focus)= "row.$editHousekeeper = true;"
                         (focusout)= "row.$editHousekeeper = false;"
@@ -143,11 +143,11 @@
                         (focus)= "row.$editShift = true;"
                         (focusout)= "row.$editShift = false;"
                         (change) = "updateHouseKeeping(row.id, row, 'shift', '$editShift')">
-                  <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.value">{{shift.text}}</option>
+                  <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.text">{{shift.text}}</option>
                 </select>
               </span>
             </td>
-            <td>{{row.linen_status}}</td>
+            <td>{{row.linenStatus}}</td>
             <td></td>
             <td>
 
