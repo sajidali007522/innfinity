@@ -191,6 +191,7 @@ h3{
   color: #fff;
   top: 14px;
   font-size: 21px;
+  z-index: 1;
 }
 .menu-icon:hover{
   color: #fff;
@@ -365,6 +366,20 @@ h3{
 .theme-light .sidebar::-webkit-scrollbar-thumb {background: #ddd; }
 .theme-light{
 }
+
+.theme-light .navbar-light .navbar-nav .nav-link{
+  color: #222 !important;
+}
+.theme-light .navbar-expand-lg .navbar-nav .dropdown-menu{
+  background: #fff !important;
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.12);
+}
+.theme-light .navbar-expand-lg .navbar-nav .dropdown-item{
+  color: #222 !important;
+}
+.theme-light .navbar-expand-lg .navbar-nav .dropdown-item:hover{
+  background: #cecece !important;
+} 
 /* Header end */
 
 

@@ -1,5 +1,63 @@
-
+@import url('../../../assets/dripicons/fonts.css');
+.navbar-expand-lg{
+  padding: 0;
+}
 .nav-item{
   padding:2px;
   margin-left: 7px;
+}
+.nav-wrap{
+  width: calc(100% - 470px);
+}
+.navbar-light .navbar-nav .nav-item{
+  padding: 0;
+}
+.navbar-light .navbar-nav .nav-link{
+  color: #fff;
+  padding: 0 12px;
+  height: 60px;
+  line-height: 58px;
+}
+.navbar-light .navbar-nav .dropdown a{
+  position: relative;
+  padding-right: 15px;
+}
+.navbar-light .navbar-nav .dropdown-toggle::after{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -2px;
+}
+.navbar-light .navbar-nav .nav-link span,
+.navbar-light .navbar-nav .nav-link em{
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 3px;
+}
+.navbar-light .navbar-nav .nav-link em{
+  font-size: 14px;
+  padding-top: 2px;
+}
+.navbar-expand-lg .navbar-collapse{
+  justify-content: center;
+}
+  .navbar-expand-lg .navbar-nav .dropdown-menu{
+    top: 100%;
+    margin: 0;
+    background: #09425d;
+    border-radius: 0;
+    min-width: 250px;
+    padding: 7px 0;
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-item{
+    padding: 8px 10px 8px 15px;
+    color: #fff;
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-item:hover{
+    background: #000;
+  } 
+@media(min-width:992px){
+  .navbar-light .navbar-nav .nav-item:hover .dropdown-menu{
+    display: block;
+  }
 }
