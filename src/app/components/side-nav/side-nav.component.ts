@@ -6,6 +6,7 @@ import { catchError, retry } from 'rxjs/operators';
 import {ListViewComponent} from "./list-view/list-view.component";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {ConfigService} from "../../config.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-nav',
@@ -18,7 +19,8 @@ export class SideNavComponent implements OnInit {
   custom_configs;
 
   constructor(public catService: CategoriesService,
-              private appConfigService: ConfigService
+              private appConfigService: ConfigService,
+              public router: Router
   ) {
     this.custom_configs = this.appConfigService.ui_configs;
   }
@@ -40,12 +42,17 @@ export class SideNavComponent implements OnInit {
 
   loadSubCategories(category, $event): void {
     $event.preventDefault();
-    if(category.children.length > 0 ) return;
+    if(category.children.length > 0 ) {
+      //check If child has enabled display content
+      this.checkIfHasContentEnabled(category.children, category.id)
+      return;
+    }
     category.isLoading = true;
     this.catService.loadCategories(category.id).subscribe(categories => {
         console.log(categories['data'])
         this.categories = this.catService.setChildren(this.categories, category, categories['data']);
         category.isLoading = false;
+        this.checkIfHasContentEnabled(categories['data'], category.id);
       },
       err => {
         //handle errors here
@@ -53,6 +60,21 @@ export class SideNavComponent implements OnInit {
         category.isLoading = false;
       });
 
+  }
+
+  checkIfHasContentEnabled (categorydata, categoryId) {
+    if(categorydata.length > 0 ) {
+      let displayContent = false
+      for(let index =0; index < categorydata.length; index++) {
+          if(categorydata[index].displayContent) {
+            displayContent = true;
+            break;
+          }
+      }
+      if(displayContent) {
+        this.router.navigate(['/products/'+ categoryId])
+      }
+    }
   }
 
 }

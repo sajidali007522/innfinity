@@ -18,6 +18,7 @@ import {AutocompleteComponent} from "./components/autocomplete/autocomplete.comp
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
     children: [
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       {path: "contact-create", component: ContactCreateComponent, canActivate: [AuthGuard]},
       {path: "contact-list", component: ContactListComponent, canActivate: [AuthGuard]},

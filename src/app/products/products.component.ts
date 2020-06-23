@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from "@angular/router";
 import {ProductsService} from "./products.service";
 import {LoaderComponent} from "../components/loader/loader.component";
+declare var $:JQueryStatic;
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, AfterViewInit {
+  @ViewChild('productContainer') el:ElementRef;
   category;
   isLoading;
   public products= [];
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private product: ProductsService ) {
-
   }
 
   ngOnInit(): void {
@@ -32,6 +33,24 @@ export class ProductsComponent implements OnInit {
         this.isLoading = false;
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    console.log("view is ready");
+
+    $('body').on('click', '.custom-accordion > h3 > a',  function(e, arg) {
+      console.log($(this).attr('class'));
+      if( $(this).parent().hasClass('active') ){
+        $(this).parent().removeClass('active');
+        $(this).parent().next('.custom-accordion-content').slideUp();
+      }
+      else{
+        $(this).parent().addClass('active');
+        $(this).parent().next('.custom-accordion-content').slideDown();
+      }
+      return false;
+    });
+
   }
 
 }
