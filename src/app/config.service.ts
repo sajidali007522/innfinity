@@ -12,6 +12,7 @@ export class ConfigService {
     return this.http.get('/assets/configs/config.json')
       .toPromise()
       .then(data => {
+        console.log(data);
         this.appConfig = data;
       });
   }
@@ -28,6 +29,6 @@ export class ConfigService {
       throw Error('Config file not loaded!');
     }
     console.log(this.appConfig.ui_configs);
-    return typeof this.appConfig.ui_configs != 'undefined' ? this.appConfig.ui_configs : {};
+    return typeof this.appConfig.ui_configs !== 'undefined' ? this.appConfig.ui_configs : {};
   }
 }

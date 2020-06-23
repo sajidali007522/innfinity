@@ -21,13 +21,12 @@ export class HeaderComponent implements OnInit {
                private authenticationService: AuthenticationService,
                private appConfigService: ConfigService
   ) {
-
+    this.custom_configs = this.appConfigService.ui_configs || {};
   }
 
   ngOnInit(): void {
     this.switchSkinColor();
     this.switchContainerWidth();
-    this.custom_configs = this.appConfigService.ui_configs;
   }
 
   setTheme ($event, lightTheme=false) {

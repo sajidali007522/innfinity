@@ -1,4 +1,4 @@
-
+/*
 $(document).ready(function () {
   if ($(window).width() > 1060) {
     $(".menu-icon").click (function () {
@@ -49,4 +49,4 @@ $(document).ready(function () {
     return false;
   });
 
-});
+});*/
