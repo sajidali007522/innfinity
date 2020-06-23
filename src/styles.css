@@ -557,15 +557,16 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     font-size: 13px;
     color: #999;
   }
+.admin-mode{
+  position: absolute;
+  right: 30px;
+  top: 28px;
+}
 .custom-control-input:checked~.custom-control-label::before{
   background: #09425d;
   border-color: #09425d;
 }
-.theme-dark-blue .bs-datepicker-head,
-.theme-green .bs-datepicker-head{
-  background: #09425d;
-  background-image: linear-gradient(#09425d, #3f7892);
-}
+
 .theme-dark-blue .bs-datepicker-body table td span.selected, 
 .theme-dark-blue .bs-datepicker-body table td.selected span, 
 .theme-dark-blue .bs-datepicker-body table td span[class*="select-"]:after, 
@@ -719,6 +720,42 @@ input[type="file"] {
     left: 15px;
     top: 18px;
     color:#999;
+  }
+.sort-custom,
+.sort-custom-asc,
+.sort-custom-dsc{
+  position: relative;
+  cursor: pointer;
+}
+  .sort-custom:before,
+  .sort-custom-asc:before,
+  .sort-custom-dsc:before{
+    content:"\f0dc";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    right: 6px;
+    top: 34%;
+    color: #999;
+  }
+  .sort-custom-asc:before{
+    content:"\f0de";
+    top: 40%;
+    font-size: 16px;
+  }
+  .sort-custom-dsc:before{
+    content:"\f0dd";
+    top: 28%;
+    font-size: 16px;
+  }
+  .jump-section{
+    padding: 0 0 15px;
+  }
+  .jump-section label{
+    display: inline-block;
+    margin: 0 7px 0 0;
+  }
+  .jump-section select{
+    padding: 5px 10px;
   }
 
 @media(min-width:767px){
