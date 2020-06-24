@@ -39,7 +39,6 @@
             <label>Feature</label>
             <p>
               <select class="form-control" [(ngModel)]="pageFilters.features" (change)="loadRooms()">
-                <option value="00000000-0000-0000-0000-000000000000"> ANY </option>
                 <option *ngFor="let feature of state.filterConfigs.features" value="{{feature.value}}">{{feature.text}}</option>
               </select>
             </p>
