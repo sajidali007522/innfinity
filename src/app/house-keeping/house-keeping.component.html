@@ -68,8 +68,8 @@
         </select>
       </div>
 
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered table-sm row-border hover room-table">
+      <div class="table-responsive table-housekeeping-wrap">
+        <table class="table table-striped table-bordered row-border hover room-table">
           <thead>
           <tr>
             <th class="sort-custom" (click)="setSortingParams('roomNumber');">Room #</th>
@@ -155,6 +155,13 @@
             </td>
           </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="10">
+                <div class="table-loader-bot"></div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

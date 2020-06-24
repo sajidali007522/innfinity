@@ -177,8 +177,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
       if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
         if(this.state.isLoading) return;
         console.log("bottom");
-        this.state.pagination.pageNum++;
-        this.loadRooms (true);
+        // this.state.pagination.pageNum++;
+        // this.loadRooms (true);
       }
     });
   }

@@ -58,3 +58,23 @@ td select.view-mode:active{
     text-align: center;
     border-radius: 50%;
 }
+.table-housekeeping-wrap{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    max-height: 800px;
+}
+    .table-housekeeping-wrap table{
+        font-size: 15px;
+    }
+    .table-housekeeping-wrap table th{
+        white-space:nowrap;
+        padding-right: 20px;
+    }
+    .table-loader-bot{
+        background: url(/assets/images/loading.gif) no-repeat;
+        background-size: 100% auto;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
