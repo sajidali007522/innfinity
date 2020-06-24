@@ -1,234 +1,158 @@
 <div class="">
 
-  <div class="box">
-    <div class="box-body">
-      <div class="accordion custom-accordion" id="accordionExample">
-        <div class="">
-          <div class="card-header" id="headingOne">
-            <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-1" aria-expanded="true">
-                Fulfillment
-            </h2>
+  <div class="accordion custom-accordion" id="accordionExample">
+    <div class="mb-3">
+      <div class="card-header" id="headingOne">
+        <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-1" aria-expanded="true">
+            Fulfillment
+        </h2>
+      </div>
+
+      <div id="collaps-1" class="collapse show" data-parent="#accordionExample">
+        <div class="box box-lr">
+          <div class="d-flex checks-outer">
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Issue Ticket</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">Queue Flights</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">Queue Hotel</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck4">
+                <label class="custom-control-label" for="customCheck4">Queue Rental Car</label>
+              </div>
+            </div>
           </div>
 
-          <div id="collaps-1" class="collapse show" data-parent="#accordionExample">
-
-            <div class="card-body">
-
-              <div class="mb-4">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1">
-                      <label class="custom-control-label" for="customCheck1">Issue Ticket</label>
-                    </div>
+          <div class="custom-accordion-wrap">
+            <div class="custom-accordion">
+              <h3 class="active"><a href="#">Fulfillment Queue</a></h3>
+              <div class="custom-accordion-content exp">
+                <div class="form-primary">
+                  
+                  <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customChecka">
+                    <label class="custom-control-label" for="customChecka">Queue Air</label>
                   </div>
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2">
-                      <label class="custom-control-label" for="customCheck2">Queue Flights</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="customCheck3">
-                      <label class="custom-control-label" for="customCheck3">Queue Hotel</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="customCheck4">
-                      <label class="custom-control-label" for="customCheck4">Queue Rental Car</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="custom-accordion-wrap">
-                <div class="custom-accordion">
-                  <h3 class="active"><a href="#">Fulfillment Queue</a></h3>
-                  <div class="custom-accordion-content exp">
-                    <div class="form-style">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue Number</label>
-                            <input type="text" value="247" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Instruction Code</label>
-                            <input type="text" value="1" class="form-control">
-                          </div>
-                        </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue Number</label>
+                        <input type="text" value="247" class="form-control">
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue PPC</label>
-                            <input type="text" value="8WSF" class="form-control">
-                          </div>
-                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Instruction Code</label>
+                        <input type="text" value="1" class="form-control">
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="custom-accordion">
-                  <h3><a href="#">Fulfillment Queue</a></h3>
-                  <div class="custom-accordion-content">
-                    <div class="form-style">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue Number</label>
-                            <input type="text" value="247" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Instruction Code</label>
-                            <input type="text" value="1" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue PPC</label>
-                            <input type="text" value="8WSF" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="custom-accordion">
-                  <h3><a href="#">Hotel Fulfillment Queue</a></h3>
-                  <div class="custom-accordion-content">
-                    <div class="form-style">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue Number</label>
-                            <input type="text" value="247" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Instruction Code</label>
-                            <input type="text" value="1" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue PPC</label>
-                            <input type="text" value="8WSF" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="custom-accordion">
-                  <h3><a href="#">Rental Car Fulfillment Queue</a></h3>
-                  <div class="custom-accordion-content">
-                    <div class="form-style">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue Number</label>
-                            <input type="text" value="247" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Instruction Code</label>
-                            <input type="text" value="1" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="combine-wrap">
-                            <label>Queue PPC</label>
-                            <input type="text" value="8WSF" class="form-control">
-                          </div>
-                        </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue PPC</label>
+                        <input type="text" value="8WSF" class="form-control">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-2" aria-expanded="false">
-                Sabre Profile
-            </h2>
-          </div>
-          <div id="collaps-2" class="collapse" data-parent="#accordionExample">
-            <div class="card-body">
-              <div class="mb-4">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="checkSabre1">
-                      <label class="custom-control-label" for="checkSabre1">Request Second Level Star</label>
+            <div class="custom-accordion">
+              <h3><a href="#">Fulfillment Queue</a></h3>
+              <div class="custom-accordion-content">
+                <div class="form-primary">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue Number</label>
+                        <input type="text" value="247" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Instruction Code</label>
+                        <input type="text" value="1" class="form-control">
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="checkSabre2">
-                      <label class="custom-control-label" for="checkSabre2">Allow Guest Traveler</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="checkSabre3">
-                      <label class="custom-control-label" for="checkSabre3">When if Guest Traveler</label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue PPC</label>
+                        <input type="text" value="8WSF" class="form-control">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="form-style">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="combine-wrap">
-                      <label>Sabre Profile PCC</label>
-                      <input type="text" value="AM1H" class="form-control">
-                    </div>
-                    <div class="add-wrap">
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="Sabre Profile">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-success" type="button" id="button-addon1"><span class="fa fa-plus-circle"></span> Add</button>
-                        </div>
+            </div>
+            <div class="custom-accordion">
+              <h3><a href="#">Hotel Fulfillment Queue</a></h3>
+              <div class="custom-accordion-content">
+                <div class="form-primary">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue Number</label>
+                        <input type="text" value="247" class="form-control">
                       </div>
                     </div>
-                    <div class="remove-wrap">
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="WCBIW">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-danger" type="button" id="button-addon1"><span class="fa fa-minus-circle"></span> Remove</button>
-                        </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Instruction Code</label>
+                        <input type="text" value="1" class="form-control">
                       </div>
                     </div>
-                    <div class="remove-wrap">
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="WCBIW">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-danger" type="button" id="button-addon1"><span class="fa fa-minus-circle"></span> Remove</button>
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>Queue PPC</label>
+                        <input type="text" value="8WSF" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="custom-accordion">
+              <h3><a href="#">Rental Car Fulfillment Queue</a></h3>
+              <div class="custom-accordion-content">
+                <div class="form-style">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="combine-wrap">
+                        <label>Queue Number</label>
+                        <input type="text" value="247" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="combine-wrap">
+                        <label>Instruction Code</label>
+                        <input type="text" value="1" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="combine-wrap">
+                        <label>Queue PPC</label>
+                        <input type="text" value="8WSF" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -237,38 +161,103 @@
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h2  class="accordion-link" data-toggle="collapse" data-target="#collapse-3">
-                Low Fare
-            </h2>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="card-header" id="headingTwo">
+        <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-2" aria-expanded="false">
+            Sabre Profile
+        </h2>
+      </div>
+      <div id="collaps-2" class="collapse" data-parent="#accordionExample">
+        <div class="box box-lr">
+
+          <div class="d-flex checks-outer">
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="checkSabre1">
+                <label class="custom-control-label" for="checkSabre1">Request Second Level Star</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="checkSabre2">
+                <label class="custom-control-label" for="checkSabre2">Allow Guest Traveler</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="checkSabre3">
+                <label class="custom-control-label" for="checkSabre3">When if Guest Traveler</label>
+              </div>
+            </div>
           </div>
-          <div id="collapse-3" class="collapse" data-parent="#accordionExample">
-            <div class="card-body">
-              <div class="mb-4">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="lowface1">
-                      <label class="custom-control-label" for="lowface1">Store Low Fare</label>
+
+          <div class="form-primary">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label>Sabre Profile PCC</label>
+                  <input type="text" value="AM1H" class="form-control">
+                </div>
+                <div class="add-wrap">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="Sabre Profile">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-success" type="button" id="button-addon1"><span class="fa fa-plus-circle"></span> Add</button>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                      <input type="checkbox" class="custom-control-input" id="lowface2">
-                      <label class="custom-control-label" for="lowface2">Include Snap Codes</label>
+                </div>
+                <div class="remove-wrap">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="WCBIW">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-danger" type="button" id="button-addon1"><span class="fa fa-minus-circle"></span> Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="remove-wrap">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="WCBIW">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-danger" type="button" id="button-addon1"><span class="fa fa-minus-circle"></span> Remove</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="form-style">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="combine-wrap">
-                      <label>Time Window</label>
-                      <input type="text" value="2" class="form-control">
-                    </div>
-                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-header" id="headingThree">
+        <h2  class="accordion-link" data-toggle="collapse" data-target="#collapse-3">
+            Low Fare
+        </h2>
+      </div>
+      <div id="collapse-3" class="collapse" data-parent="#accordionExample">
+        <div class="box box-lr">
+          <div class="d-flex checks-outer">
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="lowface1">
+                <label class="custom-control-label" for="lowface1">Store Low Fare</label>
+              </div>
+            </div>
+            <div class="checkwrap">
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="lowface2">
+                <label class="custom-control-label" for="lowface2">Include Snap Codes</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-primary">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label>Time Window</label>
+                  <input type="text" value="2" class="form-control">
                 </div>
               </div>
             </div>

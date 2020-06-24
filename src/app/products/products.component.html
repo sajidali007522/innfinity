@@ -2,7 +2,7 @@
     <div class="box">
       <div class="box-body">
         <div class="accordion custom-accordion" id="accordionExample">
-          <div class="card" *ngFor="let product of products; let RowIndex = index">
+          <div class="card overflow-visible" *ngFor="let product of products; let RowIndex = index">
             <div class="card-header" #headingOne>
               <h2 class="accordion-link" data-toggle="collapse" [attr.data-target]="'#collaps_'+RowIndex" aria-expanded="true">
                 {{product.name}}
@@ -37,10 +37,10 @@
                   <div class="custom-accordion">
                     <h3 class=""><a href="javascript:void(0)">{{children.name}}</a></h3>
                     <div class="custom-accordion-content">
-                      <div class="form-style">
-                        <div class="row" *ngIf="children.fields.length > 0">
-                          <div class="col-md-6" *ngFor="let field of children.fields">
-                            <div class="combine-wrap">
+                      <div class="form-primary">
+                        <div class="" *ngIf="children.fields.length > 0">
+                          <div class="" *ngFor="let field of children.fields">
+                            <div class="combine-wrap queue-check-wrap">
                               <label class="control-label" popover="{{field.description}}"
                                     triggers="mouseenter:mouseleave">{{field.name}}</label>
                               <input *ngIf="field.fieldType == 'Boolean'" type="checkbox" [(ngModel)]="field.value" />
