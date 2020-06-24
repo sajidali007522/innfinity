@@ -8,7 +8,7 @@ export class RoomsService {
 
   constructor(private _http: HttpService) { }
 
-  public loadRooms (siteId, params={featureId : '00000000-0000-0000-0000-000000000000'}) {
+  public loadRooms (siteId, params) {
     return this._http._get('housekeeping/'+siteId+'/rooms', params);
   }
 }

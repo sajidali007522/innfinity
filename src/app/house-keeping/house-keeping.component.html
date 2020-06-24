@@ -8,7 +8,7 @@
         <label class="custom-control-label" for="customCheck1">Admin Mode</label>
       </div> -->
       <div class="custom-control custom-checkbox admin-mode">
-        <input type="checkbox" class="custom-control-input" id="customCheck2">
+        <input type="checkbox" class="custom-control-input" [(ngModel)]="pageFilters.isHousekeeperAdmin" id="customCheck2">
         <label class="custom-control-label" for="customCheck2">Admin Mode</label>
       </div>
     </div>
@@ -54,209 +54,33 @@
           </div>
         </div>
         <div class="refresh-wrap">
-          <button type="button" class="btn btn-success"><span class="fa fa-refresh"></span></button>
+          <button type="button" class="btn btn-success" (click)="refreshFilter()"><span class="fa fa-refresh"></span></button>
         </div>
       </div>
 
 
       <div class="jump-section">
         <label>Jump to Page:</label>
-        <select>
-          <option>10</option>
-          <option>20</option>
-          <option>30</option>
-          <option>40</option>
+        <select [(ngModel)]="state.pagination.pageNum" (change)="loadRooms()">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
         </select>
       </div>
-
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered row-border hover room-table">
-          <thead>
-          <tr>
-            <th>Room #</th>
-            <th>Feature</th>
-            <th class="sort-custom">FD Status</th>
-            <th class="sort-custom-asc">HS Status</th>
-            <th class="sort-custom-dsc">Admin Status</th>
-            <th>HouseKeeper</th>
-            <th>Shift</th>
-            <th>Linen Status</th>
-            <th>Image</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1-103	</td>
-            <td>Management, Dorm 1	</td>
-            <td>Stayover</td>
-            <td>Inspection Required</td>
-            <td>Available</td>
-            <td>John O Beardy HK</td>
-            <td>Day</td>
-            <td>Available</td>
-            <td>Linen Change	</td>
-            <td>
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <br><br><br><br><br><br><br><br>
 
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-sm row-border hover room-table">
           <thead>
           <tr>
-            <th>Room #</th>
-            <th>Feature</th>
-            <th>FD Status</th>
-            <th>HS Status</th>
-            <th>Admin Status</th>
-            <th>HouseKeeper</th>
-            <th>Shift</th>
-            <th>Linen Status</th>
+            <th class="sort-custom" (click)="setSortingParams('roomNumber');">Room #</th>
+            <th class="sort-custom" (click)="setSortingParams('features')">Feature</th>
+            <th class="sort-custom" (click)="setSortingParams('fdStatus')">FD Status</th>
+            <th class="sort-custom" (click)="setSortingParams('hkStatusId');">HS Status</th>
+            <th class="sort-custom" (click)="setSortingParams('adminStatusId');">Admin Status</th>
+            <th class="sort-custom" (click)="setSortingParams('housekeeperId');">HouseKeeper</th>
+            <th class="sort-custom" (click)="setSortingParams('shift');">Shift</th>
+            <th class="sort-custom" (click)="setSortingParams('linenStatus');">Linen Status</th>
             <th>Image</th>
             <th></th>
           </tr>
@@ -292,7 +116,7 @@
                         [ngClass]="{'view-mode': !row.$editAdminStatus, 'form-control': row.$editAdminStatus}"
                         (focus)= "row.$editAdminStatus = true;"
                         (focusout)= "row.$editAdminStatus = false;"
-                        >
+                >
                   <option *ngFor="let adStatus of state.filterConfigs.adminStatuses" [ngValue]="adStatus.value">{{adStatus.text}}</option>
                 </select>
 
@@ -325,16 +149,15 @@
             <td></td>
             <td>
 
-            <div class="fileUpload">
-              <input type="file" class="upload" />
-              <span>Upload</span>
-            </div>
+              <div class="fileUpload">
+                <input type="file" class="upload" />
+                <span>Upload</span>
+              </div>
             </td>
           </tr>
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 </div>
