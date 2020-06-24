@@ -1,7 +1,8 @@
-import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import {Shift} from "../interfaces/Shift";
 import {HouseKeepingService} from "../_services/house-keeping.service";
 import {RoomsService} from "../_services/rooms.service";
+declare var $:JQueryStatic;
 
 const SHIFTS: Shift [] = [
   {value: 1, text: "Day"},
@@ -15,7 +16,7 @@ const SHIFTS: Shift [] = [
   templateUrl: './house-keeping.component.html',
   styleUrls: ['./house-keeping.component.css']
 })
-export class HouseKeepingComponent implements OnInit {
+export class HouseKeepingComponent implements OnInit, AfterViewInit {
 
   data;
   pageFilters= {
@@ -28,6 +29,12 @@ export class HouseKeepingComponent implements OnInit {
   }
   state = {
     isLoading: false,
+    pagination: {
+      pageNum: 1,
+      pageSize: 25,
+      sortBy: '',
+      sortOrder: false
+    },
     filterConfigs: {
       sites: [],
       houseKeepers: [],
@@ -53,6 +60,7 @@ export class HouseKeepingComponent implements OnInit {
         this.pageFilters.isHousekeeperAdmin = data['isHousekeeperAdmin'];
         this.state.filterConfigs.shifts = SHIFTS;
         this.state.filterConfigs.sites = data['sites'];
+        this.pageFilters.sites = data['sites'][0].value;
         this.state.filterConfigs.houseKeepers = data['housekeepers'];
         this.state.filterConfigs.features = data['features'];
         this.state.filterConfigs.hsStatus = data['housekeepingStatuses'];
@@ -69,6 +77,18 @@ export class HouseKeepingComponent implements OnInit {
       });
   }
 
+  public refreshFilter () {
+    this.pageFilters = {
+      isHousekeeperAdmin: true,
+      sites:'',
+      features: this.state.filterConfigs.sites[0].value,
+      housekeepingStatuses: '',
+      adminStatuses: '',
+      housekeepers: ''
+    }
+    this.loadRooms();
+  }
+
   public reloadConfigs () {
     this.state.isLoading=true;
     this.ref.detectChanges();
@@ -78,7 +98,7 @@ export class HouseKeepingComponent implements OnInit {
         this.state.filterConfigs.features = data['features'];
         this.state.filterConfigs.hsStatus = data['housekeepingStatuses'];
         this.state.filterConfigs.adminStatuses = data['adminStatuses'];
-        this.pageFilters.features =  '00000000-0000-0000-0000-000000000000';
+        this.pageFilters.features =  this.pageFilters.sites;
         this.state.isLoading = false;
         this.ref.detectChanges();
         this.loadRooms();
@@ -90,12 +110,22 @@ export class HouseKeepingComponent implements OnInit {
       });
   }
 
-  public loadRooms () {
+  public loadRooms (append = false) {
     this.state.isLoading = true;
     this.ref.detectChanges();
-    this.roomService.loadRooms(this.pageFilters.sites, {featureId : this.pageFilters.features}).subscribe(data => {
+    this.roomService.loadRooms(this.pageFilters.sites, {
+      featureId : this.pageFilters.features,
+      pageNum: this.state.pagination.pageNum,
+      pageSize: this.state.pagination.pageSize,
+      sortBy: this.state.pagination.sortBy,
+      sortOrder: this.state.pagination.sortOrder ? 'DESC' : 'ASC'
+    }).subscribe(data => {
         console.log("processed")
-        this.data = data;
+        if(!append) {
+          this.data = data;
+        } else {
+          this.data = this.data.concat(data);
+        }
         this.state.isLoading = false;
         this.ref.detectChanges();
       },
@@ -124,5 +154,32 @@ export class HouseKeepingComponent implements OnInit {
   public toggleProperty (obj, key) {
     obj[key] = !obj[key];
     console.log("clicked....",obj);
+  }
+
+  public setSortingParams (sortBy) {
+    this.state.pagination.pageNum = 1;
+    this.state.pagination.sortBy = sortBy;
+    this.state.pagination.sortOrder = !this.state.pagination.sortOrder;
+    console.log(this.state.pagination);
+    this.loadRooms();
+    //this.state.pagination.sortOrder = this.state.pagination.sortOrder ? 'asc' : 'desc';
+  }
+
+  public loadNewPage () {
+    this.state.pagination.pageNum++;
+    console.log("called load new page");
+  }
+
+  public ngAfterViewInit () {
+
+    $(".main-content-area").scroll((e, arg) => {
+      var elem = $(e.currentTarget);
+      if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
+        if(this.state.isLoading) return;
+        console.log("bottom");
+        this.state.pagination.pageNum++;
+        this.loadRooms (true);
+      }
+    });
   }
 }
