@@ -161,6 +161,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
     this.state.pagination.sortBy = sortBy;
     this.state.pagination.sortOrder = !this.state.pagination.sortOrder;
     console.log(this.state.pagination);
+    this.loadRooms();
     //this.state.pagination.sortOrder = this.state.pagination.sortOrder ? 'asc' : 'desc';
   }
 
