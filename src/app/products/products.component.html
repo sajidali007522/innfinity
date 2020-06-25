@@ -14,17 +14,17 @@
                 <div class="mb-12" *ngIf="product.fields && product.fields.length > 0">
                   <div class="row">
                     <div class="col-md-6" *ngFor="let field of product.fields">
-                      <div class="custom-control custom-checkbox mb-2" *ngIf="field.fieldType == 'Boolean'">
+                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'Boolean'">
                           <input type="checkbox" type="checkbox" [(ngModel)]="field.value" class="custom-control-input" #customCheck1>
                           <label class="custom-control-label" popover="{{field.description}}"
                                  triggers="mouseenter:mouseleave">{{field.name}}</label>
                       </div>
-                      <div class="custom-control custom-checkbox mb-6" *ngIf="field.fieldType == 'Integer'">
+                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'Integer'">
                           <label class="custom-control-label" popover="{{field.description}}"
                                  triggers="mouseenter:mouseleave">{{field.name}}</label>
                           <input class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
                       </div>
-                      <div class="custom-control custom-checkbox mb-6" *ngIf="field.fieldType == 'String'">
+                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'String'">
                           <label class="custom-control-label" popover="{{field.description}}"
                                  triggers="mouseenter:mouseleave">{{field.name}}</label>
                           <textarea class="form-control"  [(ngModel)]="field.value"></textarea>
@@ -38,15 +38,18 @@
                     <h3 class=""><a href="javascript:void(0)">{{children.name}}</a></h3>
                     <div class="custom-accordion-content">
                       <div class="form-primary">
-                        <div class="" *ngIf="children.fields.length > 0">
-                          <div class="" *ngFor="let field of children.fields">
-                            <div class="combine-wrap queue-check-wrap">
-                              <label class="control-label" popover="{{field.description}}"
-                                    triggers="mouseenter:mouseleave">{{field.name}}</label>
-                              <input *ngIf="field.fieldType == 'Boolean'" type="checkbox" [(ngModel)]="field.value" />
+                        <div class="row" *ngIf="children.fields.length > 0">
+                          <div class="" [ngClass]="{'col-md-12': field.fieldType == 'Boolean', 'col-md-6': field.fieldType != 'Boolean' }" *ngFor="let field of children.fields">
+                            <div class="mb-3 custom-checkbox custom-control" *ngIf="field.fieldType == 'Boolean'">
+                              <input class="custom-control-input" type="checkbox" [(ngModel)]="field.value" />
+                              <label class="custom-control-label" popover="{{field.description}}"
+                                     triggers="mouseenter:mouseleave">{{field.name}}</label>
+                            </div>
+                            <div class="mb-3 " *ngIf="field.fieldType != 'Boolean'">
+                              <label popover="{{field.description}}"
+                                     triggers="mouseenter:mouseleave">{{field.name}}</label>
                               <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
                               <textarea *ngIf="field.fieldType == 'String'" class="form-control"  [(ngModel)]="field.value"></textarea>
-
                             </div>
                           </div>
                         </div>
