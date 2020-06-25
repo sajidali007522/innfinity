@@ -30,6 +30,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   state = {
     isLoading: false,
     isLoadingRooms:  false,
+    isLoadingMoreRooms: false,
     pagination: {
       pageNum: 1,
       pageSize: 25,
@@ -112,7 +113,9 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   }
 
   public loadRooms (append = false) {
-    this.state.isLoadingRooms = true;
+    if(!this.state.isLoadingMoreRooms) {
+      this.state.isLoadingRooms = true;
+    }
 
     this.ref.detectChanges();
     this.roomService.loadRooms(this.pageFilters.sites, {
@@ -129,12 +132,14 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
           this.data = this.data.concat(data);
         }
         this.state.isLoadingRooms = false;
+        this.state.isLoadingMoreRooms = false;
         this.ref.detectChanges();
       },
       err => {
         //handle errors here
         console.log(err);
         this.state.isLoadingRooms = false;
+        this.state.isLoadingMoreRooms = false;
       });
   }
 
@@ -181,10 +186,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
     $(".main-content-area").scroll((e, arg) => {
       var elem = $(e.currentTarget);
       if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
-        if(this.state.isLoading || this.state.isLoadingRooms) return;
+        if(this.state.isLoading || this.state.isLoadingRooms || this.state.isLoadingMoreRooms) return;
         console.log("bottom");
         this.state.pagination.pageNum++;
-        this.state.isLoadingRooms = true;
+        this.state.isLoadingMoreRooms = true;
         this.loadRooms (true);
       }
     });

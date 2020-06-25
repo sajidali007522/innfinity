@@ -47,8 +47,8 @@
     display: block;
     width: 100%;
     overflow-x: auto;
-    max-height: 1500px;
-    /*max-height: 800px;*/
+    /*max-height: 1500px;
+    max-height: 800px;*/
     position: relative;
 }
     .table-housekeeping-wrap table{

@@ -33,16 +33,16 @@
                   </div>
                 </div>
 
-                <div class="custom-accordion-wrap" *ngFor="let children of product.childProducts">
+                <div class="custom-accordion-wrap" *ngFor="let children of product.childProducts; let childIndex = index">
                   <div class="custom-accordion">
-                    <h3 class=""><a href="javascript:void(0)">{{children.name}}</a></h3>
-                    <div class="custom-accordion-content">
+                    <h3 class="" [ngClass]="{'active' : 0 == childIndex}"><a href="javascript:void(0)">{{children.name}}</a></h3>
+                    <div class="custom-accordion-content" [ngStyle]="{display: 0 == childIndex ? 'block' : ''}">
                       <div class="form-primary">
                         <div class="row" *ngIf="children.fields.length > 0">
                           <div class="" [ngClass]="{'col-md-12': field.fieldType == 'Boolean', 'col-md-6': field.fieldType != 'Boolean' }" *ngFor="let field of children.fields">
                             <div class="mb-3 custom-checkbox custom-control" *ngIf="field.fieldType == 'Boolean'">
-                              <input class="custom-control-input" type="checkbox" [(ngModel)]="field.value" />
-                              <label class="custom-control-label" popover="{{field.description}}"
+                              <input class="custom-control-input" #checkbox_{{childIndex}} type="checkbox" [(ngModel)]="field.value" />
+                              <label class="custom-control-label" for="#checkbox_{{childIndex}}" popover="{{field.description}}"
                                      triggers="mouseenter:mouseleave">{{field.name}}</label>
                             </div>
                             <div class="mb-3 " *ngIf="field.fieldType != 'Boolean'">
