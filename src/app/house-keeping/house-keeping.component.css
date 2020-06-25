@@ -48,6 +48,7 @@
     width: 100%;
     overflow-x: auto;
     max-height: 1500px;
+    /*max-height: 800px;*/
 }
     .table-housekeeping-wrap table{
         font-size: 15px;
@@ -104,4 +105,3 @@
         height:200px;
         width:100%;
     } */
-      
