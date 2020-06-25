@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import { HttpClient } from '@angular/common/http';
 import { CONFIGS} from "../assets/configs/config";
 import {ConfigService} from "./config.service";
+import {shareReplay} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class HttpService {
       params: params,
       headers: headers
     })
+      .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
   public _getApi (url, params={}) {
@@ -26,5 +28,6 @@ export class HttpService {
       params: params,
       headers: headers
     })
+      .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 }
