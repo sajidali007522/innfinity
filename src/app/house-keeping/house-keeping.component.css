@@ -49,6 +49,7 @@
     overflow-x: auto;
     max-height: 1500px;
     /*max-height: 800px;*/
+    position: relative;
 }
     .table-housekeeping-wrap table{
         font-size: 15px;
@@ -56,6 +57,30 @@
     .table-housekeeping-wrap table th{
         white-space:nowrap;
         padding-right: 20px;
+    }
+    .table-loader:before{
+        content: " ";
+        background: rgba(255,255,255, 0.6);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    .table-loader:after{
+        content: " ";
+        background: url(/assets/images/loading.gif) no-repeat;
+        background-size: 100% auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 80px;
+        height: 80px;
+        margin: -40px 0 0 -40px;
+        z-index: 2;
     }
     .table-loader-bot{
         background: url(/assets/images/loading.gif) no-repeat;

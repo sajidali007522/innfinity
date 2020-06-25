@@ -59,7 +59,7 @@
 
 
       <div class="jump-section">
-        <label>Jump to Page:</label>
+        <label>Page:</label>
         <select [(ngModel)]="state.pagination.pageNum" (change)="loadRooms()">
           <option value="10">10</option>
           <option value="20">20</option>
@@ -179,7 +179,7 @@
             </td>
           </tr>
           </tbody>
-          <tfoot *ngIf="state.isLoadingRooms">
+          <tfoot *ngIf="state.isLoadingRooms" class="d-none">
             <tr>
               <td colspan="10">
                 <div class="table-loader-bot"></div>

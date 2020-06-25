@@ -49,7 +49,7 @@
                               <label popover="{{field.description}}"
                                      triggers="mouseenter:mouseleave">{{field.name}}</label>
                               <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
-                              <textarea *ngIf="field.fieldType == 'String'" class="form-control"  [(ngModel)]="field.value"></textarea>
+                              <textarea *ngIf="field.fieldType == 'String'" rows="1" class="form-control"  [(ngModel)]="field.value"></textarea>
                             </div>
                           </div>
                         </div>
