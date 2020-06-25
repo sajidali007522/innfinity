@@ -68,7 +68,7 @@
         </select>
       </div>
 
-      <div class="table-responsive table-housekeeping-wrap">
+      <div class="table-responsive table-housekeeping-wrap" [ngClass]="{'table-loader': state.isLoadingRooms}">
         <table class="table table-striped table-bordered row-border hover room-table">
           <thead>
           <tr>

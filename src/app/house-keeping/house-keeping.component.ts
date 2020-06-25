@@ -112,9 +112,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   }
 
   public loadRooms (append = false) {
-    if(!this.state.isLoadingRooms) {
-      this.state.isLoading = true;
-    }
+    this.state.isLoadingRooms = true;
 
     this.ref.detectChanges();
     this.roomService.loadRooms(this.pageFilters.sites, {
@@ -130,14 +128,12 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
         } else {
           this.data = this.data.concat(data);
         }
-        this.state.isLoading = false;
         this.state.isLoadingRooms = false;
         this.ref.detectChanges();
       },
       err => {
         //handle errors here
         console.log(err);
-        this.state.isLoading = false;
         this.state.isLoadingRooms = false;
       });
   }
