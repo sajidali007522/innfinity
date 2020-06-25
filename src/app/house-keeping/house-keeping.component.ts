@@ -29,6 +29,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   }
   state = {
     isLoading: false,
+    isLoadingRooms:  false,
     pagination: {
       pageNum: 1,
       pageSize: 25,
@@ -111,7 +112,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   }
 
   public loadRooms (append = false) {
-    this.state.isLoading = true;
+    if(!this.state.isLoadingRooms) {
+      this.state.isLoading = true;
+    }
+
     this.ref.detectChanges();
     this.roomService.loadRooms(this.pageFilters.sites, {
       featureId : this.pageFilters.features,
@@ -127,12 +131,14 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
           this.data = this.data.concat(data);
         }
         this.state.isLoading = false;
+        this.state.isLoadingRooms = false;
         this.ref.detectChanges();
       },
       err => {
         //handle errors here
         console.log(err);
         this.state.isLoading = false;
+        this.state.isLoadingRooms = false;
       });
   }
 
@@ -158,9 +164,13 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
 
   public setSortingParams (sortBy) {
     this.state.pagination.pageNum = 1;
+    //false == asc, true=desc
+    if(sortBy == this.state.pagination.sortBy) {
+      this.state.pagination.sortOrder = !this.state.pagination.sortOrder;
+    } else {
+      this.state.pagination.sortOrder = false;
+    }
     this.state.pagination.sortBy = sortBy;
-    this.state.pagination.sortOrder = !this.state.pagination.sortOrder;
-    console.log(this.state.pagination);
     this.loadRooms();
     //this.state.pagination.sortOrder = this.state.pagination.sortOrder ? 'asc' : 'desc';
   }
@@ -175,10 +185,11 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
     $(".main-content-area").scroll((e, arg) => {
       var elem = $(e.currentTarget);
       if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
-        if(this.state.isLoading) return;
+        if(this.state.isLoading || this.state.isLoadingRooms) return;
         console.log("bottom");
-        // this.state.pagination.pageNum++;
-        // this.loadRooms (true);
+        this.state.pagination.pageNum++;
+        this.state.isLoadingRooms = true;
+        this.loadRooms (true);
       }
     });
   }
