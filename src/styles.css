@@ -109,31 +109,40 @@ h3{
 .box-full{
   height: 100%;
 }
-.box-title{
-  margin: 0 0 30px;
-}
-.box-title h2,
-.box-title h3{
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0 0 5px;
-}
-.box-title h3{
-  font-size: 20px;
-}
-.box-amount .box-title{
-  margin-bottom: 10px;
-}
-.box-amount{
-  padding-top: 28px;
-  padding-bottom: 28px;
-}
-.box-amount .amount{
-  color: #5bc0ed;
-  font-weight: 600;
-  font-size: 46px;
-  line-height: 1;
-}
+  .box-header{
+    border-bottom: 1px solid #09425d;
+    padding: 0 0 20px;
+    margin: 0 0 25px;
+  }
+  .box-header h3{
+    font-size: 18px;
+    margin: 0;
+  }
+  .box-title{
+    margin: 0 0 30px;
+  }
+  .box-title h2,
+  .box-title h3{
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 5px;
+  }
+  .box-title h3{
+    font-size: 20px;
+  }
+  .box-amount .box-title{
+    margin-bottom: 10px;
+  }
+  .box-amount{
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  .box-amount .amount{
+    color: #5bc0ed;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1;
+  }
 .feature-section{
   height: 100%;
   border-right: 1px solid #ddd;
@@ -343,6 +352,18 @@ h3{
 }
 /* Header end */
 
+.popover{
+  background-color:#5bc0ed;
+  border-color: #5bc0ed;
+}
+  .popover .arrow:after{
+    border-top-color: #5bc0ed;
+  }
+  .popover-content{
+    color: #fff;
+  }
+
+
 
 body .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
@@ -539,11 +560,6 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     left: 20px;
     top: 2px;
   }
-.admin-mode{
-  position: absolute;
-  right: 30px;
-  top: 28px;
-}
 .custom-control-input:checked~.custom-control-label::before{
   background: #09425d;
   border-color: #09425d;
