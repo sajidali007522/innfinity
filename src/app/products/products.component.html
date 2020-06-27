@@ -1,58 +1,31 @@
 <div class="" #productContainer *ngIf="!isLoading">
-    <div class="box">
+    <div class="box"*ngFor="let product of products;">
+      <div class="box-header" *ngIf="product.name != ''">
+        {{product.name}}
+      </div>
       <div class="box-body">
+        <app-dynamic-form-fields *ngIf="product.fields.length > 0" [fields]="product.fields" [wrapperClass]="'row'" [booleanFieldClass]="'col-md-12'" [FieldWrapperClass]="'col-md-6'"></app-dynamic-form-fields>
         <div class="accordion custom-accordion" id="accordionExample">
-          <div class="card overflow-visible" *ngFor="let product of products; let RowIndex = index">
+          <div *ngIf="product.childProducts">
+            <div class="card overflow-visible" *ngFor="let childProduct of product.childProducts; let RowIndex = index">
             <div class="card-header" #headingOne>
               <h2 class="accordion-link" data-toggle="collapse" [attr.data-target]="'#collaps_'+RowIndex" aria-expanded="true">
-                {{product.name}}
+                {{childProduct.name}}
               </h2>
             </div>
 
             <div id="collaps_{{RowIndex}}" class="collapse show" data-parent="#accordionExample">
               <div class="card-body">
-                <div class="mb-12" *ngIf="product.fields && product.fields.length > 0">
-                  <div class="row">
-                    <div class="col-md-6" *ngFor="let field of product.fields">
-                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'Boolean'">
-                          <input type="checkbox" type="checkbox" [(ngModel)]="field.value" class="custom-control-input" #customCheck1>
-                          <label class="custom-control-label" popover="{{field.description}}"
-                                 triggers="mouseenter:mouseleave">{{field.name}}</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'Integer'">
-                          <label class="custom-control-label" popover="{{field.description}}"
-                                 triggers="mouseenter:mouseleave">{{field.name}}</label>
-                          <input class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3" *ngIf="field.fieldType == 'String'">
-                          <label class="custom-control-label" popover="{{field.description}}"
-                                 triggers="mouseenter:mouseleave">{{field.name}}</label>
-                          <textarea class="form-control"  [(ngModel)]="field.value"></textarea>
-                      </div>
-                    </div>
-                  </div>
+                <div class="mb-12" *ngIf="childProduct.fields && childProduct.fields.length > 0">
+                  <app-dynamic-form-fields *ngIf="childProduct.fields.length > 0" [fields]="childProduct.fields" [wrapperClass]="'row'" [booleanFieldClass]="'col-md-12'" [FieldWrapperClass]="'col-md-6'"></app-dynamic-form-fields>
                 </div>
 
-                <div class="custom-accordion-wrap" *ngFor="let children of product.childProducts; let childIndex = index">
+                <div class="custom-accordion-wrap" *ngFor="let children of childProduct.childProducts; let childIndex = index">
                   <div class="custom-accordion">
                     <h3 class="" [ngClass]="{'active' : 0 == childIndex}"><a href="javascript:void(0)">{{children.name}}</a></h3>
                     <div class="custom-accordion-content" [ngStyle]="{display: 0 == childIndex ? 'block' : ''}">
                       <div class="form-primary">
-                        <div class="row" *ngIf="children.fields.length > 0">
-                          <div class="" [ngClass]="{'col-md-12': field.fieldType == 'Boolean', 'col-md-6': field.fieldType != 'Boolean' }" *ngFor="let field of children.fields">
-                            <div class="mb-3 custom-checkbox custom-control" *ngIf="field.fieldType == 'Boolean'">
-                              <input class="custom-control-input" #checkbox_{{childIndex}} type="checkbox" [(ngModel)]="field.value" />
-                              <label class="custom-control-label" for="#checkbox_{{childIndex}}" popover="{{field.description}}"
-                                     triggers="mouseenter:mouseleave">{{field.name}}</label>
-                            </div>
-                            <div class="mb-3 " *ngIf="field.fieldType != 'Boolean'">
-                              <label popover="{{field.description}}"
-                                     triggers="mouseenter:mouseleave">{{field.name}}</label>
-                              <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
-                              <textarea *ngIf="field.fieldType == 'String'" rows="1" class="form-control"  [(ngModel)]="field.value"></textarea>
-                            </div>
-                          </div>
-                        </div>
+                        <app-dynamic-form-fields *ngIf="children.fields.length > 0" [fields]="children.fields" [wrapperClass]="'row'" [booleanFieldClass]="'col-md-12'" [FieldWrapperClass]="'col-md-6'"></app-dynamic-form-fields>
                       </div>
                     </div>
                   </div>
@@ -60,6 +33,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

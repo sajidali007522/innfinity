@@ -24,6 +24,7 @@ const routes: Routes = [
       {path: "contact-list", component: ContactListComponent, canActivate: [AuthGuard]},
       {path: "products", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "products/:category", component:ProductsComponent, canActivate: [AuthGuard] },
+      {path: "products/:category/sub-form/:sub_category", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },

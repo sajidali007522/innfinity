@@ -18,8 +18,8 @@ export class HttpService {
     return this.http.get(this.appConfigService.apiBaseUrl+url, {
       params: params,
       headers: headers
-    })
-      .pipe(shareReplay({ bufferSize: 1, refCount: true }));
+    });
+     // .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
   public _getApi (url, params={}) {
@@ -27,7 +27,7 @@ export class HttpService {
     return this.http.get(this.appConfigService.apiBaseUrl, {
       params: params,
       headers: headers
-    })
-      .pipe(shareReplay({ bufferSize: 1, refCount: true }));
+    });
+     // .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 }

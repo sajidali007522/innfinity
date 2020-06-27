@@ -1,0 +1,15 @@
+<div class="{{wrapperClass}}" >
+  <div class="" [ngClass]="getClassName(field.fieldType)" *ngFor="let field of fields">
+    <div class="mb-3 custom-checkbox custom-control" *ngIf="field.fieldType == 'Boolean'">
+      <input class="custom-control-input" #checkbox_{{field.id}} type="checkbox" [(ngModel)]="field.value" />
+      <label class="custom-control-label" for="#checkbox_{{field.id}}" popover="{{field.description}}"
+             triggers="mouseenter:mouseleave">{{field.name}}</label>
+    </div>
+    <div class="mb-3 " *ngIf="field.fieldType != 'Boolean'">
+      <label popover="{{field.description}}"
+             triggers="mouseenter:mouseleave">{{field.name}}</label>
+      <input *ngIf="field.fieldType == 'Integer'" class="form-control"  type="number" min="{{field.minValue || 1}}" max="{{field.maxValue || 999}}" [(ngModel)]="field.value" />
+      <textarea *ngIf="field.fieldType == 'String'" rows="1" class="form-control"  [(ngModel)]="field.value"></textarea>
+    </div>
+  </div>
+</div>

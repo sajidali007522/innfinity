@@ -44,7 +44,7 @@ export class SideNavComponent implements OnInit {
     $event.preventDefault();
     if(category.children.length > 0 ) {
       //check If child has enabled display content
-      this.checkIfHasContentEnabled(category.children, category.id)
+      this.checkIfHasContentEnabled(category.children, category)
       return;
     }
     category.isLoading = true;
@@ -52,7 +52,7 @@ export class SideNavComponent implements OnInit {
         console.log(categories['data'])
         this.categories = this.catService.setChildren(this.categories, category, categories['data']);
         category.isLoading = false;
-        this.checkIfHasContentEnabled(categories['data'], category.id);
+        this.checkIfHasContentEnabled(categories['data'], category);
       },
       err => {
         //handle errors here
@@ -62,17 +62,17 @@ export class SideNavComponent implements OnInit {
 
   }
 
-  checkIfHasContentEnabled (categorydata, categoryId) {
+  checkIfHasContentEnabled (categorydata, category) {
+    if(!category.open) return;
     if(categorydata.length > 0 ) {
-      let displayContent = false
+      let subCats=[];
       for(let index =0; index < categorydata.length; index++) {
           if(categorydata[index].displayContent) {
-            displayContent = true;
-            break;
+            subCats.push(categorydata[index].id);
           }
       }
-      if(displayContent) {
-        this.router.navigate(['/products/'+ categoryId])
+      if(subCats.length > 0) {
+        this.router.navigate(['/products/'+ category.id+'/sub-form/'+subCats.join('_')]);
       }
     }
   }

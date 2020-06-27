@@ -42,6 +42,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import {ConfigService} from "./config.service";
+import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dynamic-form-fields.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {ConfigService} from "./config.service";
     RegisterComponent,
     ReservationComponent,
     CarouselComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    DynamicFormFieldsComponent
   ],
   imports: [
     BrowserModule,
