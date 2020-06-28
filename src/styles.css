@@ -540,6 +540,17 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     padding: 14px 20px;
     height: auto;
   }
+  .auto-complete-primary .autocomplete-container .input-container input{
+    border: 1px solid #bebebe !important;
+    line-height: inherit;
+    background: #fafafa;
+    color: #656565;
+    padding: 14px 20px;
+    height: auto;
+  }
+  .auto-complete-primary .autocomplete-container .input-container .x{
+    line-height: 45px;
+  }
 .combine-wrap{
   position: relative;
   margin: 0 0 15px;

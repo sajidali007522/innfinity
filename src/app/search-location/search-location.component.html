@@ -1,52 +1,61 @@
 <div class="box">
-  <div class="box-header">
-    Search Location
-  </div>
   <div class="box-body">
-    <div class="row">
-      <div class="col-md-6">
-        <select class="form-control" [(ngModel)]="apiEndPoint">
-          <option value="">Select Location Type</option>
-          <option value="CommercialAirportSearch">Commercial Airport Search</option>
-          <option value="LocationSearch">Location Search</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <ng-autocomplete
-          [data]="remoteData"
-          [searchKeyword]="keyword"
-          (selected)='selectEvent($event)'
-          (inputChanged)='getServerResponse($event)'
-          (inputFocused)='onFocused($event)'
-          [itemTemplate]="itemTemplateRemote"
-          (inputCleared)="searchCleared()"
-          [notFoundTemplate]="notFoundTemplate"
-          [debounceTime]="600"
-          [isLoading]="isLoadingResult"
-          [minQueryLength]="2"
-          placeHolder="Search Location."
-        >
-        </ng-autocomplete>
 
-        <ng-template #itemTemplateRemote let-item>
-          <a href="javascript:void(0)">
-            <div class="auto-txtwrap">
-              <div class="autoicon">
-                <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+    <div class="custom-accordion">
+      <h3><a href="#">Search Location</a></h3>
+      <div class="custom-accordion-content exp">
+        <div class="form-primary">
+          <div class="mb-3">
+            <label>Search</label>
+            <div class="row">
+              <div class="col-md-6">
+                <select class="form-control" [(ngModel)]="apiEndPoint">
+                  <option value="">Select Location Type</option>
+                  <option value="CommercialAirportSearch">Commercial Airport Search</option>
+                  <option value="LocationSearch">Location Search</option>
+                </select>
               </div>
-              <div class="autotxt">
-                <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+              <div class="col-md-6 auto-complete-primary">
+                <ng-autocomplete
+                  [data]="remoteData"
+                  [searchKeyword]="keyword"
+                  (selected)='selectEvent($event)'
+                  (inputChanged)='getServerResponse($event)'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplateRemote"
+                  (inputCleared)="searchCleared()"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [debounceTime]="600"
+                  [isLoading]="isLoadingResult"
+                  [minQueryLength]="2"
+                  placeHolder="Search Location."
+                >
+                </ng-autocomplete>
+        
+                <ng-template #itemTemplateRemote let-item>
+                  <a href="javascript:void(0)">
+                    <div class="auto-txtwrap">
+                      <div class="autoicon">
+                        <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+                      </div>
+                      <div class="autotxt">
+                        <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+                      </div>
+                    </div>
+                  </a>
+                </ng-template>
+        
+                <ng-template #notFoundTemplate let-notFound>
+                  {{errorMsg}}
+                </ng-template>
               </div>
+        
             </div>
-          </a>
-        </ng-template>
-
-        <ng-template #notFoundTemplate let-notFound>
-          {{errorMsg}}
-        </ng-template>
+          </div>
+        </div>
       </div>
-
     </div>
+
     <div class="row">
       <div class="col-md-12">
         <pre>
