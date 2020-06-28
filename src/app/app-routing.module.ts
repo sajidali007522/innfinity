@@ -14,6 +14,7 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {ReservationComponent} from "./reservation/reservation.component";
 import {CarouselComponent} from "./carousel/carousel.component";
 import {AutocompleteComponent} from "./components/autocomplete/autocomplete.component";
+import {SearchLocationComponent} from "./search-location/search-location.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -31,6 +32,7 @@ const routes: Routes = [
       {path: "reservation", component:ReservationComponent, canActivate: [AuthGuard] },
       {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },
       {path: "autocomplete", component:AutocompleteComponent, canActivate: [AuthGuard] },
+      {path: "search-location", component:SearchLocationComponent, canActivate: [AuthGuard] },
     ]
   },
 

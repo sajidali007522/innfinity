@@ -43,6 +43,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import {ConfigService} from "./config.service";
 import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dynamic-form-fields.component';
+import { SearchLocationComponent } from './search-location/search-location.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dyn
     ReservationComponent,
     CarouselComponent,
     AutocompleteComponent,
-    DynamicFormFieldsComponent
+    DynamicFormFieldsComponent,
+    SearchLocationComponent
   ],
   imports: [
     BrowserModule,
