@@ -1,9 +1,9 @@
 <div class="" #productContainer *ngIf="!isLoading">
-    <div class="box"*ngFor="let product of products;">
-      <div class="box-header" *ngIf="product.name != ''">
+    <div class="box" *ngFor="let product of products;">
+      <div class="box-header" *ngIf="!product.name">
         {{product.name}}
       </div>
-      <div class="box-body">
+      <div class="box-body form-primary">
         <app-dynamic-form-fields *ngIf="product.fields.length > 0" [fields]="product.fields" [wrapperClass]="'row'" [booleanFieldClass]="'col-md-12'" [FieldWrapperClass]="'col-md-6'"></app-dynamic-form-fields>
         <div class="accordion custom-accordion" id="accordionExample">
           <div *ngIf="product.childProducts">
