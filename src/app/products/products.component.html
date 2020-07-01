@@ -1,6 +1,6 @@
 <div class="" #productContainer *ngIf="!isLoading">
     <div class="box" *ngFor="let product of products;">
-      <div class="box-header" *ngIf="!product.name">
+      <div class="box-header" *ngIf="product.name">
         {{product.name}}
       </div>
       <div class="box-body form-primary">
