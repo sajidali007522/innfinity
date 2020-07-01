@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit {
     this.switchContainerWidth();
   }
 
-  setTheme ($event, lightTheme=false) {
+  setTheme ($event, theme='dark') {
     $event.preventDefault();
-    localStorage.setItem('theme', lightTheme ? 'light' : 'dark');
+    localStorage.setItem('theme', theme);
     this.switchSkinColor();
   }
 
@@ -61,10 +61,12 @@ export class HeaderComponent implements OnInit {
 
   switchSkinColor () {
     this.isLightTheme = localStorage.getItem('theme');
-    this.renderer.removeClass(document.body, 'theme-light')
-    if(this.isLightTheme === 'light') {
-      this.renderer.addClass(document.body, 'theme-light');
+    if(!this.isLightTheme) {
+      this.isLightTheme = 'theme-dark';
     }
+    this.renderer.setAttribute(document.body, 'class', '');
+    this.renderer.addClass(document.body, this.isLightTheme);
+
   }
 
   logout() {

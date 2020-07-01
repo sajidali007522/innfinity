@@ -3,5 +3,7 @@
   "language": "Language",
   "theme": "Theme",
   "theme_dark": "Theme Dark",
-  "theme_light": "Theme Light"
+  "theme_light": "Theme Light",
+  "theme_light_primary": "Theme Light Primary",
+  "theme_dark_primary": "Theme Light Primary"
 }
