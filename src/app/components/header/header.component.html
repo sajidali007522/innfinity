@@ -41,18 +41,24 @@
       <li class="has-dropdown">
         <a href="javascript:void(0)">{{'theme' | translate}} <i class="fa fa-themeisle"></i> </a>
         <ul class="dropdown-menu-wrap">
-          <li><a href="javascript:;" (click)="setTheme($event, 'theme-dark')" [ngClass]="{ 'active': !isLightTheme }" class="theme-dark">{{'theme_dark' | translate}}</a></li>
-          <li><a href="javascript:;" (click)="setTheme($event, 'theme-light')" [ngClass]="{'active':isLightTheme }" class="theme-light">{{'theme_light' | translate}}</a></li>
-          <li><a href="javascript:;" (click)="setTheme($event, 'theme-dark-primary')" [ngClass]="{'active':isLightTheme }" class="theme-dark-primary">{{'theme_dark_primary' | translate}}</a></li>
+          <li [ngClass]="{ 'active': 'theme-dark' == isLightTheme }">
+            <a href="javascript:;" (click)="setTheme($event, 'theme-dark')" class="theme-dark">{{'theme_dark' | translate}}</a>
+          </li>
+          <li [ngClass]="{'active': 'theme-light' == isLightTheme }">
+            <a href="javascript:;" (click)="setTheme($event, 'theme-light')" class="theme-light">{{'theme_light' | translate}}</a>
+          </li>
+          <li [ngClass]="{'active': 'theme-dark-primary' == isLightTheme }">
+            <a href="javascript:;" (click)="setTheme($event, 'theme-dark-primary')" class="">{{'theme_dark_primary' | translate}}</a>
+          </li>
           <!-- <li><a href="javascript:;" (click)="setTheme($event, 'theme-light-primary')" [ngClass]="{'active':isLightTheme }" class="theme-light-primary">{{'theme_light_primary' | translate}}</a></li> -->
         </ul>
       </li>
       <li class="has-dropdown">
         <a routerLink="/login">{{'login' | translate}}</a>
         <ul class="dropdown-menu-wrap">
-          <li><a href="#"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
-          <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-          <li><a href="#" (click)="logout()"><i class="fa fa-sign-in"></i> <span>Logout</span></a></li>
+          <li><a href="javascript:void(0);"><i class="fa fa-gears"></i> <span>Settings</span></a></li>
+          <li><a href="javascript:void(0);"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+          <li><a href="javascript:void(0);" (click)="logout()"><i class="fa fa-sign-in"></i> <span>Logout</span></a></li>
         </ul>
       </li>
     </ul>
