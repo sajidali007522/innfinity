@@ -74,6 +74,10 @@
 .theme-light .custom-accordion .accordion-link{
     background: #5bc0ed;
 }
+.theme-light .custom-accordion > h3 a{
+  background: #e7f8ff;
+  color: #212529;
+}
 .theme-light .custom-control-input:checked~.custom-control-label::before{
     background: #5bc0ed;
     border-color: #5bc0ed;

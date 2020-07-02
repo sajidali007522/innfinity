@@ -1,5 +1,6 @@
 @import url('./assets/fonts/fonts.css');
 @import url('./assets/css/skin.css');
+@import url('./assets/css/skin-dark-primary.css');
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
 @import '~angular-tree-component/dist/angular-tree-component.css';
 
@@ -207,9 +208,6 @@ h3{
   font-size: 21px;
   z-index: 1;
 }
-.menu-icon:hover{
-  color: #fff;
-}
 .logo{
   font-family: 'dancing_scriptregular';
   width: 250px;
@@ -240,6 +238,9 @@ h3{
   position: relative;
   margin-left: 25px;
   color: #fff;
+}
+.header-right > ul > li:first-child{
+  margin-left: 0;
 }
 .header-right > ul > li > a{
   color: #fff;
@@ -497,12 +498,12 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
   }
     .custom-accordion > h3 a{
       display: block;
-      padding: 20px 15px 22px 40px;
-      color: #212529;
+      padding: 15px 15px 17px 40px;
+      color: #fff;
       text-decoration: none;
       font-weight: 600;
       position: relative;
-      background: #e7f8ff;
+      background: #2589b9;
     }
     .custom-accordion > h3 a:before{
       content: "\f107";
@@ -527,6 +528,9 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
   }
   .checks-outer .checkwrap{
     margin: 0 60px 20px 0;
+  }
+  .accordion > .card{
+    border:none;
   }
 .form-primary{
 }
@@ -760,6 +764,17 @@ input[type="file"] {
     padding: 5px 10px;
   }
 
+  /*home page style  */
+  .service-photo{
+    background: url(/assets/images/photo.jpg) center center no-repeat;
+    background-size: cover;
+    height: 370px;
+  }
+.service-photo img{
+  display: block;
+  width: 100%;
+}
+
 @media(min-width:767px){
   .modal-md{
     max-width: 700px;
@@ -774,6 +789,12 @@ input[type="file"] {
   }
   .menu-fullwidth .row-custom:before{
     display: none;
+  }
+}
+
+@media(max-width:1200px){
+  .header-right > ul > li{
+    margin-left: 10px;
   }
 }
 
@@ -797,16 +818,45 @@ input[type="file"] {
       display: block;
     }
 }
-@media(max-width:767px){
+@media(max-width:991px){
+  .header-wrap{
+    display: block;
+    padding: 0;
+  }
   .header-right{
     display: none;
   }
-  .menu-icon{
-    top: 13px;
-    left: auto;
-    right: 25px;
-  }
   .tx-lg-modal{
     padding: 0;
+  }
+}
+@media(max-width:767px){
+  .row-custom > div:nth-child(2){
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .box{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .checks-outer{
+    display: block !important;
+  }
+  .custom-accordion .accordion-link{
+    font-size: 18px;
+    padding: 15px;
+  }
+    .custom-accordion .accordion-link:before{
+      top: 11px;;
+    }
+    .custom-accordion > h3{
+      font-size: 16px;
+    }
+    .custom-accordion-content{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  .dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: 1px 7px;
   }
 }
