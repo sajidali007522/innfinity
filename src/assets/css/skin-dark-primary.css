@@ -30,7 +30,8 @@
 .theme-dark-primary .header-right > ul > li > a{
   color: #fff;
 }
-.theme-dark-primary .menu-icon{
+.theme-dark-primary .menu-icon,
+.theme-dark-primary .menu-icon:hover{
   color: #fff;
 }
 .theme-dark-primary .sidebar ul a{
@@ -103,4 +104,10 @@
 }
 .theme-dark-primary .fileUpload:hover{
   background: #15191c;
+}
+
+@media(max-width:991px){
+  .theme-dark-primary .nav-wrap{
+    background:#000 !important;
+  }
 }

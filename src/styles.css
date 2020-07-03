@@ -208,6 +208,9 @@ h3{
   font-size: 21px;
   z-index: 1;
 }
+.menu-icon:hover{
+  color: #fff;
+}
 .logo{
   font-family: 'dancing_scriptregular';
   width: 250px;
@@ -780,6 +783,8 @@ input[type="file"] {
     max-width: 700px;
   }
 }
+
+/* sidebar destkop and mobile start */
 @media(min-width:1060px){
   .menu-fullwidth .row-custom > div:first-child{
     display: none;
@@ -791,13 +796,6 @@ input[type="file"] {
     display: none;
   }
 }
-
-@media(max-width:1200px){
-  .header-right > ul > li{
-    margin-left: 10px;
-  }
-}
-
 @media(max-width:1060px){
   .row-custom:before{
     display: none;
@@ -808,9 +806,18 @@ input[type="file"] {
   .row-custom > div:nth-child(2){
     width: 100%;
   }
-    .menu-active .row-custom > div:first-child{
+  .menu-fullwidth .row-custom > div:first-child{
+    display: block;
+  }
+    .menu-fullwidth .row-custom > div:nth-child(2){
+      width: calc(100% - 260px);
+    }
+    .menu-fullwidth .row-custom:before{
       display: block;
     }
+  .menu-active .row-custom > div:first-child{
+    display: block;
+  }
     .menu-active .row-custom > div:nth-child(2){
       width: calc(100% - 260px);
     }
@@ -818,7 +825,18 @@ input[type="file"] {
       display: block;
     }
 }
+/* sidebar destkop and mobile end */
+
+@media(max-width:1200px){
+  .header-right > ul > li{
+    margin-left: 10px;
+  }
+}
 @media(max-width:991px){
+  .logo{
+    background: none;
+    box-shadow: none;
+  }
   .header-wrap{
     display: block;
     padding: 0;

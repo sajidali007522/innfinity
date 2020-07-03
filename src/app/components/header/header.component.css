@@ -73,7 +73,8 @@
 }
 @media(max-width:991px){
   .nav-wrap{
-    background: #fff;
+    background: #09425d;
+    background-image: linear-gradient(to right, #3f7892 , #09425d);
     padding: 0 20px;
   }
   .navbar{
@@ -82,9 +83,30 @@
   .navbar-light .navbar-toggler{
     position: absolute;
     right: 10px;
-    top: 10px;
-    background: #5bc0ed;
+    top: 18px;
+    font-size: 18px;
+    border: none;
+    padding: 0;
+    background: none;
+    outline: none;
+    color: #fff;
   }
+    .navbar-light .navbar-toggler-icon{
+      display: none;
+    }
+    .navbar-light .navbar-toggler:after{
+      content: "\f0c9";
+      font:normal normal normal 21px/1 FontAwesome;
+    }
+    .navbar-light .navbar-toggler:before{
+      content: " Menu ";
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 600;
+      position: absolute;
+      left: -45px;
+      top: 4px;
+    }
   .nav-item{
     margin-left: 0;
   }
@@ -93,6 +115,7 @@
     border:none;
   }
   .navbar-expand-lg .navbar-nav .dropdown-menu{
-    padding: 0;;
+    padding: 0;
+    background: none;
   }
 }
