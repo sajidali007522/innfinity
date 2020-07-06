@@ -153,61 +153,6 @@ h3{
   .box-title h3{
     font-size: 20px;
   }
-  .box-amount .box-title{
-    margin-bottom: 10px;
-  }
-  .box-amount{
-    padding-top: 28px;
-    padding-bottom: 28px;
-  }
-  .box-amount .amount{
-    color: #5bc0ed;
-    font-weight: 600;
-    font-size: 46px;
-    line-height: 1;
-  }
-.feature-section{
-  height: 100%;
-  border-right: 1px solid #ddd;
-  font-size: 13px;
-}
-.feature-row > div:last-child .feature-section{
-  border-right: none;
-}
-.feature-section h3{
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
-  margin: 0 0 5px;
-}
-.feature-icon{
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-  border: 1px solid #ddd;
-  text-align: center;
-  margin: 0 auto 20px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-}
-.feature-airplane{
-  background: url(/assets/images/icon-airplane.png) center center no-repeat;
-  background-size: 75% auto;
-}
-.feature-home{
-  background: url(/assets/images/icon-home.png) center center no-repeat;
-  background-size: 65% auto;
-}
-.feature-industry{
-  background: url(/assets/images/icon-industry.png) center center no-repeat;
-  background-size: 50% auto;
-}
-.feature-global{
-  background: url(/assets/images/icon-global.png) center center no-repeat;
-  background-size: 65% auto;
-}
-
 
 /* Header start */
 .header-wrap{

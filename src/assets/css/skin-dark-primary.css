@@ -105,6 +105,9 @@
 .theme-dark-primary .fileUpload:hover{
   background: #15191c;
 }
+.theme-dark-primary .feature-box-wrap .box-title{
+  color: #fff;
+}
 
 @media(max-width:991px){
   .theme-dark-primary .nav-wrap{
