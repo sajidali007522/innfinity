@@ -45,6 +45,7 @@ import {ConfigService} from "./config.service";
 import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dynamic-form-fields.component';
 import { SearchLocationComponent } from './search-location/search-location.component';
 import {CacheInterceptor} from "./cache.interceptor";
+import { TranslationsComponent } from './translations/translations.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {CacheInterceptor} from "./cache.interceptor";
     CarouselComponent,
     AutocompleteComponent,
     DynamicFormFieldsComponent,
-    SearchLocationComponent
+    SearchLocationComponent,
+    TranslationsComponent
   ],
   imports: [
     BrowserModule,
