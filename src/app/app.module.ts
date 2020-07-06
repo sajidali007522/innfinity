@@ -44,6 +44,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import {ConfigService} from "./config.service";
 import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dynamic-form-fields.component';
 import { SearchLocationComponent } from './search-location/search-location.component';
+import {CacheInterceptor} from "./cache.interceptor";
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { SearchLocationComponent } from './search-location/search-location.compo
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
     // provider used to create fake backend
     fakeBackendProvider
   ],

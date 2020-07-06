@@ -19,7 +19,7 @@ export class HttpService {
       params: params,
       headers: headers
     });
-     // .pipe(shareReplay({ bufferSize: 1, refCount: true }));
+      //.pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
   public _getApi (url, params={}) {

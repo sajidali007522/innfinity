@@ -1,4 +1,4 @@
-<div class="" #productContainer *ngIf="!isLoading">
+<div class="" #productContainer *ngIf="!isLoading && products.length > 0">
     <div class="box" *ngFor="let product of products;">
       <div class="box-header" *ngIf="product.name">
         {{product.name}}
@@ -9,7 +9,7 @@
           <div *ngIf="product.childProducts">
             <div class="card overflow-visible" *ngFor="let childProduct of product.childProducts; let RowIndex = index">
             <div class="card-header" #headingOne>
-              <h2 class="accordion-link" data-toggle="collapse" [attr.data-target]="'#collaps_'+RowIndex" aria-expanded="true">
+              <h2 *ngIf="childProduct.name" class="accordion-link" data-toggle="collapse" [attr.data-target]="'#collaps_'+RowIndex" aria-expanded="true">
                 {{childProduct.name}}
               </h2>
             </div>
@@ -38,5 +38,8 @@
         </div>
       </div>
   </div>
+</div>
+<div class="" *ngIf="!isLoading && products.length <= 0">
+  <h2>No Product Found</h2>
 </div>
 <app-loader *ngIf="isLoading"></app-loader>
