@@ -72,6 +72,28 @@ p{
 .sidebar ul a:hover{
   background: #404e67;
 }
+.sidebar > app-list-view > ul > li > a{
+  padding-left: 40px;
+}
+  .sidebar > app-list-view > ul > li > a:before{
+    content: " ";
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    font:normal normal normal 16px/1 FontAwesome;
+  }
+  .sidebar > app-list-view > ul > li:nth-child(1) > a:before{content: "\f015";}
+  .sidebar > app-list-view > ul > li:nth-child(2) > a:before{content: "\f072";}
+  .sidebar > app-list-view > ul > li:nth-child(3) > a:before{content: "\f2c0";}
+  .sidebar > app-list-view > ul > li:nth-child(4) > a:before{content: "\f1fe";}
+  .sidebar > app-list-view > ul > li:nth-child(5) > a:before{content: "\f080";}
+
+  .sidebar > app-list-view > ul > li:nth-child(6) > a:before{content: "\f2dc";}
+  .sidebar > app-list-view > ul > li:nth-child(7) > a:before{content: "\f003";}
+  .sidebar > app-list-view > ul > li:nth-child(8) > a:before{content: "\f250";}
+  .sidebar > app-list-view > ul > li:nth-child(9) > a:before{content: "\f1e6";}
+  .sidebar > app-list-view > ul > li:nth-child(10) > a:before{content: "\f0fb";}
+  .sidebar > app-list-view > ul > li:nth-child(11) > a:before{content: "\f085";}
 .sidebar ul a .fa {
   position: absolute;
   right: 15px;
