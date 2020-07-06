@@ -28,4 +28,11 @@ export class TranslationsComponent implements OnInit {
     }
   }
 
+  updateLabelsCache (){
+    this._http.get('/assets/i18n/context/translations_module.json').subscribe(response=> {
+      this.translation = response;
+      localStorage.setItem("context_translation", JSON.stringify(this.translation))
+    });
+  }
+
 }

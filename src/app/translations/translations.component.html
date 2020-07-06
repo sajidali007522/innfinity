@@ -1,5 +1,8 @@
 <div class="box">
-  <div class="box-header">{{translation.title}}</div>
+  <div class="box-header">
+    {{translation.title}}
+    <button class="btn btn-primary pull-right" (click)="updateLabelsCache()"><span class="fa fa-refresh"></span></button>
+  </div>
   <div class="box-body">
     <div class="form-horizontal">
       <div class="form-group">
@@ -7,6 +10,16 @@
         <label class="col-sm-3">{{translation.filters.filter_2}}</label>
         <label class="col-sm-3">{{translation.filters.filter_3}}</label>
         <label class="col-sm-3">{{translation.filters.filter_4}}</label>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3">{{translation.forms.field_1}}</label>
+        <label class="col-sm-3">{{translation.forms.field_2}}</label>
+        <label class="col-sm-3">{{translation.forms.field_3}}</label>
+        <label class="col-sm-3">{{translation.forms.field_4}}</label>
+        <label class="col-sm-3">{{translation.forms.field_5}}</label>
+        <label class="col-sm-3">{{translation.forms.field_6}}</label>
+        <label class="col-sm-3">{{translation.forms.field_7}}</label>
+        <label class="col-sm-3">{{translation.forms.field_8}}</label>
       </div>
     </div>
   </div>
