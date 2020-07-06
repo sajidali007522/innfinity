@@ -1,0 +1,9 @@
+{
+  "title": "box header title",
+  "filters": {
+    "filter_1": "filter label one",
+    "filter_2": "filter label two",
+    "filter_3": "filter label three",
+    "filter_4": "filter label four"
+  }
+}
