@@ -12,26 +12,29 @@ import {HttpClient} from "@angular/common/http";
 export class TranslationsComponent implements OnInit {
 
   public translation;
+  private version;
   constructor(private _http:HttpClient) {
 
   }
 
   ngOnInit(): void {
-
+    let context = {data: [], version: ''};
     if(!localStorage.getItem('context_translation')) {
-      this._http.get('/assets/i18n/context/translations_module.json').subscribe(response=> {
-        this.translation = response;
-        localStorage.setItem("context_translation", JSON.stringify(this.translation))
-      });
+      this.updateLabelsCache(context);
     } else {
-      this.translation = JSON.parse(localStorage.getItem('context_translation'));
+      context = JSON.parse(localStorage.getItem('context_translation'));
+      this.translation = context.data;
+      this.updateLabelsCache(context)
     }
   }
 
-  updateLabelsCache (){
-    this._http.get('/assets/i18n/context/translations_module.json').subscribe(response=> {
-      this.translation = response;
-      localStorage.setItem("context_translation", JSON.stringify(this.translation))
+  updateLabelsCache (translation) {
+
+    this._http.get('http://coddrule.com/dev/test-api/translation-en.php?version='+translation.version).subscribe(response=> {
+      if(typeof response['data'] !== 'undefined') {
+        this.translation = response['data'];
+        localStorage.setItem("context_translation", JSON.stringify(response));
+      }
     });
   }
 
