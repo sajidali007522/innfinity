@@ -1,3 +1,5 @@
+@import url("../../assets/css/slick.css");
+
 .feature-row{
     margin-bottom: 30px;
   }
@@ -52,7 +54,7 @@
 }
   .box-amount{
     padding-top: 28px;
-    padding-bottom: 28px;
+    padding-bottom: 42px;
   }
   .box-amount h3{
       color: #fff;
@@ -72,6 +74,36 @@
   .box-amount-wrap > div:nth-child(3){
     background-color: #f39c12;
   }
+.table-home th{
+  background: #09425d;
+  color: #fff;
+}
+.home-slider-wrap{
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.service-photo{
+  background: url(/assets/images/home/photo.jpg) center center no-repeat;
+  background-size: cover;
+  height: 470px;
+}
+  .service-2{
+    background: url(/assets/images/home/photo2.jpg) center top no-repeat;
+    background-size: cover;
+  }
+  .service-3{
+    background: url(/assets/images/home/photo3.jpg) center center no-repeat;
+    background-size: cover;
+  }
+  .service-4{
+    background: url(/assets/images/home/photo4.jpg) center center no-repeat;
+    background-size: cover;
+  }
+.service-photo img{
+  display: block;
+  width: 100%;
+}
 @media(max-width:1365px){
     .feature-section h3{
         font-size: 17px;
@@ -80,7 +112,10 @@
         font-size: 32px;
     }
     .service-photo{
-        height: 328px;
+        height: 428px;
+    }
+    .box.box-amount h3{
+      font-size: 18px;
     }
 } 
 
@@ -102,4 +137,28 @@
     .feature-section h3{
         font-size: 15px;
     }
+}
+@media(max-width:991px){
+  .feature-section{
+    height: auto;
+    min-height: 70px;
+    margin: 0 0 25px;
+  } 
+  .box.box-amount{
+    padding: 20px;
+  }
+  .box-amount .amount{
+    font-size: 28px;
+  }
+  .service-photo{
+    height: 336px;
+  }
+}
+@media(max-width:767px){
+  .box.box-amount{
+    margin: 0 0 15px;
+  }
+  .service-photo{
+    height: 216px;
+  }
 }
