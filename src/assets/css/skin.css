@@ -89,6 +89,10 @@
 .theme-light .fileUpload:hover{
   background: #09425d;
 }
+.theme-light .table-home th{
+  background: #fff !important;
+  color: #222 !important;
+}
 
 @media(max-width:991px){
   .theme-light .nav-wrap{

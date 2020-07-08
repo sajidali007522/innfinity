@@ -108,6 +108,10 @@
 .theme-dark-primary .feature-box-wrap .box-title{
   color: #fff;
 }
+.theme-dark-primary .table-home th{
+  background: #3f3f3f !important;
+  color: #fff !important;
+}
 
 @media(max-width:991px){
   .theme-dark-primary .nav-wrap{
