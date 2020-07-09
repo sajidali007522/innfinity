@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -43,7 +43,7 @@ const ALERTS: Alert[] = [{
   styleUrls: ['./html-elements.component.css']
 })
 
-export class HtmlElementsComponent implements OnInit {
+export class HtmlElementsComponent implements OnInit,AfterViewInit {
   public data = [
     {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
     {name: 'therichpost', email: 'therichpost@gmail.com', website:'therichpost.com'},
@@ -127,6 +127,24 @@ export class HtmlElementsComponent implements OnInit {
   cancelImageCrop () {
     this.imageChangedEvent = null;
     this.croppedImage = null;
+  }
+
+  ngAfterViewInit(): void {
+    console.log("view is ready");
+
+    $('body').on('click', '.custom-accordion > h3 > a',  function(e, arg) {
+      console.log($(this).attr('class'));
+      if( $(this).parent().hasClass('active') ){
+        $(this).parent().removeClass('active');
+        $(this).parent().next('.custom-accordion-content').slideUp();
+      }
+      else{
+        $(this).parent().addClass('active');
+        $(this).parent().next('.custom-accordion-content').slideDown();
+      }
+      return false;
+    });
+
   }
 
 }
