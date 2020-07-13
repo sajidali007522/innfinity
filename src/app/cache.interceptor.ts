@@ -30,6 +30,7 @@ export class CacheInterceptor implements HttpInterceptor {
       }
       queryString = '?'+ queryParams.join('&');
     }
+    console.log(queryString);
     const cachedResponse: HttpResponse<any> = this.cacheService.get(req.url+queryString);
 
     // return cached response
@@ -45,7 +46,7 @@ export class CacheInterceptor implements HttpInterceptor {
         tap(event => {
           if (event instanceof HttpResponse) {
             console.log(`Adding item to cache: ${req.url}`);
-            this.cacheService.put(req.url, event);
+            this.cacheService.put(req.url+queryString, event);
           }
         })
       );

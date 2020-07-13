@@ -15,6 +15,7 @@ export class HttpCacheService {
   }
 
   get(url: string): HttpResponse<any> | undefined {
+    console.log("http-cache::" +url);
     return this.requests[url];
   }
 
