@@ -113,6 +113,22 @@
   color: #fff !important;
 }
 
+/* house keeping */
+.theme-dark-primary .filter-section,
+.theme-dark-primary .filter-transparent .form-control{
+    background: linear-gradient(90deg, rgba(29,148,201,1) 30%, rgba(0,0,0,1) 100%) !important;
+}
+.theme-dark-primary .filter-section label,
+.theme-dark-primary .filter-transparent .form-control{
+    color: #fff !important;
+}
+.theme-dark-primary .filter-transparent option{
+  color:#000;
+}
+.theme-dark-primary .table-striped tbody tr:nth-of-type(odd){
+    background-color: #e0e0e0 !important;
+}
+
 @media(max-width:991px){
   .theme-dark-primary .nav-wrap{
     background:#000 !important;

@@ -92,11 +92,11 @@
     td select.view-mode,
     td select.view-mode:focus,
     td select.view-mode:active{
-    border: none;
-    background: transparent;
-    -webkit-appearance: none;
-    outline: none;
-    width: 100%;
+        border: none;
+        background: transparent;
+        -webkit-appearance: none;
+        outline: none;
+        width: 100%;
     }
     .dataTable td{
         position: relative;
@@ -114,23 +114,6 @@
         text-align: center;
         border-radius: 50%;
     }
-
-
-/* .table-housekeeping-wrap table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 100%;
-}
-    .table-housekeeping-wrap table thead tr{
-        display: block;
-    }
-    .table-housekeeping-wrap table tbody {
-        display:block;
-        overflow:auto;
-        height:200px;
-        width:100%;
-    } */
-
 @media(max-width:767px){
     .filter-section{
         padding: 25px 15px 15px;

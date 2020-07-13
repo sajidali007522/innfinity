@@ -15,11 +15,13 @@
     <div class="box-body">
       <div class="filter-transparent">
         <div class="row">
-          <div class="custom-control custom-checkbox mb-2 col-lg-4">
-            <label>Sites</label>
-            <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
-              <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
-            </select>
+          <div class="mb-2 col-lg-4">
+            <div class="custom-control custom-checkbox pl-0">
+              <label>Sites</label>
+              <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
+                <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
