@@ -71,34 +71,34 @@
       </div>
 
       <div class="table-responsive table-housekeeping-wrap" [ngClass]="{'table-loader': state.isLoadingRooms}">
-        <table class="table table-striped table-bordered row-border hover room-table">
+        <table class="table table-striped table-bordered row-border hover room-table jsmartable">
           <thead>
           <tr>
             <th class="sort-custom" (click)="setSortingParams('roomNumber');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'roomNumber' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'roomNumber' && state.pagination.sortOrder
                 }">Room #</th>
-            <th class="sort-custom" (click)="setSortingParams('features')" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="xs" (click)="setSortingParams('features')" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'features' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'features' && state.pagination.sortOrder
                 }">Feature</th>
-            <th class="sort-custom" (click)="setSortingParams('fdStatus')" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="md" (click)="setSortingParams('fdStatus')" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'fdStatus' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'fdStatus' && state.pagination.sortOrder
                 }">FD Status</th>
-            <th class="sort-custom" (click)="setSortingParams('hkStatusId');" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="md" (click)="setSortingParams('hkStatusId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'hkStatusId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'hkStatusId' && state.pagination.sortOrder
                 }">HS Status</th>
-            <th class="sort-custom" (click)="setSortingParams('adminStatusId');" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="sm" (click)="setSortingParams('adminStatusId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'adminStatusId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'adminStatusId' && state.pagination.sortOrder
                 }">Admin Status</th>
-            <th class="sort-custom" (click)="setSortingParams('housekeeperId');" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="md" (click)="setSortingParams('housekeeperId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'housekeeperId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'housekeeperId' && state.pagination.sortOrder
                 }">HouseKeeper</th>
-            <th class="sort-custom" (click)="setSortingParams('shift');" [ngClass]="{
+            <th class="sort-custom" data-breakpoint="sm" (click)="setSortingParams('shift');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'shift' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'shift' && state.pagination.sortOrder
                 }">Shift</th>

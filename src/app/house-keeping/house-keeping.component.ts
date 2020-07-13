@@ -1,4 +1,12 @@
-import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  AfterViewInit,
+  Renderer2,
+  AfterViewChecked
+} from '@angular/core';
 import {Shift} from "../interfaces/Shift";
 import {HouseKeepingService} from "../_services/house-keeping.service";
 import {RoomsService} from "../_services/rooms.service";
@@ -16,7 +24,7 @@ const SHIFTS: Shift [] = [
   templateUrl: './house-keeping.component.html',
   styleUrls: ['./house-keeping.component.css']
 })
-export class HouseKeepingComponent implements OnInit, AfterViewInit {
+export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   data;
   pageFilters= {
@@ -50,7 +58,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   dtOptions: DataTables.Settings = {};
   constructor (private HKService: HouseKeepingService,
                private roomService: RoomsService,
-               private ref: ChangeDetectorRef
+               private ref: ChangeDetectorRef,
+               private renderer: Renderer2
   ) {
 
   }
@@ -182,7 +191,6 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit () {
-
     $(".main-content-area").scroll((e, arg) => {
       var elem = $(e.currentTarget);
       if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
@@ -193,5 +201,20 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit {
         this.loadRooms (true);
       }
     });
+
+  }
+
+  public ngAfterViewChecked() {
+    this.addJsToElement('assets/js/plugins/jsmartable.js');
+
+    //$(".jsmartable").jsmartable();
+  }
+
+  addJsToElement(src: string): HTMLScriptElement {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    this.renderer.appendChild(document.body, script);
+    return script;
   }
 }
