@@ -205,8 +205,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   }
 
   public ngAfterViewChecked() {
-    this.addJsToElement('assets/js/plugins/jsmartable.js');
-
+    //this.addJsToElement('assets/js/plugins/jsmartable.js');
     //$(".jsmartable").jsmartable();
   }
 

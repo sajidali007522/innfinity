@@ -28,6 +28,7 @@
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/angular-material-datetimepicker-zz/css/material-datetimepicker.min.css",
+              "node_modules/ng-drag-drop/style.css",
               "src/styles.css"
 
             ],

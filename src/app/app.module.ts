@@ -5,6 +5,7 @@ import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {DataTablesModule} from 'angular-datatables';
 import { NgInitDirective } from "./directives/NgInitDirective";
+import { NgDragDropModule } from 'ng-drag-drop';
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import  { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -46,6 +47,8 @@ import { DynamicFormFieldsComponent } from './components/dynamic-form-fields/dyn
 import { SearchLocationComponent } from './search-location/search-location.component';
 import {CacheInterceptor} from "./cache.interceptor";
 import { TranslationsComponent } from './translations/translations.component';
+import { DragNDropComponent } from './drag-n-drop/drag-n-drop.component';
+import { DigitalSignComponent } from './digital-sign/digital-sign.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { TranslationsComponent } from './translations/translations.component';
     AutocompleteComponent,
     DynamicFormFieldsComponent,
     SearchLocationComponent,
-    TranslationsComponent
+    TranslationsComponent,
+    DragNDropComponent,
+    DigitalSignComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,8 @@ import { TranslationsComponent } from './translations/translations.component';
     TimepickerModule.forRoot(),
     PopoverModule.forRoot(),
     ImageCropperModule,  //ImageCropperModule
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [
     {
