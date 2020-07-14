@@ -17,6 +17,7 @@ import {AutocompleteComponent} from "./components/autocomplete/autocomplete.comp
 import {SearchLocationComponent} from "./search-location/search-location.component";
 import {TranslationsComponent} from "./translations/translations.component";
 import {DragNDropComponent} from "./drag-n-drop/drag-n-drop.component";
+import {DigitalSignComponent} from "./digital-sign/digital-sign.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -37,6 +38,7 @@ const routes: Routes = [
       {path: "search-location", component:SearchLocationComponent, canActivate: [AuthGuard] },
       {path: "translation-cache", component:TranslationsComponent, canActivate: [AuthGuard] },
       {path: "drag-n-drop", component:DragNDropComponent, canActivate: [AuthGuard] },
+      {path: "sign-digitally", component:DigitalSignComponent, canActivate: [AuthGuard] },
     ]
   },
 
