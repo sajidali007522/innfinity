@@ -1,13 +1,42 @@
 <div class="box">
   <div class="box-header"></div>
   <div class="body">
-    <ngx-extended-pdf-viewer
-      [src]="'/assets/sample_explain.pdf'"
-      backgroundColor="#ffffff"
-      [useBrowserLocale]="true"
-      [handTool]="false"
-      [showHandToolButton]="true"
-      height="80vh">
-    </ngx-extended-pdf-viewer>
+    <div class="row">
+      <div class="col-sm-12">
+        <ngx-extended-pdf-viewer
+          [src]="'/assets/sample_explain.pdf'"
+          backgroundColor="#ffffff"
+          [useBrowserLocale]="true"
+          [handTool]="false"
+          [showHandToolButton]="true"
+          height="80vh">
+        </ngx-extended-pdf-viewer>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <canvas id="sig-canvas" width="620" height="260" style="border: 2px dotted #CCCCCC;border-radius: 15px;cursor: crosshair;">
+          Get a better browser, bro.
+        </canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
+        <button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+        <textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+        <img id="sig-image" src="" alt="Your signature will go here!"/>
+      </div>
+    </div>
   </div>
 </div>
