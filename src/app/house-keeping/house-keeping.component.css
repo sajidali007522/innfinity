@@ -114,7 +114,13 @@
         text-align: center;
         border-radius: 50%;
     }
+.for-mobile-table{
+    display: none;
+}
 @media(max-width:767px){
+    .for-mobile-table{
+        display: block;
+    }
     .filter-section{
         padding: 25px 15px 15px;
     }
