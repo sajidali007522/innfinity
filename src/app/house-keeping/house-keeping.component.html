@@ -112,16 +112,16 @@
           </thead>
           <tbody>
           <tr *ngFor="let row of data;index as $index;">
-            <td>
+            <td data-title="Room #">
               <span>{{row.roomNumber}}</span>
             </td>
-            <td>
+            <td data-title="Feature">
               <span>{{row.features}}</span>
             </td>
-            <td>
+            <td data-title="FD Status">
               <span>{{row.fdStatus}}</span>
             </td>
-            <td>
+            <td data-title="HS Status">
               <span>
                 <select id="hs_status_{{$index}}"
                         [(ngModel)]="row.hkStatusId"
@@ -133,7 +133,7 @@
                 </select>
               </span>
             </td>
-            <td>
+            <td data-title="Admin Status">
               <span>
                 <select id="admin_status"
                         [(ngModel)]="row.adminStatusId"
@@ -147,7 +147,7 @@
 
               </span>
             </td>
-            <td>
+            <td data-title="HouseKeeper">
               <span>
                 <select [(ngModel)]="row.housekeeperId"
                         [ngClass]="{'view-mode': !row.$editHousekeeper, 'form-control': row.$editHousekeeper}"
@@ -159,7 +159,7 @@
 
               </span>
             </td>
-            <td>
+            <td data-title="Shift">
               <span>
                 <select [(ngModel)]="row.shift"
                         [ngClass]="{'view-mode': !row.$editShift, 'form-control': row.$editShift}"
@@ -170,9 +170,9 @@
                 </select>
               </span>
             </td>
-            <td>{{row.linenStatus}}</td>
-            <td></td>
-            <td>
+            <td data-title="Linen Status">{{row.linenStatus}}</td>
+            <td data-title="Image"></td>
+            <td data-title="Files">
 
               <div class="fileUpload">
                 <input type="file" class="upload" />
@@ -190,6 +190,28 @@
           </tfoot>
         </table>
       </div>
+
+      <ul class="pagination justify-content-center">
+        <li class="page-item page-prev">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">....</a></li>
+        <li class="page-item"><a class="page-link" href="#">2500</a></li>
+        <li class="page-item page-next">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+
     </div>
   </div>
 </div>
