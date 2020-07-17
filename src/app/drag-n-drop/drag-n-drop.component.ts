@@ -43,7 +43,8 @@ export class DragNDropComponent implements OnInit {
     'Pick up groceries',
     'Go home',
     'Fall asleep',
-    'https://image.shutterstock.com/image-vector/abstract-lines-dots-connect-background-260nw-1492332182.jpg'
+    'https://image.shutterstock.com/image-vector/abstract-lines-dots-connect-background-260nw-1492332182.jpg',
+    'https://image.shutterstock.com/image-photo/wildlife-conservation-day-wild-animals-600w-1710680038.jpg'
   ];
 
   done = [
@@ -58,6 +59,7 @@ export class DragNDropComponent implements OnInit {
   review = [
     'Take bath',
     'Wash car',
+    'https://image.shutterstock.com/image-photo/proud-noble-deer-male-winter-600w-1183677967.jpg'
   ];
   timePeriods = [
     {label: 'Bronze age', years: [{label: 'A'},{label: 'B'},{label: 'C'}]},
