@@ -5,8 +5,8 @@ import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {DataTablesModule} from 'angular-datatables';
 import { NgInitDirective } from "./directives/NgInitDirective";
-import { NgDragDropModule } from 'ng-drag-drop';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import  { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -100,8 +100,8 @@ import { DigitalSignComponent } from './digital-sign/digital-sign.component';
     PopoverModule.forRoot(),
     ImageCropperModule,  //ImageCropperModule
     AutocompleteLibModule,
-    NgDragDropModule.forRoot(),
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    DragDropModule
   ],
   providers: [
     {
