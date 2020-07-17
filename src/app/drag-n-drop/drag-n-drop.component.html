@@ -13,7 +13,10 @@
 
               <div cdkDropList #pendingList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList,reviewList]"
                    class="item-list" (cdkDropListDropped)="drop($event)">
-                <div class="item-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+                <div class="item-box" *ngFor="let item of todo" cdkDrag>
+                  <span *ngIf="!isUrl(item)">{{item}}</span>
+                  <span *ngIf="isUrl(item)"><img src="{{item}}" width="100%" /></span>
+                </div>
               </div>
             </div>
           </div>
@@ -23,7 +26,10 @@
 
               <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[pendingList,reviewList]"
                    class="item-list" (cdkDropListDropped)="drop($event)">
-                <div class="item-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+                <div class="item-box" *ngFor="let item of done" cdkDrag>
+                  <span *ngIf="!isUrl(item)">{{item}}</span>
+                  <span *ngIf="isUrl(item)"><img src="{{item}}" width="100%" /></span>
+                </div>
               </div>
             </div>
           </div>
@@ -33,7 +39,10 @@
 
               <div cdkDropList #reviewList="cdkDropList" [cdkDropListData]="review" [cdkDropListConnectedTo]="[doneList,pendingList]"
                    class="item-list" (cdkDropListDropped)="drop($event)">
-                <div class="item-box" *ngFor="let item of review" cdkDrag>{{item}}</div>
+                <div class="item-box" *ngFor="let item of review" cdkDrag>
+                  <span *ngIf="!isUrl(item)">{{item}}</span>
+                  <span *ngIf="isUrl(item)"><img src="{{item}}" width="100%" /></span>
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +70,12 @@
                  class="example-list" (cdkDropListDropped)="drop($event)"
             >
               <div class="example-box">{{timePeriod.label}}</div>
-              <div class="example-box" cdkDrag *ngFor="let year of timePeriod.years">{{year.label}}</div>
+              <div class="example-box" cdkDrag *ngFor="let year of timePeriod.years">
+                <span *ngIf="!year.src">{{year.label}}</span>
+                <span *ngIf="year.src">
+                  <img src="{{year.src}}" width="100%" />
+                </span>
+              </div>
             </div>
           </div>
 

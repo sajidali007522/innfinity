@@ -42,7 +42,8 @@ export class DragNDropComponent implements OnInit {
     'Get to work',
     'Pick up groceries',
     'Go home',
-    'Fall asleep'
+    'Fall asleep',
+    'https://image.shutterstock.com/image-vector/abstract-lines-dots-connect-background-260nw-1492332182.jpg'
   ];
 
   done = [
@@ -50,7 +51,8 @@ export class DragNDropComponent implements OnInit {
     'Brush teeth',
     'Take a shower',
     'Check e-mail',
-    'Walk dog'
+    'Walk dog',
+    'https://www.tgdaily.com/wp-content/uploads/2019/05/Teen_Tech.jpg'
   ];
 
   review = [
@@ -62,7 +64,7 @@ export class DragNDropComponent implements OnInit {
     {label: 'Iron age', years: [{label: 'D'},{label: 'E'},{label: 'F'}]},
     {label: 'Middle ages', years: [{label: 'G'},{label: 'H'},{label: 'I'}]},
     {label: 'Early modern period', years: [{label: 'J'},{label: 'K'},{label: 'L'}]},
-    {label: 'Long nineteenth century', years: [{label: 'M'},{label: 'N'},{label: 'O'}]}
+    {label: 'Long nineteenth century', years: [{label: 'M', 'src': 'https://i.pinimg.com/736x/00/7d/87/007d8739fb360bf9d9540c0056153d5a.jpg'},{label: 'N'},{label: 'O'}]}
   ];
   constructor() {
     for (let i=1; i<=this.timePeriods.length; i++) {
@@ -101,4 +103,7 @@ export class DragNDropComponent implements OnInit {
     item.cells[index] = e.dragData;
   }
 
+  isUrl (string) {
+    return string.indexOf('://') !== -1;
+  }
 }
