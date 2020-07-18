@@ -94,6 +94,12 @@
   color: #222 !important;
 }
 
+
+/* for background's */
+.theme-light .filters-view-sm a{
+  background: #5bc0ed !important;
+}
+
 @media(max-width:991px){
   .theme-light .nav-wrap{
     background:#fff !important;

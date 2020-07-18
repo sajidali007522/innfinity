@@ -114,15 +114,65 @@
         text-align: center;
         border-radius: 50%;
     }
-.for-mobile-table{
+.for-mobile-table,
+.filters-view-sm{
     display: none;
 }
 @media(max-width:767px){
     .for-mobile-table{
         display: block;
     }
+    .filter-hide-mobile{
+        display: none;
+    }
+    .filters-view-sm{
+        display: block;
+        margin: 0 0 15px;
+    }
+    .filters-view-sm a{
+        display: block;
+        padding: 10px 15px;
+        font-size: 18px;
+        background: #09425d;
+        color: #fff;
+        position: relative;
+    }
+    .filters-view-sm a:before{
+        content: "\f106";
+        font:normal normal normal 24px/1 FontAwesome;
+        position: absolute;
+        right: 15px;
+        top: 11px;
+    }
+    .filters-view-sm a.active:before{
+        content: "\f00d";
+        font-size: 20px;
+        top: 13px;
+    }
     .filter-section{
         padding: 25px 15px 15px;
+    }
+    .table-top-wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .table-top-wrap > div:last-child{
+        margin-left: auto;
+    }
+    .table-top-wrap .jump-section label{
+        display: block;
+        margin: 0 0 3px;
+    }
+    .table-top-wrap .jump-section select{
+        border-color: #999;
+    }
+    .table-search{
+        margin: 0 0 30px;
+    }
+    .table-search .form-control{
+        border: 1px solid #999;
+        padding: 7px 15px;
+        height: auto;
     }
     .table-housekeeping-wrap thead{
         display: none;
@@ -147,35 +197,35 @@
         padding: 0 30px;
         margin: 20px 0;
     }
-    .page-link{
-        padding: 5px 10px;
-        border:none;
-        color: #333;
-        margin: 0 2px;
-    }
-    .page-item.active .page-link{
-        background: #09425d;
-    }
-    .pagination .page-prev{
-        position: absolute;
-        left: 0;
-        top: -3px;
-    }
-    .pagination .page-prev a span,
-    .pagination .page-next a span{
-        display: none;
-    }
-    .pagination .page-prev a:before{
-        content: "\f104";
-        font: normal normal normal 26px/1 FontAwesome;
-    }
-    .pagination .page-next{
-        position: absolute;
-        right: 0;
-        top: -3px;
-    }
-    .pagination .page-next a:before{
-        content: "\f105";
-        font: normal normal normal 26px/1 FontAwesome;
-    }
+        .page-link{
+            padding: 5px 10px;
+            border:none;
+            color: #333;
+            margin: 0 2px;
+        }
+        .page-item.active .page-link{
+            background: #09425d;
+        }
+        .pagination .page-prev{
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        .pagination .page-prev a span,
+        .pagination .page-next a span{
+            display: none;
+        }
+        .pagination .page-prev a:before{
+            content: "\f104";
+            font: normal normal normal 26px/1 FontAwesome;
+        }
+        .pagination .page-next{
+            position: absolute;
+            right: 0;
+            top: -3px;
+        }
+        .pagination .page-next a:before{
+            content: "\f105";
+            font: normal normal normal 26px/1 FontAwesome;
+        }
 }

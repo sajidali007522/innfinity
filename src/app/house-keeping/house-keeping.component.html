@@ -13,7 +13,14 @@
       </div>
     </div>
     <div class="box-body">
-      <div class="filter-transparent">
+
+      <div class="filters-view-sm">
+        <!-- need to add class active once click and removed after second click -->
+        <a href="#" class="filter-link">Filters</a>
+        <!-- "filter-hide-mobile" this class will show and hide -->
+      </div>
+
+      <div class="filter-transparent filter-hide-mobile">
         <div class="row">
           <div class="mb-2 col-lg-4">
             <div class="custom-control custom-checkbox pl-0">
@@ -26,7 +33,7 @@
         </div>
       </div>
 
-      <div class="filter-section position-relative">
+      <div class="filter-section position-relative filter-hide-mobile">
         <div class="row">
           <div class="col-lg-4">
             <label>Shift</label>
@@ -61,14 +68,32 @@
 
       <!-- for mobile start -->
       <div class="for-mobile-table">
-        <div class="jump-section">
-          <label>Page:</label>
-          <select>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-          </select>
+        <div class="table-top-wrap">
+          <div class="jump-section">
+            <label>Page:</label>
+            <select>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+            </select>
+          </div>
+          <div class="jump-section">
+            <label>By Title:</label>
+            <select>
+              <option>Room #</option>
+              <option>Features</option>
+              <option>FD Status</option>
+              <option>HS Status</option>
+              <option>HouseKeeper</option>
+              <option>Shift</option>
+              <option>Linen Status</option>
+              <option>Image</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-search">
+          <input type="text" class="form-control" placeholder="Search">
         </div>
 
         <div class="table-responsive table-housekeeping-wrap">

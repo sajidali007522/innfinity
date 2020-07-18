@@ -129,6 +129,11 @@
     background-color: #e0e0e0 !important;
 }
 
+/* background's */
+.theme-dark-primary .filters-view-sm a{
+  background: #000 !important;
+}
+
 @media(max-width:991px){
   .theme-dark-primary .nav-wrap{
     background:#000 !important;
