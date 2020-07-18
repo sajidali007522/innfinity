@@ -119,6 +119,9 @@ img{
         -webkit-border-radius: 0;
         border-radius: 0;
     }
+    .field-wrap .control-noicon{
+        padding-left: 15px;
+    }
     .field-wrap .form-control:focus{
         -moz-box-shadow: 0 0 0 0.2rem rgba(9,66,93,.25);
         -webkit-box-shadow: 0 0 0 0.2rem rgba(9,66,93,.25);
@@ -190,6 +193,9 @@ img{
     }
     .login-nav ul li{
         width: 50%;
+    }
+    .login-nav-full-mobile ul li{
+        width: 100%;
     }
     .login-nav a{
         padding: 20px 10px;

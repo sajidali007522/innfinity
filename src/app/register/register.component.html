@@ -33,7 +33,7 @@
   <h1>Your Home to Home Solution for Journey Management</h1>
   <div class="login-section">
     <div class="login-sidebar">
-      <div class="login-nav" id="tabsCustom">
+      <div class="login-nav login-nav-full-mobile" id="tabsCustom">
         <ul>
           <li class="active">
             <a href="#content-1"><em class="fa fa-user-circle"></em> <span>Register</span></a>
@@ -49,26 +49,26 @@
     </div>
     <div class="login-main">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <input type="text" id="firstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name" />
+        <div class="form-group field-wrap">
+          <input type="text" id="firstName" formControlName="firstName" class="form-control control-noicon" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name" />
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required">First Name is required</div>
           </div>
         </div>
-        <div class="form-group">
-          <input type="text" id="lastName" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name" />
+        <div class="form-group field-wrap">
+          <input type="text" id="lastName" formControlName="lastName" class="form-control control-noicon" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name" />
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required">Last Name is required</div>
           </div>
         </div>
-        <div class="form-group">
-          <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username"/>
+        <div class="form-group field-wrap">
+          <input type="text" id="username" formControlName="username" class="form-control control-noicon" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username"/>
           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">Username is required</div>
           </div>
         </div>
-        <div class="form-group">
-          <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
+        <div class="form-group field-wrap">
+          <input type="password" id="password" formControlName="password" class="form-control control-noicon" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
             <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
@@ -79,7 +79,9 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Register
           </button>
-          <a routerLink="/login" class="btn btn-link">Cancel</a>
+          <div class="forget-wrap">
+            <a routerLink="/login">Login?</a>
+          </div>
         </div>
       </form>
       <div class="forget-content tabs-content" id="content-2">
