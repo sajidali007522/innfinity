@@ -13,7 +13,42 @@
                   <option value="">Select Location Type</option>
                   <option value="CommercialAirportSearch">Commercial Airport Search</option>
                   <option value="LocationSearch">Location Search</option>
+                  <option value="ProfileLookupSearch">Profile Lookup Search</option>
                 </select>
+              </div>
+              <div class="col-sm-6 auto-complete-primary" *ngIf="apiEndPoint == 'ProfileLookupSearch'">
+                <ng-autocomplete
+                  [data]="profileTypes"
+                  [searchKeyword]="keyword"
+                  (selected)='selectProfileTypeEvent($event)'
+                  (inputChanged)='getProfileTypeServerResponse($event, "ProfileTypeLookupSearch")'
+                  (inputFocused)='onFocused($event)'
+                  [itemTemplate]="itemTemplateRemoteType"
+                  (inputCleared)="searchCleared()"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [debounceTime]="600"
+                  [isLoading]="isLoadingResultTypes"
+                  [minQueryLength]="2"
+                  placeHolder="Search Profile Type."
+                >
+                </ng-autocomplete>
+
+                <ng-template #itemTemplateRemoteType let-item>
+                  <a href="javascript:void(0)">
+                    <div class="auto-txtwrap">
+                      <div class="autoicon">
+                        <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+                      </div>
+                      <div class="autotxt">
+                        <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+                      </div>
+                    </div>
+                  </a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  {{errorMsg}}
+                </ng-template>
               </div>
               <div class="col-md-6 auto-complete-primary">
                 <ng-autocomplete
@@ -31,7 +66,7 @@
                   placeHolder="Search Location."
                 >
                 </ng-autocomplete>
-        
+
                 <ng-template #itemTemplateRemote let-item>
                   <a href="javascript:void(0)">
                     <div class="auto-txtwrap">
@@ -44,12 +79,12 @@
                     </div>
                   </a>
                 </ng-template>
-        
+
                 <ng-template #notFoundTemplate let-notFound>
                   {{errorMsg}}
                 </ng-template>
               </div>
-        
+
             </div>
           </div>
         </div>
