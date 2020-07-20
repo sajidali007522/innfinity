@@ -9,12 +9,14 @@
             <label>Search</label>
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control" [(ngModel)]="apiEndPoint">
-                  <option value="">Select Location Type</option>
-                  <option value="CommercialAirportSearch">Commercial Airport Search</option>
-                  <option value="LocationSearch">Location Search</option>
-                  <option value="ProfileLookupSearch">Profile Lookup Search</option>
-                </select>
+                <p>
+                  <select class="form-control" [(ngModel)]="apiEndPoint">
+                    <option value="">Select Location Type</option>
+                    <option value="CommercialAirportSearch">Commercial Airport Search</option>
+                    <option value="LocationSearch">Location Search</option>
+                    <option value="ProfileLookupSearch">Profile Lookup Search</option>
+                  </select>
+                </p>
               </div>
               <div class="col-sm-6 auto-complete-primary" *ngIf="apiEndPoint == 'ProfileLookupSearch'">
                 <ng-autocomplete

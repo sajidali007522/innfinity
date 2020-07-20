@@ -479,12 +479,12 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
       content: "\f107";
       font:normal normal normal 20px/1 FontAwesome;
       position: absolute;
-      left: 15px;
-      top: 21px;
+      left: 17px;
+      top: 17px;
     }
     .custom-accordion > h3.active a:before{
       content: "\f106";
-      top: 19px;
+      top: 16px;
     }
   .custom-accordion-content{
     display: none;
