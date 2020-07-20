@@ -16,11 +16,11 @@
 
       <div class="filters-view-sm">
         <!-- need to add class active once click and removed after second click -->
-        <a href="#" class="filter-link">Filters</a>
+        <a href="javascript:void(0)" class="filter-link" [ngClass]="{'active': state.toggleFilter}" (click)="state.toggleFilter=!state.toggleFilter">Filters</a>
         <!-- "filter-hide-mobile" this class will show and hide -->
       </div>
 
-      <div class="filter-transparent filter-hide-mobile">
+      <div class="filter-transparent" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
         <div class="row">
           <div class="mb-2 col-lg-4">
             <div class="custom-control custom-checkbox pl-0">
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="filter-section position-relative filter-hide-mobile">
+      <div class="filter-section position-relative" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
         <div class="row">
           <div class="col-lg-4">
             <label>Shift</label>
@@ -135,7 +135,7 @@
               </td>
               <td data-title="HouseKeeper">
                 <span>
-                  John O Beardy HK 
+                  John O Beardy HK
                 </span>
               </td>
               <td data-title="Shift">

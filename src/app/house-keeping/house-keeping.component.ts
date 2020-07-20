@@ -39,6 +39,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     isLoading: false,
     isLoadingRooms:  false,
     isLoadingMoreRooms: false,
+    toggleFilter: false,
     pagination: {
       pageNum: 1,
       pageSize: 25,
