@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
   Renderer2,
-  AfterViewChecked
+  AfterViewChecked, OnDestroy
 } from '@angular/core';
 import {Shift} from "../interfaces/Shift";
 import {HouseKeepingService} from "../_services/house-keeping.service";
@@ -24,7 +24,7 @@ const SHIFTS: Shift [] = [
   templateUrl: './house-keeping.component.html',
   styleUrls: ['./house-keeping.component.css']
 })
-export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
   data;
   pageFilters= {
@@ -62,6 +62,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
                private renderer: Renderer2
   ) {
 
+  }
+  ngOnDestroy() {
   }
 
   ngOnInit(): void {

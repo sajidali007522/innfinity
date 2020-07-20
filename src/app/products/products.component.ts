@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from "@angular/router";
 import {ProductsService} from "./products.service";
 import {LoaderComponent} from "../components/loader/loader.component";
@@ -10,7 +10,7 @@ declare var $:JQueryStatic;
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('productContainer') el:ElementRef;
   category;
   isLoading;
@@ -42,6 +42,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       }
       );
     });
+  }
+  ngOnDestroy() {
   }
 
   public loadChildProducts () {

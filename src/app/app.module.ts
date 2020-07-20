@@ -50,6 +50,7 @@ import {CacheInterceptor} from "./cache.interceptor";
 import { TranslationsComponent } from './translations/translations.component';
 import { DragNDropComponent } from './drag-n-drop/drag-n-drop.component';
 import { DigitalSignComponent } from './digital-sign/digital-sign.component';
+import { ReservationListComponent } from './reservation-list/reservation-list.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { DigitalSignComponent } from './digital-sign/digital-sign.component';
     SearchLocationComponent,
     TranslationsComponent,
     DragNDropComponent,
-    DigitalSignComponent
+    DigitalSignComponent,
+    ReservationListComponent
   ],
   imports: [
     BrowserModule,
