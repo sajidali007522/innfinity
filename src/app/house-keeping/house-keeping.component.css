@@ -125,9 +125,11 @@
     .filter-hide-mobile{
         display: none;
     }
+    .filters-parent{
+        margin: 0 0 25px;
+    }
     .filters-view-sm{
         display: block;
-        margin: 0 0 15px;
     }
     .filters-view-sm a{
         display: block;
@@ -136,6 +138,7 @@
         background: #09425d;
         color: #fff;
         position: relative;
+        text-decoration: none !important;
     }
     .filters-view-sm a:before{
         content: "\f106";
@@ -148,6 +151,13 @@
         content: "\f00d";
         font-size: 20px;
         top: 13px;
+    }
+    .filters-outer{
+        padding: 20px 15px 0;
+        border: 1px solid #ccc;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        margin: 0 0 20px;
     }
     .filter-section{
         padding: 25px 15px 15px;
