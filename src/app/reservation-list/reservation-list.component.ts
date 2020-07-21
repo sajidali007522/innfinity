@@ -41,8 +41,8 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   ];
 
   tapeGrid = [
-    {room_no: '1-101', feature: "feature 1", reservations: [ {name: "test 1", StartDate: "2020-07-01", endDate: "2020-07-05"}] },
-    {room_no: '1-102', feature: "feature 2", reservations: [ {name: "test 2", StartDate: "2020-07-02", endDate: "2020-07-05"}] },
+    {room_no: '1-101', feature: "feature 1", reservations: [ {name: "test 1", startDate: "2020-07-01", endDate: "2020-07-05"}] },
+    {room_no: '1-102', feature: "feature 2", reservations: [ {name: "test 2", startDate: "2020-07-02", endDate: "2020-07-05"}] },
     {room_no: '1-103', feature: "feature 3", reservations: []},
     // {room_no: '1-104', feature: "feature 4", StartDate: "2020-07-01", endDate: "2020-07-05"},
     // {room_no: '1-105', feature: "feature 5", StartDate: "2020-07-05", endDate: "2020-07-25"},
@@ -68,6 +68,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
     for (let i=1; i <= this.tapeGrid.length; i++) {
       this.associatedTo.push("tape_grid_"+i);
     }
+    this.loadContent();
   }
   ngOnDestroy() {
   }
@@ -84,7 +85,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex);*/
       //console.log(event.previousContainer, event.container, event.previousIndex, event.currentIndex);
-      event.container.data['reservations'].push(event.previousContainer.data[event.previousIndex]);
+      event.container.data.push(event.previousContainer.data[event.previousIndex]);
       event.previousContainer.data.splice(event.previousIndex, 1);
     }
   }
@@ -101,15 +102,27 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   loadContent(){
     console.log(this.form)
     if(this.form.beginDate && this.form.endDate) {
-
+      this.form.days = [];
       let entryDate = new Date(this.form.beginDate);
       while (entryDate <= this.form.endDate) {
         console.log(entryDate, this.form.endDate);
-        this.form.days.push(entryDate.getUTCMonth()+'/'+entryDate.getDate()+ ' '+this.day[entryDate.getDay()])
+        this.form.days.push({label: (entryDate.getMonth()+1)+'/'+(entryDate.getDate())+ ' '+this.day[entryDate.getDay()], value: new Date(entryDate)})
         entryDate.setDate(entryDate.getDate()+1);
         console.log(entryDate.getDate());
       }
     }
+  }
+
+  isOccupied (tape, currDay) {
+    let isOccupied = false;
+    tape.reservations.filter(function (res) {
+      console.log(new Date(res.startDate), '<=', currDay.value, '&&', new Date(res.endDate), '>=', currDay.value)
+      console.log(new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value)
+      if(new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value) {
+        isOccupied=true;
+      }
+    })
+    return isOccupied
   }
 
 }
