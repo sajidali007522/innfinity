@@ -14,55 +14,58 @@
     </div>
     <div class="box-body">
 
-      <div class="filters-view-sm">
-        <!-- need to add class active once click and removed after second click -->
-        <a href="javascript:void(0)" class="filter-link" [ngClass]="{'active': state.toggleFilter}" (click)="state.toggleFilter=!state.toggleFilter">Filters</a>
-        <!-- "filter-hide-mobile" this class will show and hide -->
-      </div>
-
-      <div class="filter-transparent" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
-        <div class="row">
-          <div class="mb-2 col-lg-4">
-            <div class="custom-control custom-checkbox pl-0">
-              <label>Sites</label>
-              <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
-                <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
-              </select>
+      <div class="filters-parent">
+        <div class="filters-view-sm">
+          <!-- need to add class active once click and removed after second click -->
+          <a href="javascript:void(0)" class="filter-link" [ngClass]="{'active': state.toggleFilter}" (click)="state.toggleFilter=!state.toggleFilter">Filters</a>
+          <!-- "filter-hide-mobile" this class will show and hide -->
+        </div>
+        
+        <div class="filters-outer" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
+          <div class="filter-transparent">
+            <div class="row">
+              <div class="mb-2 col-lg-4">
+                <div class="custom-control custom-checkbox pl-0">
+                  <label>Sites</label>
+                  <select class="form-control" [(ngModel)]="pageFilters.sites" (change)="reloadConfigs()">
+                    <option *ngFor="let site of state.filterConfigs.sites" value="{{site.value}}"> {{site.text}}</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="filter-section position-relative" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
-        <div class="row">
-          <div class="col-lg-4">
-            <label>Shift</label>
-            <p>
-              <select class="form-control">
-                <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.value">{{shift.text}}</option>
-              </select>
-            </p>
+          <div class="filter-section position-relative">
+            <div class="row">
+              <div class="col-lg-4">
+                <label>Shift</label>
+                <p>
+                  <select class="form-control">
+                    <option *ngFor="let shift of state.filterConfigs.shifts" [ngValue]="shift.value">{{shift.text}}</option>
+                  </select>
+                </p>
+              </div>
+    
+              <div class="col-lg-4">
+                <label>Feature</label>
+                <p>
+                  <select class="form-control" [(ngModel)]="pageFilters.features" (change)="loadRooms()">
+                    <option *ngFor="let feature of state.filterConfigs.features" value="{{feature.value}}">{{feature.text}}</option>
+                  </select>
+                </p>
+              </div>
+              <div class="col-lg-4">
+                <label>Doom</label>
+                <p>
+                  <select class="form-control">
+                    <option>Doom 1</option>
+                  </select>
+                </p>
+              </div>
+            </div>
+            <div class="refresh-wrap">
+              <button type="button" class="btn btn-success" (click)="refreshFilter()"><span class="fa fa-refresh"></span></button>
+            </div>
           </div>
-
-          <div class="col-lg-4">
-            <label>Feature</label>
-            <p>
-              <select class="form-control" [(ngModel)]="pageFilters.features" (change)="loadRooms()">
-                <option *ngFor="let feature of state.filterConfigs.features" value="{{feature.value}}">{{feature.text}}</option>
-              </select>
-            </p>
-          </div>
-          <div class="col-lg-4">
-            <label>Doom</label>
-            <p>
-              <select class="form-control">
-                <option>Doom 1</option>
-              </select>
-            </p>
-          </div>
-        </div>
-        <div class="refresh-wrap">
-          <button type="button" class="btn btn-success" (click)="refreshFilter()"><span class="fa fa-refresh"></span></button>
         </div>
       </div>
 

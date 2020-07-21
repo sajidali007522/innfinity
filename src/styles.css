@@ -356,6 +356,10 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     background: #3f7892 !important;
     box-shadow: none !important;
   }
+.btn-long{
+  padding-left: 30px;
+  padding-right: 30px;
+}
 .fileUpload {
   background: #09425d;
   color: #fff;
@@ -732,6 +736,23 @@ input[type="file"] {
   }
   .jump-section select{
     padding: 5px 10px;
+  }
+.field-wrap{
+  position: relative;
+}
+  .icon-tr{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -9px;
+  }
+.bs-datepicker-container{
+  padding: 0;
+}
+  .theme-dark-blue .bs-datepicker-head{
+    background: #09425d;
+    background-image: linear-gradient(to right, #3f7892 , #09425d);
+    
   }
 @media(min-width:767px){
   .modal-md{
