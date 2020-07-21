@@ -116,7 +116,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
     tape.reservations.filter(function (res) {
       // console.log(new Date(res.startDate), '<=', currDay.value, '&&', new Date(res.endDate), '>=', currDay.value)
       // console.log(new Date(res.startDate) <= new Date(currDay.value), '&&', new Date(res.endDate) >= currDay.value, '=', new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value)
-      if(new Date(res.startDate).setHours(0, 0, 0, 0) <= currDay.value.setHours(0, 0, 0, 0) && new Date(res.endDate).setHours(0, 0 ,0, 0 ) >= currDay.value.setHours (0,0,0,0)) {
+      if(new Date(res.startDate).setHours(0, 0, 0, 0) <= currDay.value.setHours(0, 0, 0, 0) && new Date(res.endDate).setHours(0, 0 ,0, 0 ) >= currDay.value) {
         isOccupied=true;
       }
     })
