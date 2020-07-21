@@ -31,9 +31,9 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   };
 
   reservations= [
-    { name: "test 1", "startDate": "2020-07-05", "EndDate": "2020-07-12", "reservationDate": "2020-07-04" },
-    { name: "test 2", "startDate": "2020-07-06", "EndDate": "2020-07-11", "reservationDate": "2020-07-04" },
-    { name: "test 3", "startDate": "2020-07-07", "EndDate": "2020-07-09", "reservationDate": "2020-07-04" },
+    { name: "test 1", "startDate": "2020-07-05", "endDate": "2020-07-12", "reservationDate": "2020-07-04" },
+    { name: "test 2", "startDate": "2020-07-06", "endDate": "2020-07-11", "reservationDate": "2020-07-04" },
+    { name: "test 3", "startDate": "2020-07-07", "endDate": "2020-07-09", "reservationDate": "2020-07-04" },
     // { name: "test 4", "startDate": "2020-07-08", "EndDate": "2020-07-14", "reservationDate": "2020-07-04" },
     // { name: "test 5", "startDate": "2020-07-09", "EndDate": "2020-07-15", "reservationDate": "2020-07-04" },
     // { name: "test 6", "startDate": "2020-07-10", "EndDate": "2020-07-16", "reservationDate": "2020-07-04" },
@@ -105,10 +105,8 @@ export class ReservationListComponent implements OnInit, OnDestroy {
       this.form.days = [];
       let entryDate = new Date(this.form.beginDate);
       while (entryDate <= this.form.endDate) {
-        console.log(entryDate, this.form.endDate);
         this.form.days.push({label: (entryDate.getMonth()+1)+'/'+(entryDate.getDate())+ ' '+this.day[entryDate.getDay()], value: new Date(entryDate)})
         entryDate.setDate(entryDate.getDate()+1);
-        console.log(entryDate.getDate());
       }
     }
   }
@@ -116,9 +114,9 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   isOccupied (tape, currDay) {
     let isOccupied = false;
     tape.reservations.filter(function (res) {
-      console.log(new Date(res.startDate), '<=', currDay.value, '&&', new Date(res.endDate), '>=', currDay.value)
-      console.log(new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value)
-      if(new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value) {
+      // console.log(new Date(res.startDate), '<=', currDay.value, '&&', new Date(res.endDate), '>=', currDay.value)
+      // console.log(new Date(res.startDate) <= new Date(currDay.value), '&&', new Date(res.endDate) >= currDay.value, '=', new Date(res.startDate) <= currDay.value && new Date(res.endDate) >= currDay.value)
+      if(new Date(res.startDate).setHours(0, 0, 0, 0) <= currDay.value.setHours(0, 0, 0, 0) && new Date(res.endDate).setHours(0, 0 ,0, 0 ) >= currDay.value.setHours (0,0,0,0)) {
         isOccupied=true;
       }
     })
