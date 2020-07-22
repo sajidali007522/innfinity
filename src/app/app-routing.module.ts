@@ -19,6 +19,7 @@ import {TranslationsComponent} from "./translations/translations.component";
 import {DragNDropComponent} from "./drag-n-drop/drag-n-drop.component";
 import {DigitalSignComponent} from "./digital-sign/digital-sign.component";
 import {ReservationListComponent} from "./reservation-list/reservation-list.component";
+import {Login2Component} from "./login2/login2.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -45,6 +46,7 @@ const routes: Routes = [
   },
 
   {path: "login", component:LoginComponent },
+  {path: "login2", component:Login2Component },
   {path: "register", component:RegisterComponent },
 
   // otherwise redirect to home

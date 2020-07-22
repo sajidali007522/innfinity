@@ -51,6 +51,7 @@ import { TranslationsComponent } from './translations/translations.component';
 import { DragNDropComponent } from './drag-n-drop/drag-n-drop.component';
 import { DigitalSignComponent } from './digital-sign/digital-sign.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
+import { Login2Component } from './login2/login2.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
     TranslationsComponent,
     DragNDropComponent,
     DigitalSignComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    Login2Component
   ],
   imports: [
     BrowserModule,

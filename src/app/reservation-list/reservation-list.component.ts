@@ -29,7 +29,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
     blockDate: new Date(),
     days: []
   };
-
+  //multiple features in reservations and tape grid
   reservations= [
     { name: "test 1", "startDate": "2020-07-05", "endDate": "2020-07-12", "reservationDate": "2020-07-04" },
     { name: "test 2", "startDate": "2020-07-06", "endDate": "2020-07-11", "reservationDate": "2020-07-04" },
