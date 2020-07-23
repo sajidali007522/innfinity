@@ -9,6 +9,7 @@ import { BackgroundSwitchService} from "../_services/background-switch";
 
 @Component({ templateUrl: 'login2.component.html' })
 export class Login2Component implements OnInit {
+
   loginForm: FormGroup;
   loading = false;
   submitted = false;

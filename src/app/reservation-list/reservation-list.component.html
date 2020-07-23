@@ -71,17 +71,17 @@
                    [cdkDropListData]="reservations"
                    [cdkDropListConnectedTo]="associatedTo">
                 <tr>
-                  <th>asda</th>
+                  <th>feature</th>
                   <th>Name</th>
                   <th>start Date</th>
                   <th>End Date</th>
                   <th>reservation Date</th>
                 </tr>
-                <tr *ngFor="let item of reservations" cdkDrag>
-                  <td></td>
+                <tr *ngFor="let item of reservations" cdkDrag [cdkDragData]="item">
+                  <td>{{item.feature}}</td>
                   <td>{{item.name}}</td>
-                  <td>{{item.startDate}}</td>
-                  <td>{{item.endDate}}</td>
+                  <td>{{item.dates[0]}}</td>
+                  <td>{{item.dates[item.dates.length-1]}}</td>
                   <td>{{item.reservationDate}}</td>
                 </tr>
             </table>
@@ -106,14 +106,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tape of tapeGrid; let i= index" cdkDropList
+
+          <tr *ngFor="let tape of tapeGrid; let i= index;" cdkDropList
               id="tape_grid_{{i+1}}"
               [cdkDropListConnectedTo]="[pendingList]"
               [cdkDropListData]="tape.reservations"
-              (cdkDropListDropped)="drop($event)">
+              (cdkDropListDropped)="drop($event, tape)"
+              [cdkDropListEnterPredicate]="ReservationCheck"
+              (mouseleave)="resetRow($event, tape)"
+              class="{{tape.statusClass ? tape.statusClass : ''}}"
+          >
             <td>{{tape.room_no}}</td>
             <td>{{tape.feature}}</td>
-            <td *ngFor="let day of form.days" [ngStyle]="{backgroundColor: (isOccupied(tape, day) ? '#a7e9af': '')}" [ngClass]="{'active': isOccupied(tape, day)}"></td>
+            <td *ngFor="let day of form.days" popover="" [ngStyle]="{backgroundColor: (isOccupied(tape, day) ? '#a7e9af': '')}"></td>
           </tr>
         </tbody>
       </table>
