@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {createViewChild} from "@angular/compiler/src/core";
 declare var $:JQueryStatic;
 @Component({
   selector: 'app-reservation-list',
@@ -10,7 +11,8 @@ declare var $:JQueryStatic;
 export class ReservationListComponent implements OnInit, OnDestroy {
   bsConfig: Partial<BsDatepickerConfig>;
   Arr = Array;
-  constructor() {
+  constructor(
+    private ref: ChangeDetectorRef) {
     this.bsConfig = { containerClass: 'theme-dark-blue', isAnimated: true, dateInputFormat: "YYYY-MM-DD" }
   }
   day = [
@@ -126,18 +128,9 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   drop(event: CdkDragDrop<string[]>, tape) {
     tape.statusClass = '';
     if(!this.checkingOnDrop(event.previousContainer.data[event.previousIndex], tape.reservations)) return;
-    //this.tapeGrid[event.currentIndex].startDate = event.previousContainer.data.startDate;
-    //this.tapeGrid[event.currentIndex].endDate = event.previousContainer.data.endDate;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log(tape);
-      //console.log(event.previousContainer.data[event.previousIndex], event.container.data[event.currentIndex])
-      /*transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);*/
-      //console.log(event.previousContainer, event.container, event.previousIndex, event.currentIndex);
       event.previousContainer.data[event.previousIndex]['dates'].filter(function (date){
         let row = {
           occupiedBy: event.previousContainer.data[event.previousIndex]['name'],
@@ -148,6 +141,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
       tape.bookings = this.mapBookingDates(tape);
       //event.container.data.push(event.previousContainer.data[event.previousIndex]);
       event.previousContainer.data.splice(event.previousIndex, 1);
+      this.ref.detectChanges();
     }
   }
   onItemDrop(e: any) {
@@ -200,7 +194,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
         datesAvailable = !(item.dates.indexOf(res.date) !== -1)
       }
     });
-    if (datesAvailable) { isAllowed = false; }
+    if (!datesAvailable) { isAllowed = false; }
     return isAllowed;
   }
 
@@ -219,7 +213,7 @@ export class ReservationListComponent implements OnInit, OnDestroy {
         datesAvailable = !(item.data.dates.indexOf(res.date) !== -1)
       }
     });
-    if (datesAvailable) {
+    if (!datesAvailable) {
     //if(this.areDatesAvailable(tape.data, item.data)){
       isAllowed = false;
       $("#"+tape.element.nativeElement.id).addClass("danger");
