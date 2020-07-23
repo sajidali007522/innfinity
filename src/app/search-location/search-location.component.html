@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-md-6">
                 <p>
-                  <select class="form-control" [(ngModel)]="apiEndPoint">
+                  <select class="form-control" [(ngModel)]="apiEndPoint" (change)="loadProfileTypes()">
                     <option value="">Select Location Type</option>
                     <option value="CommercialAirportSearch">Commercial Airport Search</option>
                     <option value="LocationSearch">Location Search</option>
@@ -19,38 +19,10 @@
                 </p>
               </div>
               <div class="col-sm-6 auto-complete-primary" *ngIf="apiEndPoint == 'ProfileLookupSearch'">
-                <ng-autocomplete
-                  [data]="profileTypes"
-                  [searchKeyword]="keyword"
-                  (selected)='selectProfileTypeEvent($event)'
-                  (inputChanged)='getProfileTypeServerResponse($event, "ProfileTypeLookupSearch")'
-                  (inputFocused)='onFocused($event)'
-                  [itemTemplate]="itemTemplateRemoteType"
-                  (inputCleared)="searchCleared()"
-                  [notFoundTemplate]="notFoundTemplate"
-                  [debounceTime]="600"
-                  [isLoading]="isLoadingResultTypes"
-                  [minQueryLength]="2"
-                  placeHolder="Search Profile Type."
-                >
-                </ng-autocomplete>
-
-                <ng-template #itemTemplateRemoteType let-item>
-                  <a href="javascript:void(0)">
-                    <div class="auto-txtwrap">
-                      <div class="autoicon">
-                        <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
-                      </div>
-                      <div class="autotxt">
-                        <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
-                      </div>
-                    </div>
-                  </a>
-                </ng-template>
-
-                <ng-template #notFoundTemplate let-notFound>
-                  {{errorMsg}}
-                </ng-template>
+                <select class="form-control" [(ngModel)]="profileTypeSelected">
+                  <option value="">Select</option>
+                  <option value="{{type.value}}" *ngFor="let type of profileTypes">{{type.text}}</option>
+                </select>
               </div>
               <div class="col-md-6 auto-complete-primary">
                 <ng-autocomplete
@@ -64,7 +36,7 @@
                   [notFoundTemplate]="notFoundTemplate"
                   [debounceTime]="600"
                   [isLoading]="isLoadingResult"
-                  [minQueryLength]="2"
+                  [minQueryLength]="3"
                   placeHolder="Search Location."
                 >
                 </ng-autocomplete>
@@ -85,6 +57,9 @@
                 <ng-template #notFoundTemplate let-notFound>
                   {{errorMsg}}
                 </ng-template>
+                <div class="" *ngIf="error">
+                  <label class="error">{{error.message}}</label>
+                </div>
               </div>
 
             </div>

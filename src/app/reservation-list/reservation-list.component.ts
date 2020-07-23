@@ -34,21 +34,11 @@ export class ReservationListComponent implements OnInit, OnDestroy {
   reservations= [
     { feature: "feature 1", name: "test 1", dates: ["2020-07-08", "2020-07-08","2020-07-09", "2020-07-10"], "reservationDate": "2020-07-04" },
     { feature: "feature 1", name: "test 2",dates: ["2020-07-22", "2020-07-23","2020-07-24", "2020-07-25"], "reservationDate": "2020-07-04" },
-    { feature: "feature 3", name: "test 3", dates: [
-        "2020-07-11", "2020-07-12","2020-07-13", "2020-07-14"
-      ], "reservationDate": "2020-07-04" },
-    { feature: "feature 1", name: "test 4", dates: [
-        "2020-07-14", "2020-07-15","2020-07-16", "2020-07-17"
-      ], "reservationDate": "2020-07-04" },
-    { feature: "feature 3", name: "test 5", dates: [
-        "2020-07-25", "2020-07-26","2020-07-27", "2020-07-28"
-      ], "reservationDate": "2020-07-04" },
-    { feature: "feature 1", name: "test 6", dates: [
-        "2020-07-24", "2020-07-25","2020-07-11", "2020-07-10"
-      ], "reservationDate": "2020-07-04" },
-    { feature: "feature 2", name: "test 7", dates: [
-        "2020-07-03", "2020-07-04","2020-07-05", "2020-07-06"
-      ], "reservationDate": "2020-07-04" }
+    { feature: "feature 3", name: "test 3", dates: ["2020-07-11", "2020-07-12","2020-07-13", "2020-07-14"], "reservationDate": "2020-07-04" },
+    { feature: "feature 1", name: "test 4", dates: ["2020-07-14", "2020-07-15","2020-07-16", "2020-07-17"], "reservationDate": "2020-07-04" },
+    { feature: "feature 3", name: "test 5", dates: ["2020-07-25", "2020-07-26","2020-07-27", "2020-07-28"], "reservationDate": "2020-07-04" },
+    { feature: "feature 1", name: "test 6", dates: ["2020-07-24", "2020-07-25","2020-07-11", "2020-07-10"], "reservationDate": "2020-07-04" },
+    { feature: "feature 2", name: "test 7", dates: ["2020-07-03", "2020-07-04","2020-07-05", "2020-07-06"], "reservationDate": "2020-07-04" }
   ];
 
   tapeGrid = [

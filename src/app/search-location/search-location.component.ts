@@ -18,7 +18,7 @@ export class SearchLocationComponent implements OnInit, AfterViewInit, OnDestroy
   keyword="description";
   profileTypeSelected
   selectedObject;
-
+  error;
   apiEndPoint='';
   defaultSelection= '';
 
@@ -46,13 +46,29 @@ export class SearchLocationComponent implements OnInit, AfterViewInit, OnDestroy
   onFocused(e){
     // do something when input is focused
   }
+  loadProfileTypes (){
+    if(this.apiEndPoint != 'ProfileLookupSearch') return;
+    if(this.profileTypes) return;
+
+    this.isLoadingResult = true;
+    this._http._get("lookup/ProfileTypeLookupSearch", {}).subscribe(data => {
+      if (data['data']['results'] == undefined) {
+        this.remoteData = [];
+        this.errorMsg = data['Error'];
+      } else {
+        this.profileTypes = data['data']['results'];
+      }
+      this.isLoadingResult = false;
+    });
+  }
 
   getServerResponse(event, endpoint='') {
 
     this.isLoadingResult = true;
+    this.error = {};
     let params = {searchTerm: event};
     if(this.apiEndPoint == 'ProfileLookupSearch' && this.profileTypeSelected){
-      params['criteria'] = this.profileTypeSelected.value;
+      params['criteria'] = this.profileTypeSelected;
     }
     endpoint = endpoint == '' ? this.apiEndPoint : endpoint;
     if(endpoint == '') return;
@@ -66,24 +82,10 @@ export class SearchLocationComponent implements OnInit, AfterViewInit, OnDestroy
           this.remoteData = data['data']['results'];
         }
         this.isLoadingResult = false;
-      });
-  }
-
-  getProfileTypeServerResponse(event, endpoint='') {
-
-    this.isLoadingResultTypes = true;
-    let params = {searchTerm: event};
-    if(endpoint == '') return;
-    this._http._get("lookup/"+endpoint, params)
-      .subscribe(data => {
-        if (data['data']['results'] == undefined) {
-          this.remoteData = [];
-          this.errorMsg = data['Error'];
-        } else {
-          this.profileTypes = data['data']['results'];
-        }
-        this.isLoadingResultTypes = false;
-      });
+      },error => {
+        this.error = error;
+        this.isLoadingResult = false;
+        });
   }
 
   selectDefaultValue () {
