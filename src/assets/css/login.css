@@ -1,3 +1,6 @@
+body body{
+    background: none !important;
+}
 body{
     background: url(../images/login/banner-1.jpg) center top no-repeat;
     background-size: cover;
@@ -164,6 +167,68 @@ img{
     text-shadow: 0 0 2px #000;
 }
 
+.login-secondary .login-main{
+    width: 100%;
+    min-height: initial;
+}
+.login-secondary-options{
+    text-align: left;
+    margin: 0 -15px;
+}
+    .login-secondary-options ul,
+    .login-secondary-options li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .login-secondary-options ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .login-secondary-options ul li{
+        width: 50%;
+        padding: 0 15px 15px;
+    }
+    .login-secondary-options li a{
+        display: block;
+        width: 100%;
+        color: #fff;
+        padding: 19px 20px 20px 60px;
+        background: #000;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+    }
+    .login-secondary-options li a:hover{
+        opacity: 0.8;;
+    }
+    .login-secondary-options li a .fa{
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        font-size: 30px;
+    }
+    .login-secondary-options li a.login-personal{
+        background: #01a3ef;
+        background-image: linear-gradient(to right, #01a3ef , #82ba01);
+    }
+        .login-secondary-options li a.login-personal span{
+            background: url(../images/icon-microsoft.png) no-repeat;
+            background-size: 100% auto;
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+        }
+        .login-secondary-options li a.login-personal span:before{
+            display: none;
+        }
+    .login-secondary-options li a.login-facebook{
+        background: #3b589d;
+    }
+    .login-secondary-options li a.login-google{
+        background: #d84d32;
+    }
+
 @media(max-width: 991px){
     .login-wrap{
         width: 95%;
@@ -174,6 +239,7 @@ img{
         padding-bottom: 30px;
     }
     .login-wrap h1{
+        font-size: 26px;
         margin: 0 0 35px;
     }
     .login-section{
@@ -212,5 +278,15 @@ img{
     }
     .login-footer{
         position: relative;
+    }
+    .login-secondary .login-main{
+        padding: 35px 25px;
+    }
+    .login-secondary-options{
+        margin: 0;
+    }
+    .login-secondary-options ul li{
+        width: 100%;
+        padding: 0 0 15px;
     }
 }
