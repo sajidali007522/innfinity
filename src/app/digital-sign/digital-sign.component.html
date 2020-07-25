@@ -20,7 +20,23 @@
     </div>
   </div>
 </div>
-
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-primary btn-block" (click)="clearSignature()">Clear It</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-success btn-block" (click)="submitSignature()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="box signature-submit-wrap">
   <div class="row">
     <div class="col-md-12">

@@ -8,6 +8,8 @@ import { NgInitDirective } from "./directives/NgInitDirective";
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+import { SignaturePadModule } from 'ngx-signaturepad';
+
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import  { ErrorInterceptor } from './_helpers/error.interceptor';
 // used to create fake backend
@@ -105,7 +107,8 @@ import { Login2Component } from './login2/login2.component';
     ImageCropperModule,  //ImageCropperModule
     AutocompleteLibModule,
     NgxExtendedPdfViewerModule,
-    DragDropModule
+    DragDropModule,
+    SignaturePadModule
   ],
   providers: [
     {
