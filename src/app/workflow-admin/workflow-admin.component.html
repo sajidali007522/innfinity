@@ -4,14 +4,12 @@
   </div>
   <div class="box-body">
     <div class="row">
-      <div class="col-sm-12">
-        <textarea [(ngModel)]="workflowJson" class="form-control"></textarea>
+      <div class="col-sm-6">
+        <textarea [(ngModel)]="workflowJson" rows="11" placeholder="API will go here" class="form-control"></textarea>
         <br />
-        <button class="btn btn-primary btn-block" (click)="parseJson()">Preview</button>
+        <p><button class="btn btn-success" (click)="parseJson()">Preview</button></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12" id="workflow">
+      <div class="col-sm-6" id="workflow">
         <json-editor #editor [options]="editorOptions" [data]="parsedJson"></json-editor>
       </div>
     </div>
