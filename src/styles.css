@@ -3,7 +3,7 @@
 @import url('./assets/css/skin-dark-primary.css');
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
 @import '~angular-tree-component/dist/angular-tree-component.css';
-
+@import "~jsoneditor/dist/jsoneditor.min.css";
 
 body{
   font-family: 'open_sansregular';

@@ -9,6 +9,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SignaturePadModule } from 'ngx-signaturepad';
+import { NgJsonEditorModule } from 'ang-jsoneditor'
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import  { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -54,6 +55,8 @@ import { DragNDropComponent } from './drag-n-drop/drag-n-drop.component';
 import { DigitalSignComponent } from './digital-sign/digital-sign.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { Login2Component } from './login2/login2.component';
+import { WorkflowAdminComponent } from './workflow-admin/workflow-admin.component';
+import { WorkflowTreeComponent } from './workflow-admin/workflow-tree/workflow-tree.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,9 @@ import { Login2Component } from './login2/login2.component';
     DragNDropComponent,
     DigitalSignComponent,
     ReservationListComponent,
-    Login2Component
+    Login2Component,
+    WorkflowAdminComponent,
+    WorkflowTreeComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +113,8 @@ import { Login2Component } from './login2/login2.component';
     AutocompleteLibModule,
     NgxExtendedPdfViewerModule,
     DragDropModule,
-    SignaturePadModule
+    SignaturePadModule,
+    NgJsonEditorModule
   ],
   providers: [
     {

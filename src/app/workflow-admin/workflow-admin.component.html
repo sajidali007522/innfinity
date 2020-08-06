@@ -1,0 +1,19 @@
+<div class="box">
+  <div class="box-header">
+    Workflow Admin
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <textarea [(ngModel)]="workflowJson" class="form-control"></textarea>
+        <br />
+        <button class="btn btn-primary btn-block" (click)="parseJson()">Preview</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" id="workflow">
+        <json-editor #editor [options]="editorOptions" [data]="parsedJson"></json-editor>
+      </div>
+    </div>
+  </div>
+</div>
