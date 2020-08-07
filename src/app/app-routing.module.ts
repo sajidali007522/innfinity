@@ -21,6 +21,7 @@ import {DigitalSignComponent} from "./digital-sign/digital-sign.component";
 import {ReservationListComponent} from "./reservation-list/reservation-list.component";
 import {Login2Component} from "./login2/login2.component";
 import {WorkflowAdminComponent} from "./workflow-admin/workflow-admin.component";
+import {SearchReservationComponent} from "./search-reservation/search-reservation.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -44,6 +45,7 @@ const routes: Routes = [
       {path: "sign-digitally", component:DigitalSignComponent, canActivate: [AuthGuard] },
       {path: "reservation-list", component:ReservationListComponent, canActivate: [AuthGuard] },
       {path: "workflow-admin", component:WorkflowAdminComponent, canActivate: [AuthGuard] },
+      {path: "search-reservation", component:SearchReservationComponent, canActivate: [AuthGuard] },
     ]
   },
 
