@@ -40,7 +40,7 @@
                     [data]="departureList"
                     [searchKeyword]="keyword"
                     (selected)='selectEvent($event)'
-                    (inputChanged)='getloadProfiles($event, "departure-list")'
+                    (inputChanged)='getloadProfiles($event)'
                     (inputFocused)='onFocused($event)'
                     [itemTemplate]="itemTemplateProfiles"
                     (inputCleared)="searchCleared()"
