@@ -8,16 +8,16 @@
       <div class="custom-nav" id="tabsCustom">
         <ul>
           <li [ngClass]="{'active': tab == 'flight'}">
-            <a href="javascript:void(0)" (click)="tab = 'flight'"><em class="fa fa-plane"></em> <span>Flight</span></a>
+            <a href="javascript:void(0)" (click)="setSearchParams('flight')"><em class="fa fa-plane"></em> <span>Flight</span></a>
           </li>
           <li [ngClass]="{'active': tab == 'hotel'}">
-            <a href="javascript:void(0)" (click)="tab = 'hotel'"><em class="fa fa-hotel"></em> <span>Hotel</span></a>
+            <a href="javascript:void(0)" (click)="setSearchParams('hotel')"><em class="fa fa-hotel"></em> <span>Hotel</span></a>
           </li>
           <li [ngClass]="{'active': tab == 'car'}">
-            <a href="javascript:void(0)" (click)="tab = 'car'"><em class="fa fa-car"></em> <span>Car</span></a>
+            <a href="javascript:void(0)" (click)="setSearchParams('car')"><em class="fa fa-car"></em> <span>Car</span></a>
           </li>
           <li [ngClass]="{'active': tab == 'bundle'}">
-            <a href="javascript:void(0)" (click)="tab = 'bundle'"><em class="fa fa-home"></em> <span>Bundle</span></a>
+            <a href="javascript:void(0)" (click)="setSearchParams('bundle')"><em class="fa fa-home"></em> <span>Bundle</span></a>
           </li>
         </ul>
       </div>
@@ -58,30 +58,87 @@
           <div class="custom-content tabs-content" id="content-1" style="display: block;">
             <div class="book-time-wrap">
               <div class="row">
-                <div class="col-md-7 col-5">
+                <div class="col-md-6 col-6">
                   <h3>From*</h3>
                   <div class="field-wrap-outer">
-                    <label>Departure*</label>
                     <div class="field-wrap">
-                        <input type="text"
-                               [(ngModel)]="form.dateFrom"
-                               bsDatepicker
-                               [bsConfig]="bsConfig"
-                               [minDate]="minDateFrom"
-                               placeholder="Date From"
-                               class="form-control">
-                        <span class="fa fa-calendar-o"></span>
+                      <ng-autocomplete
+                        [data]="departureList"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='getServerResponse($event, "departure-list")'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="itemTemplateRemote"
+                        (inputCleared)="searchCleared()"
+                        [notFoundTemplate]="notFoundTemplate"
+                        [debounceTime]="600"
+                        [isLoading]="isLoadingResult"
+                        [minQueryLength]="3"
+                        placeHolder="Search Location."
+                      >
+                      </ng-autocomplete>
+
+                      <ng-template #itemTemplateRemote let-item>
+                        <a href="javascript:void(0)">
+                          <div class="auto-txtwrap">
+                            <div class="autoicon">
+                              <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+                            </div>
+                            <div class="autotxt">
+                              <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+                            </div>
+                          </div>
+                        </a>
+                      </ng-template>
+
+                      <ng-template #notFoundTemplate let-notFound>
+                        {{errorMsg}}
+                      </ng-template>
+                      <div class="" *ngIf="error">
+                        <label class="error">{{error.message}}</label>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-5 col-7">
+                <div class="col-md-6 col-6">
                   <h3>To*</h3>
                   <div class="field-wrap-outer">
-                    <label>Departure Time*</label>
                     <div class="field-wrap time-picker-wrap">
-                        <timepicker [(ngModel)]="form.timeFrom" [mousewheel]="true" [arrowkeys]="true"></timepicker>
-<!--                        <input type="text" placeholder="" class="form-control">-->
-<!--                        <span class="fa fa-clock-o"></span>-->
+                      <ng-autocomplete
+                        [data]="arrivalList"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEvent($event)'
+                        (inputChanged)='getServerResponse($event, "arrival-list")'
+                        (inputFocused)='onFocused($event)'
+                        [itemTemplate]="itemTemplateRemote_"
+                        (inputCleared)="searchCleared()"
+                        [notFoundTemplate]="notFoundTemplate_"
+                        [debounceTime]="600"
+                        [isLoading]="isLoadingArrival"
+                        [minQueryLength]="3"
+                        placeHolder="Search Location."
+                      >
+                      </ng-autocomplete>
+
+                      <ng-template #itemTemplateRemote_ let-item>
+                        <a href="javascript:void(0)">
+                          <div class="auto-txtwrap">
+                            <div class="autoicon">
+                              <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+                            </div>
+                            <div class="autotxt">
+                              <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+                            </div>
+                          </div>
+                        </a>
+                      </ng-template>
+
+                      <ng-template #notFoundTemplate_ let-notFound>
+                        {{errorMsg}}
+                      </ng-template>
+                      <div class="" *ngIf="error">
+                        <label class="error">{{error.message}}</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -90,6 +147,33 @@
                 <div class="col-md-7 col-5">
                   <div class="field-wrap-outer">
                     <label>Departure*</label>
+                    <div class="field-wrap">
+                      <input type="text"
+                             [(ngModel)]="form.dateFrom"
+                             bsDatepicker
+                             [bsConfig]="bsConfig"
+                             [minDate]="minDateFrom"
+                             placeholder="Date From"
+                             class="form-control">
+                      <span class="fa fa-calendar-o"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 col-7">
+                  <div class="field-wrap-outer">
+                    <label>Departure Time*</label>
+                    <div class="field-wrap time-picker-wrap">
+                      <timepicker [(ngModel)]="form.timeFrom" [mousewheel]="true" [arrowkeys]="true"></timepicker>
+                      <!--                        <input type="text" placeholder="" class="form-control">-->
+                      <!--                        <span class="fa fa-clock-o"></span>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7 col-5">
+                  <div class="field-wrap-outer">
+                    <label>Arrival*</label>
                     <div class="field-wrap">
                         <input type="text"
                                [(ngModel)]="form.dateTo"
@@ -104,7 +188,7 @@
                 </div>
                 <div class="col-md-5 col-7">
                   <div class="field-wrap-outer time-picker-wrap">
-                    <label>Departure Time*</label>
+                    <label>Arrival Time*</label>
                     <div class="field-wrap">
                         <timepicker [(ngModel)]="form.timeTo" [mousewheel]="true" [arrowkeys]="true"></timepicker>
 
