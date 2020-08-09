@@ -26,8 +26,9 @@
           <div class="field-wrap-outer">
               <label>Business Profile*</label>
               <div class="field-wrap">
-                  <select class="form-control">
-                      <option>Select Business Profile</option>
+                  <select class="form-control" [(ngModel)]="profileTypeSelected">
+                      <option value="">Select Business Profile</option>
+                      <option value="{{type.value}}" *ngFor="let type of businessProfiles">{{type.text}}</option>
                   </select>
                   <span class="fa fa-user-o"></span>
               </div>
@@ -35,8 +36,43 @@
           <div class="field-wrap-outer">
               <label>Traveler*</label>
               <div class="field-wrap">
-                  <input type="text" placeholder="Select Business Profile First" class="form-control">
-                  <span class="fa fa-paper-plane-o"></span>
+                  <ng-autocomplete
+                    [data]="departureList"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event)'
+                    (inputChanged)='getloadProfiles($event, "departure-list")'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplateProfiles"
+                    (inputCleared)="searchCleared()"
+                    [notFoundTemplate]="notFoundProfilesTemplate"
+                    [debounceTime]="600"
+                    [isLoading]="isLoadingResult"
+                    [minQueryLength]="3"
+                    placeHolder="Search Location."
+                  >
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplateProfiles let-item>
+                    <a href="javascript:void(0)">
+                      <div class="auto-txtwrap">
+                        <div class="autoicon">
+                          <span class="fa" [ngClass]="{'fa-plane': item['glyph'] == 'airport', 'fa-map-marker': item['glyph'] == 'locality' }"></span>
+                        </div>
+                        <div class="autotxt">
+                          <strong [innerHTML]="item.description"></strong><span>({{item.text}})</span>
+                        </div>
+                      </div>
+                    </a>
+                  </ng-template>
+
+                  <ng-template #notFoundProfilesTemplate let-notFound>
+                    {{errorMsg}}
+                  </ng-template>
+                  <div class="" *ngIf="error">
+                    <label class="error">{{error.message}}</label>
+                  </div>
+<!--                  <input type="text" placeholder="Select Business Profile First" class="form-control">-->
+<!--                  <span class="fa fa-paper-plane-o"></span>-->
               </div>
           </div>
 

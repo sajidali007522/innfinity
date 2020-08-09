@@ -16,7 +16,10 @@ export class ReservationComponent implements OnInit {
   public errorMsg;
   public defaultSelection;
   public selectedObject;
-
+  public businessProfiles;
+  public profileTypeSelected;
+  public loadingTravelerList;
+  public travelerList;
   private apiEndPoint;
 
   arrivalList;
@@ -45,6 +48,7 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadBusinessProfiles();
   }
   onFocused(e){
     // do something when input is focused
@@ -97,6 +101,23 @@ export class ReservationComponent implements OnInit {
       });
   }
 
+  getloadProfiles (event) {
+    let params = {searchTerm: event};
+    params['criteria'] = this.profileTypeSelected;
+    this.travelerList =[];
+    this.loadingTravelerList =true;
+    this._http._get("lookup/ProfileLookupSearch", params)
+      .subscribe(data => {
+          this.defaultSelection = data['data']['defaultValue'];
+          this.travelerList = data['data']['results'];
+          this.loadingTravelerList = false;
+
+      },error => {
+        this.error = error;
+        this.loadingTravelerList = false;
+      });
+  }
+
   selectDefaultValue () {
     console.log("blured", this.remoteData.length, this.defaultSelection);
     for(let index = 0; index < this.remoteData.length; index++) {
@@ -141,5 +162,13 @@ export class ReservationComponent implements OnInit {
         this.apiEndPoint = 'CommercialAirportSearch';
         break;
     }
+  }
+
+  loadBusinessProfiles () {
+    //https://demo.innfinity.com/productsdemo/api2/lookup/ProfileTypeLookupSearch
+      this._http._get("lookup/ProfileTypeLookupSearch")
+        .subscribe(data => {
+          this.businessProfiles = data['data']['results'];
+        });
   }
 }
