@@ -22,6 +22,7 @@ import {ReservationListComponent} from "./reservation-list/reservation-list.comp
 import {Login2Component} from "./login2/login2.component";
 import {WorkflowAdminComponent} from "./workflow-admin/workflow-admin.component";
 import {SearchReservationComponent} from "./search-reservation/search-reservation.component";
+import {ReservationPageComponent} from "./reservation-page/reservation-page.component";
 
 const routes: Routes = [
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -51,6 +52,7 @@ const routes: Routes = [
 
   {path: "login", component:LoginComponent },
   {path: "login2", component:Login2Component },
+  {path: "make-reservation", component:ReservationPageComponent },
   {path: "register", component:RegisterComponent },
 
   // otherwise redirect to home
