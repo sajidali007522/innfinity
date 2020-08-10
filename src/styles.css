@@ -669,8 +669,11 @@ input[type="file"] {
     height: 100%;
     width: 40px;
     text-align: center;
-    line-height: 35px;
     background: #09425d;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
   .autocomplete-container .input-container .x i{
     color: #fff !important;
@@ -762,6 +765,16 @@ input[type="file"] {
 }
 .workflow-textarea{
   min-height: 300px;
+}
+
+
+.field-gray-wrap .autocomplete-container .input-container input{
+  background-color: #eeeeee !important;
+  border: 1px solid #eee !important;
+  border-radius: 0 !important;
+  padding: 12px 15px !important;
+  height: auto;
+  line-height: inherit;
 }
 
 @media(min-width:767px){
