@@ -31,11 +31,19 @@ export class ReservationComponent implements OnInit {
   minDateFrom: Date;
   minDateTo: Date;
   dateFormats;
+  ruleBags;
   form = {
-    dateFrom: '',
-    dateTo: '',
-    timeFrom: '',
-    timeTo: '',
+    BeginDate: '',
+    EndDate: '',
+    BeginTime: '',
+    EndTime: '',
+    IsReturn: false,
+    tripType: 1,
+    ResourceTypeID: "ECF6F1A3-8867-40CC-8118-5DEFB120D5EE",
+    TimePropertyID: "00000000-0000-0000-0000-000000000000",
+    SearchIndex: 0,
+    SelectedItems: [],
+    bookingID: ''
   }
   constructor(private DFService: DateFormatsService, private _http: HttpService) {
     this.apiEndPoint='CommercialAirportSearch';
@@ -48,7 +56,7 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadBusinessProfiles();
+    this.StartBooking();
   }
   onFocused(e){
     // do something when input is focused
@@ -56,10 +64,10 @@ export class ReservationComponent implements OnInit {
   setDateTo () {
     console.log("setting date To");
     console.log(this.form);
-    var dateFrom = new Date(this.form.dateFrom);
-    console.log(dateFrom);
-    console.log(dateFrom.getDate()+1);
-    this.minDateTo.setDate(dateFrom.getDate()+1);
+    var BeginDate = new Date(this.form.BeginDate);
+    console.log(BeginDate);
+    console.log(BeginDate.getDate()+1);
+    this.minDateTo.setDate(BeginDate.getDate()+1);
   }
 
   applyFormat (dp) {
@@ -164,6 +172,13 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  StartBooking () {
+    this._http._get("Booking/Start")
+      .subscribe(data => {
+        this.ruleBags = data['data']['results']['ruleBags'];
+        this.form.bookingID = data['data']['results']['bookingID'];
+      });
+  }
   loadBusinessProfiles () {
     //https://demo.innfinity.com/productsdemo/api2/lookup/ProfileTypeLookupSearch
       this._http._get("lookup/ProfileTypeLookupSearch")

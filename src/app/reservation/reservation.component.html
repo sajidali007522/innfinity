@@ -26,9 +26,8 @@
           <div class="field-wrap-outer">
               <label>Business Profile*</label>
               <div class="field-wrap">
-                  <select class="form-control" [(ngModel)]="profileTypeSelected">
-                      <option value="">Select Business Profile</option>
-                      <option value="{{type.value}}" *ngFor="let type of businessProfiles">{{type.text}}</option>
+                  <select class="form-control" [(ngModel)]="form.ResourceTypeID">
+                      <option value="{{type.value}}" *ngFor="let type of ruleBags">{{type.text}}</option>
                   </select>
                   <span class="fa fa-user-o"></span>
               </div>
@@ -80,14 +79,14 @@
           <div class="trip-radio-wrap">
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="Roundtrip" name="trip" class="custom-control-input">
-                <label class="custom-control-label" for="Roundtrip">Roundtrip</label>
+                <label class="custom-control-label" value="1" [(ngModel)]="form.tripType" for="Roundtrip">Roundtrip</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="oneWay" name="trip" class="custom-control-input">
+                <input type="radio" id="oneWay" value="2" [(ngModel)]="form.tripType"  name="trip" class="custom-control-input">
                 <label class="custom-control-label" for="oneWay">One-Way</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="multiCity" name="trip" class="custom-control-input">
+                <input type="radio" id="multiCity"  value="3" [(ngModel)]="form.tripType" name="trip" class="custom-control-input">
                 <label class="custom-control-label" for="multiCity">Multi-city</label>
             </div>
         </div>
