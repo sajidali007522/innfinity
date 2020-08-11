@@ -92,3 +92,89 @@
 .reservation-content-area{
     width: calc(100% - 250px);
 }
+    .reservation-content-inner{
+        padding: 20px;
+    }
+    .reservation-tabs ul,
+    .reservation-tabs li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .reservation-tabs ul{
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 1px solid #5bc0ed;
+    }
+    .reservation-tabs ul a{
+        display: inline-block;
+        padding: 10px 40px;
+        color: #212529;
+        text-decoration: none;
+    }
+    .reservation-tabs li.active a{
+        background: #fff;
+        font-weight: 600;
+        border-radius: 8px 8px 0 0;
+    }
+.reserve-general-title{
+    border-bottom: 1px solid #f0eeee;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+}
+    .reserve-general-title h4{
+        font-size: 18px;
+        color: #2196f3;
+        font-weight: bold;
+        margin: 0 0 10px;
+    }
+    .reserve-general-title h4 span,
+    .reserve-general-title h4 img{
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px 5px 0;
+    }
+    .stop-wrap{
+        background: url(../images/reservation/arow_main.png) top left no-repeat;
+        padding-top: 15px;
+        margin-top: 10px;
+    }
+.reserve-general-list-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+    .reserve-general-list{
+        width: 150px ;
+        text-align: center;
+        border: 1px solid #cccccc;
+        margin: 0 20px 20px 0;
+        border-radius: 5px;
+    }
+    .g-list-inner{
+        padding: 15px;
+    }
+    .g-list-inner h3{
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 0 7px;
+    }
+    .g-list-inner h4{
+        font-size: 16px;
+        font-weight: normal;
+        margin: 0;
+    }
+    .general-select{
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        padding: 8px 4px;
+        text-decoration: none;
+        color: #fff;
+        background: #ef6614;
+    }
+    .general-select:hover{
+        color: #fff;
+    }
+    .g-list-inner .general-select{
+        border-radius: 0 0 5px 5px;
+    }
