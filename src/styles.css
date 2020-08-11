@@ -777,6 +777,22 @@ input[type="file"] {
   line-height: inherit;
 }
 
+/* range slider default style */
+body .ng5-slider .ng5-slider-pointer{
+  width: 16px;
+  height: 16px;
+  top: -7px;
+  outline: none;
+  background: #fff;
+  border: 2px solid #5bc0ed;
+}
+body .ng5-slider .ng5-slider-pointer:after{
+  display: none;
+}
+body .ng5-slider .ng5-slider-bubble{
+  font-size: 12px;
+}
+
 @media(min-width:767px){
   .modal-md{
     max-width: 700px;
