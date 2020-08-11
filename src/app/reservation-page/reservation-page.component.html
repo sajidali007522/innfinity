@@ -29,27 +29,27 @@
   <div class="reservation-sidebar">
     <div class="side-title">Show Results By:</div>
     <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Price</a></div>
+      <div class="accordon-heading"><a href="javascript:void(0);">Price</a></div>
       <div class="accordion-body">
-        
+        <ng5-slider [(value)]="state.price.value" [(highValue)]="state.price.highValue" [options]="state.price.options"></ng5-slider>
       </div>
     </div>
     <div class="accordion-group group-active">
       <div class="accordon-heading"><a href="#">Departure</a></div>
       <div class="accordion-body">
-        
+        <ng5-slider [(value)]="state.departure.value" [(highValue)]="state.departure.highValue" [options]="state.departure.options"></ng5-slider>
       </div>
     </div>
     <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Arrival</a></div>
+      <div class="accordon-heading"><a href="javascript:void(0);">Arrival</a></div>
       <div class="accordion-body">
-        
+        <ng5-slider [(value)]="state.arrival.value" [(highValue)]="state.arrival.highValue" [options]="state.arrival.options"></ng5-slider>
       </div>
     </div>
     <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Max Stop Time</a></div>
+      <div class="accordon-heading"><a href="javascript:void(0);">Max Stop Time</a></div>
       <div class="accordion-body">
-        
+        <ng5-slider [(value)]="state.stops.value" [(highValue)]="state.stops.highValue" [options]="state.stops.options"></ng5-slider>
       </div>
     </div>
     <div class="accordion-group group-active">
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Airlines</a></div>
+      <div class="accordon-heading"><a href="javascript:void(0);">Airlines</a></div>
       <div class="accordion-body">
         <ul>
           <li><label for="airCanada"><input type="checkbox" class="checkbox" id="airCanada"> Air Canada <span class="label-num">$294</span> </label></li>

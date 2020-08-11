@@ -31,6 +31,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { I18nModule } from './i18n/i18n.module';
 import { HtmlElementsComponent } from './components/html-elements/html-elements.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng5SliderModule } from 'ng5-slider';
+
 import { HouseKeepingComponent } from './house-keeping/house-keeping.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -118,7 +120,8 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
     NgxExtendedPdfViewerModule,
     DragDropModule,
     SignaturePadModule,
-    NgJsonEditorModule
+    NgJsonEditorModule,
+    Ng5SliderModule
   ],
   providers: [
     {
