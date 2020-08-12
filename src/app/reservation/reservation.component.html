@@ -26,10 +26,11 @@
           <div class="field-wrap-outer">
               <label>Business Profile*</label>
               <div class="field-wrap">
-                  <select class="form-control" [(ngModel)]="form.ResourceTypeID">
+                  <select class="form-control" name="resourceTypeID" [(ngModel)]="form.ResourceTypeID">
                       <option value="{{type.value}}" *ngFor="let type of ruleBags">{{type.text}}</option>
                   </select>
-                  <span class="fa fa-user-o"></span>
+                  <span class="fa fa-user-o" *ngIf="!state.initiateBooking"></span>
+                  <span class="fa fa-spin fa-spinner" *ngIf="state.initiateBooking"></span>
               </div>
           </div>
           <div class="field-wrap-outer">
@@ -38,17 +39,18 @@
                   <ng-autocomplete
                     [data]="departureList"
                     [searchKeyword]="keyword"
-                    (selected)='selectEvent($event)'
+                    (selected)='selectTraveler($event)'
                     (inputChanged)='getloadProfiles($event)'
                     (inputFocused)='onFocused($event)'
                     [itemTemplate]="itemTemplateProfiles"
                     (inputCleared)="searchCleared()"
                     [notFoundTemplate]="notFoundProfilesTemplate"
                     [debounceTime]="600"
-                    [isLoading]="isLoadingResult"
+                    [isLoading]="isLoadingTraveler"
                     [minQueryLength]="3"
-                    placeHolder="Search Location."
+                    placeHolder="{{form.ResourceTypeID == '' ? 'Select Business Profile first' : 'Search Traveler.'}}"
                     class="testing"
+                    name="traveler"
                   >
                   </ng-autocomplete>
 
@@ -101,7 +103,7 @@
                       <ng-autocomplete
                         [data]="departureList"
                         [searchKeyword]="keyword"
-                        (selected)='selectEvent($event)'
+                        (selected)='selectDeparture($event)'
                         (inputChanged)='getServerResponse($event, "departure-list")'
                         (inputFocused)='onFocused($event)'
                         [itemTemplate]="itemTemplateRemote"
@@ -110,7 +112,8 @@
                         [debounceTime]="600"
                         [isLoading]="isLoadingResult"
                         [minQueryLength]="3"
-                        placeHolder="Search Location."
+                        placeHolder="Search here."
+                        name="departure"
                       >
                       </ng-autocomplete>
 
@@ -143,7 +146,7 @@
                       <ng-autocomplete
                         [data]="arrivalList"
                         [searchKeyword]="keyword"
-                        (selected)='selectEvent($event)'
+                        (selected)='selectArrival($event)'
                         (inputChanged)='getServerResponse($event, "arrival-list")'
                         (inputFocused)='onFocused($event)'
                         [itemTemplate]="itemTemplateRemote_"
@@ -152,7 +155,8 @@
                         [debounceTime]="600"
                         [isLoading]="isLoadingArrival"
                         [minQueryLength]="3"
-                        placeHolder="Search Location."
+                        placeHolder="Search Here."
+                        name="arrival"
                       >
                       </ng-autocomplete>
 
@@ -185,11 +189,12 @@
                     <label>Departure*</label>
                     <div class="field-wrap">
                       <input type="text"
-                             [(ngModel)]="form.dateFrom"
+                             [(ngModel)]="form.BeginDate"
                              bsDatepicker
                              [bsConfig]="bsConfig"
                              [minDate]="minDateFrom"
                              placeholder="Date From"
+                             name="departure_date"
                              class="form-control">
                       <span class="fa fa-calendar-o"></span>
                     </div>
@@ -199,7 +204,10 @@
                   <div class="field-wrap-outer">
                     <label>Departure Time*</label>
                     <div class="field-wrap time-picker-wrap">
-                      <timepicker [(ngModel)]="form.timeFrom" [mousewheel]="true" [arrowkeys]="true"></timepicker>
+                      <timepicker [(ngModel)]="form.BeginTime"
+                                  [mousewheel]="true"
+                                  [arrowkeys]="true"
+                      ></timepicker>
                       <!--                        <input type="text" placeholder="" class="form-control">-->
                       <!--                        <span class="fa fa-clock-o"></span>-->
                     </div>
@@ -212,11 +220,12 @@
                     <label>Arrival*</label>
                     <div class="field-wrap">
                         <input type="text"
-                               [(ngModel)]="form.dateTo"
+                               [(ngModel)]="form.EndDate"
                                bsDatepicker
-                               [minDate]="form.dateFrom"
+                               [minDate]="form.EndDate"
                                [bsConfig]="bsConfig"
                                placeholder="Date To"
+                               name="arrival_date"
                                class="form-control">
                         <span class="fa fa-calendar-o"></span>
                     </div>
@@ -226,7 +235,7 @@
                   <div class="field-wrap-outer time-picker-wrap">
                     <label>Arrival Time*</label>
                     <div class="field-wrap">
-                        <timepicker [(ngModel)]="form.timeTo" [mousewheel]="true" [arrowkeys]="true"></timepicker>
+                        <timepicker [(ngModel)]="form.EndTime" [mousewheel]="true" [arrowkeys]="true"></timepicker>
 
 <!--                        <input type="text" placeholder="" class="form-control">-->
 <!--                        <span class="fa fa-clock-o"></span>-->

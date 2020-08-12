@@ -22,6 +22,15 @@ export class HttpService {
     //  .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
+  public _post(url, body, params={}) {
+    let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
+    return this.http.post(this.appConfigService.apiBaseUrl+url, body, {
+      params: params,
+      headers: headers
+    });
+    //  .pipe(shareReplay({ bufferSize: 1, refCount: true }));
+  }
+
   public _getApi (url, params={}) {
     let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
     return this.http.get(this.appConfigService.apiBaseUrl, {

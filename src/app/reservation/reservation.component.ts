@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {DateFormatsService} from "../_services/date-formats.service";
 import {HttpService} from "../http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reservation',
@@ -11,6 +12,7 @@ import {HttpService} from "../http.service";
 export class ReservationComponent implements OnInit {
   public isLoadingResult;
   public isLoadingArrival;
+  public isLoadingTraveler;
   public error;
   public remoteData;
   public errorMsg;
@@ -32,6 +34,9 @@ export class ReservationComponent implements OnInit {
   minDateTo: Date;
   dateFormats;
   ruleBags;
+  state={
+    initiateBooking: false
+  };
   form = {
     BeginDate: '',
     EndDate: '',
@@ -44,8 +49,11 @@ export class ReservationComponent implements OnInit {
     SearchIndex: 0,
     SelectedItems: [],
     bookingID: ''
-  }
-  constructor(private DFService: DateFormatsService, private _http: HttpService) {
+  };
+  constructor(private DFService: DateFormatsService,
+              private _http: HttpService,
+              private router: Router
+  ) {
     this.apiEndPoint='CommercialAirportSearch';
     this.bsConfig = { containerClass: 'theme-dark-blue', isAnimated: true }
     this.dateFormats = this.DFService.dateFormats;
@@ -75,6 +83,10 @@ export class ReservationComponent implements OnInit {
   }
 
   submitIt () {
+    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", this.form)
+      .subscribe(data => {
+        this.router.navigate(['/reservation-list']);
+      });
     console.log(this.form);
   }
 
@@ -109,20 +121,24 @@ export class ReservationComponent implements OnInit {
       });
   }
 
+  selectTraveler ($event) {
+
+  }
+
   getloadProfiles (event) {
     let params = {searchTerm: event};
     params['criteria'] = this.profileTypeSelected;
     this.travelerList =[];
-    this.loadingTravelerList =true;
+    this.isLoadingTraveler =true;
     this._http._get("lookup/ProfileLookupSearch", params)
       .subscribe(data => {
           this.defaultSelection = data['data']['defaultValue'];
           this.travelerList = data['data']['results'];
-          this.loadingTravelerList = false;
+          this.isLoadingTraveler = false;
 
       },error => {
         this.error = error;
-        this.loadingTravelerList = false;
+        this.isLoadingTraveler = false;
       });
   }
 
@@ -141,9 +157,41 @@ export class ReservationComponent implements OnInit {
     this.selectedObject = item;
   }
 
+  selectDeparture (item) {
+    switch (this.form.tripType) {
+      case 1:
+        this.form.SelectedItems[0] = item;
+        break;
+      case 2:
+        this.form.SelectedItems[0] = item;
+        break;
+      case 3:
+        break;
+      default:
+        this.form.SelectedItems.push(item);
+        break;
+    }
+  }
+
+  selectArrival (item) {
+    switch (this.form.tripType) {
+      case 1:
+        this.form.SelectedItems[1] = item;
+        break;
+      case 2:
+        this.form.SelectedItems[1] = item;
+        break;
+      case 3:
+        break;
+      default:
+        this.form.SelectedItems.push(item);
+        break;
+    }
+  }
+
+
 
   searchCleared() {
-    console.log('searchCleared');
     this.remoteData = [];
   }
 
@@ -173,12 +221,16 @@ export class ReservationComponent implements OnInit {
   }
 
   StartBooking () {
+    this.state.initiateBooking=true;
     this._http._get("Booking/Start")
       .subscribe(data => {
-        this.ruleBags = data['data']['results']['ruleBags'];
-        this.form.bookingID = data['data']['results']['bookingID'];
+        console.log(data);
+        this.ruleBags = data['ruleBags'];
+        this.form.bookingID = data['bookingID'];
+        this.state.initiateBooking = false;
       });
   }
+
   loadBusinessProfiles () {
     //https://demo.innfinity.com/productsdemo/api2/lookup/ProfileTypeLookupSearch
       this._http._get("lookup/ProfileTypeLookupSearch")
