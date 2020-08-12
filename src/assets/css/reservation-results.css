@@ -286,3 +286,30 @@
         line-height: 1;
         font-size: 12px;
     }
+.booking-article-bot{
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    width: 240px;
+}
+    .new-booking{
+        display: block;
+        padding: 8px 20px 7px;
+        background: #5bc0ed;
+        color: #fff;
+        position: relative;
+        -moz-border-radius: 7px 7px 0 0;
+        -webkit-border-radius: 7px 7px 0 0;
+        border-radius: 7px 7px 0 0;
+    }
+    .new-booking:hover{
+        color: #fff;
+        text-decoration: none !important;
+    }
+    .new-booking:after{
+        content: "\f107";
+        font:normal normal normal 14px/1 FontAwesome;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
