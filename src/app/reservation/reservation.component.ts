@@ -70,11 +70,7 @@ export class ReservationComponent implements OnInit {
     // do something when input is focused
   }
   setDateTo () {
-    console.log("setting date To");
-    console.log(this.form);
     var BeginDate = new Date(this.form.BeginDate);
-    console.log(BeginDate);
-    console.log(BeginDate.getDate()+1);
     this.minDateTo.setDate(BeginDate.getDate()+1);
   }
 
@@ -83,7 +79,12 @@ export class ReservationComponent implements OnInit {
   }
 
   submitIt () {
-    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", this.form)
+    let _form = this.form
+    let departure = new Date(_form.BeginDate);
+    _form.BeginDate = departure.getFullYear()+'-'+departure.getMonth()+"-"+departure.getDate();
+    let arrival = new Date(_form.EndDate);
+    _form.EndDate = arrival.getFullYear()+'-'+arrival.getMonth()+"-"+arrival.getDate();
+    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", _form)
       .subscribe(data => {
         this.router.navigate(['/reservation-list']);
       });
