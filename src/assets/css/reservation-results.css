@@ -7,22 +7,24 @@
     width: 250px;
     font-size: 13px;
     background: #fff;
-    max-height: 100vh;
-    overflow-y: auto;
     -moz-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.22);
     -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.22);
     box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.22);
 }
-    .reservation-detail-wrap ::-webkit-scrollbar {
+.reservation-sidebar-inner{
+    max-height: 100vh;
+    overflow-y: auto;
+}
+    .reservation-sidebar ::-webkit-scrollbar {
         width: 5px;
     }
-    .reservation-detail-wrap ::-webkit-scrollbar-track {
+    .reservation-sidebar ::-webkit-scrollbar-track {
         background: rgba(0,0,0, 0.2);
     }
-    .reservation-detail-wrap ::-webkit-scrollbar-thumb {
+    .reservation-sidebar ::-webkit-scrollbar-thumb {
         background: rgba(0,0,0, 0.2);
     }
-    .reservation-detail-wrap ::-webkit-scrollbar-thumb:hover {
+    .reservation-sidebar ::-webkit-scrollbar-thumb:hover {
         background: #83157b;
     }
     .side-title{
