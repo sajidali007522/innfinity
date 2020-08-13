@@ -61,6 +61,7 @@ import { WorkflowAdminComponent } from './workflow-admin/workflow-admin.componen
 import { WorkflowTreeComponent } from './workflow-admin/workflow-tree/workflow-tree.component';
 import { SearchReservationComponent } from './search-reservation/search-reservation.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
+import { ResultListComponent } from './result-list/result-list.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
     WorkflowAdminComponent,
     WorkflowTreeComponent,
     SearchReservationComponent,
-    ReservationPageComponent
+    ReservationPageComponent,
+    ResultListComponent
   ],
   imports: [
     BrowserModule,

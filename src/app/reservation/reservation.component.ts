@@ -86,7 +86,7 @@ export class ReservationComponent implements OnInit {
     _form.EndDate = arrival.getFullYear()+'-'+arrival.getMonth()+"-"+arrival.getDate();
     this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", _form)
       .subscribe(data => {
-        this.router.navigate(['/reservation-list']);
+        this.router.navigate(['/result-list']);
       });
     console.log(this.form);
   }
@@ -213,8 +213,6 @@ export class ReservationComponent implements OnInit {
         break;
     }
   }
-
-
 
   searchCleared() {
     this.remoteData = [];
