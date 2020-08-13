@@ -90,16 +90,23 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   }
 
   submitIt () {
-    let _form = Object.assign({}, this.form);
-    let departure = new Date(_form.BeginDate);
-    _form.BeginDate = departure.getFullYear()+'-'+departure.getMonth()+"-"+departure.getDate();
-    let arrival = new Date(_form.EndDate);
-    _form.EndDate = arrival.getFullYear()+'-'+arrival.getMonth()+"-"+arrival.getDate();
-    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", _form)
+    let departure = new Date(this.form.BeginDate);
+    let arrival = new Date(this.form.EndDate);
+    let form = {
+      BeginDate: departure.getFullYear()+'-'+departure.getMonth()+"-"+departure.getDate(),
+      EndDate: arrival.getFullYear()+'-'+arrival.getMonth()+"-"+arrival.getDate(),
+      BeginTime: this.form.BeginTime,
+      EndTime: this.form.EndTime,
+      IsReturn: this.form.IsReturn,
+      ResourceTypeID: this.form.ResourceTypeID,
+      TimePropertyID: this.form.TimePropertyID,
+      SearchIndex: 0,
+      SelectedItems: this.form.SelectedItems
+    }
+    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", form)
       .subscribe(data => {
         this.router.navigate(['/result-list']);
       });
-    console.log(this.form);
   }
 
   getServerResponse(event, searchType='departure-list') {
@@ -166,8 +173,13 @@ export class ReservationComponent implements OnInit,AfterViewInit {
       if(this.defaultSelection == remoteContent[index].value) {
         //this.selectedObject = remoteContent[index];
         if(fieldName == 'traveler') {  }
-        if(fieldName == 'departure') { this.selectDeparture(remoteContent[index]);}
-        if(fieldName == 'arrival') { this.selectArrival(remoteContent[index]);}
+        if(fieldName == 'departure') {
+          this.selectDeparture(remoteContent[index]);
+        }
+        if(fieldName == 'arrival') {
+          this.selectArrival(remoteContent[index]);
+        }
+        $(document).find("ng-autocomplete[name='"+fieldName+"'] input[type='text']").val(remoteContent[index].text);
         break;
       }
     }
