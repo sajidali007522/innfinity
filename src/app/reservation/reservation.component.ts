@@ -159,33 +159,57 @@ export class ReservationComponent implements OnInit {
   }
 
   selectDeparture (item) {
+    let selection = {};
+    selection['Type'] = this.getLocationType();
+    selection["Selection"]= item.value;
+    selection["SelectionText"] =  item.text;
     switch (this.form.tripType) {
       case 1:
-        this.form.SelectedItems[0] = item;
+        selection["Relation"] = "DepartureAirport"
+        this.form.SelectedItems[0] = selection;
         break;
       case 2:
-        this.form.SelectedItems[0] = item;
+        selection["Relation"] = "DepartureAirport"
+        this.form.SelectedItems[0] = selection;
         break;
       case 3:
         break;
       default:
-        this.form.SelectedItems.push(item);
+        this.form.SelectedItems.push(selection);
         break;
     }
   }
 
+  getLocationType () {
+    let type = 0;
+    switch (this.tab) {
+      case 'flight':
+        type = 1;
+        break;
+      default:
+        break;
+    }
+    return type;
+  }
+
   selectArrival (item) {
+    let selection = {};
+    selection['Type'] = this.getLocationType();
+    selection["Selection"]= item.value;
+    selection["SelectionText"] =  item.text;
     switch (this.form.tripType) {
       case 1:
-        this.form.SelectedItems[1] = item;
+        selection["Relation"] = "ArrivalAirport"
+        this.form.SelectedItems[1] = selection;
         break;
       case 2:
-        this.form.SelectedItems[1] = item;
+        selection["Relation"] = "ArrivalAirport"
+        this.form.SelectedItems[1] = selection;
         break;
       case 3:
         break;
       default:
-        this.form.SelectedItems.push(item);
+        this.form.SelectedItems.push(selection);
         break;
     }
   }
