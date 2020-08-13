@@ -28,7 +28,6 @@
 <div class="reservation-detail-wrap">
   <div class="reservation-sidebar">
     <div class="reservation-sidebar-inner">
-      <div class="side-title">Show Results By:</div>
       <div class="accordion-group group-active">
         <div class="accordon-heading"><a href="javascript:void(0);">Price</a></div>
         <div class="accordion-body">
@@ -117,36 +116,53 @@
   </div><!-- reservation-sidebar -->
   <div class="reservation-content-area">
     <div class="reservation-content-inner">
-      <div class="reservation-tabs">
-        <ul>
-          <li class="active"><a href="#content-1">Aug 12</a></li>
-          <li><a href="#content-2">Aug 13</a></li>
-        </ul>
-      </div>
-      <div id="content-1">
-        <div class="box position-relative">
-          <div class="box-body">
-            <div class="filter-section position-relative">
-              <div class="row">
-                <div class="col-md-4">
-                  <p>
-                    <label>Sort By</label>
-                    <select class="form-control">
-                      <option>Time</option>
-                      <option>Price</option>
-                    </select>
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <p>
-                    <label>Filter Grid</label>
-                    <select class="form-control">
-                      <option>Airline x Stops</option>
-                    </select>
-                  </p>
-                </div>
-              </div>
+
+      <div class="reserve-filter-top-wrap">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="reservation-tabs">
+              <ul>
+                <li class="active"><a href="#content-1"><strong>Aug</strong> 12</a></li>
+                <li><a href="#content-2"><strong>Aug</strong> 13</a></li>
+                <li><a href="#content-2"><strong>Aug</strong>14</a></li>
+              </ul>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="reserve-top-filter">
+              <select class="form-control">
+                <option>Filter Grid: Airline X Stop</option>
+                <option>Policy X Airline</option>
+              </select>
+              <select class="form-control">
+                <option>Sort By: Time</option>
+                <option>Sort By: Price</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="content-1">
+        <div class="box box-secondary">
+          <div class="box-secondary-title">
+            <h3>Search Results</h3>
+          </div>
+          <div class="reserve-search-results">
+            <ul>
+              <li class="active"><a href="#">Show All</a></li>
+              <li>
+                <select class="form-control">
+                  <option>Stops</option>
+                  <option>Nonstop</option>
+                  <option>1 Stop</option>
+                  <option>2 Stops</option>
+                </select>
+              </li>
+              <li><a href="#">Air Canada</a></li>
+              <li><a href="#">Westjet</a></li>
+            </ul>
           </div>
         </div>
         <div class="box position-relative">
@@ -448,12 +464,12 @@
   </div><!-- reservation-content-area -->
 </div><!-- reservation-detail-wrap -->
 
-<div class="booking-article-bot">
+<!-- <div class="booking-article-bot">
   <a href="#" class="new-booking">New Booking</a>
   <div class="booking-content-area">
     
   </div>
-</div>
+</div> -->
 
 
 

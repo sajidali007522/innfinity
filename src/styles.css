@@ -778,10 +778,17 @@ input[type="file"] {
 }
 
 /* range slider default style */
+body .ng5-slider .ng5-slider-bar{
+  height: 7px;
+  background: #135d82;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
 body .ng5-slider .ng5-slider-pointer{
   width: 16px;
   height: 16px;
-  top: -7px;
+  top: -6px;
   outline: none;
   background: #fff;
   border: 2px solid #5bc0ed;
