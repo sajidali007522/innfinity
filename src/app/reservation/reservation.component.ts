@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {DateFormatsService} from "../_services/date-formats.service";
 import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
-export class ReservationComponent implements OnInit {
+export class ReservationComponent implements OnInit,AfterViewInit {
   public isLoadingResult;
   public isLoadingArrival;
   public isLoadingTraveler;
@@ -38,8 +39,8 @@ export class ReservationComponent implements OnInit {
     initiateBooking: false
   };
   form = {
-    BeginDate: '',
-    EndDate: '',
+    BeginDate: new Date(),
+    EndDate: new Date(),
     BeginTime: '',
     EndTime: '',
     IsReturn: false,
@@ -57,15 +58,25 @@ export class ReservationComponent implements OnInit {
     this.apiEndPoint='CommercialAirportSearch';
     this.bsConfig = { containerClass: 'theme-dark-blue', isAnimated: true }
     this.dateFormats = this.DFService.dateFormats;
-    this.minDateFrom = new Date();
-    this.minDateFrom.setDate(this.minDateFrom.getDate());
-    this.minDateTo = new Date();
-    this.minDateTo.setDate(this.minDateFrom.getDate()+1);
+    this.form.BeginDate = new Date();
+    this.form.BeginDate.setDate(this.form.BeginDate.getDate());
+    this.form.EndDate = new Date();
+    this.form.EndDate.setDate(this.form.EndDate.getDate()+1);
   }
 
   ngOnInit(): void {
     this.StartBooking();
   }
+
+  ngAfterViewInit() {
+    $(document).ready(() => {
+      $("ng-autocomplete input[type='text']").on('blur', (event) => {
+        //console.log($(event.target).parents('ng-autocomplete')) //.attr('name'));
+        this.selectDefaultValue($(event.target).parents('ng-autocomplete').attr('name'));
+      });
+    });
+  }
+
   onFocused(e){
     // do something when input is focused
   }
@@ -79,7 +90,7 @@ export class ReservationComponent implements OnInit {
   }
 
   submitIt () {
-    let _form = this.form
+    let _form = Object.assign({}, this.form);
     let departure = new Date(_form.BeginDate);
     _form.BeginDate = departure.getFullYear()+'-'+departure.getMonth()+"-"+departure.getDate();
     let arrival = new Date(_form.EndDate);
@@ -143,11 +154,20 @@ export class ReservationComponent implements OnInit {
       });
   }
 
-  selectDefaultValue () {
-    console.log("blured", this.remoteData.length, this.defaultSelection);
-    for(let index = 0; index < this.remoteData.length; index++) {
-      if(this.defaultSelection == this.remoteData[index].value) {
-        this.selectedObject = this.remoteData[index];
+  selectDefaultValue (fieldName) {
+    if(!fieldName || !this.defaultSelection) return;
+    let remoteContent = [];
+    if(fieldName == 'traveler') { remoteContent = Object.assign([], this.travelerList); }
+    if(fieldName == 'departure') { remoteContent = Object.assign([], this.departureList);}
+    if(fieldName == 'arrival') { remoteContent = Object.assign([], this.arrivalList);}
+    console.log(fieldName, this.defaultSelection, remoteContent);
+
+    for(let index = 0; index < remoteContent.length; index++) {
+      if(this.defaultSelection == remoteContent[index].value) {
+        //this.selectedObject = remoteContent[index];
+        if(fieldName == 'traveler') {  }
+        if(fieldName == 'departure') { this.selectDeparture(remoteContent[index]);}
+        if(fieldName == 'arrival') { this.selectArrival(remoteContent[index]);}
         break;
       }
     }
