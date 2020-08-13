@@ -27,89 +27,91 @@
 
 <div class="reservation-detail-wrap">
   <div class="reservation-sidebar">
-    <div class="side-title">Show Results By:</div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="javascript:void(0);">Price</a></div>
-      <div class="accordion-body">
-        <ng5-slider [(value)]="state.price.value" [(highValue)]="state.price.highValue" [options]="state.price.options"></ng5-slider>
+    <div class="reservation-sidebar-inner">
+      <div class="side-title">Show Results By:</div>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="javascript:void(0);">Price</a></div>
+        <div class="accordion-body">
+          <ng5-slider [(value)]="state.price.value" [(highValue)]="state.price.highValue" [options]="state.price.options"></ng5-slider>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Departure</a></div>
-      <div class="accordion-body">
-        <ng5-slider [(value)]="state.departure.value" [(highValue)]="state.departure.highValue" [options]="state.departure.options"></ng5-slider>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="#">Departure</a></div>
+        <div class="accordion-body">
+          <ng5-slider [(value)]="state.departure.value" [(highValue)]="state.departure.highValue" [options]="state.departure.options"></ng5-slider>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="javascript:void(0);">Arrival</a></div>
-      <div class="accordion-body">
-        <ng5-slider [(value)]="state.arrival.value" [(highValue)]="state.arrival.highValue" [options]="state.arrival.options"></ng5-slider>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="javascript:void(0);">Arrival</a></div>
+        <div class="accordion-body">
+          <ng5-slider [(value)]="state.arrival.value" [(highValue)]="state.arrival.highValue" [options]="state.arrival.options"></ng5-slider>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="javascript:void(0);">Max Stop Time</a></div>
-      <div class="accordion-body">
-        <ng5-slider [(value)]="state.stops.value" [(highValue)]="state.stops.highValue" [options]="state.stops.options"></ng5-slider>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="javascript:void(0);">Max Stop Time</a></div>
+        <div class="accordion-body">
+          <ng5-slider [(value)]="state.stops.value" [(highValue)]="state.stops.highValue" [options]="state.stops.options"></ng5-slider>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="#">Policy</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="Preferred"><input type="checkbox" class="checkbox" id="Preferred"> Preferred <span class="label-num">$294</span> </label></li>
-          <li><label for="Acceptable"><input type="checkbox" class="checkbox" id="Acceptable"> Acceptable <span class="label-num">$294</span></label></li>
-        </ul>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="#">Policy</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="Preferred"><input type="checkbox" class="checkbox" id="Preferred"> Preferred <span class="label-num">$294</span> </label></li>
+            <li><label for="Acceptable"><input type="checkbox" class="checkbox" id="Acceptable"> Acceptable <span class="label-num">$294</span></label></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group group-active">
-      <div class="accordon-heading"><a href="javascript:void(0);">Airlines</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="airCanada"><input type="checkbox" class="checkbox" id="airCanada"> Air Canada <span class="label-num">$294</span> </label></li>
-          <li><label for="Westjet"><input type="checkbox" class="checkbox" id="Westjet"> Westjet <span class="label-num">$294</span></label></li>
-        </ul>
+      <div class="accordion-group group-active">
+        <div class="accordon-heading"><a href="javascript:void(0);">Airlines</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="airCanada"><input type="checkbox" class="checkbox" id="airCanada"> Air Canada <span class="label-num">$294</span> </label></li>
+            <li><label for="Westjet"><input type="checkbox" class="checkbox" id="Westjet"> Westjet <span class="label-num">$294</span></label></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordon-heading"><a href="#">Stops</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="Nonstop"><input type="checkbox" class="checkbox" id="Nonstop"> Nonstop</label></li>
-          <li><label for="1-stop"><input type="checkbox" class="checkbox" id="1-stop"> 1-stop</label></li>
-          <li><label for="2-stop"><input type="checkbox" class="checkbox" id="2-stop"> 2-stop</label></li>
-        </ul>
+      <div class="accordion-group">
+        <div class="accordon-heading"><a href="#">Stops</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="Nonstop"><input type="checkbox" class="checkbox" id="Nonstop"> Nonstop</label></li>
+            <li><label for="1-stop"><input type="checkbox" class="checkbox" id="1-stop"> 1-stop</label></li>
+            <li><label for="2-stop"><input type="checkbox" class="checkbox" id="2-stop"> 2-stop</label></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordon-heading"><a href="#">Options</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="CodeShare"><input type="checkbox" class="checkbox" id="CodeShare"> Code Share</label></li>
-          <li><label for="LongLayover"><input type="checkbox" class="checkbox" id="LongLayover"> Long Layover</label></li>
-        </ul>
+      <div class="accordion-group">
+        <div class="accordon-heading"><a href="#">Options</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="CodeShare"><input type="checkbox" class="checkbox" id="CodeShare"> Code Share</label></li>
+            <li><label for="LongLayover"><input type="checkbox" class="checkbox" id="LongLayover"> Long Layover</label></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordon-heading"><a href="#">Connecting City</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="cityNone"><input type="checkbox" class="checkbox" id="cityNone"> None <span class="label-num">$294</span></label></li>
-          <li><label for="edmonton"><input type="checkbox" class="checkbox" id="edmonton"> Edmonton lntl. Airport <span class="label-num">$294</span></label></li>
-          <li><label for="saskatoon"><input type="checkbox" class="checkbox" id="saskatoon"> Saskatoon John G, Diefenbker International Airport <span class="label-num">$294</span></label></li>
-          <li><label for="victorialntl"><input type="checkbox" class="checkbox" id="victorialntl"> Victoria lntl, Airport <span class="label-num">$294</span></label></li>
-        </ul>
+      <div class="accordion-group">
+        <div class="accordon-heading"><a href="#">Connecting City</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="cityNone"><input type="checkbox" class="checkbox" id="cityNone"> None <span class="label-num">$294</span></label></li>
+            <li><label for="edmonton"><input type="checkbox" class="checkbox" id="edmonton"> Edmonton lntl. Airport <span class="label-num">$294</span></label></li>
+            <li><label for="saskatoon"><input type="checkbox" class="checkbox" id="saskatoon"> Saskatoon John G, Diefenbker International Airport <span class="label-num">$294</span></label></li>
+            <li><label for="victorialntl"><input type="checkbox" class="checkbox" id="victorialntl"> Victoria lntl, Airport <span class="label-num">$294</span></label></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="accordion-group">
-      <div class="accordon-heading"><a href="#">Fare Type</a></div>
-      <div class="accordion-body">
-        <ul>
-          <li><label for="Economy"><input type="checkbox" class="checkbox" id="Economy"> Economy <span class="label-num">$319</span></label></li>
-          <li><label for="Economy2"><input type="checkbox" class="checkbox" id="Economy2"> Economy Flexible <span class="label-num">$319</span></label></li>
-          <li><label for="Economy3"><input type="checkbox" class="checkbox" id="Economy3"> Premium Economy <span class="label-num">$344</span></label></li>
-          <li><label for="Economy4"><input type="checkbox" class="checkbox" id="Economy4"> Premium Economy Flexible <span class="label-num">$445</span></label></li>
-          <li><label for="Economy5"><input type="checkbox" class="checkbox" id="Economy5"> Business Flexible <span class="label-num">$514</span></label></li>
-        </ul>
+      <div class="accordion-group">
+        <div class="accordon-heading"><a href="#">Fare Type</a></div>
+        <div class="accordion-body">
+          <ul>
+            <li><label for="Economy"><input type="checkbox" class="checkbox" id="Economy"> Economy <span class="label-num">$319</span></label></li>
+            <li><label for="Economy2"><input type="checkbox" class="checkbox" id="Economy2"> Economy Flexible <span class="label-num">$319</span></label></li>
+            <li><label for="Economy3"><input type="checkbox" class="checkbox" id="Economy3"> Premium Economy <span class="label-num">$344</span></label></li>
+            <li><label for="Economy4"><input type="checkbox" class="checkbox" id="Economy4"> Premium Economy Flexible <span class="label-num">$445</span></label></li>
+            <li><label for="Economy5"><input type="checkbox" class="checkbox" id="Economy5"> Business Flexible <span class="label-num">$514</span></label></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div><!-- reservation-sidebar -->
@@ -216,15 +218,299 @@
             </div><!-- reserve-general-wrap -->
           </div>
         </div>
+        
+
+        <div class="box position-relative">
+          <div class="box-body">
+            <div class="reservation-table-wrap">
+              <table class="table table-sm table-striped table-hover">
+                <tbody>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/west.png" alt=""> <span>Westjet</span></h3>
+                      <h4>
+                        <strong>06:00 AM</strong> <span>YVR</span>
+                        <em>To</em> <strong>08:22AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo1">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $319 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $344 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $503 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> <span>Air Canada</span></h3>
+                      <h4>
+                        <strong>09:20 PM</strong> <span>YVR</span>
+                        <em>To</em> <strong>10:40AM</strong> <span>YYC</span>
+                        <a href="#" class="more-detail" data-toggle="modal" data-target="#tableInfo2">More Detail...</a>
+                      </h4>
+                    </td>
+                    <td><p>Econo <br> $294 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Flex <br> $314 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Premium <br> $352 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Prem Flex <br> $445 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                    <td><p>Biz Flex <br> $514 <a href="#" class="reserve-tb-select">Select</a></p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!-- reservation-table-wrap -->
+          </div>
+        </div>
+
+        
+
       </div><!-- content-1 -->
     </div>
   </div><!-- reservation-content-area -->
-  <div class="reservation-rightbar">
-
-  </div>
 </div><!-- reservation-detail-wrap -->
 
+<div class="booking-article-bot">
+  <a href="#" class="new-booking">New Booking</a>
+  <div class="booking-content-area">
+    
+  </div>
+</div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="tableInfo1" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><img src="../../assets/images/reservation/west.png" alt=""> WS 112</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>06:00 AM</strong>
+          Thu, Aug 13 Vancouvcer lntl. Airport (YVR)
+        </p>
+        <p>
+          <strong>08:22 AM</strong>
+          Thu, Aug 13 Calgary lntl. Airport (YYC)
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="tableInfo2" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><img src="../../assets/images/reservation/air-canada.png" alt=""> Air Canada</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>06:00 AM</strong>
+          Thu, Aug 13 Vancouvcer lntl. Airport (YVR)
+        </p>
+        <p>
+          <strong>08:22 AM</strong>
+          Thu, Aug 13 Calgary lntl. Airport (YYC)
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 </body>
