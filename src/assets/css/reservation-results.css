@@ -259,44 +259,111 @@
         color: #fff;
         background: #ef6614;
     }
-.reserve-general-list-wrap{
+.article-content-booking{
+    border: 1px solid #dcdbe0;
+    box-shadow: none;
+    padding: 25px 30px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    background: #fff;
+    margin: 0 0 20px;
+    -moz-box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
+    -webkit-box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
+    box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
 }
-    .reserve-general-list{
-        width: 150px ;
-        text-align: center;
-        border: 1px solid #cccccc;
-        margin: 0 20px 20px 0;
-        border-radius: 5px;
+    .content-booking-left{
+        width: 315px;
+        padding-right: 20px;
+        border-right: 1px solid #d7d7d7;
     }
-    .g-list-inner{
-        padding: 15px;
+    .content-booking-left h3{
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 10px;
     }
-    .g-list-inner h3{
-        font-weight: bold;
-        font-size: 18px;
-        margin: 0 0 7px;
+    .content-booking-left h3 img{
+        display: inline-block;
+        vertical-align: initial;
+        width: 20px;
     }
-    .g-list-inner h4{
-        font-size: 16px;
+    .content-booking-left h3 .book-sm-info{
+        display: inline-block;
         font-weight: normal;
+        font-size: 12px;
+        padding: 4px 12px;
+        margin-left: 10px;
+        border:2px solid #cbcbcb;
+        border-radius: 7px;
+    }
+    .booking-time{
+        padding: 0 0 15px;
+    }
+    .booking-time ul,
+    .booking-time li{
+        list-style: none;
         margin: 0;
+        padding: 0;
     }
-    .general-select{
-        display: block;
-        text-align: center;
-        font-weight: bold;
-        padding: 8px 4px;
+    .booking-time ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .booking-time ul li{
+        background: url(../images/reservation/arrow-right.png) right center no-repeat;
+        padding-right: 40px;
+        margin-right: 20px;
+    }
+    .booking-time ul li:last-child{
+        background: none;
+        margin-right: 0;
+        padding-right: 0;
+    }
+    .content-booking-left .btn-sm{
+        font-size: 12px;
+        padding: 4px 9px 5px;
+        border-radius: 7px;
+    }
+    .content-booking-right{
+        width: calc(100% - 355px);
+        margin-left: auto;
+    }
+    .price-tickets,
+    .price-tickets li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .price-tickets{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .price-tickets li{
+        margin: 0 20px 20px 0;
+    }
+    .price-tickets li a{
+        display: inline-block;
+        border: 2px solid #cbcbcb;
+        color: #212529;
         text-decoration: none;
-        color: #fff;
-        background: #ef6614;
+        background: url(../images/reservation/checkmark.png) 10px center no-repeat;
+        padding: 8px 20px 8px 40px;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        border-radius: 7px;
     }
-    .general-select:hover{
+    .price-tickets li a.active{
+        background:#135d82 url(../images/reservation/checkmark-checked.png) 10px center no-repeat;
         color: #fff;
+        border-color: #135d82;
     }
-    .g-list-inner .general-select{
-        border-radius: 0 0 5px 5px;
+    .price-tickets li a em{
+        font-style: normal;
+        display: inline-block;
+        margin-right: 15px;
     }
 
 .reservation-table-wrap{
