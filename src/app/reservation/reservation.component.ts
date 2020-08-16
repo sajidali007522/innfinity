@@ -36,7 +36,8 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   dateFormats;
   ruleBags;
   state={
-    initiateBooking: false
+    initiateBooking: false,
+    processing:false
   };
   form = {
     BeginDate: new Date(),
@@ -89,23 +90,41 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     this.bsConfig = Object.assign(this.bsConfig, { dateInputFormat: this.chosenDateFormat });
   }
 
+  setTripType(type){
+    switch (type) {
+      case 1:
+          this.form.IsReturn = false;
+        break;
+      case 2:
+        this.form.IsReturn = true;
+        break;
+      case 3:
+        break;
+    }
+  }
   submitIt () {
     let departure = new Date(this.form.BeginDate);
     let arrival = new Date(this.form.EndDate);
+    let departureTime = new Date(this.form.BeginTime);
+    let arrivalTime = new Date(this.form.EndTime);
+    //console.log(departureTime.getTime(), isNaN(departureTime.getHours()) , typeof departureTime);
+
     let form = {
-      BeginDate: departure.getFullYear()+'-'+departure.getMonth()+"-"+departure.getDate(),
-      EndDate: arrival.getFullYear()+'-'+arrival.getMonth()+"-"+arrival.getDate(),
-      BeginTime: this.form.BeginTime,
-      EndTime: this.form.EndTime,
+      BeginDate: departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
+      EndDate: arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
+      BeginTime: !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : '',
+      EndTime: !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : '',
       IsReturn: this.form.IsReturn,
       ResourceTypeID: this.form.ResourceTypeID,
       TimePropertyID: this.form.TimePropertyID,
       SearchIndex: 0,
       SelectedItems: this.form.SelectedItems
     }
-    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", form)
+    this.state.processing = true;
+    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", Array.of(form))
       .subscribe(data => {
-        this.router.navigate(['/result-list']);
+        this.state.processing=false;
+        this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['resourceTypeID']]);
       });
   }
 

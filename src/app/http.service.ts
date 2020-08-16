@@ -24,7 +24,7 @@ export class HttpService {
 
   public _post(url, body, params={}) {
     let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
-    return this.http.post(this.appConfigService.apiBaseUrl+url, Array.of(body), {
+    return this.http.post(this.appConfigService.apiBaseUrl+url, body, {
       params: params,
       headers: headers
     });

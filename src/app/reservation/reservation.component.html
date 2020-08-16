@@ -81,15 +81,15 @@
           <div class="trip-radio-wrap">
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="Roundtrip" name="trip" class="custom-control-input">
-                <label class="custom-control-label" value="1" [(ngModel)]="form.tripType" for="Roundtrip">Roundtrip</label>
+                <label class="custom-control-label" value="1" (click)="setTripType(1)" [(ngModel)]="form.tripType" for="Roundtrip">Roundtrip</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="oneWay" value="2" [(ngModel)]="form.tripType"  name="trip" class="custom-control-input">
-                <label class="custom-control-label" for="oneWay">One-Way</label>
+                <label class="custom-control-label"  (click)="setTripType(2)"for="oneWay">One-Way</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="multiCity"  value="3" [(ngModel)]="form.tripType" name="trip" class="custom-control-input">
-                <label class="custom-control-label" for="multiCity">Multi-city</label>
+                <label class="custom-control-label" (click)="setTripType(3)" for="multiCity">Multi-city</label>
             </div>
         </div>
 
@@ -222,7 +222,7 @@
                         <input type="text"
                                [(ngModel)]="form.EndDate"
                                bsDatepicker
-                               [minDate]="form.EndDate"
+                               [minDate]="form.BeginDate"
                                [bsConfig]="bsConfig"
                                placeholder="Date To"
                                name="arrival_date"
@@ -236,15 +236,12 @@
                     <label>Arrival Time*</label>
                     <div class="field-wrap">
                         <timepicker [(ngModel)]="form.EndTime" [mousewheel]="true" [arrowkeys]="true"></timepicker>
-
-<!--                        <input type="text" placeholder="" class="form-control">-->
-<!--                        <span class="fa fa-clock-o"></span>-->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-success btn-block" (click)="submitIt()">Search</button>
+            <button type="submit" class="btn btn-success btn-block" (click)="submitIt()" [disabled]="state.processing">Search <span class="fa fa-spin fa-spinner" *ngIf="state.processing"></span></button>
         </div>
     </div>
   </div>
