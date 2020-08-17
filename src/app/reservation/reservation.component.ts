@@ -124,8 +124,63 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", Array.of(form))
       .subscribe(data => {
         this.state.processing=false;
-        this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['resourceTypeID']]);
+        this.getSearchCriteria(data);
+        //this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['resourceTypeID']]);
       });
+  }
+  getSearchCriteria (assignSearchResponse){
+
+    this.state.processing=true;
+    this._http._post('Booking/'+this.form.bookingID+'/SearchCriteria', Array.of({}), {
+        retrieve : true,
+        resourceTypeID: assignSearchResponse['resourceTypeID']
+      }
+    )
+      .subscribe(data => {
+        this.state.processing=false;
+        this.loadSearchResult(data, assignSearchResponse['resourceTypeID']);
+      })
+  }
+
+  loadSearchResult (requestParams, resourceTypeId) {
+    this.state.processing=true;
+    let body = {
+      "ResourceTypeID": resourceTypeId,
+      "Criteria": []
+    }
+    for (let index= 0; index < requestParams['resources'].length; index++){
+      let departure = new Date(requestParams['resources'][index].resourceItems[0].beginDate);
+      let arrival = new Date(requestParams['resources'][index].resourceItems[0].endDate);
+      let departureTime = new Date(requestParams['resources'][index].resourceItems[0].beginTime);
+      let arrivalTime = new Date(requestParams['resources'][index].resourceItems[0].endTime);
+      body.Criteria.push({
+        "IsReturn": false,
+        "BeginDate": departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
+        "EndDate": arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
+        "BeginTime": !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : null,
+        "EndTime": !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : null,
+        "SelectedItems": [
+          {
+            "Relation": requestParams['resources'][index].searchFields[0].fieldRelation,
+            "Selection": requestParams['resources'][index].searchFields[0].defaultValue,
+            "SelectionText": requestParams['resources'][index].searchFields[0].defaultText,
+            "Type": requestParams['resources'][index].searchFields[0].type
+          },
+          {
+            "Relation": requestParams['resources'][index].searchFields[1].fieldRelation,
+            "Selection": requestParams['resources'][index].searchFields[1].defaultValue,
+            "SelectionText": requestParams['resources'][index].searchFields[1].defaultText,
+            "Type": requestParams['resources'][index].searchFields[1].type
+          }
+        ],
+        "SearchIndeces": [0]
+      })
+    }
+    this._http._post('Booking/'+this.form.bookingID+'/Search', body, {})
+      .subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['searchID']]);
+      })
   }
 
   getServerResponse(event, searchType='departure-list') {

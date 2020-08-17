@@ -39,7 +39,7 @@ const routes: Routes = [
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
       {path: "reservation", component:ReservationComponent, canActivate: [AuthGuard] },
-      {path: "reservation/:booking_id/search/:resource_type_id", component:ResultListComponent, canActivate: [AuthGuard] },
+      {path: "reservation/:booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
       {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },
       {path: "autocomplete", component:AutocompleteComponent, canActivate: [AuthGuard] },
       {path: "search-location", component:SearchLocationComponent, canActivate: [AuthGuard] },

@@ -18,7 +18,7 @@ export class ResultListComponent implements OnInit {
   };
   state= {
     bookingID: '',
-    resourceTypeID: '',
+    searchId: '',
     processing: false,
     price : {
       value: 40,
@@ -64,33 +64,50 @@ export class ResultListComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.state.bookingID = params["booking_id"];
-      this.state.resourceTypeID = params['resource_type_id'];
+      this.state.searchId = params['search_id'];
     });
-    console.log(this.state.bookingID, this.state.resourceTypeID )
-    this.state.processing=true;
-    this._http._post('Booking/'+this.state.bookingID+'/SearchCriteria', Array.of({}), {
-          retrieve : true,
-          resourceTypeID: this.state.resourceTypeID
-        }
-      )
+    console.log(this.state.bookingID, this.state.searchId )
+    this.checkSearchStatus();
+  }
+
+  checkSearchStatus () {
+    this.state.processing = true;
+    this._http._get('booking/'+this.state.bookingID+'/Search/'+this.state.searchId, {})
       .subscribe(data => {
-        this.state.processing=false;
-        this.loadSearchResult(data);
+        if(data['isCompleted']) {
+          this.state.processing = false;
+          this.getSortFields();
+        } else {
+          this.checkSearchStatus();
+        }
       })
   }
 
-  loadSearchResult (requestParams) {
+  getSortFields () {
+    // /api2/booking/{bookingID}/GetSearchSortFields/{searchID}/{searchIndex}
     this.state.processing=true;
-    let body = {
-      "ResourceTypeID": this.state.resourceTypeID,
-      "Criteria": [
-        requestParams
-      ]
-    }
-    this._http._post('Booking/'+this.state.bookingID+'/Search', body, {})
+    this._http._get('booking/'+this.state.bookingID+'/GetSearchSortFields/'+this.state.searchId+'/0', {})
       .subscribe(data => {
-        console.log(data);
-      })
+        this.state.processing=false;
+        this.getSearchResults();
+      },
+        error => {
+        this.state.processing = false;
+        console.log(error);
+        });
+  }
+
+  getSearchResults () {
+    // /api2/booking/{bookingID}/SearchResults/{searchID}
+    this.state.processing=true;
+    this._http._get('booking/'+this.state.bookingID+'/SearchResults/'+this.state.searchId+'', {})
+      .subscribe(data => {
+        this.state.processing=false;
+      },
+        error => {
+        this.state.processing = false;
+        console.log(error);
+        })
   }
 
 }
