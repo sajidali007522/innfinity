@@ -176,7 +176,7 @@ export class ReservationComponent implements OnInit,AfterViewInit {
         "SearchIndeces": [0]
       })
     }
-    this._http._post('Booking/'+this.form.bookingID+'/Search', body, {})
+    this._http._post('Booking/'+this.form.bookingID+'/Search', body, {waitForSearchToComplete:true})
       .subscribe(data => {
         console.log(data);
         this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['searchID']]);

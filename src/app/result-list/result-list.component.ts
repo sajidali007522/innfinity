@@ -100,7 +100,14 @@ export class ResultListComponent implements OnInit {
   getSearchResults () {
     // /api2/booking/{bookingID}/SearchResults/{searchID}
     this.state.processing=true;
-    this._http._get('booking/'+this.state.bookingID+'/SearchResults/'+this.state.searchId+'', {})
+    this._http._get('booking/'+this.state.bookingID+'/SearchResults/'+this.state.searchId+'', {
+      searchIndex:0,
+      sortProperties:'LowestPrice',
+      isAscending: true,
+      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount',
+      priceProperties: 'TotalPrice|UniqueID|GetFareNameShort|BasePrice',
+      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName'
+    })
       .subscribe(data => {
         this.state.processing=false;
       },
