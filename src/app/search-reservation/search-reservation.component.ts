@@ -11,6 +11,7 @@ export class SearchReservationComponent implements OnInit {
   constructor(private _http: HttpService) { }
 
   ngOnInit(): void {
+
   }
 
 

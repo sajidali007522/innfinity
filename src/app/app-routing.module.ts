@@ -24,8 +24,19 @@ import {WorkflowAdminComponent} from "./workflow-admin/workflow-admin.component"
 import {SearchReservationComponent} from "./search-reservation/search-reservation.component";
 import {ReservationPageComponent} from "./reservation-page/reservation-page.component";
 import {ResultListComponent} from "./result-list/result-list.component";
+import {SingleColumnLayoutComponent} from "./layouts/single-column-layout/single-column-layout.component";
 
 const routes: Routes = [
+  {path: "login", component:LoginComponent },
+  {path: "login2", component:Login2Component },
+  {path: "reservation-result", component:ResultListComponent },
+  {path: "register", component:RegisterComponent },
+  //{path: "make-reservation", component:ReservationPageComponent },
+  {path:  "booking", component: SingleColumnLayoutComponent,  canActivate: [AuthGuard],
+    children: [
+      {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
+    ]
+  },
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -51,13 +62,6 @@ const routes: Routes = [
       {path: "search-reservation", component:SearchReservationComponent, canActivate: [AuthGuard] },
     ]
   },
-
-  {path: "login", component:LoginComponent },
-  {path: "login2", component:Login2Component },
-  {path: "make-reservation", component:ReservationPageComponent },
-  {path: "reservation-result", component:ResultListComponent },
-  {path: "register", component:RegisterComponent },
-
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

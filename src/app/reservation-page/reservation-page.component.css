@@ -1,3 +1,5 @@
+@import "./../../assets/fonts/fonts.css";
+@import "./../../assets/css/reservation-results.css";
 .filter-section{
     background: rgba(0,0,0,.05);
     padding: 25px 30px 15px;

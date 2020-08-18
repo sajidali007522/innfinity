@@ -62,6 +62,7 @@ import { WorkflowTreeComponent } from './workflow-admin/workflow-tree/workflow-t
 import { SearchReservationComponent } from './search-reservation/search-reservation.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { ResultListComponent } from './result-list/result-list.component';
+import { SingleColumnLayoutComponent } from './layouts/single-column-layout/single-column-layout.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { ResultListComponent } from './result-list/result-list.component';
     WorkflowTreeComponent,
     SearchReservationComponent,
     ReservationPageComponent,
-    ResultListComponent
+    ResultListComponent,
+    SingleColumnLayoutComponent
   ],
   imports: [
     BrowserModule,

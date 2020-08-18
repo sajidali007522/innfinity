@@ -48,7 +48,9 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  constructor() { }
+  constructor() {
+    console.log("inside page reservation page")
+  }
 
   ngOnInit(): void {
   }
