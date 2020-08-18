@@ -49,13 +49,13 @@ const routes: Routes = [
       {path: "reservation-list", component:ReservationListComponent, canActivate: [AuthGuard] },
       {path: "workflow-admin", component:WorkflowAdminComponent, canActivate: [AuthGuard] },
       {path: "search-reservation", component:SearchReservationComponent, canActivate: [AuthGuard] },
+      {path: "make-reservation", component:ReservationPageComponent, canActivate: [AuthGuard] },
     ]
   },
 
   {path: "login", component:LoginComponent },
   {path: "login2", component:Login2Component },
   {path: "make-reservation", component:ReservationPageComponent },
-  {path: "reservation-result", component:ResultListComponent },
   {path: "register", component:RegisterComponent },
 
   // otherwise redirect to home

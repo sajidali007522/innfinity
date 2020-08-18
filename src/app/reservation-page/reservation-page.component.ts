@@ -1,6 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
 import { Options } from 'ng5-slider';
 import * as $ from 'jquery';
+import {HttpService} from "../http.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-reservation-page',
@@ -48,7 +50,9 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  constructor() { }
+  constructor( private renderer: Renderer2) {
+    this.renderer.addClass(document.body, 'menu-fullwidth');
+  }
 
   ngOnInit(): void {
   }
