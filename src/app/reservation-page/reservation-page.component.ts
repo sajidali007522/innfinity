@@ -50,8 +50,7 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  constructor( private renderer: Renderer2) {
-    this.renderer.addClass(document.body, 'menu-fullwidth');
+  constructor() {
   }
 
   ngOnInit(): void {
