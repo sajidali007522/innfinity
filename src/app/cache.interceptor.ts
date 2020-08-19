@@ -11,7 +11,7 @@ export class CacheInterceptor implements HttpInterceptor {
   constructor(private cacheService: HttpCacheService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    return next.handle(req);
     // pass along non-cacheable requests and invalidate cache
     if(req.method !== 'GET') {
       console.log(`Invalidating cache: ${req.method} ${req.url}`);
@@ -20,7 +20,7 @@ export class CacheInterceptor implements HttpInterceptor {
     }
 
     // attempt to retrieve a cached response
-    console.log(req.params);
+    //console.log(req.params);
     let queryString= '';
     if(req.params) {
       let queryParams = [];
@@ -30,7 +30,7 @@ export class CacheInterceptor implements HttpInterceptor {
       }
       queryString = '?'+ queryParams.join('&');
     }
-    console.log(queryString);
+    //console.log(queryString);
     const cachedResponse: HttpResponse<any> = this.cacheService.get(req.url+queryString);
 
     // return cached response

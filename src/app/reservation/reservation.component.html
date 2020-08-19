@@ -37,15 +37,15 @@
               <label>Traveler*</label>
               <div class="field-wrap field-gray-wrap">
                   <ng-autocomplete
-                    [data]="departureList"
+                    [data]="travelerList"
                     [searchKeyword]="keyword"
                     (selected)='selectTraveler($event)'
                     (inputChanged)='getloadProfiles($event)'
                     (inputFocused)='onFocused($event)'
                     [itemTemplate]="itemTemplateProfiles"
-                    (inputCleared)="searchCleared()"
+                    (inputCleared)="searchCleared('traveler-list')"
                     [notFoundTemplate]="notFoundProfilesTemplate"
-                    [debounceTime]="100"
+                    [debounceTime]="400"
                     [isLoading]="isLoadingTraveler"
                     [minQueryLength]="3"
                     placeHolder="{{form.ResourceTypeID == '' ? 'Select Business Profile first' : 'Search Traveler.'}}"
@@ -107,9 +107,9 @@
                         (inputChanged)='getServerResponse($event, "departure-list")'
                         (inputFocused)='onFocused($event)'
                         [itemTemplate]="itemTemplateRemote"
-                        (inputCleared)="searchCleared()"
+                        (inputCleared)="searchCleared('departure-list')"
                         [notFoundTemplate]="notFoundTemplate"
-                        [debounceTime]="100"
+                        [debounceTime]="400"
                         [isLoading]="isLoadingResult"
                         [minQueryLength]="3"
                         placeHolder="Search here."
@@ -150,9 +150,9 @@
                         (inputChanged)='getServerResponse($event, "arrival-list")'
                         (inputFocused)='onFocused($event)'
                         [itemTemplate]="itemTemplateRemote_"
-                        (inputCleared)="searchCleared()"
+                        (inputCleared)="searchCleared('arrival-list')"
                         [notFoundTemplate]="notFoundTemplate_"
-                        [debounceTime]="100"
+                        [debounceTime]="400"
                         [isLoading]="isLoadingArrival"
                         [minQueryLength]="3"
                         placeHolder="Search Here."
