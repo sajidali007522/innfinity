@@ -4,7 +4,7 @@
     min-height: 100vh;
 }
 .reservation-sidebar{
-    width: 280px;
+    width: 250px;
     font-size: 13px;
     background: #fff;
     -moz-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.22);
@@ -14,7 +14,7 @@
 .reservation-sidebar-inner{
     max-height: 100vh;
     overflow-y: auto;
-    padding: 40px 30px 0;
+    padding: 80px 30px 0;
 }
     .reservation-sidebar ::-webkit-scrollbar {
         width: 5px;
@@ -53,6 +53,38 @@
         margin-top: -6px;
         color: #656565;
     }
+    .reservation-sidebar .accordon-heading a.icon-contain{
+        padding-left: 30px;
+    }
+    .reservation-sidebar .accordon-heading a.icon-contain{
+        color: #212529;
+    }
+    .reservation-sidebar .accordon-heading a.icon-contain:after{
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 5px;
+    }
+    .icon-price:after{
+        background: url(../images/reservation/icon-tag.png) no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+    .icon-departure:after{
+        background: url(../images/reservation/icon-departure.png) no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+    .icon-arrival:after{
+        background: url(../images/reservation/icon-arrival.png) no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+    .icon-time:after{
+        background: url(../images/reservation/icon-time.png) no-repeat;
+        width: 20px;
+        height: 20px;
+    }
         .group-active .accordon-heading a:before{
             content: "\f068";
         }
@@ -80,12 +112,13 @@
         color: #a1a0b2;
     }
 .reservation-content-area{
-    width: calc(100% - 280px);
+    width: calc(100% - 250px);
     max-height: 100vh;
+    padding-top: 60px;
     overflow-y: auto;
 }
     .reservation-content-inner{
-        padding: 20px 20px 20px 60px;
+        padding: 30px 30px 20px 30px;
     }
     .reservation-tabs ul,
     .reservation-tabs li{
@@ -127,11 +160,7 @@
     .reserve-top-filter .form-control{
         display: inline-block;
         width: auto;
-        padding:15px 20px;
-        height: auto;
-        margin: 0 0 0 20px;
-        border: 1px solid #dcdbe0;
-        border-radius: 20px;
+        margin: 5px 0 5px 20px;
     }
 .box-secondary{
     border:1px solid #dcdbe0;
@@ -178,6 +207,51 @@
         border: 2px solid #cbcbcb;
         padding: 8px 15px;
         border-radius: 7px;
+    }
+.selection-table.table{
+}
+    .selection-table.table th,
+    .selection-table.table td{
+        font-size: 14px;
+        font-weight: normal;
+        border:1px solid #e5e5e5;
+        padding: 15px 10px 15px 15px;
+        min-width: 100px;
+    }
+    .selection-table.table th h4{
+        font-size: 14px;
+        font-weight: 600;
+        color: #125D81;
+        margin: 0 0 10px;
+    }
+    .selection-table.table td.active{
+        background: #135d82;
+        color: #fff;
+    }
+        .selection-table.table td.active h4{
+            color:#fff;
+        }
+        .selection-table.table .full-active td{
+            background: #135d82;
+            color: #fff;
+            border-color: #135d82;
+        }
+        .selection-table.table .full-active td h4{
+            color:#fff;
+        }
+    .selection-table.table td p{
+        margin: 0 0 5px;
+    }
+    .selection-table.table td h4{
+        font-size: 14px;
+        font-weight: 600;
+        color: #125D81;
+        margin: 0 0 10px;
+    }
+    .selection-table.table td h4 span{
+        font-weight: normal;
+        margin-left: 15px;
+        font-size: 13px;
     }
 .reserve-general-title{
     border-bottom: 1px solid #ccc;
@@ -262,7 +336,7 @@
 .article-content-booking{
     border: 1px solid #dcdbe0;
     box-shadow: none;
-    padding: 25px 30px;
+    padding: 18px 30px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -271,9 +345,6 @@
     -moz-box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
     -webkit-box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
     box-shadow: 0 4px 7px rgba(0,0,0, 0.15);
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
 }
     .content-booking-left{
         width: 315px;
@@ -300,7 +371,7 @@
         border-radius: 7px;
     }
     .booking-time{
-        padding: 0 0 15px;
+        padding: 0 0 8px;
     }
     .booking-time ul,
     .booking-time li{
@@ -365,7 +436,79 @@
         display: inline-block;
         margin-right: 15px;
     }
-
+.table-price-tickets.table{
+    width: auto;
+}
+    .table-price-tickets.table td{
+        padding:0;
+        border: 1px solid #cbcbcb;
+    }
+    .table-price-tickets.table a{
+        display: block;
+        color: #212529;
+        text-decoration: none;
+        background: url(../images/reservation/checkmark.png) 10px center no-repeat;
+        padding: 8px 20px 8px 40px;
+        white-space: nowrap;
+    }
+    .table-price-tickets.table td.active{
+        border-color: #135d82;
+        background:#135d82;
+    }
+    .table-price-tickets.table td.active a{
+        background:url(../images/reservation/checkmark-checked.png) 10px center no-repeat;
+        color: #fff;
+    }
+    .table-price-tickets.table a em{
+        font-style: normal;
+        display: inline-block;
+        margin-right: 15px;
+    }
+.display-detail{
+    font-size: 14px;
+    color: #212529;
+    font-weight: 600;
+}
+    .display-detail span{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .display-detail .fa{
+        font-size: 18px;
+        padding-left: 5px;
+    }
+.more-reservation-wrap{
+    display: none;
+}
+.more-reservation-inner{
+    padding: 30px 20px 0;
+    font-size: 13px;
+}
+    .info-more-section{
+        padding:0 0 15px;
+    }
+    .more-reservation-inner h3{
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 10px;
+    }
+    .more-reservation-inner h4{
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0 0 10px;
+    }
+    .more-reservation-inner ul,
+    .more-reservation-inner li{
+        list-style: none;
+        margin: 0;
+        padding:0;
+    }
+    .more-reservation-inner ul{
+        margin-bottom: 15px;
+    }
+    .more-reservation-inner li{
+        padding:0 0 5px
+    }
 .reservation-table-wrap{
 }
     .reservation-table-wrap .table{
@@ -438,3 +581,55 @@
         right: 15px;
         top: 15px;
     }
+
+
+@media(max-width:1300px){
+    .row-break-1300{
+        display: block;
+    }
+    .reserve-top-filter{
+        text-align: left;
+    }
+    .reserve-top-filter .form-control{
+        margin: 0 5px 10px;
+    }
+    .article-content-booking{
+        padding:18px 20px;
+    }
+    .content-booking-left{
+        width: 250px;
+    }
+    .content-booking-left h3{
+        font-size: 18px;
+    }
+    .booking-time{
+        font-size: 12px;
+    }
+    .content-booking-right{
+        width: calc(100% - 275px);
+    }
+}
+@media(max-width:767px){
+    .reservation-content-area{
+        width: 100%;
+    }
+    .reservation-content-inner{
+        padding:30px 20px;
+    }
+    .content-booking-left{
+        width: 100%;
+        padding:0 0 15px;
+        border:none;
+    }
+    .content-booking-right{
+        width: 100%;
+    }
+    .table-price-tickets.table a{
+        font-size: 12px;
+        padding:8px 10px 8px 26px;
+        background-size:10px auto;
+    }
+    .table-price-tickets.table td.active a{
+        background-size:10px auto;
+    }
+}

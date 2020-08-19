@@ -2,25 +2,25 @@
   <div class="reservation-sidebar">
     <div class="reservation-sidebar-inner">
       <div class="accordion-group group-active">
-        <div class="accordon-heading"><a href="javascript:void(0);">Price</a></div>
+        <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-price">Price</a></div>
         <div class="accordion-body">
           <ng5-slider [(value)]="state.price.value" [(highValue)]="state.price.highValue" [options]="state.price.options"></ng5-slider>
         </div>
       </div>
       <div class="accordion-group group-active">
-        <div class="accordon-heading"><a href="javascript:void(0);">Departure</a></div>
+        <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-departure">Departure</a></div>
         <div class="accordion-body">
           <ng5-slider [(value)]="state.departure.value" [(highValue)]="state.departure.highValue" [options]="state.departure.options"></ng5-slider>
         </div>
       </div>
       <div class="accordion-group group-active">
-        <div class="accordon-heading"><a href="javascript:void(0);">Arrival</a></div>
+        <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-arrival">Arrival</a></div>
         <div class="accordion-body">
           <ng5-slider [(value)]="state.arrival.value" [(highValue)]="state.arrival.highValue" [options]="state.arrival.options"></ng5-slider>
         </div>
       </div>
       <div class="accordion-group group-active">
-        <div class="accordon-heading"><a href="javascript:void(0);">Max Stop Time</a></div>
+        <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-time">Max Stop Time</a></div>
         <div class="accordion-body">
           <ng5-slider [(value)]="state.stops.value" [(highValue)]="state.stops.highValue" [options]="state.stops.options"></ng5-slider>
         </div>
@@ -91,24 +91,23 @@
     <div class="reservation-content-inner">
 
       <div class="reserve-filter-top-wrap">
-        <div class="row align-items-center">
-          <div class="col-md-6">
+        <div class="row align-items-center row-break-1300">
+          <div class="col-lg-6">
             <div class="reservation-tabs">
               <ul>
                 <li class="active"><a href="#content-1"><strong>Aug</strong> 12</a></li>
                 <li><a href="#content-2"><strong>Aug</strong> 13</a></li>
                 <li><a href="#content-3"><strong>Aug</strong>14</a></li>
-                <li><a href="#content-4"><strong>Aug</strong>15</a></li>
               </ul>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-lg-6">
             <div class="reserve-top-filter">
-              <select class="form-control">
+              <select class="form-control custom-select">
                 <option>Filter Grid: Airline X Stop</option>
                 <option>Policy X Airline</option>
               </select>
-              <select class="form-control">
+              <select class="form-control custom-select">
                 <option>Sort By: Time</option>
                 <option>Sort By: Price</option>
               </select>
@@ -119,27 +118,62 @@
 
 
       <div id="content-1">
-        <div class="box box-secondary">
-          <div class="box-secondary-title">
-            <h3>Search Results</h3>
-          </div>
-          <div class="reserve-search-results">
-            <ul>
-              <li class="active"><a href="javascript:void(0);">Show All</a></li>
-              <li>
-                <select class="form-control">
-                  <option>Stops</option>
-                  <option>Nonstop</option>
-                  <option>1 Stop</option>
-                  <option>2 Stops</option>
-                </select>
-              </li>
-              <li><a href="javascript:void(0);">Air Canada</a></li>
-              <li><a href="javascript:void(0);">Westjet</a></li>
-            </ul>
+
+        <div class="box">
+          <div class="table-responsive">
+            <table class="table selection-table">
+              <thead>
+                <tr>
+                  <th><h4>Show All</h4> 14 Total Results</th>
+                  <th><h4>Air Canada <span>$294</span></h4> 6 Result</th>
+                  <th><h4>Westjet <span>$294</span></h4> 6 Result</th>
+                  <th><h4>Westjet <span>$294</span></h4> 10 Result</th>
+                  <th><h4>Westjet <span>$294</span></h4> 20 Result</th>
+                  <th><h4>Westjet <span>$294</span></h4> 15 Result</th>
+                  <th><h4>Westjet <span>$294</span></h4> 18 Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="active"><h4>NonStop</h4> 11 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                </tr>
+                <tr>
+                  <td><h4>1 Stop <span>$501</span></h4> 11 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                </tr>
+                <tr>
+                  <td><h4>2 Stops <span>$619</span></h4> 11 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                </tr>
+                <!-- <tr class="full-active">
+                  <td><h4>2 Stops <span>$619</span></h4> 11 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                  <td><p>$294</p> 5 Results</td>
+                </tr> -->
+              </tbody>
+            </table>
           </div>
         </div>
-
 
         <div class="content-booking-wrapper">
           <div class="article-content-booking">
@@ -151,17 +185,56 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo1">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo1"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#" class="active"><em>Econo</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $319</a></li>
-                <li><a href="#"><em>Premimum</em> $344</a></li>
-                <li><a href="#"><em>Prem Flex</em> $503</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
+          
           <div class="article-content-booking">
             <div class="content-booking-left">
               <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> Air Canada <span class="book-sm-info">Non Stop</span></h3>
@@ -171,18 +244,55 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo2">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo2"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#"><em>Standard</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $314</a></li>
-                <li><a href="#"><em>Comfort</em> $352</a></li>
-                <li><a href="#"><em>Latitude</em> $445</a></li>
-                <li><a href="#"><em>Biz Flex</em> $514</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
 
           <div class="article-content-booking">
             <div class="content-booking-left">
@@ -193,17 +303,56 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo1">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo1"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#"><em>Econo</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $319</a></li>
-                <li><a href="#"><em>Premimum</em> $344</a></li>
-                <li><a href="#"><em>Prem Flex</em> $503</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
+
           <div class="article-content-booking">
             <div class="content-booking-left">
               <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> Air Canada <span class="book-sm-info">Non Stop</span></h3>
@@ -213,18 +362,56 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo2">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo2"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#"><em>Standard</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $314</a></li>
-                <li><a href="#"><em>Comfort</em> $352</a></li>
-                <li><a href="#"><em>Latitude</em> $445</a></li>
-                <li><a href="#"><em>Biz Flex</em> $514</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
+
           <div class="article-content-booking">
             <div class="content-booking-left">
               <h3><img src="../../assets/images/reservation/west.png" alt=""> Westjet <span class="book-sm-info">Non Stop</span></h3>
@@ -234,17 +421,56 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo1">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo1"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#"><em>Econo</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $319</a></li>
-                <li><a href="#"><em>Premimum</em> $344</a></li>
-                <li><a href="#"><em>Prem Flex</em> $503</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
+
           <div class="article-content-booking">
             <div class="content-booking-left">
               <h3><img src="../../assets/images/reservation/air-canada.png" alt=""> Air Canada <span class="book-sm-info">Non Stop</span></h3>
@@ -254,25 +480,63 @@
                   <li>06:00 AM YVC</li>
                 </ul>
               </div>
-              <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#tableInfo2">Display Details</a>
+              <a href="#" class="display-detail" data-toggle="modal" data-target="#tableInfo2"><span>Display Details</span> <span class=" fa fa-angle-down"></span> </a>
             </div>
             <div class="content-booking-right">
-              <ul class="price-tickets">
-                <li><a href="#"><em>Standard</em> $294</a></li>
-                <li><a href="#"><em>Flex</em> $314</a></li>
-                <li><a href="#"><em>Comfort</em> $352</a></li>
-                <li><a href="#"><em>Latitude</em> $445</a></li>
-                <li><a href="#"><em>Biz Flex</em> $514</a></li>
-              </ul>
+              <div class="table-price-tickets-wrap table-responsive">
+                <table class="table table-border table-price-tickets">
+                  <tbody>
+                    <tr>
+                      <td class="active"><a href="#"><em>Econo</em> $294</a></td>
+                      <td><a href="#"><em>Flex</em> $319</a></td>
+                      <td><a href="#"><em>Premimum</em> $344</a></td>
+                      <td><a href="#"><em>Prem Flex</em> $503</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+            <div class="more-reservation-wrap">
+              <div class="more-reservation-inner">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Depart YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="info-more-section">
+                      <h3>Return YXX- YYC</h3>
+                      <h4>Mon, Sep 14</h4>
+                      <ul>
+                        <li>12-20 pm - 2:30pm</li>
+                        <li>Addotsford (YXX) - Calgary (YYC)</li>
+                        <li>Westjet 176 . Narrow - body jet. Boeing 737-800 passenger / BBJ2 (winglets)</li>
+                        <li>Basic: Fare restrictions apply</li>
+                      </ul>
+                      <h4>Basic: 1h 11m</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- more-reservation-wrap -->
+          </div><!-- article-content-booking -->
+
         </div><!-- content-booking-wrapper -->
 
 
 
         <div class="box position-relative" style="display: none;">
           <div class="box-body">
-            <div class="reservation-table-wrap">
+            <div class="reservation-table-wrap table-responsive">
               <table class="table table-sm table-striped table-hover">
                 <tbody>
                   <tr>
