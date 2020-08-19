@@ -70,12 +70,12 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $(document).ready(() => {
-      $("ng-autocomplete input[type='text']").on('blur', (event) => {
-        //console.log($(event.target).parents('ng-autocomplete')) //.attr('name'));
-        this.selectDefaultValue($(event.target).parents('ng-autocomplete').attr('name'));
-      });
+
+    $("ng-autocomplete input[type='text']").on('blur', (event) => {
+      //console.log($(event.target).parents('ng-autocomplete')) //.attr('name'));
+      this.selectDefaultValue($(event.target).parents('ng-autocomplete').attr('name'));
     });
+
   }
 
   onFocused(e){
@@ -103,30 +103,63 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     }
   }
   submitIt () {
-    let departure = new Date(this.form.BeginDate);
-    let arrival = new Date(this.form.EndDate);
-    let departureTime = new Date(this.form.BeginTime);
-    let arrivalTime = new Date(this.form.EndTime);
-    //console.log(departureTime.getTime(), isNaN(departureTime.getHours()) , typeof departureTime);
+    let postBody = this.preparePostBody();
 
-    let form = {
-      BeginDate: departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
-      EndDate: arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
-      BeginTime: !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : '',
-      EndTime: !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : '',
-      IsReturn: this.form.IsReturn,
-      ResourceTypeID: this.form.ResourceTypeID,
-      TimePropertyID: this.form.TimePropertyID,
-      SearchIndex: 0,
-      SelectedItems: this.form.SelectedItems
-    }
     this.state.processing = true;
-    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", Array.of(form))
+    this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", postBody)
       .subscribe(data => {
         this.state.processing=false;
         this.getSearchCriteria(data);
         //this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['resourceTypeID']]);
       });
+  }
+
+  preparePostBody () {
+    let departure = new Date(this.form.BeginDate);
+    let arrival = new Date(this.form.EndDate);
+    let departureTime = new Date(this.form.BeginTime);
+    let arrivalTime = new Date(this.form.EndTime);
+    //console.log(departureTime.getTime(), isNaN(departureTime.getHours()) , typeof departureTime);
+    let postBody = [];
+
+    //if roundTrip
+    if(this.form.IsReturn) {
+      postBody.push({
+        BeginDate: departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
+        EndDate: departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
+        BeginTime: !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : '',
+        EndTime: !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : '',
+        IsReturn: false,
+        ResourceTypeID: this.form.ResourceTypeID,
+        TimePropertyID: this.form.TimePropertyID,
+        SearchIndex: 0,
+        SelectedItems: this.form.SelectedItems
+      });
+      postBody.push({
+        BeginDate: arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
+        EndDate: arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
+        BeginTime: !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : '',
+        EndTime: !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : '',
+        IsReturn: this.form.IsReturn,
+        ResourceTypeID: this.form.ResourceTypeID,
+        TimePropertyID: this.form.TimePropertyID,
+        SearchIndex: 0,
+        SelectedItems: this.form.SelectedItems
+      })
+    } else {
+      postBody.push({
+        BeginDate: departure.getFullYear()+'-'+(departure.getMonth()+1)+"-"+departure.getDate(),
+        EndDate: arrival.getFullYear()+'-'+(arrival.getMonth()+1)+"-"+arrival.getDate(),
+        BeginTime: !isNaN(departureTime.getHours()) ? departureTime.getHours()+":"+departureTime.getMinutes() : '',
+        EndTime: !isNaN(arrivalTime.getHours()) ? arrivalTime.getHours()+":"+departureTime.getMinutes() : '',
+        IsReturn: this.form.IsReturn,
+        ResourceTypeID: this.form.ResourceTypeID,
+        TimePropertyID: this.form.TimePropertyID,
+        SearchIndex: 0,
+        SelectedItems: this.form.SelectedItems
+      });
+    }
+    return postBody;
   }
   getSearchCriteria (assignSearchResponse){
 
@@ -238,11 +271,18 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   selectDefaultValue (fieldName) {
     if(!fieldName || !this.defaultSelection) return;
     let remoteContent = [];
-    if(fieldName == 'traveler') { remoteContent = Object.assign([], this.travelerList); }
-    if(fieldName == 'departure') { remoteContent = Object.assign([], this.departureList);}
-    if(fieldName == 'arrival') { remoteContent = Object.assign([], this.arrivalList);}
-    console.log(fieldName, this.defaultSelection, remoteContent);
-
+    if(fieldName == 'traveler') {
+      remoteContent = Object.assign([], this.travelerList);
+      this.travelerList = [];
+    }
+    if(fieldName == 'departure') {
+      remoteContent = Object.assign([], this.departureList);
+      this.departureList = [];
+    }
+    if(fieldName == 'arrival') {
+      remoteContent = Object.assign([], this.arrivalList);
+      this.arrivalList = [];
+    }
     for(let index = 0; index < remoteContent.length; index++) {
       if(this.defaultSelection == remoteContent[index].value) {
         //this.selectedObject = remoteContent[index];
@@ -257,6 +297,7 @@ export class ReservationComponent implements OnInit,AfterViewInit {
         break;
       }
     }
+
   }
 
   selectEvent(item) {
@@ -320,8 +361,16 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     }
   }
 
-  searchCleared() {
-    this.remoteData = [];
+  searchCleared(type) {
+    if(type == 'departure-list') {
+     this.departureList = []
+    }
+    else if (type == 'departure-list') {
+      this.arrivalList = []
+    }
+    else {
+      this.remoteData = [];
+    }
   }
 
   setSearchParams (tab) {
