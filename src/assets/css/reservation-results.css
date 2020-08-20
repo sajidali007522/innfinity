@@ -108,8 +108,11 @@
     }
     .label-num{
         float: right;
-        font-size: 11px;
-        color: #a1a0b2;
+        font-size: 10px;
+        background:#135d82;
+        color: #fff;
+        line-height: 1;
+        padding: 2px 5px;
     }
 .reservation-content-area{
     width: calc(100% - 250px);
