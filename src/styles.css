@@ -809,6 +809,16 @@ body .ng5-slider .ng5-slider-bubble{
   border-radius: 7px;
 }
 
+
+/* for reservation-results */
+body.menu-fullwidth .reservation-sidebar{
+  display: none;
+}
+body.menu-fullwidth .reservation-content-area{
+  width: 100%;
+}
+/* for reservation-results end */
+
 @media(min-width:767px){
   .modal-md{
     max-width: 700px;
