@@ -192,6 +192,7 @@
                              [(ngModel)]="form.BeginDate"
                              bsDatepicker
                              [bsConfig]="bsConfig"
+                             (ngModelChange)="setDateTo()"
                              [minDate]="minDateFrom"
                              placeholder="Date From"
                              name="departure_date"

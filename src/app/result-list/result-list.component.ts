@@ -77,7 +77,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
                private _http: HttpService,
                private activatedRoute: ActivatedRoute
   ) {
-    this.renderer.addClass(document.body, 'menu-fullwidth');
+    this.renderer.removeClass(document.body, 'menu-fullwidth');
   }
 
   ngOnInit(): void {
@@ -219,6 +219,106 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         console.log(error);
         })
   }
+  getSearchFilterGrid () {
+    //https://prod-obt.innfinity.com/INNfinite//Commercial/GetSearchFilterGrid?searchID=5ac2fe1b-7e9b-4e69-a549-e0803c7f502e&searchIndex=0&columnMetadataKey=Provider&rowMetadataKey=Connection&_=1597959414042
+    /*bookingID=44d22466-278e-4a87-a46b-ef0ae70d76b2&resourceTypeID=ecf6f1a3-8867-40cc-8118-5defb120d5ee*/
+    this.state.processing=true;
+
+    this._http._get('booking/'+this.state.bookingID+'/SearchFilterGrid/'+this.state.searchId+'', {
+      searchIndex:0,
+      sortProperties:'LowestPrice',
+      isAscending: true,
+      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount',
+      priceProperties: 'TotalPrice|UniqueID|GetFareNameShort|BasePrice',
+      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName'
+    })
+      .subscribe(data => {
+          this.state.processing=false;
+          //setting up data to render
+          for (let index =0; index < data['metadata'].length; index++){
+            //checking for price
+            if(data['metadata'][index].name == 'Price') {
+              this.state.filter.price.value = Number(data['metadata'][index]['metadataItems'][0].key);
+              this.state.filter.price.highValue= Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
+              this.state.price.options.floor = Number(data['metadata'][index]['metadataItems'][0].key);
+              this.state.price.options.ceil = Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
+              this.state.price.options['step'] = data['metadata'][index].interval;
+              console.log(this.state.price);
+            }
+            //checking for Departure
+            if(data['metadata'][index].name == "Departure") {
+              this.state.filter.departure.value = Date.parse(data['metadata'][index]['metadataItems'][0].key);
+              this.state.filter.departure.highValue= Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
+              this.state.departure.options.floor = Date.parse(data['metadata'][index]['metadataItems'][0].key);
+              this.state.departure.options.ceil = Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key)
+              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.departure.options['translate'] = (value: number, label: LabelType): string => {
+                return this.parseTime(value)
+              }
+            }
+            //checking for arrival
+            if(data['metadata'][index].name == "Arrival") {
+              this.state.filter.arrival.value = Date.parse(data['metadata'][index]['metadataItems'][0].key);
+              this.state.filter.arrival.highValue= Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
+              this.state.arrival.options.floor = Date.parse(data['metadata'][index]['metadataItems'][0].key);
+              this.state.arrival.options.ceil = Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key)
+              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.arrival.options['translate'] = (value: number, label: LabelType): string => {
+                return this.parseTime(value)
+              }
+            }
+            //checking for Max Number of Stops
+            if(data['metadata'][index].name == "Max Stop Time") {
+              this.state.filter.maxStoptime.value = Number(data['metadata'][index]['metadataItems'][0].key) * data['metadata'][index].interval;
+              this.state.filter.maxStoptime.highValue= Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key) * data['metadata'][index].interval;
+              this.state.maxStoptime.options.floor = Number(data['metadata'][index]['metadataItems'][0].key) * data['metadata'][index].interval;
+              this.state.maxStoptime.options.ceil = Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key) * data['metadata'][index].interval;
+              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.maxStoptime.options['translate'] = (value: number, label: LabelType): string => {
+                if(value <= 0) {
+                  return 'non stop';
+                }
+                let hour = Math.floor(value/60);
+                let mins = value%60;
+                return hour+" hours and "+mins+ "Minutes";
+              }
+            }
+            //checking for Policy
+            if(data['metadata'][index].name == "Policy") {
+              this.state.filter.policy = this.renderMetaDataItems(data['metadata'][index], "checkbox");
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name == "Airlines") {
+              this.state.filter.airlines = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name == "Stops") {
+              this.state.filter.stops = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name == "Channel") {
+              this.state.filter.channel = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name == "Options") {
+              this.state.filter.options = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name ==  "Connecting City") {
+              this.state.filter.connectingCity = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+            //checking for Airlines
+            if(data['metadata'][index].name ==  "Fare Type") {
+              this.state.filter.fareType = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
+            }
+          }
+        },
+        error => {
+          this.state.processing = false;
+          console.log(error);
+        })
+  }
+
   renderMetaDataItems (metaData, type) {
     var returnObj= [];
     if(type == 'checkbox') {
@@ -237,6 +337,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       return returnObj;
     }
   }
+
   parseTime(miliseconds) {
     let d = new Date(miliseconds); // this will translate label to time stamp.
     let hours = d.getHours();

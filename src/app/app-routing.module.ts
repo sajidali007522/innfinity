@@ -35,6 +35,7 @@ const routes: Routes = [
   {path:  "booking", component: SingleColumnLayoutComponent,  canActivate: [AuthGuard],
     children: [
       {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
+      {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
     ]
   },
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],

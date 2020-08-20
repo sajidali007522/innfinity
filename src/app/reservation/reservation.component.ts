@@ -81,10 +81,17 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   onFocused(e){
     // do something when input is focused
   }
+
   setDateTo () {
-    var BeginDate = new Date(this.form.BeginDate);
-    this.minDateTo.setDate(BeginDate.getDate()+1);
+    this.form.EndDate = this.form.BeginDate;
   }
+
+  setDepartureDate () {
+    if(this.form.BeginDate > this.form.EndDate) {
+      this.form.BeginDate = this.form.EndDate;
+    }
+  }
+
 
   applyFormat (dp) {
     this.bsConfig = Object.assign(this.bsConfig, { dateInputFormat: this.chosenDateFormat });
@@ -212,7 +219,7 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     this._http._post('Booking/'+this.form.bookingID+'/Search', body, {waitForSearchToComplete:true})
       .subscribe(data => {
         console.log(data);
-        this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['searchID']]);
+        this.router.navigate(['/booking/'+this.form.bookingID+'/search/'+data['searchID']]);
       })
   }
 
