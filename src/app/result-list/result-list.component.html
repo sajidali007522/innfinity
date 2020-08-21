@@ -97,8 +97,8 @@
             <div class="col-lg-6">
               <div class="reserve-top-filter">
                 <select class="form-control custom-select">
-                  <option>Filter Grid: Airline X Stop</option>
-                  <option>Policy X Airline</option>
+                  <!-- metadataGridOptions -->
+                  <option *ngFor="let item of state.metaDataGridOptions" value="item.value">{{item.text}}</option>
                 </select>
                 <select class="form-control custom-select">
                   <option>Sort By: Time</option>

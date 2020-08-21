@@ -22,6 +22,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     bookingID: '',
     searchId: '',
     processing: false,
+    metaDataGridOptions: [],
     price : {
       options: {
         floor: 0,
@@ -135,6 +136,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     })
       .subscribe(data => {
           this.state.processing=false;
+          this.state.metaDataGridOptions = data['metaDataGridOptions'];
           //setting up data to render
           for (let index =0; index < data['metadata'].length; index++){
             //checking for price
