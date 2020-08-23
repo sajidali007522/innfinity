@@ -135,6 +135,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     })
       .subscribe(data => {
           this.state.processing=false;
+          this.renderFilterGrid(data[''])
           //setting up data to render
           for (let index =0; index < data['metadata'].length; index++){
             //checking for price
@@ -236,6 +237,16 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       }
       return returnObj;
     }
+  }
+
+  renderFilterGrid (filter) {
+    this.state.processing=true;
+    ///api2/booking/{bookingID}/SearchFilterGrid/{searchID}/{searchIndex}/{columnMetadataKey}/{rowMetadataKey}
+    let filterOption = filter.split("|");
+    this._http._get('booking/'+this.state.bookingID+'/SearchFilterGrid/'+this.state.searchId+'/0/'+filterOption[0]+"/"+filterOption[1], {})
+      .subscribe(data => {
+        this.state.processing=false;
+      });
   }
   parseTime(miliseconds) {
     let d = new Date(miliseconds); // this will translate label to time stamp.
