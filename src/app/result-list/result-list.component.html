@@ -98,7 +98,7 @@
               <div class="reserve-top-filter">
                 <select class="form-control custom-select">
                   <!-- metadataGridOptions -->
-                  <option *ngFor="let item of state.metaDataGridOptions" value="item.value">{{item.text}}</option>
+                  <option *ngFor="let item of state.metaDataGridOptions" value="{{item.value}}">{{item.text}}</option>
                 </select>
                 <select class="form-control custom-select">
                   <option>Sort By: Time</option>
@@ -114,55 +114,32 @@
 
           <div class="box">
             <div class="table-responsive">
-              <table class="table selection-table">
+              <table class="table selection-table" *ngIf="state.gridFilter">
                 <thead>
                 <tr>
-                  <th><h4>Show All</h4> 14 Total Results</th>
-                  <th><h4>Air Canada <span>$294</span></h4> 6 Result</th>
-                  <th><h4>Westjet <span>$294</span></h4> 6 Result</th>
-                  <th><h4>Westjet <span>$294</span></h4> 10 Result</th>
-                  <th><h4>Westjet <span>$294</span></h4> 20 Result</th>
-                  <th><h4>Westjet <span>$294</span></h4> 15 Result</th>
-                  <th><h4>Westjet <span>$294</span></h4> 18 Result</th>
+                  <th><h4>Show All</h4> {{state.gridFilter.totalResults}} Total Results</th>
+                  <th *ngFor="let col of state.gridFilter.columns">
+                    <h4>{{col.name}}<br/><span>${{col.lowPrice}}</span></h4> {{col.resultCount}} Results
+                  </th>
+
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="active"><h4>NonStop</h4> 11 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
+
+                <tr *ngFor="let row of state.gridFilter.rows">
+                  <td>
+                    <h4>
+                      <img src="https://prod-obt.innfinity.com/Innfinite/temp/TravelLink2/{{row.logoUrl}}" />
+                      {{row.name}}
+                    </h4><br/>
+                    {{row.resultCount}} Results
+                  </td>
+                  <td class="" *ngFor="let item of row.items">
+                    <p>{{item.lowPrice}}</p> {{item.resultCount}} Results
+                  </td>
+
                 </tr>
-                <tr>
-                  <td><h4>1 Stop <span>$501</span></h4> 11 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                </tr>
-                <tr>
-                  <td><h4>2 Stops <span>$619</span></h4> 11 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                </tr>
-                <!-- <tr class="full-active">
-                  <td><h4>2 Stops <span>$619</span></h4> 11 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                  <td><p>$294</p> 5 Results</td>
-                </tr> -->
+
                 </tbody>
               </table>
             </div>
