@@ -763,7 +763,7 @@
 </div><!-- reservation-detail-wrap -->
 
 <div class="booking-article-bot">
-  <a href="javascript:void(0);" (click)="toggleBookingContentArea(true);" class="new-booking shakeClass"><span>1</span></a>
+  <a href="javascript:void(0);" *ngIf="!state.bookingContentArea" (click)="toggleBookingContentArea(true);" class="new-booking shakeClass"><span>1</span></a>
   <div class="booking-content-area" *ngIf="state.bookingContentArea" style="display:block;">
     <div class="booking-top" >
         <a href="javascript:void(0)" class="close-booking" (click)="toggleBookingContentArea(false);"><span class="fa fa-close"></span></a>
