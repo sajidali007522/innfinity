@@ -64,6 +64,16 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
     $(document).on("click", '.display-detail', function(){
       $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
     });
+    $(".content-booking-wrapper").on("click", ".content-booking-right td a", function(){
+      $(this).parent('td').toggleClass('active');
+      $(document).find(".booking-article-bot a").removeClass('shakeClass');
+      $(document).find(".booking-article-bot a span").hide();
+      if($(document).find("table.table-price-tickets tr td.active").length > 0) {
+        $(document).find(".booking-article-bot a span").show();
+      }
+      $(document).find(".booking-article-bot a span").text($(document).find("table.table-price-tickets tr td.active").length)
+      $(document).find(".booking-article-bot a").addClass("shakeClass");
+    })
   }
 
   toggleBookingContentArea (state) {

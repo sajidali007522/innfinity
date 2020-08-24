@@ -133,6 +133,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     // /api2/booking/{bookingID}/SearchResults/{searchID}
     this.state.processing=true;
     this._http._get('booking/'+this.state.bookingID+'/SearchResults/'+this.state.searchId+'', {
+      flattenValues: true,
       searchIndex:0,
       sortProperties:'LowestPrice',
       isAscending: true,

@@ -192,7 +192,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -251,7 +251,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td class=""><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -310,7 +310,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td class=""><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -369,7 +369,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td class=""><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -428,7 +428,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td class=""><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -487,7 +487,7 @@
                 <table class="table table-border table-price-tickets">
                   <tbody>
                     <tr>
-                      <td class="active"><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
+                      <td><a href="javascript:void(0)"><em>Econo</em> $294</a></td>
                       <td><a href="javascript:void(0)"><em>Flex</em> $319</a></td>
                       <td><a href="javascript:void(0)"><em>Premimum</em> $344</a></td>
                       <td><a href="javascript:void(0)"><em>Prem Flex</em> $503</a></td>
@@ -763,7 +763,9 @@
 </div><!-- reservation-detail-wrap -->
 
 <div class="booking-article-bot">
-  <a href="javascript:void(0);" *ngIf="!state.bookingContentArea" (click)="toggleBookingContentArea(true);" class="new-booking shakeClass"></a>
+  <a href="javascript:void(0);" *ngIf="!state.bookingContentArea" (click)="toggleBookingContentArea(true);" class="new-booking">
+    <span style="display: none;"></span>
+  </a>
   <div class="booking-content-area" *ngIf="state.bookingContentArea" style="display:block;">
     <div class="booking-top" >
         <a href="javascript:void(0)" class="close-booking" (click)="toggleBookingContentArea(false);"><span class="fa fa-close"></span></a>
