@@ -21,6 +21,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   state= {
     bookingID: '',
     searchId: '',
+    grid_filter: '',
     processing: false,
     metaDataGridOptions: [],
     gridFilter: {
@@ -220,7 +221,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
           }
           this.state.processing=false;
           this.state.metaDataGridOptions = data['metadataGridOptions'];
-          this.renderFilterGrid(data['metadataGridOptions'][0].value)
+          this.state.grid_filter = data['metadataGridOptions'][0].value;
+          this.renderFilterGrid();
         },
         error => {
         this.state.processing = false;
@@ -247,10 +249,10 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     }
   }
 
-  renderFilterGrid (filter) {
+  renderFilterGrid () {
     this.state.processing=true;
     ///api2/booking/{bookingID}/SearchFilterGrid/{searchID}/{searchIndex}/{columnMetadataKey}/{rowMetadataKey}
-    let filterOption = filter.split("|");
+    let filterOption = this.state.grid_filter.split("|");
     this._http._get('booking/'+this.state.bookingID+'/SearchFilterGrid/'+this.state.searchId+'/0/'+filterOption[0]+"/"+filterOption[1], {})
       .subscribe(data => {
         this.state.processing=false;

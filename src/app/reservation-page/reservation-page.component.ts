@@ -17,6 +17,7 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
     ceil: 100
   };
   state= {
+    bookingContentArea: false,
     price : {
       value: 40,
       highValue: 60,
@@ -59,7 +60,14 @@ export class ReservationPageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     $(".accordon-heading").click(function(){
       $(this).parent().toggleClass('group-active');
-    })
+    });
+    $(document).on("click", '.display-detail', function(){
+      $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
+    });
+  }
+
+  toggleBookingContentArea (state) {
+    this.state.bookingContentArea = state;
   }
 
 }
