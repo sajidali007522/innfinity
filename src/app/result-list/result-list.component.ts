@@ -19,11 +19,13 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     ceil: 100
   };
   state= {
+    bookingContentArea: false,
     bookingID: '',
     searchId: '',
     grid_filter: '',
     processing: false,
     metaDataGridOptions: [],
+    bookingRows: [],
     gridFilter: {
       totalResults: 0,
       rows: [],
@@ -99,6 +101,22 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
     $("body").on("click", ".accordon-heading", function(){
       $(this).parent().toggleClass('group-active');
+    });
+    $(document).on("click", '.display-detail', function(){
+      $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
+    });
+    $(".content-booking-wrapper").on("click", "a.selectMe", function(){
+      $(this).parents('tr').find('td').each(function(){
+        $(this).removeClass('active');
+      })
+      $(this).parent('td').toggleClass('active');
+      $(document).find(".booking-article-bot a").removeClass('shakeClass');
+      $(document).find(".booking-article-bot a span").hide();
+      if($(document).find("table.table-price-tickets tr td.active").length > 0) {
+        $(document).find(".booking-article-bot a span").show();
+      }
+      $(document).find(".booking-article-bot a span").text($(document).find("table.table-price-tickets tr td.active").length)
+      $(document).find(".booking-article-bot a").addClass("shakeClass");
     })
   }
 
@@ -223,6 +241,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
           this.state.processing=false;
           this.state.metaDataGridOptions = data['metadataGridOptions'];
           this.state.grid_filter = data['metadataGridOptions'][0].value;
+          this.state.bookingRows = data['results'];
           this.renderFilterGrid();
         },
         error => {
@@ -272,6 +291,16 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     let minut = minutes < 10 ? '0'+minutes : minutes;
     return hours + ':' + minut + ' ' + ampm;
+  }
+
+  formatDateIntoTime(date) {
+    let d = date.split(" ");
+    let hours = d[1].split(":");
+    return hours[0]+":"+hours[1]+" "+d[2];
+  }
+
+  toggleBookingContentArea (state) {
+    this.state.bookingContentArea = state;
   }
 
 }
