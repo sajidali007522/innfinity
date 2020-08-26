@@ -134,6 +134,42 @@
   background: #000 !important;
 }
 
+/* SearchResult start */
+body.theme-dark-primary .reservation-sidebar{
+  color:#fff;
+  background: #15191c;
+  box-shadow: 0 1px 20px 0 rgba(174, 195, 204, 0.22);
+}
+body.theme-dark-primary .reservation-sidebar .accordon-heading a,
+body.theme-dark-primary .reservation-sidebar .accordon-heading a:before,
+body.theme-dark-primary .reservation-sidebar .accordon-heading a.icon-contain,
+body.theme-dark-primary .label-num{
+  color: #fff !important;
+}
+body.theme-dark-primary .icon-price:after{background: url(../images/reservation/icon-tag-white.png) no-repeat;}
+body.theme-dark-primary .icon-departure:after{background: url(../images/reservation/icon-departure-white.png) no-repeat;}
+body.theme-dark-primary .icon-arrival:after{background: url(../images/reservation/icon-arrival-white.png) no-repeat;}
+body.theme-dark-primary .icon-time:after{background: url(../images/reservation/icon-time-white.png) no-repeat;}
+body.theme-dark-primary .ng5-slider .ng5-slider-bubble{
+  color: #ccc;
+}
+body.theme-dark-primary .reservation-content-area .box,
+body.theme-dark-primary .article-content-booking{
+  background: #15191c;
+  color: #fff;
+}
+body.theme-dark-primary .selection-table.table th, 
+body.theme-dark-primary .selection-table.table td,
+body.theme-dark-primary .content-booking-left,
+body.theme-dark-primary .content-booking-left h3,
+body.theme-dark-primary .display-detail{
+  color:#fff;
+}
+body.theme-dark-primary .table-price-tickets.table a{
+  color:#fff !important;
+}
+/* SearchResult end */
+
 @media(max-width:991px){
   .theme-dark-primary .nav-wrap{
     background:#000 !important;
