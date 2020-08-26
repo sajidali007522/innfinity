@@ -24,6 +24,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     searchId: '',
     grid_filter: '',
     processing: false,
+    cart: [],
     metaDataGridOptions: [],
     bookingRows: [],
     gridFilter: {
@@ -105,19 +106,6 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     $(document).on("click", '.display-detail', function(){
       $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
     });
-    $(".content-booking-wrapper").on("click", "a.selectMe", function(){
-      $(this).parents('tr').find('td').each(function(){
-        $(this).removeClass('active');
-      })
-      $(this).parent('td').toggleClass('active');
-      $(document).find(".booking-article-bot a").removeClass('shakeClass');
-      $(document).find(".booking-article-bot a span").hide();
-      if($(document).find("table.table-price-tickets tr td.active").length > 0) {
-        $(document).find(".booking-article-bot a span").show();
-      }
-      $(document).find(".booking-article-bot a span").text($(document).find("table.table-price-tickets tr td.active").length)
-      $(document).find(".booking-article-bot a").addClass("shakeClass");
-    })
   }
 
   checkSearchStatus () {
@@ -145,6 +133,72 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         this.state.processing = false;
         console.log(error);
         });
+  }
+
+  selectIt (bookRow, bookIndex, currentItem, priceArray) {
+    let check = currentItem.values2.$selected;
+    $(document).find(".booking-article-bot > a").removeClass('shakeClass');
+    priceArray.filter(function(price){
+      price.values2.$selected = false;
+    });
+
+    if(!check) {
+      let index =0;
+      let removeMe = -1;
+      this.state.cart.filter(function(c){
+        if(c.UniqueID == bookRow.UniqueID){
+          removeMe = index;
+        }
+        index++;
+      });
+      if(removeMe>= 0) {
+        this.state.cart.splice(removeMe, 1);
+      }
+
+      this.state.cart.push({
+        UniqueID: bookRow.UniqueID,
+        provider: bookRow.ProviderName,
+        Date: this.getDateFromDateTime(bookRow.BeginDate),
+        From: this.formatDateIntoTime(bookRow.BeginDate)+": "+bookRow.From,
+        To: this.formatDateIntoTime(bookRow.EndDate)+": "+bookRow.To,
+        Price: currentItem
+      });
+      currentItem.values2.$selected = true;
+    } else {
+      let index =0;
+      let removeMe = -1;
+      this.state.cart.filter(function(c){
+        if(c.UniqueID == bookRow.UniqueID){
+          removeMe = index;
+        }
+        index++;
+      });
+
+      this.state.cart.splice(removeMe, 1);
+      currentItem.values2.$selected = false;
+    }
+    $(document).find(".booking-article-bot > a").addClass('shakeClass');
+  }
+
+  removeItemFromCart(UniqueId, index) {
+    $(document).find(".booking-article-bot > a").removeClass('shakeClass');
+    this.state.bookingRows.filter(row => {
+      //console.log(row.values2.UniqueID == UniqueId, row.values2.UniqueID, '==', UniqueId)
+      if(row.values2.UniqueID == UniqueId) {
+        row.bookingChannels = this.resetBookingChannels(row.bookingChannels);
+      }
+    });
+    this.state.cart.splice(index, 1);
+    $(document).find(".booking-article-bot > a").addClass('shakeClass');
+  }
+
+  resetBookingChannels(bookingChannels){
+    bookingChannels.filter(function(channel){
+      channel.prices.filter(function( p ){
+        p.values2.$selected = false;
+      })
+    });
+    return bookingChannels;
   }
 
   getSearchResults () {
@@ -291,6 +345,11 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     let minut = minutes < 10 ? '0'+minutes : minutes;
     return hours + ':' + minut + ' ' + ampm;
+  }
+
+  getDateFromDateTime (date) {
+    let d = date.split(" ");
+    return d[0];
   }
 
   formatDateIntoTime(date) {

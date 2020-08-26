@@ -129,7 +129,7 @@
                 <tr *ngFor="let row of state.gridFilter.rows">
                   <td>
                     <h4>
-                      <img src="https://prod-obt.innfinity.com/Innfinite/temp/TravelLink2/{{row.logoUrl}}" />
+                      <img src="../../assets/images/reservation/{{row.name.toLowerCase().split(' ').join('-')}}.png" />
                       {{row.name}}
                     </h4><br/>
                     {{row.resultCount}} Results
@@ -146,7 +146,7 @@
           </div>
 
           <div class="content-booking-wrapper">
-            <div class="article-content-booking" *ngFor="let row of state.bookingRows">
+            <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;">
               <div class="content-booking-left">
                 <h3>
                   <img src="../../assets/images/reservation/{{row.values2.ProviderName.toLowerCase().split(' ').join('-')}}.png" alt="">
@@ -165,8 +165,8 @@
                   <table class="table table-border table-price-tickets">
                     <tbody>
                     <tr *ngFor="let channel of row.bookingChannels">
-                      <td *ngFor="let price of channel.prices">
-                        <a href="javascript:void(0)" class="selectMe"
+                      <td *ngFor="let price of channel.prices" [ngClass]="{active: price.values2.$selected}">
+                        <a href="javascript:void(0)" class="selectMe" (click)="selectIt(row.values2, index, price, channel.prices)"
                            *ngIf="price.values2.BasePrice"
                            id="{{price.UniqueID}}"
                         >
@@ -203,7 +203,7 @@
   </div><!-- reservation-detail-wrap -->
   <div class="booking-article-bot">
     <a href="javascript:void(0);" *ngIf="!state.bookingContentArea" (click)="toggleBookingContentArea(true);" class="new-booking">
-      <span style="display: none;"></span>
+      <span *ngIf="state.cart.length>0">{{state.cart.length}}</span>
     </a>
     <div class="booking-content-area" *ngIf="state.bookingContentArea" style="display:block;">
       <div class="booking-top" >
@@ -213,24 +213,16 @@
       </div>
       <div class="booking-art-inner">
         <ul>
-          <li>
-            <h4>Westjet <a href="javascript:void(0)" class="remove-booking">Remove</a></h4>
-            <h5>WS 115 <span>Aug 24</span></h5>
-            <p>08:00 AM: Calgary Intl. Airport</p>
-            <p>08:00 AM: Vancouver Intl. Airport</p>
+          <li *ngFor="let item of state.cart; let index = $index;">
+            <h4>{{item.provider}} <a href="javascript:void(0)" class="remove-booking" (click)="removeItemFromCart(item.UniqueID, index)">Remove</a></h4>
+            <h5>WS 115 <span>{{item.Date}}</span></h5>
+            <p>{{item.From}}</p>
+            <p>{{item.To}}</p>
             <div class="booking-subtotal">
-              <span>Flex</span> <strong>326.35</strong>
+              <span>{{item.Price.values2.GetFareNameShort}}</span> <strong>{{item.Price.values2.TotalPrice}}</strong>
             </div>
           </li>
-          <li>
-            <h4>Westjet <a href="javascript:void(0)" class="remove-booking">Remove</a></h4>
-            <h5>WS 115 <span>Aug 24</span></h5>
-            <p>08:00 AM: Calgary Intl. Airport</p>
-            <p>08:00 AM: Vancouver Intl. Airport</p>
-            <div class="booking-subtotal">
-              <span>Flex</span> <strong>326.35</strong>
-            </div>
-          </li>
+
         </ul>
       </div>
     </div>
