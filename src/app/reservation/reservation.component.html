@@ -241,6 +241,11 @@
                   </div>
                 </div>
               </div>
+              <div class="row" *ngIf="state.errors != ''">
+                <div class="col-sm-12">
+                    <p class="error">{{state.errors}}</p>
+                </div>
+              </div>
             </div>
             <button type="submit" class="btn btn-success btn-block" (click)="submitIt()" [disabled]="state.processing">Search <span class="fa fa-spin fa-spinner" *ngIf="state.processing"></span></button>
         </div>

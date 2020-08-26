@@ -37,7 +37,8 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   ruleBags;
   state={
     initiateBooking: false,
-    processing:false
+    processing:false,
+    errors: ''
   };
   form = {
     BeginDate: new Date(),
@@ -111,14 +112,19 @@ export class ReservationComponent implements OnInit,AfterViewInit {
   }
   submitIt () {
     let postBody = this.preparePostBody();
-
+    this.state.errors = '';
     this.state.processing = true;
     this._http._post("Booking/"+this.form.bookingID+"/SearchCriteria", postBody)
       .subscribe(data => {
         this.state.processing=false;
         this.getSearchCriteria(data);
         //this.router.navigate(['/reservation/'+this.form.bookingID+'/search/'+data['resourceTypeID']]);
-      });
+      },
+        error => {
+        console.log(error);
+          this.state.processing=false;
+          this.state.errors = error;
+        });
   }
 
   preparePostBody () {
@@ -169,7 +175,7 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     return postBody;
   }
   getSearchCriteria (assignSearchResponse){
-
+    this.state.errors= '';
     this.state.processing=true;
     this._http._post('Booking/'+this.form.bookingID+'/SearchCriteria', Array.of({}), {
         retrieve : true,
@@ -179,7 +185,11 @@ export class ReservationComponent implements OnInit,AfterViewInit {
       .subscribe(data => {
         this.state.processing=false;
         this.loadSearchResult(data, assignSearchResponse['resourceTypeID']);
-      })
+      },
+        error => {
+          this.state.processing=false;
+          this.state.errors = error;
+        })
   }
 
   loadSearchResult (requestParams, resourceTypeId) {
