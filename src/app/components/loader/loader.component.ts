@@ -10,7 +10,8 @@ export class LoaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.className = this.className ? this.className : 'loader-lg';
+    console.log(this.className);
+    this.className = this.className ? 'loader '+this.className : 'loader loader-lg';
   }
 
 }

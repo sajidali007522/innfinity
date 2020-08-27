@@ -1,5 +1,5 @@
 <div class="reservation-detail-wrap" *ngIf="state.processing">
-  <app-loader className="loader-reservation-results"></app-loader>
+  <app-loader [className]="'loader-reservation-results loader-lg'"></app-loader>
 </div>
 <div *ngIf="!state.processing">
   <div class="reservation-detail-wrap">
