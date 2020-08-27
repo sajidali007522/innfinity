@@ -815,6 +815,7 @@ body .ng5-slider .ng5-slider-bubble{
 .loader-reservation-results,
 .loader-reservation-results .loader{
   min-height: 100vh;
+  width: 100vw;
 }
 body.menu-fullwidth .reservation-sidebar{
   display: none;
