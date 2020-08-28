@@ -29,7 +29,7 @@
                   <select class="form-control" name="resourceTypeID" [(ngModel)]="form.ResourceTypeID">
                       <option value="{{type.value}}" *ngFor="let type of ruleBags">{{type.text}}</option>
                   </select>
-                  <span class="fa fa-user-o" *ngIf="!state.initiateBooking"></span>
+                  <span class="globel-world-icon" *ngIf="!state.initiateBooking"></span>
                   <span class="fa fa-spin fa-spinner" *ngIf="state.initiateBooking"></span>
               </div>
           </div>
@@ -52,6 +52,7 @@
                     class="testing"
                     name="traveler"
                   >
+
                   </ng-autocomplete>
 
                   <ng-template #itemTemplateProfiles let-item>
@@ -97,7 +98,7 @@
             <div class="book-time-wrap">
               <div class="row">
                 <div class="col-md-6 col-6">
-                  <h3>From*</h3>
+                  <h3>Departure*</h3>
                   <div class="field-wrap-outer field-gray-wrap">
                     <div class="field-wrap">
                       <ng-autocomplete
@@ -112,7 +113,7 @@
                         [debounceTime]="400"
                         [isLoading]="isLoadingResult"
                         [minQueryLength]="3"
-                        placeHolder="Search here."
+                        placeHolder="Search Departure."
                         name="departure"
                       >
                       </ng-autocomplete>
@@ -140,7 +141,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-6">
-                  <h3>To*</h3>
+                  <h3>Destination*</h3>
                   <div class="field-wrap-outer">
                     <div class="field-wrap time-picker-wrap field-gray-wrap">
                       <ng-autocomplete
@@ -155,7 +156,7 @@
                         [debounceTime]="400"
                         [isLoading]="isLoadingArrival"
                         [minQueryLength]="3"
-                        placeHolder="Search Here."
+                        placeHolder="Search Destination."
                         name="arrival"
                       >
                       </ng-autocomplete>
@@ -186,7 +187,7 @@
               <div class="row">
                 <div class="col-md-7 col-5">
                   <div class="field-wrap-outer">
-                    <label>Departure*</label>
+                    <label>Departure Date*</label>
                     <div class="field-wrap">
                       <input type="text"
                              [(ngModel)]="form.BeginDate"
@@ -194,7 +195,7 @@
                              [bsConfig]="bsConfig"
                              (ngModelChange)="setDateTo()"
                              [minDate]="minDateFrom"
-                             placeholder="Date From"
+                             placeholder="Departure Date"
                              name="departure_date"
                              class="form-control">
                       <span class="fa fa-calendar-o"></span>
@@ -203,7 +204,7 @@
                 </div>
                 <div class="col-md-5 col-7">
                   <div class="field-wrap-outer">
-                    <label>Departure Time*</label>
+                    <label>Departure Time</label>
                     <div class="field-wrap time-picker-wrap">
                       <timepicker [(ngModel)]="form.BeginTime"
                                   [mousewheel]="true"
@@ -218,14 +219,14 @@
               <div class="row">
                 <div class="col-md-7 col-5">
                   <div class="field-wrap-outer">
-                    <label>Arrival*</label>
+                    <label>Return Date*</label>
                     <div class="field-wrap">
                         <input type="text"
                                [(ngModel)]="form.EndDate"
                                bsDatepicker
                                [minDate]="form.BeginDate"
                                [bsConfig]="bsConfig"
-                               placeholder="Date To"
+                               placeholder="Return Date"
                                name="arrival_date"
                                class="form-control">
                         <span class="fa fa-calendar-o"></span>
@@ -234,7 +235,7 @@
                 </div>
                 <div class="col-md-5 col-7">
                   <div class="field-wrap-outer time-picker-wrap">
-                    <label>Arrival Time*</label>
+                    <label>Return Time*</label>
                     <div class="field-wrap">
                         <timepicker [(ngModel)]="form.EndTime" [mousewheel]="true" [arrowkeys]="true"></timepicker>
                     </div>

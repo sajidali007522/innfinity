@@ -35,7 +35,8 @@ const routes: Routes = [
   {path:  "booking", component: SingleColumnLayoutComponent,  canActivate: [AuthGuard],
     children: [
       {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
-      {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
+      {path: "make", component:ReservationComponent, canActivate: [AuthGuard] },
+      {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] }
     ]
   },
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
@@ -50,7 +51,6 @@ const routes: Routes = [
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
-      {path: "reservation", component:ReservationComponent, canActivate: [AuthGuard] },
       {path: "reservation/:booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
       {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },
       {path: "autocomplete", component:AutocompleteComponent, canActivate: [AuthGuard] },

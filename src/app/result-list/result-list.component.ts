@@ -136,25 +136,25 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   }
 
   selectIt (bookRow, bookIndex, currentItem, priceArray) {
+    this.shakeIt(true);
     let check = currentItem.values2.$selected;
-    $(document).find(".booking-article-bot > a").removeClass('shakeClass');
-    priceArray.filter(function(price){
-      price.values2.$selected = false;
-    });
+    this.state.bookingRows.filter(r => {
+      r.bookingChannels = this.resetBookingChannels(r.bookingChannels);
+    })
 
     if(!check) {
-      let index =0;
-      let removeMe = -1;
-      this.state.cart.filter(function(c){
-        if(c.UniqueID == bookRow.UniqueID){
-          removeMe = index;
-        }
-        index++;
-      });
-      if(removeMe>= 0) {
-        this.state.cart.splice(removeMe, 1);
-      }
-
+      //let index =0;
+      //let removeMe = -1;
+      // this.state.cart.filter(function(c){
+      //   if(c.UniqueID == bookRow.UniqueID){
+      //     removeMe = index;
+      //   }
+      //   index++;
+      // });
+      // if(removeMe>= 0) {
+      //   this.state.cart.splice(removeMe, 1);
+      // }
+      this.state.cart= [];
       this.state.cart.push({
         UniqueID: bookRow.UniqueID,
         provider: bookRow.ProviderName,
@@ -164,7 +164,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         Price: currentItem
       });
       currentItem.values2.$selected = true;
-    } else {
+    }
+    else {
       let index =0;
       let removeMe = -1;
       this.state.cart.filter(function(c){
@@ -177,11 +178,21 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       this.state.cart.splice(removeMe, 1);
       currentItem.values2.$selected = false;
     }
-    $(document).find(".booking-article-bot > a").addClass('shakeClass');
+    this.shakeIt();
+  }
+
+  shakeIt(remove=false) {
+    if(remove) {
+      $(document).find(".booking-article-bot a.new-booking").removeClass('shakeClass');
+      console.log("removed");
+    } else {
+      console.log("shaked");
+      $(document).find(".booking-article-bot a.new-booking").addClass('shakeClass');
+    }
   }
 
   removeItemFromCart(UniqueId, index) {
-    $(document).find(".booking-article-bot > a").removeClass('shakeClass');
+    this.shakeIt(true);
     this.state.bookingRows.filter(row => {
       //console.log(row.values2.UniqueID == UniqueId, row.values2.UniqueID, '==', UniqueId)
       if(row.values2.UniqueID == UniqueId) {
@@ -189,7 +200,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       }
     });
     this.state.cart.splice(index, 1);
-    $(document).find(".booking-article-bot > a").addClass('shakeClass');
+    this.shakeIt();
   }
 
   resetBookingChannels(bookingChannels){
@@ -350,6 +361,11 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   getDateFromDateTime (date) {
     let d = date.split(" ");
     return d[0];
+  }
+  skipSeconds(date){
+    let d = date.split(" ");
+    let hours = d[1].split(":");
+    return d[0]+" "+hours[0]+":"+hours[1]+" "+d[2];
   }
 
   formatDateIntoTime(date) {

@@ -90,9 +90,9 @@
             <div class="col-lg-6">
               <div class="reservation-tabs">
                 <ul>
-                  <li class="active"><a href="#content-1"><strong>Aug</strong> 12</a></li>
-                  <li><a href="#content-2"><strong>Aug</strong> 13</a></li>
-                  <li><a href="#content-3"><strong>Aug</strong>14</a></li>
+                  <li class="active"><a href="javascript:void(0);"><strong>Aug</strong> 12</a></li>
+                  <li><a href="javascript:void(0);"><strong>Aug</strong> 13</a></li>
+                  <li><a href="javascript:void(0);"><strong>Aug</strong>14</a></li>
                 </ul>
               </div>
             </div>
@@ -152,7 +152,8 @@
                 <h3>
                   <img src="../../assets/images/reservation/{{row.values2.ProviderName.toLowerCase().split(' ').join('-')}}.png" alt="">
                   {{row.values2.ProviderName}}
-                  <span class="book-sm-info" [ngClass]="{'non-stop': row.values2.ConnectionDescriptionExtended == 'Nonstop','multi-stop': row.values2.ConnectionDescriptionExtended != 'Nonstop' }">{{row.values2.ConnectionDescriptionExtended}}</span></h3>
+                  <span class="book-sm-info" [ngClass]="{'non-stop': row.values2.ConnectionDescriptionExtended == 'Nonstop','multi-stop': row.values2.ConnectionDescriptionExtended != 'Nonstop' }">{{row.values2.ConnectionDescriptionExtended}}</span>
+                </h3>
                 <div class="booking-time">
                   <ul>
                     <li>{{formatDateIntoTime(row.values2.BeginDate)}} {{row.values2.From}}</li>
@@ -187,12 +188,11 @@
                     <div class="col-lg-6" *ngFor="let bookDetail of row.tripDetails">
                       <div class="info-more-section">
                         <h3>Depart {{bookDetail.values2.From}} - {{bookDetail.values2.To}}</h3>
-                        <h4>{{bookDetail.values2.BeginDate}}</h4>
+                        <h4>{{skipSeconds(bookDetail.values2.BeginDate)}}</h4>
                         <ul>
                           <li>{{formatDateIntoTime(bookDetail.values2.BeginDate)}} - {{formatDateIntoTime(bookDetail.values2.EndDate)}}</li>
                           <li>{{bookDetail.values2.FromName}} ({{bookDetail.values2.From}}) - {{bookDetail.values2.ToName}} ({{bookDetail.values2.To}})</li>
                         </ul>
-                        <h4>Basic: 1h 11m</h4>
                       </div>
                     </div>
                   </div>
