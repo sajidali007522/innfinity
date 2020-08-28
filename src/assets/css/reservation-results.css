@@ -465,6 +465,9 @@
         padding:0;
         border: 1px solid #cbcbcb;
     }
+    .table-price-tickets.table td.hidden{
+        display: none !important;
+    }
     .table-price-tickets.table a{
         display: block;
         color: #212529;

@@ -158,14 +158,15 @@ body.theme-dark-primary .article-content-booking{
   background: #15191c;
   color: #fff;
 }
-body.theme-dark-primary .selection-table.table th, 
+body.theme-dark-primary .selection-table.table th,
 body.theme-dark-primary .selection-table.table td,
 body.theme-dark-primary .content-booking-left,
 body.theme-dark-primary .content-booking-left h3,
 body.theme-dark-primary .display-detail{
   color:#fff;
 }
-body.theme-dark-primary .table-price-tickets.table a{
+body.theme-dark-primary .table-price-tickets.table a,
+body.theme-dark-primary .selection-table.table th h4{
   color:#fff !important;
 }
 body.theme-dark-primary .booking-time ul li{

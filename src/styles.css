@@ -809,6 +809,12 @@ body .ng5-slider .ng5-slider-bubble{
   color: #fff;
   border-radius: 7px;
 }
+.globel-world-icon{
+  background:url(/assets/images/reservation/globel-icon.png) no-repeat;
+  background-size: 100% auto;
+  width: 30px;
+  height: 30px;
+}
 
 
 /* for reservation-results */
