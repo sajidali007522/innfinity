@@ -777,6 +777,9 @@ input[type="file"] {
   height: auto;
   line-height: inherit;
 }
+.field-gray-wrap.traveler-field .autocomplete-container input{
+  padding-left: 40px !important;
+}
 
 /* range slider default style */
 body .ng5-slider .ng5-slider-bar{
