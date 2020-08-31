@@ -745,6 +745,11 @@
             flex-wrap: wrap;
             margin: 0 0 5px;
         }
+        .booking-art-inner li h4 img{
+            max-width: 20px;
+            height: auto;
+            margin-right: 4px;
+        }
         .booking-art-inner li h4 a{
             margin-left: auto;
             display: block;
