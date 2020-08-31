@@ -145,47 +145,50 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       this.markAsAddedToCart(bookRow, bookIndex, currentItem, check);
       return;
     }
-    this._http._get('booking/'+this.state.bookingID+'/SearchResult/'+this.state.searchId+'/0',{
-      uniqueID : bookRow.UniqueID,
-      priceID: currentItem.values2.UniqueID,
-      flattenValues: true,
-      priceProperties: 'BasePrice|TotalPrice|Description|GetFareName|GetFareNameShort',
-      segmentProperties: 'BeginDate|EndDate|FromCode|ToCode|FromName|ToName',
-      bookingItemProperties: 'BeginDate|EndDate|FromCode|ToCode|FromName|ToName'
-    }).subscribe(data => {
-      console.log(data);
-      this.markAsAddedToCart(bookRow, bookIndex, currentItem, check, data)
+    currentItem.$isProcessing = true;
+    let postBody = [];
+    postBody.push({
+      "resultID": bookRow.UniqueID,
+      "searchID": "00000000-0000-0000-0000-000000000000",
+      "searchIndex": 0,
+      "priceID": currentItem.values2.UniqueID,
+      "beginDate": this.parseDateIntoObject(bookRow.BeginDate).toDateString(),
+      "endDate": this.parseDateIntoObject(bookRow.EndDate).toDateString(),
+      "resourceTypeID": "ecf6f1a3-8867-40cc-8118-5defb120d5ee",
+      "isReturn": false,
+      "timePropertyID": "00000000-0000-0000-0000-000000000000",
+      "beginTime": "",
+      "endTime": "",
+      "isDynamic": false
+    });
+
+    this._http._post('booking/'+this.state.bookingID+'/Book',postBody,
+      {resourceTypeID: "ECF6F1A3-8867-40CC-8118-5DEFB120D5EE"})
+      .subscribe(data => {
+        currentItem.$isProcessing = false;
+        this.markAsAddedToCart(bookRow, bookIndex, currentItem, check, String(data))
     })
 
 
   }
 
-  markAsAddedToCart(bookRow, bookIndex, currentItem, check, searchRes= {}) {
+  markAsAddedToCart(bookRow, bookIndex, currentItem, check, searchRes= '') {
     this.state.bookingRows.filter(r => {
       r.bookingChannels = this.resetBookingChannels(r.bookingChannels);
     })
 
     if(!check) {
-      //let index =0;
-      //let removeMe = -1;
-      // this.state.cart.filter(function(c){
-      //   if(c.UniqueID == bookRow.UniqueID){
-      //     removeMe = index;
-      //   }
-      //   index++;
-      // });
-      // if(removeMe>= 0) {
-      //   this.state.cart.splice(removeMe, 1);
-      // }
       this.state.cart= [];
+
       this.state.cart.push({
         UniqueID: bookRow.UniqueID,
         provider: bookRow.ProviderName,
+        providerLogo: bookRow.ProviderLogo.split('.png').join('_50.png'),
         Date: this.getDateFromDateTime(bookRow.BeginDate),
         From: this.formatDateIntoTime(bookRow.BeginDate)+": "+bookRow.From,
         To: this.formatDateIntoTime(bookRow.EndDate)+": "+bookRow.To,
         Price: currentItem,
-        selectedItem: searchRes
+        postResponse: searchRes
       });
       currentItem.values2.$selected = true;
     }
@@ -244,9 +247,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       searchIndex:0,
       sortProperties:'LowestPrice',
       isAscending: true,
-      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount',
+      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount|ProviderCode',
       priceProperties: 'TotalPrice|UniqueID|GetFareNameShort|BasePrice',
-      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName'
+      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|ProviderLogo|ProviderCode|Identifier'
     })
       .subscribe(data => {
           //setting up data to render
@@ -381,9 +384,11 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     let minut = minutes < 10 ? '0'+minutes : minutes;
     return hours + ':' + minut + ' ' + ampm;
   }
-
+  parseDateIntoObject(date) {
+    return new Date(Date.parse(date));
+  }
   parseDate (date, param) {
-    let d = new Date(Date.parse(date));
+    let d = this.parseDateIntoObject(date);
     var month = new Array();
     month[0] = "Jan";
     month[1] = "Feb";
