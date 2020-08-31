@@ -130,7 +130,7 @@
                 <tr *ngFor="let row of state.gridFilter.rows">
                   <td>
                     <h4>
-                      <img src="../../assets/images/reservation/{{row.name.toLowerCase().split(' ').join('-')}}.png" />
+                      <img src="{{row.logoUrl.split('.png').join('_50.png')}}" />
                       {{row.name}}
                     </h4><br/>
                     {{row.resultCount}} Results
@@ -150,7 +150,7 @@
             <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;">
               <div class="content-booking-left">
                 <h3>
-                  <img src="../../assets/images/reservation/{{row.values2.ProviderName.toLowerCase().split(' ').join('-')}}.png" alt="">
+                  <img src="{{row.values2.ProviderLogo.split('.png').join('_50.png')}}" alt="">
                   {{row.values2.ProviderName}}
                   <span class="book-sm-info" [ngClass]="{'non-stop': row.values2.ConnectionDescriptionExtended == 'Nonstop','multi-stop': row.values2.ConnectionDescriptionExtended != 'Nonstop' }">{{row.values2.ConnectionDescriptionExtended}}</span>
                 </h3>
@@ -166,12 +166,12 @@
                   <table class="table table-border table-price-tickets">
                     <tbody>
                     <tr *ngFor="let channel of row.bookingChannels">
-                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice}">
+                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice, 'processing': price.$isProcessing}">
                         <a href="javascript:void(0)" class="selectMe" (click)="selectIt(row.values2, index, price, channel.prices)"
                            *ngIf="price.values2.BasePrice"
                            id="{{price.UniqueID}}"
                         >
-                              <em>{{price.values2.GetFareNameShort}}</em>${{price.values2.TotalPrice}}
+                          <em>{{price.values2.GetFareNameShort}}</em>${{price.values2.TotalPrice}}
                         </a>
                       </td>
                     </tr>
@@ -187,7 +187,7 @@
                   <div class="row">
                     <div class="col-lg-6" *ngFor="let bookDetail of row.tripDetails">
                       <div class="info-more-section">
-                        <h3>Depart {{bookDetail.values2.From}} - {{bookDetail.values2.To}}</h3>
+                        <h3>{{row.ProviderCode}} {{bookDetail.values2.Identifier}}</h3>
                         <h4>{{skipSeconds(bookDetail.values2.BeginDate)}}</h4>
                         <ul>
                           <li>{{formatDateIntoTime(bookDetail.values2.BeginDate)}} - {{formatDateIntoTime(bookDetail.values2.EndDate)}}</li>
@@ -217,8 +217,9 @@
       <div class="booking-art-inner">
         <ul>
           <li *ngFor="let item of state.cart; let index = $index;">
-            <h4>{{item.provider}} <a href="javascript:void(0)" class="remove-booking" (click)="removeItemFromCart(item.UniqueID, index)">Remove</a></h4>
-            <h5>WS 115 <span>{{item.Date}}</span></h5>
+            <h4>
+              <img src="{{item.providerLogo.split('.png').join('_50.png')}}" width="20"/>{{item.provider}} <a href="javascript:void(0)" class="remove-booking" (click)="removeItemFromCart(item.UniqueID, index)">Remove</a></h4>
+            <h5><span>{{item.Date}}</span></h5>
             <p>{{item.From}}</p>
             <p>{{item.To}}</p>
             <div class="booking-subtotal">
