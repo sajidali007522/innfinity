@@ -777,8 +777,21 @@ input[type="file"] {
   height: auto;
   line-height: inherit;
 }
+.user{
+  background: url(./assets/images/reservation/user.svg) no-repeat;
+  background-size: 100% auto;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+}
+.field-gray-wrap.traveler-field .user{
+  position: absolute;
+  left: 13px;
+  top: 12px;
+  z-index: 1;
+}
 .field-gray-wrap.traveler-field .autocomplete-container input{
-  padding-left: 40px !important;
+  padding-left: 45px !important;
 }
 
 /* range slider default style */
