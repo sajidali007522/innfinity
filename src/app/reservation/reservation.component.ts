@@ -184,6 +184,7 @@ export class ReservationComponent implements OnInit,AfterViewInit {
     )
       .subscribe(data => {
         this.state.processing=false;
+        window.localStorage.setItem('resources', JSON.stringify(data));
         this.loadSearchResult(data, assignSearchResponse['resourceTypeID']);
       },
         error => {

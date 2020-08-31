@@ -19,6 +19,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     ceil: 100
   };
   state= {
+    resources: {resources: []},
     bookingContentArea: false,
     bookingID: '',
     searchId: '',
@@ -96,7 +97,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       this.state.searchId = params['search_id'];
     });
     console.log(this.state.bookingID, this.state.searchId )
+    this.state.resources = JSON.parse(window.localStorage.getItem('resources')) || this.state.resources;
     this.checkSearchStatus();
+    //this.getSortFields();
   }
 
   ngAfterViewInit() {
@@ -138,6 +141,26 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   selectIt (bookRow, bookIndex, currentItem, priceArray) {
     this.shakeIt(true);
     let check = currentItem.values2.$selected;
+    if(check) {
+      this.markAsAddedToCart(bookRow, bookIndex, currentItem, check);
+      return;
+    }
+    this._http._get('booking/'+this.state.bookingID+'/SearchResult/'+this.state.searchId+'/0',{
+      uniqueID : bookRow.UniqueID,
+      priceID: currentItem.values2.UniqueID,
+      flattenValues: true,
+      priceProperties: 'BasePrice|TotalPrice|Description|GetFareName|GetFareNameShort',
+      segmentProperties: 'BeginDate|EndDate|FromCode|ToCode|FromName|ToName',
+      bookingItemProperties: 'BeginDate|EndDate|FromCode|ToCode|FromName|ToName'
+    }).subscribe(data => {
+      console.log(data);
+      this.markAsAddedToCart(bookRow, bookIndex, currentItem, check, data)
+    })
+
+
+  }
+
+  markAsAddedToCart(bookRow, bookIndex, currentItem, check, searchRes= {}) {
     this.state.bookingRows.filter(r => {
       r.bookingChannels = this.resetBookingChannels(r.bookingChannels);
     })
@@ -161,7 +184,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         Date: this.getDateFromDateTime(bookRow.BeginDate),
         From: this.formatDateIntoTime(bookRow.BeginDate)+": "+bookRow.From,
         To: this.formatDateIntoTime(bookRow.EndDate)+": "+bookRow.To,
-        Price: currentItem
+        Price: currentItem,
+        selectedItem: searchRes
       });
       currentItem.values2.$selected = true;
     }
@@ -356,6 +380,29 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     let minut = minutes < 10 ? '0'+minutes : minutes;
     return hours + ':' + minut + ' ' + ampm;
+  }
+
+  parseDate (date, param) {
+    let d = new Date(Date.parse(date));
+    var month = new Array();
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "Jun";
+    month[6] = "Jul";
+    month[7] = "Aug";
+    month[8] = "Sep";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
+    if(param == 'month') {
+      return month[d.getMonth()];
+    }
+    if (param == 'date') {
+      return d.getDate();
+    }
   }
 
   getDateFromDateTime (date) {
