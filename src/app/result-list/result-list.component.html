@@ -187,7 +187,7 @@
                   <div class="row">
                     <div class="col-lg-6" *ngFor="let bookDetail of row.tripDetails">
                       <div class="info-more-section">
-                        <h3>{{bookDetail.Provider}} {{bookDetail.values2.Identifier}}</h3>
+                        <h3>{{bookDetail.values2.Provider}} {{bookDetail.values2.Identifier}}</h3>
                         <h4>{{skipSeconds(bookDetail.values2.BeginDate)}}</h4>
                         <ul>
                           <li>{{formatDateIntoTime(bookDetail.values2.BeginDate)}} - {{formatDateIntoTime(bookDetail.values2.EndDate)}}</li>
@@ -218,7 +218,7 @@
         <ul>
           <li *ngFor="let item of state.cart; let index = $index;">
             <h4>
-              <img src="{{item.providerLogo.split('.png').join('_50.png')}}" width="20"/>{{item.provider}} <a href="javascript:void(0)" class="remove-booking" (click)="removeItemFromCart(item.UniqueID, index)">Remove</a></h4>
+              <img src="{{item.providerLogo}}" width="20"/>{{item.provider}} <a href="javascript:void(0)" class="remove-booking" (click)="removeItemFromCart(item.UniqueID, index)">Remove</a></h4>
             <h5><span>{{item.Date}}</span></h5>
             <p>{{item.From}}</p>
             <p>{{item.To}}</p>
