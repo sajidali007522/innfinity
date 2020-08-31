@@ -247,9 +247,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       searchIndex:0,
       sortProperties:'LowestPrice',
       isAscending: true,
-      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount|ProviderCode',
+      bookingItemProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|UniqueID|ProviderLogo|ConnectionDescriptionExtended|FullConnectionDescription|SegmentCount|Provider',
       priceProperties: 'TotalPrice|UniqueID|GetFareNameShort|BasePrice',
-      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|ProviderLogo|ProviderCode|Identifier'
+      tripProperties: 'BeginDate|EndDate|From|FromName|To|ToName|ProviderName|ProviderLogo|Provider|Identifier'
     })
       .subscribe(data => {
           //setting up data to render
