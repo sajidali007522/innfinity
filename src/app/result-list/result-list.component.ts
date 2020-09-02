@@ -3,6 +3,7 @@ import {LabelType, Options} from "ng5-slider";
 import {HttpService} from "../http.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import * as $ from "jquery";
+import {split} from "ts-node";
 
 @Component({
   selector: 'app-result-list',
@@ -19,6 +20,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     ceil: 100
   };
   state= {
+    gridCell: '00',
     resources: {resources: []},
     bookingContentArea: false,
     bookingID: '',
@@ -241,22 +243,42 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     });
     return bookingChannels;
   }
+  setGridCell (cell){
+    this.state.gridCell = cell;
+  }
+  filterResultSet ( item) {
+    this.applyFilters(item);
+  }
 
-  filterResultSet ( index, type ) {
-    switch (type) {
-      case 'policy':
-        break;
-      case 'airline':
-        break;
-      case 'stops':
-        break;
-      case 'options':
-        break;
-      case 'connecting-city':
-        break;
-      case 'faretype':
-        break;
+  filterResultSetByGrid ( items, row:number, column:number = -1, isMultipleArray:boolean=false ) {
+    this.resetFilterState('none');
+    if(isMultipleArray){
+      for (let i=0; i < this.state.gridFilter.rows.length; i++) {
+        if (i != row) { continue; }
+        console.log(this.state.gridFilter.rows[i]);
+        this.parseFilterResultSetByGrid(this.state.gridFilter.rows[i].items, row, -100);
+      }
     }
+    else {
+      this.parseFilterResultSetByGrid(items, row, column);
+    }
+  }
+
+  parseFilterResultSetByGrid(items, row, column) {
+    for (let i=0; i < items.length; i++) {
+      if(i!=column) { continue;}
+      if(i==column || column == -100) {
+        items[i].bookingItemIDs.filter((bookId) => {
+          this.setStyleProperty("div_" + bookId, 'display', '');
+        });
+      }
+    }
+  }
+
+  resetFilterState (displayProp='') {
+    console.log("resetting filter state");
+    $(document).find(".article-content-booking").css({'display': displayProp});
+    //$(document).find(".article-content-booking td").css({'display': displayProp});
   }
 
   filterSlider (type) {
@@ -270,6 +292,33 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       case 'max-stops':
         break;
     }
+  }
+
+  applyFilters (item) {
+    if(item.priceIDs.length > 0) {
+      item.priceIDs.filter((price) => {
+        price.priceIDs.filter((id) => {
+          if (item.checked) {
+            this.setStyleProperty("price_" + id, 'display', '');
+          } else {
+            this.setStyleProperty("price_" + id, 'display', 'none');
+          }
+        });
+      });
+    }
+    if(item.priceIDs.length == 0) {
+      item.bookingItemIDs.filter((bookId) => {
+        if (item.checked) {
+          this.setStyleProperty("div_" + bookId, 'display', '');
+        } else {
+          this.setStyleProperty("div_" + bookId, 'display', 'none');
+        }
+      });
+    }
+  }
+
+  setStyleProperty (ele, property, value) {
+    document.getElementById(ele).style[property] = value;
   }
 
   getSearchResults () {
@@ -386,7 +435,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
             value: metaData.metadataItems[i].key,
             id: metaData.metadataItems[i].name.split(" ").join("_"),
             price: metaData.metadataItems[i].minPrice,
-            checked: metaData.metadataItems[i].isSelected
+            checked: metaData.metadataItems[i].isSelected,
+            priceIDs: metaData.metadataItems[i].priceIDs,
+            bookingItemIDs: metaData.metadataItems[i].bookingItemIDs
           })
         }
       }

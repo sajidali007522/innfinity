@@ -38,7 +38,7 @@
             <ul #policyListFilter>
               <li *ngFor="let item of state.filter.policy; let index=$index">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'policy')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item)"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -51,7 +51,7 @@
             <ul #airlineListFilter>
               <li *ngFor="let item of state.filter.airlines; let index = $index;">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"  (ngModelChange)="filterResultSet( index,'airline')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"  (ngModelChange)="filterResultSet( item )"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -64,7 +64,7 @@
             <ul>
               <li *ngFor="let item of state.filter.stops; let index = $index">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'stops')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -77,7 +77,7 @@
             <ul>
               <li *ngFor="let item of state.filter.options; let index=$index">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'options')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -90,7 +90,7 @@
             <ul>
               <li *ngFor="let item of state.filter.connectingCity; let index=$index;">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'connecting-city')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -103,7 +103,7 @@
             <ul>
               <li *ngFor="let item of state.filter.fareType; let index = $index;">
                 <label for="{{item.id}}">
-                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'faretype')"> {{item.label}}
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
                   <span class="label-num">{{item.price}}</span>
                 </label>
               </li>
@@ -149,7 +149,7 @@
               <table class="table selection-table" *ngIf="state.gridFilter">
                 <thead>
                 <tr>
-                  <th><h4>Show All</h4> {{state.gridFilter.totalResults}} Total Results</th>
+                  <th (click)="resetFilterState(); setGridCell('00')" [ngClass]="{'active': this.state.gridCell == '00'}" ><h4>Show All</h4> {{state.gridFilter.totalResults}} Total Results</th>
                   <th *ngFor="let col of state.gridFilter.columns">
                     <h4>{{col.name}}<br/><span>${{col.lowPrice}}</span></h4> {{col.resultCount}} Results
                   </th>
@@ -157,15 +157,15 @@
                 </thead>
                 <tbody>
 
-                <tr *ngFor="let row of state.gridFilter.rows">
-                  <td>
+                <tr *ngFor="let row of state.gridFilter.rows; let index = index">
+                  <td (click)="filterResultSetByGrid(row.items, index, -1, true); setGridCell((index+1)+'0')" [ngClass]="{'active': this.state.gridCell == (index+1)+'0'}">
                     <h4>
                       <img src="{{row.logoUrl.split('.png').join('_50.png')}}" />
                       {{row.name}}
                     </h4><br/>
                     {{row.resultCount}} Results
                   </td>
-                  <td class="" *ngFor="let item of row.items">
+                  <td class="" *ngFor="let item of row.items; let i = index;" (click)="filterResultSetByGrid(row.items, index, i); setGridCell((index+1)+''+(i+1))" [ngClass]="{'active': this.state.gridCell == ((index+1)+''+(i+1))}">
                     <p>{{item.lowPrice}}</p> {{item.resultCount}} Results
                   </td>
 
@@ -177,7 +177,7 @@
           </div>
 
           <div class="content-booking-wrapper">
-            <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;" class="{{row.UniqueID}}">
+            <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;" id="div_{{row.values2.UniqueID}}">
               <div class="content-booking-left">
                 <h3>
                   <img src="{{row.values2.ProviderLogo.split('.png').join('_50.png')}}" alt="">
@@ -196,10 +196,9 @@
                   <table class="table table-border table-price-tickets">
                     <tbody>
                     <tr *ngFor="let channel of row.bookingChannels">
-                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice, 'processing': price.$isProcessing}" class="{{price.UniqueID}}">
+                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice, 'processing': price.$isProcessing}" id="price_{{price.values2.UniqueID}}">
                         <a href="javascript:void(0)" class="selectMe" (click)="selectIt(row.values2, index, price, channel.prices)"
                            *ngIf="price.values2.BasePrice"
-                           id="{{price.UniqueID}}"
                         >
                           <em>{{price.values2.GetFareNameShort}}</em>${{price.values2.TotalPrice}}
                         </a>

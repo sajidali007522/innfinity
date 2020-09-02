@@ -173,7 +173,7 @@
     }
 .box{
     border-radius: 20px;
-}    
+}
 .box-secondary{
     border:1px solid #dcdbe0;
     box-shadow: none;
@@ -236,7 +236,7 @@
         color: #125D81;
         margin: 0 0 10px;
     }
-    .selection-table.table td.active{
+    .selection-table.table td.active,.selection-table.table th.active{
         background: #135d82;
         color: #fff;
     }
@@ -592,7 +592,7 @@
         display: inline-block;
         text-decoration: underline;
         margin-left: 15px;
-    }    
+    }
     .reservation-table-wrap p{
         margin: 0 0 3px;
     }
@@ -644,15 +644,15 @@
         10%, 90% {
           transform: translate3d(-1px, 0, 0);
         }
-        
+
         20%, 80% {
           transform: translate3d(2px, 0, 0);
         }
-      
+
         30%, 50%, 70% {
           transform: translate3d(-4px, 0, 0);
         }
-      
+
         40%, 60% {
           transform: translate3d(4px, 0, 0);
         }
@@ -777,7 +777,7 @@
             margin-left: auto;
         }
 
-      
+
 
     .new-booking:hover{
         color: #fff;
