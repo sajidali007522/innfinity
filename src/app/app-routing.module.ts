@@ -25,6 +25,7 @@ import {SearchReservationComponent} from "./search-reservation/search-reservatio
 import {ReservationPageComponent} from "./reservation-page/reservation-page.component";
 import {ResultListComponent} from "./result-list/result-list.component";
 import {SingleColumnLayoutComponent} from "./layouts/single-column-layout/single-column-layout.component";
+import {ReservationStaticComponent} from "./reservation-static/reservation-static.component";
 
 const routes: Routes = [
   {path: "login", component:LoginComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
     children: [
       {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
       {path: "make", component:ReservationComponent, canActivate: [AuthGuard] },
+      {path: "make-static", component:ReservationStaticComponent, canActivate: [AuthGuard] },
       {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] }
     ]
   },

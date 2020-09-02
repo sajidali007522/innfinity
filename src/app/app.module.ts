@@ -63,6 +63,7 @@ import { SearchReservationComponent } from './search-reservation/search-reservat
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { ResultListComponent } from './result-list/result-list.component';
 import { SingleColumnLayoutComponent } from './layouts/single-column-layout/single-column-layout.component';
+import { ReservationStaticComponent } from './reservation-static/reservation-static.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { SingleColumnLayoutComponent } from './layouts/single-column-layout/sing
     SearchReservationComponent,
     ReservationPageComponent,
     ResultListComponent,
-    SingleColumnLayoutComponent
+    SingleColumnLayoutComponent,
+    ReservationStaticComponent
   ],
   imports: [
     BrowserModule,
