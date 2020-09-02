@@ -8,35 +8,40 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-price">Price</a></div>
           <div class="accordion-body">
-            <ng5-slider [(value)]="state.filter.price.value" [(highValue)]="state.filter.price.highValue" [options]="state.price.options"></ng5-slider>
+            <ng5-slider [(value)]="state.filter.price.value" [(highValue)]="state.filter.price.highValue" [options]="state.price.options" (userChange)="filterSlider('price')"></ng5-slider>
             <label>${{state.filter.price.value}}-{{state.filter.price.highValue}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
           <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-departure">Departure</a></div>
           <div class="accordion-body">
-            <ng5-slider [(value)]="state.filter.departure.value" [(highValue)]="state.filter.departure.highValue" [options]="state.departure.options"></ng5-slider>
+            <ng5-slider [(value)]="state.filter.departure.value" [(highValue)]="state.filter.departure.highValue" [options]="state.departure.options" (userChange)="filterSlider('departure')"></ng5-slider>
             <label>{{parseTime(state.filter.departure.value)}} - {{parseTime(state.filter.departure.highValue)}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
           <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-arrival">Arrival</a></div>
           <div class="accordion-body">
-            <ng5-slider [(value)]="state.filter.arrival.value" [(highValue)]="state.filter.arrival.highValue" [options]="state.arrival.options"></ng5-slider>
+            <ng5-slider [(value)]="state.filter.arrival.value" [(highValue)]="state.filter.arrival.highValue" [options]="state.arrival.options" (userChange)="filterSlider('arrival')"></ng5-slider>
             <label>{{parseTime(state.filter.arrival.value)}} - {{parseTime(state.filter.arrival.highValue)}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
           <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-time">Max Stop Time</a></div>
           <div class="accordion-body">
-            <ng5-slider [(value)]="state.filter.maxStoptime.value" [(highValue)]="state.filter.maxStoptime.highValue" [options]="state.maxStoptime.options"></ng5-slider>
+            <ng5-slider [(value)]="state.filter.maxStoptime.value" [(highValue)]="state.filter.maxStoptime.highValue" [options]="state.maxStoptime.options" (userChange)="filterSlider('max-stops')"></ng5-slider>
           </div>
         </div>
         <div class="accordion-group group-active">
           <div class="accordon-heading"><a href="javascript:void(0);">Policy</a></div>
           <div class="accordion-body">
             <ul #policyListFilter>
-              <li *ngFor="let item of state.filter.policy"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.policy; let index=$index">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'policy')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -44,7 +49,12 @@
           <div class="accordon-heading"><a href="javascript:void(0);">Airlines</a></div>
           <div class="accordion-body">
             <ul #airlineListFilter>
-              <li *ngFor="let item of state.filter.airlines"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.airlines; let index = $index;">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"  (ngModelChange)="filterResultSet( index,'airline')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -52,7 +62,12 @@
           <div class="accordon-heading"><a href="javascript:void(0);">Stops</a></div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.stops"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.stops; let index = $index">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'stops')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -60,7 +75,12 @@
           <div class="accordon-heading"><a href="javascript:void(0);">Options</a></div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.options"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.options; let index=$index">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'options')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -68,7 +88,12 @@
           <div class="accordon-heading"><a href="javascript:void(0);">Connecting City</a></div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.connectingCity"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.connectingCity; let index=$index;">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'connecting-city')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -76,7 +101,12 @@
           <div class="accordon-heading"><a href="javascript:void(0);">Fare Type</a></div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.fareType"><label for="{{item.id}}"><input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"> {{item.label}} <span class="label-num">{{item.price}}</span> </label></li>
+              <li *ngFor="let item of state.filter.fareType; let index = $index;">
+                <label for="{{item.id}}">
+                  <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( index,'faretype')"> {{item.label}}
+                  <span class="label-num">{{item.price}}</span>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -147,7 +177,7 @@
           </div>
 
           <div class="content-booking-wrapper">
-            <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;">
+            <div class="article-content-booking" *ngFor="let row of state.bookingRows; let index = $index;" class="{{row.UniqueID}}">
               <div class="content-booking-left">
                 <h3>
                   <img src="{{row.values2.ProviderLogo.split('.png').join('_50.png')}}" alt="">
@@ -166,7 +196,7 @@
                   <table class="table table-border table-price-tickets">
                     <tbody>
                     <tr *ngFor="let channel of row.bookingChannels">
-                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice, 'processing': price.$isProcessing}">
+                      <td *ngFor="let price of channel.prices" [ngClass]="{'active': price.values2.$selected, 'hidden': !price.values2.TotalPrice, 'processing': price.$isProcessing}" class="{{price.UniqueID}}">
                         <a href="javascript:void(0)" class="selectMe" (click)="selectIt(row.values2, index, price, channel.prices)"
                            *ngIf="price.values2.BasePrice"
                            id="{{price.UniqueID}}"

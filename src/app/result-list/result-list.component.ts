@@ -227,6 +227,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       }
     });
     this.state.cart.splice(index, 1);
+    if(this.state.cart.length == 0) {
+      this.toggleBookingContentArea(false);
+    }
     this.shakeIt();
   }
 
@@ -237,6 +240,36 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       })
     });
     return bookingChannels;
+  }
+
+  filterResultSet ( index, type ) {
+    switch (type) {
+      case 'policy':
+        break;
+      case 'airline':
+        break;
+      case 'stops':
+        break;
+      case 'options':
+        break;
+      case 'connecting-city':
+        break;
+      case 'faretype':
+        break;
+    }
+  }
+
+  filterSlider (type) {
+    switch (type) {
+      case 'price':
+        break;
+      case 'departure':
+        break;
+      case 'arrival':
+        break;
+      case 'max-stops':
+        break;
+    }
   }
 
   getSearchResults () {
