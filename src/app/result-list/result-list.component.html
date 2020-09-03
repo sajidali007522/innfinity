@@ -158,14 +158,17 @@
                 <tbody>
 
                 <tr *ngFor="let row of state.gridFilter.rows; let index = index">
-                  <td (click)="filterResultSetByGrid(row.items, index, -1, true); setGridCell((index+1)+'0')" [ngClass]="{'active': this.state.gridCell == (index+1)+'0'}">
+                  <td (click)="filterResultSetByGrid(row.items, index, -1, true); setGridCell((index+1)+'0')"
+                      [ngClass]="{'active': this.state.gridCell == (index+1)+'0'}">
                     <h4>
                       <img src="{{row.logoUrl.split('.png').join('_50.png')}}" />
                       {{row.name}}
                     </h4><br/>
                     {{row.resultCount}} Results
                   </td>
-                  <td class="" *ngFor="let item of row.items; let i = index;" (click)="filterResultSetByGrid(row.items, index, i); setGridCell((index+1)+''+(i+1))" [ngClass]="{'active': this.state.gridCell == ((index+1)+''+(i+1))}">
+                  <td class="" *ngFor="let item of row.items; let i = index;"
+                      (click)="filterResultSetByGrid(row.items, index, i); setGridCell((index+1)+''+(i+1))"
+                      [ngClass]="{'active': this.state.gridCell == ((index+1)+''+(i+1)) || this.state.gridCell == (index+1)+'0'}">
                     <p>{{item.lowPrice}}</p> {{item.resultCount}} Results
                   </td>
 
