@@ -227,14 +227,17 @@
         font-size: 14px;
         font-weight: normal;
         border:1px solid #e5e5e5;
-        padding: 15px 10px 15px 15px;
+        padding: 10px 10px 8px 15px;
         min-width: 100px;
     }
     .selection-table.table th h4{
         font-size: 14px;
         font-weight: 600;
         color: #125D81;
-        margin: 0 0 10px;
+        margin: 0 0 5px;
+    }
+    .selection-table.table h4 img{
+        max-width: 22px;
     }
     .selection-table.table td.active,
     .selection-table.table th.active{
@@ -242,7 +245,7 @@
         color: #fff;
     }
         .selection-table.table td.active h4,
-        selection-table.table th.active h4{
+        .selection-table.table th.active h4{
             color:#fff;
         }
         .selection-table.table .full-active td{
@@ -260,7 +263,7 @@
         font-size: 14px;
         font-weight: 600;
         color: #125D81;
-        margin: 0 0 10px;
+        margin: 0 0 5px;
     }
     .selection-table.table td h4 span{
         font-weight: normal;
