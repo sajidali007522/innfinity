@@ -266,7 +266,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   parseFilterResultSetByGrid(items, row, column) {
     for (let i=0; i < items.length; i++) {
-      if(i!=column) { continue;}
+      if(i!=column && column != -100) { continue;}
       if(i==column || column == -100) {
         items[i].bookingItemIDs.filter((bookId) => {
           this.setStyleProperty("div_" + bookId, 'display', '');

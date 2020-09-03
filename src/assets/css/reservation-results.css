@@ -236,11 +236,13 @@
         color: #125D81;
         margin: 0 0 10px;
     }
-    .selection-table.table td.active,.selection-table.table th.active{
+    .selection-table.table td.active,
+    .selection-table.table th.active{
         background: #135d82;
         color: #fff;
     }
-        .selection-table.table td.active h4{
+        .selection-table.table td.active h4,
+        selection-table.table th.active h4{
             color:#fff;
         }
         .selection-table.table .full-active td{
