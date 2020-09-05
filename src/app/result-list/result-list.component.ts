@@ -256,6 +256,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   filterResultSetByGrid ( items, row:number, column:number = -1, isMultipleArray:boolean=false ) {
     this.resetFilterState('none');
+    this.resetPriceState('');
     if(isMultipleArray){
       for (let i=0; i < this.state.gridFilter.rows.length; i++) {
         if (i != row) { continue; }
