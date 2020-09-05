@@ -283,7 +283,10 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   resetFilterState (displayProp='') {
     $(document).find(".article-content-booking").css({'display': displayProp});
-    //$(document).find(".article-content-booking td").css({'display': displayProp});
+  }
+
+  resetPriceState (displayProp ='') {
+    $(document).find(".article-content-booking td").css({'display': displayProp});
   }
 
   filterSlider (type) {
@@ -335,6 +338,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   filterBySlider (metadataItems, range) {
     this.resetFilterState('none');
+    this.resetPriceState('none');
     metadataItems.filter((row) => {
       if(row.key <= range.highValue && row.key >= range.value ) {
         if(row.priceIDs.length > 0 ) {
@@ -347,8 +351,14 @@ export class ResultListComponent implements OnInit,AfterViewInit {
             });
           });
         }
+        row.bookingItemIDs.filter((bookId) => {
+          if($("#div_"+this.makeValidEleId(bookId)).find('td:visible').length == 0) {
+            //console.log("settingggg", $("#div_"+this.makeValidEleId(bookId)).find('td:visible').length);
+            this.setStyleProperty("div_" + this.makeValidEleId(bookId), 'display', 'none');
+          }
+        })
       }
-    })
+    });
   }
 
   setStyleProperty (ele, property, value) {
