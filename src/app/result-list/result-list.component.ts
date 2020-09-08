@@ -521,9 +521,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.filter.fareType = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
             }
           }
-          console.log(this.state.filter);
           this.state.filterBk = this.copyObject(this.state.filter);
-          console.log(this.state.filterBk);
           this.state.processing=false;
           this.state.metaDataGridOptions = data['metadataGridOptions'];
           this.state.grid_filter = data['metadataGridOptions'][0].value;
@@ -678,6 +676,72 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         id = this.makeValidEleId(id);
         this.setStyleProperty("price_" + id, 'display', '');
       });
+    });
+  }
+
+  setFilterStateByGrid(row, column){
+    // console.log(column);
+    // console.log(row);
+    // console.log(this.state.gridFilter.columns, this.state.gridFilter.columns[column]);
+    let filter = this.state.grid_filter.split("|");//filter=>0 column, filter => 1 ----- row
+    this.setRows(filter[1], row)
+    this.setColumns(filter[0], column)
+  }
+
+  setRows(row, targetRow){
+    console.log(row, targetRow);
+    if(targetRow < 0) { return; }
+    let targetR=this.state.gridFilter.rows[targetRow];
+    switch (row) {
+      case 'Provider':
+        this.setFilterState(this.state.filter.airlines, targetR);
+        break;
+      case 'Connection'://ConnectionCity|Provider
+        this.setFilterState(this.state.filter.stops, targetR);
+        break;
+      case 'ConnectionCity'://ConnectionCity|Provider
+        this.setFilterState(this.state.filter.connectingCity, targetR);
+        break;
+      case 'ConnectionCountry'://ConnectionCity|Provider
+        //this.setFilterState(this.state.filter.options, targetR);
+        break;
+      case 'FareBucket'://ConnectionCity|Provider
+        this.setFilterState(this.state.filter.fareType, targetR);
+        break;
+    }
+  }
+
+  setColumns(column, targetColumn){
+    console.log(column, targetColumn);
+    if(targetColumn < 0) { return; }
+    let col = this.state.gridFilter.columns[targetColumn];
+    switch (column) {
+      case 'Connection':
+        this.setFilterState(this.state.filter.stops, col);
+        break;
+      case 'ConnectionCity'://ConnectionCity
+        this.setFilterState(this.state.filter.connectingCity, col);
+        break;
+      case 'ConnectionCountry'://ConnectionCity
+        //this.setFilterState(this.state.filter.options, col);
+        break;
+      case 'FareBucket'://ConnectionCity
+        this.setFilterState(this.state.filter.fareType, col);
+        break;
+      case 'Provider'://ConnectionCity
+        this.setFilterState(this.state.filter.airlines, col);
+        break;
+    }
+  }
+
+  setFilterState(object, checkObject) {
+    object.filter(r=>{
+      if(r.value !== checkObject.key){
+        r.checked = false;
+      }
+      if(r.value === checkObject.key) {
+        r.checked = true;
+      }
     });
   }
 

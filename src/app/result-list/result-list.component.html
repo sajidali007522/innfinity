@@ -182,8 +182,8 @@
               <table class="table selection-table" *ngIf="state.gridFilter">
                 <thead>
                 <tr>
-                  <th (click)="resetFilterState(); setGridCell('00')" [ngClass]="{'active': this.state.gridCell == '00'}" ><h4>Show All</h4> {{state.gridFilter.totalResults}} Total Results</th>
-                  <th *ngFor="let col of state.gridFilter.columns">
+                  <th (click)="resetFilterState(); setGridCell('00');resetFilters();" [ngClass]="{'active': this.state.gridCell == '00'}" ><h4>Show All</h4> {{state.gridFilter.totalResults}} Total Results</th>
+                  <th *ngFor="let col of state.gridFilter.columns" >
                     <h4>{{col.name}}<br/><span>${{col.lowPrice}}</span></h4> {{col.resultCount}} Results
                   </th>
                 </tr>
@@ -191,7 +191,10 @@
                 <tbody>
 
                 <tr *ngFor="let row of state.gridFilter.rows; let index = index">
-                  <td (click)="filterResultSetByGrid(row.items, index, -1, true); setGridCell((index+1)+'0')"
+                  <td (click)="filterResultSetByGrid(row.items, index, -1, true);
+                                setGridCell((index+1)+'0');
+                                setFilterStateByGrid(index, -1);
+                              "
                       [ngClass]="{'active': this.state.gridCell == (index+1)+'0'}">
                     <h4>
                       <img src="{{row.logoUrl.split('.png').join('_50.png')}}" />
@@ -200,7 +203,9 @@
                     {{row.resultCount}} Results
                   </td>
                   <td class="" *ngFor="let item of row.items; let i = index;"
-                      (click)="filterResultSetByGrid(row.items, index, i); setGridCell((index+1)+''+(i+1))"
+                      (click)="filterResultSetByGrid(row.items, index, i);
+                      setGridCell((index+1)+''+(i+1));
+                      setFilterStateByGrid(index, i);"
                       [ngClass]="{'active': this.state.gridCell == ((index+1)+''+(i+1)) || this.state.gridCell == (index+1)+'0'}">
                     <p>{{item.lowPrice}}</p> {{item.resultCount}} Results
                   </td>
