@@ -5,6 +5,9 @@
   <div class="reservation-detail-wrap">
     <div class="reservation-sidebar">
       <div class="reservation-sidebar-inner">
+        <div class="reset-wrap">
+          <a href="javascript:void(0)" (click)="resetFilters()" class="btn btn-sm btn-success">Reset <span class="fa fa-refresh"></span> </a>
+        </div>
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);" class="icon-contain icon-price">Price</a>
@@ -44,7 +47,7 @@
             <ng5-slider [(value)]="state.filter.maxStoptime.value" [(highValue)]="state.filter.maxStoptime.highValue" [options]="state.maxStoptime.options" (userChange)="filterSlider('max-stops')"></ng5-slider>
           </div>
         </div>
-        <div class="accordion-group group-active">
+        <div class="accordion-group group-active" *ngIf="state.filter.policy.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Policy</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('policy', state.filter.policy)"></i>-->
@@ -60,7 +63,7 @@
             </ul>
           </div>
         </div>
-        <div class="accordion-group group-active">
+        <div class="accordion-group group-active" *ngIf="state.filter.airlines.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Airlines</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('airlines', state.filter.airlines)"></i>-->
@@ -76,7 +79,7 @@
             </ul>
           </div>
         </div>
-        <div class="accordion-group">
+        <div class="accordion-group" *ngIf="state.filter.stops.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Stops</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('stops', state.filter.stops)"></i>-->
@@ -92,7 +95,7 @@
             </ul>
           </div>
         </div>
-        <div class="accordion-group">
+        <div class="accordion-group"*ngIf="state.filter.options.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Options</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('options', state.filter.options)"></i>-->
@@ -108,7 +111,7 @@
             </ul>
           </div>
         </div>
-        <div class="accordion-group">
+        <div class="accordion-group" *ngIf="state.filter.connectingCity.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Connecting City</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('connecting-city', state.filter.connectingCity)"></i>-->
@@ -124,7 +127,7 @@
             </ul>
           </div>
         </div>
-        <div class="accordion-group">
+        <div class="accordion-group"*ngIf="state.filter.fareType.length > 1">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Fare Type</a>
 <!--            <i class="fa fa-trash" (click)="resetFilter('fare-type', state.filter.fareType)"></i>-->

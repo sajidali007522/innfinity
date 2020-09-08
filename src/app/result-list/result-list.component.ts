@@ -64,6 +64,31 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         ceil: 24
       }
     },
+    filterBk:{
+      price : {
+        value: 40,
+        highValue: 60
+      },
+      arrival: {
+        value: 12,
+        highValue: 18
+      },
+      departure: {
+        value: 12,
+        highValue: 18
+      },
+      maxStoptime: {
+        value: 12,
+        highValue: 18
+      },
+      policy:[],
+      airlines:[],
+      stops:[],
+      channel: [],
+      options: [],
+      connectingCity: [],
+      fareType: []
+    },
     filter:{
       price : {
         value: 40,
@@ -496,6 +521,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.filter.fareType = this.renderMetaDataItems(data['metadata'][index], 'checkbox');
             }
           }
+          console.log(this.state.filter);
+          this.state.filterBk = this.copyObject(this.state.filter);
+          console.log(this.state.filterBk);
           this.state.processing=false;
           this.state.metaDataGridOptions = data['metadataGridOptions'];
           this.state.grid_filter = data['metadataGridOptions'][0].value;
@@ -506,6 +534,10 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         this.state.processing = false;
         console.log(error);
         })
+  }
+
+  copyObject( obj) {
+    return JSON.parse(JSON.stringify(obj));
   }
 
   renderMetaDataItems (metaData, type) {
@@ -519,7 +551,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
             value: metaData.metadataItems[i].key,
             id: metaData.metadataItems[i].name.split(" ").join("_"),
             price: metaData.metadataItems[i].minPrice,
-            checked: metaData.metadataItems[i].isSelected,
+            checked: true,//metaData.metadataItems[i].isSelected,
             priceIDs: metaData.metadataItems[i].priceIDs,
             bookingItemIDs: metaData.metadataItems[i].bookingItemIDs
           })
@@ -552,9 +584,11 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     let minut = minutes < 10 ? '0'+minutes : minutes;
     return hours + ':' + minut + ' ' + ampm;
   }
+
   parseDateIntoObject(date) {
     return new Date(Date.parse(date));
   }
+
   parseDate (date, param) {
     let d = this.parseDateIntoObject(date);
     var month = new Array();
@@ -619,6 +653,10 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         break;
 
     }
+  }
+
+  resetFilters () {
+    this.state.filter = this.copyObject(this.state.filterBk);
   }
 
   resetLeftFilters(object) {
