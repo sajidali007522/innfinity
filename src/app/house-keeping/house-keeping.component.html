@@ -1,6 +1,6 @@
 <app-loader *ngIf="state.isLoading "></app-loader>
 <div class="" *ngIf="!state.isLoading">
-  <div class="box position-relative">
+  <div class="box position-relative box-skin">
     <div class="box-header">
       <h3>Room Status</h3>
       <!-- <div class="admin-mode">
@@ -100,7 +100,7 @@
         </div>
 
         <div class="table-responsive table-housekeeping-wrap">
-          <table class="table table-bordered row-border hover room-table">
+          <table class="table table-bordered row-border hover room-table table-skin">
             <thead>
             <tr>
               <th class="sort-custom">Room #</th>
@@ -195,7 +195,7 @@
       </div>
 
       <div class="table-responsive table-housekeeping-wrap" [ngClass]="{'table-loader': state.isLoadingRooms}">
-        <table class="table table-striped table-bordered row-border hover room-table jsmartable">
+        <table class="table table-striped table-bordered row-border hover room-table jsmartable table-skin">
           <thead>
           <tr>
             <th class="sort-custom" (click)="setSortingParams('roomNumber');" [ngClass]="{

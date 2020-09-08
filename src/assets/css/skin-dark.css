@@ -38,3 +38,21 @@ body.theme-dark .booking-time ul li{
   background: url(../images/reservation/arrow-right-white.svg) right center no-repeat  !important;
 }
 /* SearchResult end */
+
+
+/* house keeping */
+.theme-dark .filter-section,
+.theme-dark .filter-transparent .form-control{
+    background: #2589b9 !important;
+    border-color: #2589b9 !important;
+}
+.theme-dark .filter-section label,
+.theme-dark .filter-transparent .form-control{
+    color: #fff !important;
+}
+.theme-dark .filters-outer{
+  border-color: #373737 !important;
+}
+.theme-dark .filters-view-sm a{
+  background: #373737 !important;
+}

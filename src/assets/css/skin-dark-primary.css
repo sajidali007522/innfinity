@@ -116,23 +116,40 @@
 /* house keeping */
 .theme-dark-primary .filter-section,
 .theme-dark-primary .filter-transparent .form-control{
-    background: linear-gradient(90deg, rgba(29,148,201,1) 30%, rgba(0,0,0,1) 100%) !important;
+    background: #373737 !important;
+    border-color: #373737 !important;
 }
 .theme-dark-primary .filter-section label,
 .theme-dark-primary .filter-transparent .form-control{
     color: #fff !important;
 }
+.theme-dark-primary .filters-outer{
+  border-color: #373737 !important;
+}
+.theme-dark-primary .filters-view-sm a{
+  background: #373737 !important;
+}
 .theme-dark-primary .filter-transparent option{
   color:#000;
 }
 .theme-dark-primary .table-striped tbody tr:nth-of-type(odd){
-    background-color: #e0e0e0 !important;
+    background-color: #373737 !important;
+}
+.theme-dark-primary .box-skin{
+  background:none;
+  color:#fff;
+}
+.theme-dark-primary .table-skin{
+  color:#fff;
+}
+.theme-dark-primary .table-skin select{
+  color:#fff;
+}
+.theme-dark-primary .table-skin option{
+  color:#000;
 }
 
 /* background's */
-.theme-dark-primary .filters-view-sm a{
-  background: #000 !important;
-}
 
 /* SearchResult start */
 body.theme-dark-primary .reservation-sidebar{
