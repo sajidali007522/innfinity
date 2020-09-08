@@ -36,24 +36,29 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       columns: []
     },
     price : {
+      metadataitems:[],
       options: {
         floor: 0,
         ceil: 100
       }
     },
     arrival: {
+      metadataitems:[],
       options: {
         floor: 0,
         ceil: 24
       }
     },
     departure: {
+      metadataitems:[],
       options: {
         floor: 0,
         ceil: 24
       }
     },
     maxStoptime: {
+      metadataitems:[],
+      interval: 1,
       options: {
         floor: 0,
         ceil: 24
@@ -83,7 +88,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       options: [],
       connectingCity: [],
       fareType: []
-    }
+    },
+    records:{}
   }
 
   constructor( private renderer: Renderer2,
@@ -105,8 +111,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $("body").on("click", ".accordon-heading", function(){
-      $(this).parent().toggleClass('group-active');
+    $("body").on("click", ".accordon-heading a", function(){
+      $(this).parent().parent().toggleClass('group-active');
     });
     $(document).on("click", '.display-detail', function(){
       $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
@@ -252,10 +258,10 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   filterResultSetByGrid ( items, row:number, column:number = -1, isMultipleArray:boolean=false ) {
     this.resetFilterState('none');
+    this.resetPriceState('');
     if(isMultipleArray){
       for (let i=0; i < this.state.gridFilter.rows.length; i++) {
         if (i != row) { continue; }
-        console.log(this.state.gridFilter.rows[i]);
         this.parseFilterResultSetByGrid(this.state.gridFilter.rows[i].items, row, -100);
       }
     }
@@ -269,56 +275,130 @@ export class ResultListComponent implements OnInit,AfterViewInit {
       if(i!=column && column != -100) { continue;}
       if(i==column || column == -100) {
         items[i].bookingItemIDs.filter((bookId) => {
-          this.setStyleProperty("div_" + bookId, 'display', '');
+          if(bookId) {
+            bookId = this.makeValidEleId(bookId);
+            this.setStyleProperty("div_" + bookId, 'display', '');
+          }
         });
       }
     }
   }
 
   resetFilterState (displayProp='') {
-    console.log("resetting filter state");
     $(document).find(".article-content-booking").css({'display': displayProp});
-    //$(document).find(".article-content-booking td").css({'display': displayProp});
+  }
+
+  resetPriceState (displayProp ='') {
+    $(document).find(".article-content-booking td").css({'display': displayProp});
   }
 
   filterSlider (type) {
     switch (type) {
       case 'price':
+          this.filterBySlider(this.state.price.metadataitems, this.state.filter.price);
         break;
       case 'departure':
+        this.filterDateTimeBySlider(this.state.departure.metadataitems, this.state.filter.departure);
         break;
       case 'arrival':
+        this.filterDateTimeBySlider(this.state.arrival.metadataitems, this.state.filter.arrival);
         break;
       case 'max-stops':
+        this.filterDateTimeBySlider(this.state.maxStoptime.metadataitems, this.state.filter.maxStoptime, false, this.state.maxStoptime.interval);
         break;
     }
   }
+  showResultSet() {
 
+  }
   applyFilters (item) {
     if(item.priceIDs.length > 0) {
       item.priceIDs.filter((price) => {
         price.priceIDs.filter((id) => {
-          if (item.checked) {
-            this.setStyleProperty("price_" + id, 'display', '');
-          } else {
-            this.setStyleProperty("price_" + id, 'display', 'none');
+          if(id) {
+            id = this.makeValidEleId(id);
+            if (item.checked) {
+              this.setStyleProperty("price_" + id, 'display', '');
+            } else {
+              this.setStyleProperty("price_" + id, 'display', 'none');
+            }
           }
         });
       });
     }
     if(item.priceIDs.length == 0) {
       item.bookingItemIDs.filter((bookId) => {
-        if (item.checked) {
-          this.setStyleProperty("div_" + bookId, 'display', '');
-        } else {
-          this.setStyleProperty("div_" + bookId, 'display', 'none');
+        if(bookId) {
+          bookId = this.makeValidEleId(bookId);
+          if (item.checked) {
+            this.setStyleProperty("div_" + bookId, 'display', '');
+          } else {
+            this.setStyleProperty("div_" + bookId, 'display', 'none');
+          }
+
         }
       });
     }
   }
 
+  filterBySlider (metadataItems, range) {
+    this.resetFilterState('none');
+    this.resetPriceState('none');
+    metadataItems.filter((row) => {
+      //console.log((row.key*multiplier), '<=', range.highValue, '&&', (row.key*multiplier), '>=', range.value);
+      if(row.key <= range.highValue && row.key >= range.value ) {
+        if(row.priceIDs.length > 0 ) {
+          this.hidePriceCells(row.priceIDs, '');
+        }
+        this.setBookItemsState(row.bookingItemIDs, 'none', true);
+      }
+    });
+  }
+
+  filterDateTimeBySlider (metadataItems, range, isDate = true, multiplier=1) {
+    this.resetFilterState('none');
+    this.resetPriceState('');
+    metadataItems.filter((row) => {
+      //console.log(Date.parse(row.key), '<=', range.highValue || Date.parse(row.key) >= range.value)
+      if(Date.parse(row.key) <= range.highValue && Date.parse(row.key) >= range.value && isDate) {
+        this.setBookItemsState(row.bookingItemIDs, '');
+      }
+      if((row.key*multiplier) <= range.highValue && (row.key*multiplier) >= range.value && !isDate) {
+        this.setBookItemsState(row.bookingItemIDs, '');
+      }
+    });
+  }
+
+  setBookItemsState(bookingItems, prop, checkCell=false) {
+    bookingItems.filter((bookId) => {
+
+      if($("#div_"+this.makeValidEleId(bookId)).find('td:visible').length == 0 && checkCell) {
+        this.setStyleProperty("div_" + this.makeValidEleId(bookId), 'display', prop);
+      }
+
+      if($("#div_"+this.makeValidEleId(bookId)).find('td:visible').length == 0 && !checkCell) {
+        this.setStyleProperty("div_" + this.makeValidEleId(bookId), 'display', prop);
+      }
+    })
+  }
+
+  hidePriceCells (priceIDs, prop) {
+    priceIDs.filter((price) => {
+      this.setStyleProperty("div_" + this.makeValidEleId(price.bookingItemID), 'display', '');
+      price.priceIDs.filter((id)=> {
+        if(id) {
+          this.setStyleProperty("price_" + this.makeValidEleId(id), 'display', prop);
+        }
+      });
+    });
+  }
+
   setStyleProperty (ele, property, value) {
+    //console.log(ele);
     document.getElementById(ele).style[property] = value;
+  }
+  makeValidEleId (string) {
+    return (''+string).replace(/[|/:\s]/g,'_');
   }
 
   getSearchResults () {
@@ -343,7 +423,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.price.options.floor = Number(data['metadata'][index]['metadataItems'][0].key);
               this.state.price.options.ceil = Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
               this.state.price.options['step'] = data['metadata'][index].interval;
-              console.log(this.state.price);
+              this.state.price.metadataitems = data['metadata'][index].metadataItems;
             }
             //checking for Departure
             if(data['metadata'][index].name == "Departure") {
@@ -351,7 +431,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.filter.departure.highValue= Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
               this.state.departure.options.floor = Date.parse(data['metadata'][index]['metadataItems'][0].key);
               this.state.departure.options.ceil = Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key)
-              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.departure.options['step'] = data['metadata'][index].interval;
+              this.state.departure.metadataitems = data['metadata'][index].metadataItems;
               this.state.departure.options['translate'] = (value: number, label: LabelType): string => {
                 return this.parseTime(value)
               }
@@ -362,7 +443,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.filter.arrival.highValue= Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key);
               this.state.arrival.options.floor = Date.parse(data['metadata'][index]['metadataItems'][0].key);
               this.state.arrival.options.ceil = Date.parse(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key)
-              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.arrival.options['step'] = data['metadata'][index].interval;
+              this.state.arrival.metadataitems = data['metadata'][index].metadataItems;
               this.state.arrival.options['translate'] = (value: number, label: LabelType): string => {
                 return this.parseTime(value)
               }
@@ -373,7 +455,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
               this.state.filter.maxStoptime.highValue= Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key) * data['metadata'][index].interval;
               this.state.maxStoptime.options.floor = Number(data['metadata'][index]['metadataItems'][0].key) * data['metadata'][index].interval;
               this.state.maxStoptime.options.ceil = Number(data['metadata'][index]['metadataItems'][data['metadata'][index]['metadataItems'].length -1 ].key) * data['metadata'][index].interval;
-              this.state.price.options['step'] = data['metadata'][index].interval;
+              this.state.maxStoptime.options['step'] = data['metadata'][index].interval;
+              this.state.maxStoptime.metadataitems = data['metadata'][index].metadataItems;
+              this.state.maxStoptime.interval = data['metadata'][index].interval;
               this.state.maxStoptime.options['translate'] = (value: number, label: LabelType): string => {
                 if(value <= 0) {
                   return 'non stop';
@@ -512,6 +596,51 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   toggleBookingContentArea (state) {
     this.state.bookingContentArea = state;
+  }
+
+  resetFilter(filter, object=[]) {
+    switch (filter) {
+      case 'price':
+
+        break;
+      case 'departure':
+        break;
+      case 'arrival':
+        break;
+      case 'max-stops':
+        break;
+      case 'policy':
+      case 'airlines':
+      case 'stops':
+      case 'options':
+      case 'connecting-city':
+      case 'fare-type':
+        this.resetLeftFilters(object);
+        break;
+
+    }
+  }
+
+  resetLeftFilters(object) {
+    let metaDataItems=[];
+    let PriceItems= [];
+
+    object.filter(obj=>{
+      obj.checked=true;
+      PriceItems = PriceItems.concat(obj.priceIDs)
+      metaDataItems = metaDataItems.concat(obj.bookingItemIDs);
+    });
+
+    metaDataItems.filter(bookId => {
+      bookId = this.makeValidEleId(bookId);
+      this.setStyleProperty("div_" + bookId, 'display', '');
+    });
+    PriceItems.filter(price => {
+      price.priceIDs.filter((id) => {
+        id = this.makeValidEleId(id);
+        this.setStyleProperty("price_" + id, 'display', '');
+      });
+    });
   }
 
 }

@@ -65,6 +65,14 @@
     .reservation-sidebar .accordon-heading a.icon-contain{
         color: #212529;
     }
+    .reset-wrap{
+        text-align: right;
+        padding:0 0 10px;
+    }
+    .reset-wrap .btn{
+        background:#135d82;
+        color:#fff;
+    }
     .reservation-sidebar .accordon-heading a.icon-contain:after{
         content: " ";
         position: absolute;
@@ -112,6 +120,15 @@
     .reservation-sidebar .radio{
         margin: 0 5px 5px 0;
     }
+    .reservation-sidebar .accordion-body li.has-num{
+        position: relative;
+        padding-right: 50px;
+    }
+        .reservation-sidebar .accordion-body li.has-num .label-num{
+            position: absolute;
+            right: 0;
+            top: 3px;
+        }
     .label-num{
         float: right;
         font-size: 10px;
