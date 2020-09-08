@@ -8,7 +8,7 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);" class="icon-contain icon-price">Price</a>
-            <i class="fa fa-trash" (click)="resetFilter('price')"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('price')"></i>-->
           </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.price.value" [(highValue)]="state.filter.price.highValue" [options]="state.price.options" (userChange)="filterSlider('price')"></ng5-slider>
@@ -18,7 +18,7 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);" class="icon-contain icon-departure">Departure</a>
-            <i class="fa fa-trash" (click)="resetFilter('departure')"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('departure')"></i>-->
           </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.departure.value" [(highValue)]="state.filter.departure.highValue" [options]="state.departure.options" (userChange)="filterSlider('departure')"></ng5-slider>
@@ -28,7 +28,7 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);" class="icon-contain icon-arrival">Arrival</a>
-            <i class="fa fa-trash" (click)="resetFilter('arrival')"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('arrival')"></i>-->
           </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.arrival.value" [(highValue)]="state.filter.arrival.highValue" [options]="state.arrival.options" (userChange)="filterSlider('arrival')"></ng5-slider>
@@ -38,7 +38,7 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);" class="icon-contain icon-time">Max Stop Time</a>
-            <i class="fa fa-trash" (click)="resetFilter('max-stops')"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('max-stops')"></i>-->
           </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.maxStoptime.value" [(highValue)]="state.filter.maxStoptime.highValue" [options]="state.maxStoptime.options" (userChange)="filterSlider('max-stops')"></ng5-slider>
@@ -47,14 +47,14 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Policy</a>
-            <i class="fa fa-trash" (click)="resetFilter('policy', state.filter.policy)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('policy', state.filter.policy)"></i>-->
           </div>
           <div class="accordion-body">
             <ul #policyListFilter>
-              <li *ngFor="let item of state.filter.policy; let index=$index">
+              <li *ngFor="let item of state.filter.policy; let index=$index" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item)"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
@@ -63,14 +63,14 @@
         <div class="accordion-group group-active">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Airlines</a>
-            <i class="fa fa-trash" (click)="resetFilter('airlines', state.filter.airlines)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('airlines', state.filter.airlines)"></i>-->
           </div>
           <div class="accordion-body">
             <ul #airlineListFilter>
-              <li *ngFor="let item of state.filter.airlines; let index = $index;">
+              <li *ngFor="let item of state.filter.airlines; let index = $index;" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked"  (ngModelChange)="filterResultSet( item )"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
@@ -79,14 +79,14 @@
         <div class="accordion-group">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Stops</a>
-            <i class="fa fa-trash" (click)="resetFilter('stops', state.filter.stops)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('stops', state.filter.stops)"></i>-->
           </div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.stops; let index = $index">
+              <li *ngFor="let item of state.filter.stops; let index = $index" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
@@ -95,14 +95,14 @@
         <div class="accordion-group">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Options</a>
-            <i class="fa fa-trash" (click)="resetFilter('options', state.filter.options)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('options', state.filter.options)"></i>-->
           </div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.options; let index=$index">
+              <li *ngFor="let item of state.filter.options; let index=$index" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
@@ -111,14 +111,14 @@
         <div class="accordion-group">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Connecting City</a>
-            <i class="fa fa-trash" (click)="resetFilter('connecting-city', state.filter.connectingCity)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('connecting-city', state.filter.connectingCity)"></i>-->
           </div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.connectingCity; let index=$index;">
+              <li *ngFor="let item of state.filter.connectingCity; let index=$index;" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
@@ -127,14 +127,14 @@
         <div class="accordion-group">
           <div class="accordon-heading">
             <a href="javascript:void(0);">Fare Type</a>
-            <i class="fa fa-trash" (click)="resetFilter('fare-type', state.filter.fareType)"></i>
+<!--            <i class="fa fa-trash" (click)="resetFilter('fare-type', state.filter.fareType)"></i>-->
           </div>
           <div class="accordion-body">
             <ul>
-              <li *ngFor="let item of state.filter.fareType; let index = $index;">
+              <li *ngFor="let item of state.filter.fareType; let index = $index;" [ngClass]="{'has-num': item.price > 0}">
                 <label for="{{item.id}}">
                   <input type="checkbox" class="checkbox" id="{{item.id}}" [(ngModel)]="item.checked" (ngModelChange)="filterResultSet( item )"> {{item.label}}
-                  <span class="label-num">{{item.price}}</span>
+                  <span class="label-num">${{item.price}}</span>
                 </label>
               </li>
             </ul>
