@@ -6,34 +6,49 @@
     <div class="reservation-sidebar">
       <div class="reservation-sidebar-inner">
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-price">Price</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);" class="icon-contain icon-price">Price</a>
+            <i class="fa fa-trash" (click)="resetFilter('price')"></i>
+          </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.price.value" [(highValue)]="state.filter.price.highValue" [options]="state.price.options" (userChange)="filterSlider('price')"></ng5-slider>
             <label>${{state.filter.price.value}}-{{state.filter.price.highValue}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-departure">Departure</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);" class="icon-contain icon-departure">Departure</a>
+            <i class="fa fa-trash" (click)="resetFilter('departure')"></i>
+          </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.departure.value" [(highValue)]="state.filter.departure.highValue" [options]="state.departure.options" (userChange)="filterSlider('departure')"></ng5-slider>
             <label>{{parseTime(state.filter.departure.value)}} - {{parseTime(state.filter.departure.highValue)}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-arrival">Arrival</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);" class="icon-contain icon-arrival">Arrival</a>
+            <i class="fa fa-trash" (click)="resetFilter('arrival')"></i>
+          </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.arrival.value" [(highValue)]="state.filter.arrival.highValue" [options]="state.arrival.options" (userChange)="filterSlider('arrival')"></ng5-slider>
             <label>{{parseTime(state.filter.arrival.value)}} - {{parseTime(state.filter.arrival.highValue)}}</label>
           </div>
         </div>
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);" class="icon-contain icon-time">Max Stop Time</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);" class="icon-contain icon-time">Max Stop Time</a>
+            <i class="fa fa-trash" (click)="resetFilter('max-stops')"></i>
+          </div>
           <div class="accordion-body">
             <ng5-slider [(value)]="state.filter.maxStoptime.value" [(highValue)]="state.filter.maxStoptime.highValue" [options]="state.maxStoptime.options" (userChange)="filterSlider('max-stops')"></ng5-slider>
           </div>
         </div>
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);">Policy</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Policy</a>
+            <i class="fa fa-trash" (click)="resetFilter('policy', state.filter.policy)"></i>
+          </div>
           <div class="accordion-body">
             <ul #policyListFilter>
               <li *ngFor="let item of state.filter.policy; let index=$index">
@@ -46,7 +61,10 @@
           </div>
         </div>
         <div class="accordion-group group-active">
-          <div class="accordon-heading"><a href="javascript:void(0);">Airlines</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Airlines</a>
+            <i class="fa fa-trash" (click)="resetFilter('airlines', state.filter.airlines)"></i>
+          </div>
           <div class="accordion-body">
             <ul #airlineListFilter>
               <li *ngFor="let item of state.filter.airlines; let index = $index;">
@@ -59,7 +77,10 @@
           </div>
         </div>
         <div class="accordion-group">
-          <div class="accordon-heading"><a href="javascript:void(0);">Stops</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Stops</a>
+            <i class="fa fa-trash" (click)="resetFilter('stops', state.filter.stops)"></i>
+          </div>
           <div class="accordion-body">
             <ul>
               <li *ngFor="let item of state.filter.stops; let index = $index">
@@ -72,7 +93,10 @@
           </div>
         </div>
         <div class="accordion-group">
-          <div class="accordon-heading"><a href="javascript:void(0);">Options</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Options</a>
+            <i class="fa fa-trash" (click)="resetFilter('options', state.filter.options)"></i>
+          </div>
           <div class="accordion-body">
             <ul>
               <li *ngFor="let item of state.filter.options; let index=$index">
@@ -85,7 +109,10 @@
           </div>
         </div>
         <div class="accordion-group">
-          <div class="accordon-heading"><a href="javascript:void(0);">Connecting City</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Connecting City</a>
+            <i class="fa fa-trash" (click)="resetFilter('connecting-city', state.filter.connectingCity)"></i>
+          </div>
           <div class="accordion-body">
             <ul>
               <li *ngFor="let item of state.filter.connectingCity; let index=$index;">
@@ -98,7 +125,10 @@
           </div>
         </div>
         <div class="accordion-group">
-          <div class="accordon-heading"><a href="javascript:void(0);">Fare Type</a></div>
+          <div class="accordon-heading">
+            <a href="javascript:void(0);">Fare Type</a>
+            <i class="fa fa-trash" (click)="resetFilter('fare-type', state.filter.fareType)"></i>
+          </div>
           <div class="accordion-body">
             <ul>
               <li *ngFor="let item of state.filter.fareType; let index = $index;">

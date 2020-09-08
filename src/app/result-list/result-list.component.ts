@@ -111,8 +111,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $("body").on("click", ".accordon-heading", function(){
-      $(this).parent().toggleClass('group-active');
+    $("body").on("click", ".accordon-heading a", function(){
+      $(this).parent().parent().toggleClass('group-active');
     });
     $(document).on("click", '.display-detail', function(){
       $(this).parents('.article-content-booking').find('.more-reservation-wrap').slideToggle();
@@ -308,7 +308,9 @@ export class ResultListComponent implements OnInit,AfterViewInit {
         break;
     }
   }
+  showResultSet() {
 
+  }
   applyFilters (item) {
     if(item.priceIDs.length > 0) {
       item.priceIDs.filter((price) => {
@@ -594,6 +596,51 @@ export class ResultListComponent implements OnInit,AfterViewInit {
 
   toggleBookingContentArea (state) {
     this.state.bookingContentArea = state;
+  }
+
+  resetFilter(filter, object=[]) {
+    switch (filter) {
+      case 'price':
+
+        break;
+      case 'departure':
+        break;
+      case 'arrival':
+        break;
+      case 'max-stops':
+        break;
+      case 'policy':
+      case 'airlines':
+      case 'stops':
+      case 'options':
+      case 'connecting-city':
+      case 'fare-type':
+        this.resetLeftFilters(object);
+        break;
+
+    }
+  }
+
+  resetLeftFilters(object) {
+    let metaDataItems=[];
+    let PriceItems= [];
+
+    object.filter(obj=>{
+      obj.checked=true;
+      PriceItems = PriceItems.concat(obj.priceIDs)
+      metaDataItems = metaDataItems.concat(obj.bookingItemIDs);
+    });
+
+    metaDataItems.filter(bookId => {
+      bookId = this.makeValidEleId(bookId);
+      this.setStyleProperty("div_" + bookId, 'display', '');
+    });
+    PriceItems.filter(price => {
+      price.priceIDs.filter((id) => {
+        id = this.makeValidEleId(id);
+        this.setStyleProperty("price_" + id, 'display', '');
+      });
+    });
   }
 
 }
