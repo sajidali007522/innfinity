@@ -44,14 +44,6 @@ const routes: Routes = [
       {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] }
     ]
   },
-  {path:  "house-keeping", component: SingleColumnLayoutComponent,  canActivate: [AuthGuard],
-    children: [
-      {path: "", component:HouseKeepingComponent, canActivate: [AuthGuard] },
-      {path: "room-images/static", component:RoomImagesComponent, canActivate: [AuthGuard] },
-      {path: ":site_id/room", component:RoomComponent, canActivate: [AuthGuard] },
-      {path: ":site_id/room/:room_id", component:RoomComponent, canActivate: [AuthGuard] },
-    ]
-  },
   {path:  "", component: MainComponent,  canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -63,6 +55,7 @@ const routes: Routes = [
       {path: "products/:category/sub-form/:sub_category", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
+      {path: "house-keeping/room-images/static", component:RoomImagesComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
       {path: "reservation/:booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
       {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },
