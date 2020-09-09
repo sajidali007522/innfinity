@@ -767,6 +767,13 @@ input[type="file"] {
 .workflow-textarea{
   min-height: 300px;
 }
+.modal{
+  background:rgba(0,0,0, 0.7);
+}
+  .modal-footer .btn{
+    padding: 8px 40px;
+    font-size: 14px;
+  }
 
 
 .field-gray-wrap .autocomplete-container .input-container input{
