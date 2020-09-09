@@ -1,5 +1,255 @@
-<div class="box position-relative box-skin">
-  <div class="box-header">
-    <h3>Room Status</h3>
+<div class="accordion custom-accordion" id="accordionExample">
+  <div class="mb-3">
+    <div class="card-header" id="headingOne">
+      <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-1" aria-expanded="true">
+          1-103
+      </h2>
+    </div>
+
+    <div id="collaps-1" class="collapse show" data-parent="#accordionExample">
+      <div class="box box-lr">
+        <div class="custom-accordion-wrap">
+          <div class="custom-accordion">
+            <h3 class="active"><a href="javascript:void(0)">Search</a></h3>
+            <div class="custom-accordion-content exp">
+              <div class="form-primary">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>Start Date</label>
+                      <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control has-icon" bsDatepicker #dp="bsDatepicker">
+                        <span class="fa fa-calendar-o"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>End Date</label>
+                      <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control has-icon" bsDatepicker #dp="bsDatepicker">
+                        <span class="fa fa-calendar-o"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p><a href="#" class="btn btn-success">Search</a></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="custom-accordion">
+            <h3 class="active"><a href="javascript:void(0)">Uploded Photos</a></h3>
+            <div class="custom-accordion-content exp">
+              
+              <div class="carousel-wrap">
+                <div class="slider-for">
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-12.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-9.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-10.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-11.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-1.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-4.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-5.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-6.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-7.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-8.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="main-photo">
+                      <img src="/assets/images/carousel/carousel-2.jfif" alt="">
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="slider-nav">
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-12.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-9.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-10.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-11.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-1.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-4.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-5.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-6.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-7.jpg" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-8.jfif" alt="">
+                    </div>
+                  </div>
+                  <div>
+                    <div class="carousel-thumbnail">
+                      <img src="/assets/images/carousel/carousel-2.jfif" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>              
+
+              <br><br>
+              <div class="form-primary">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>Name</label>
+                      <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>Date</label>
+                      <div class="field-wrap">
+                        <input type="text" placeholder="" class="form-control has-icon" bsDatepicker #dp="bsDatepicker">
+                        <span class="fa fa-calendar-o"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label>Description</label>
+                      <div class="field-wrap">
+                        <textarea cols="5" rows="5" class="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="btns-wrap">
+                  <p>
+                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="#" class="btn btn-success"><i class="fa fa-save"></i> Save</a>
+                    <a href="#" class="btn btn-secondary"><i class="fa fa-close"></i> Cancel</a>
+                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-trash"></i> Delete</a>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Photo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="/assets/images/carousel/carousel-2.jfif" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="sure-wrap">
+          <h2 class="text-success">Are you sure? </h2>
+          <p>You want to delete this Photo</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success">Yes</button>
+      </div>
+    </div>
   </div>
 </div>

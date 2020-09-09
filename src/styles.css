@@ -741,6 +741,10 @@ input[type="file"] {
   .jump-section select{
     padding: 5px 10px;
   }
+.btns-wrap .btn{
+  padding: 7px 40px;
+  margin:0 3px 5px;
+}
 .field-wrap{
   position: relative;
 }
@@ -753,7 +757,7 @@ input[type="file"] {
 .bs-datepicker-container{
   padding: 0;
 }
-  .theme-dark-blue .bs-datepicker-head{
+  .bs-datepicker-head{
     background: #09425d;
     background-image: linear-gradient(to right, #3f7892 , #09425d);
   }
@@ -773,6 +777,19 @@ input[type="file"] {
   .modal-footer .btn{
     padding: 8px 40px;
     font-size: 14px;
+  }
+  .sure-wrap{
+    text-align: center;
+    font-size: 27px;
+    line-height: 1.1;
+  }
+  .sure-wrap h2{
+    font-weight: bold;
+    font-size: 42px;
+    margin: 0 0 20px;
+  }
+  .sure-wrap p{
+    line-height: 1.1;
   }
 
 
