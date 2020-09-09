@@ -6,7 +6,7 @@ $(document).ready( function (){
 		arrows: false,
 		fade: true,
 		asNavFor: '.slider-nav',
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 6000
 	});
 	$('.slider-nav').slick({
@@ -16,7 +16,7 @@ $(document).ready( function (){
 		dots: true,
 		centerMode: true,
 		focusOnSelect: true,
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 6000
 	});
 
