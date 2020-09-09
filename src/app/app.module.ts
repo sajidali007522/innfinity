@@ -64,6 +64,8 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
 import { ResultListComponent } from './result-list/result-list.component';
 import { SingleColumnLayoutComponent } from './layouts/single-column-layout/single-column-layout.component';
 import { ReservationStaticComponent } from './reservation-static/reservation-static.component';
+import { RoomComponent } from './room/room.component';
+import { RoomImagesComponent } from './room-images/room-images.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,9 @@ import { ReservationStaticComponent } from './reservation-static/reservation-sta
     ReservationPageComponent,
     ResultListComponent,
     SingleColumnLayoutComponent,
-    ReservationStaticComponent
+    ReservationStaticComponent,
+    RoomComponent,
+    RoomImagesComponent
   ],
   imports: [
     BrowserModule,

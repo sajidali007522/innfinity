@@ -20,7 +20,7 @@
           <a href="javascript:void(0)" class="filter-link" [ngClass]="{'active': state.toggleFilter}" (click)="state.toggleFilter=!state.toggleFilter">Filters</a>
           <!-- "filter-hide-mobile" this class will show and hide -->
         </div>
-        
+
         <div class="filters-outer" [ngClass]="{'filter-hide-mobile': !state.toggleFilter}">
           <div class="filter-transparent">
             <div class="row">
@@ -44,7 +44,7 @@
                   </select>
                 </p>
               </div>
-    
+
               <div class="col-lg-4">
                 <label>Feature</label>
                 <p>
@@ -299,9 +299,12 @@
             <td data-title="Files">
 
               <div class="fileUpload">
-                <input type="file" class="upload" />
-                <span>Upload</span>
+                <label for="file-upload" class="btn btn-success"><i class="fa fa-cloud-upload"></i> Upload</label>
+                <input style="position: initial" type="file" id="file-upload" (change)="fileChangeEvent($event, row)" />
               </div>
+              <a href="javascript:void(0)" routerLink="{{'/house-keeping/'+this.pageFilters.sites+'/room/'+row.roomId}}">
+                <i class="fa fa-eye"></i>
+              </a>
             </td>
           </tr>
           </tbody>
@@ -336,6 +339,57 @@
         </li>
       </ul>
 
+    </div>
+  </div>
+</div>
+<p style="position: absolute;z-index: -1; width:1px; height: 1px; overflow: hidden; ">
+  <button type="button" class="trigger-image-crop-model" data-toggle="modal" data-target="#imageCropModal">
+    &nbsp;
+  </button>
+</p>
+<!-- Modal -->
+<div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{state.selectedRoom.roomNumber}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelImageCrop()" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <image-cropper
+          *ngIf="imageChangedEvent"
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          format="png|jpeg|jpg"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+        <div class="row">
+          <div class="col-sm-4">
+            <label class="control-label">Name</label>
+          </div>
+          <div class="col-sm-8">
+            <input type="text" [(ngModel)]="state.roomImage.name" class="form-control" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <label class="control-label">Description</label>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" [(ngModel)]="state.roomImage.description" class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)= "cancelImageCrop()" >Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="doneWithCrop()">Save</button>
+      </div>
     </div>
   </div>
 </div>
