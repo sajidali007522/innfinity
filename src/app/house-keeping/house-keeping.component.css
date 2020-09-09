@@ -98,6 +98,21 @@
         outline: none;
         width: 100%;
     }
+    .table-btns{
+        text-align: left;
+        min-width: 140px;
+    }
+    .room-table .fileUpload{
+        padding:0;
+        background:none !important;
+    }
+    .table-btns .btn{
+        padding: 6px 14px;
+        margin: 0 2px 2px;
+        border-radius: 0;
+        line-height: 1;
+        font-size: 13px;
+    }
     .dataTable td{
         position: relative;
     }

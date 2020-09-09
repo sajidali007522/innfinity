@@ -26,6 +26,8 @@ import {ReservationPageComponent} from "./reservation-page/reservation-page.comp
 import {ResultListComponent} from "./result-list/result-list.component";
 import {SingleColumnLayoutComponent} from "./layouts/single-column-layout/single-column-layout.component";
 import {ReservationStaticComponent} from "./reservation-static/reservation-static.component";
+import {RoomComponent} from "./room/room.component";
+import {RoomImagesComponent} from "./room-images/room-images.component";
 
 const routes: Routes = [
   {path: "login", component:LoginComponent },
@@ -38,6 +40,7 @@ const routes: Routes = [
       {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
       {path: "make", component:ReservationComponent, canActivate: [AuthGuard] },
       {path: "make-static", component:ReservationStaticComponent, canActivate: [AuthGuard] },
+      {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
       {path: ":booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] }
     ]
   },
@@ -52,6 +55,7 @@ const routes: Routes = [
       {path: "products/:category/sub-form/:sub_category", component:ProductsComponent, canActivate: [AuthGuard] },
       {path: "html_components", component:HtmlElementsComponent, canActivate: [AuthGuard] },
       {path: "house-keeping", component:HouseKeepingComponent, canActivate: [AuthGuard] },
+      {path: "house-keeping/room-images/static", component:RoomImagesComponent, canActivate: [AuthGuard] },
       {path: "loader", component:LoaderComponent, canActivate: [AuthGuard] },
       {path: "reservation/:booking_id/search/:search_id", component:ResultListComponent, canActivate: [AuthGuard] },
       {path: "carousel", component:CarouselComponent, canActivate: [AuthGuard] },

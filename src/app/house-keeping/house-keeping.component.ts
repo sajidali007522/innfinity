@@ -8,8 +8,11 @@ import {
   AfterViewChecked, OnDestroy
 } from '@angular/core';
 import {Shift} from "../interfaces/Shift";
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 import {HouseKeepingService} from "../_services/house-keeping.service";
 import {RoomsService} from "../_services/rooms.service";
+import {HttpService} from "../http.service";
+import {Router} from "@angular/router";
 declare var $:JQueryStatic;
 
 const SHIFTS: Shift [] = [
@@ -35,7 +38,14 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     adminStatuses: '',
     housekeepers: ''
   }
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
   state = {
+    selectedRoom: {roomId: '', roomNumber: ''},
+    roomImage: {
+      name: '',
+      description: ''
+    },
     isLoading: false,
     isLoadingRooms:  false,
     isLoadingMoreRooms: false,
@@ -60,7 +70,9 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   constructor (private HKService: HouseKeepingService,
                private roomService: RoomsService,
                private ref: ChangeDetectorRef,
-               private renderer: Renderer2
+               private renderer: Renderer2,
+               private _http: HttpService,
+               private router: Router
   ) {
 
   }
@@ -218,5 +230,50 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     script.src = src;
     this.renderer.appendChild(document.body, script);
     return script;
+  }
+
+  fileChangeEvent(event: any, room:any): void {
+    this.state.selectedRoom = room;
+    this.imageChangedEvent = event;
+    $(".trigger-image-crop-model").trigger('click');
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    console.log("image cropped");
+  }
+  imageLoaded() {
+    console.log("image has loaded")
+  }
+  cropperReady() {
+    // cropper ready
+    console.log("CRopper ready")
+  }
+  loadImageFailed() {
+    // show message
+    console.log("image loading failed")
+  }
+
+  doneWithCrop () {
+    let image = this.croppedImage.split(",");
+    this._http._post('housekeeping/'+this.pageFilters.sites+'/RoomImage/'+this.state.selectedRoom.roomId,
+      {
+            value:  image[1]
+      },
+      {
+        imageName: this.state.roomImage.name,
+        imageDescription: this.state.roomImage.description
+      })
+      .subscribe(data=> {
+        //this.router.navigate(['/house-keeping/'+this.pageFilters.sites+'/room/'+this.state.selectedRoom.roomId]);
+      },
+        err => {
+        console.log(err);
+        })
+
+  }
+
+  cancelImageCrop () {
+    this.imageChangedEvent = null;
+    this.croppedImage = null;
   }
 }
