@@ -82,7 +82,7 @@
             <h3 class="active"><a href="javascript:void(0)">Uploded Photos</a></h3>
             <div class="custom-accordion-content exp">
 
-              <div class="row">
+              <div class="row" *ngIf="state.roomImages.length > 0">
                 <div class="col-md-6">
                   <div class="carousel-custom-outer">
                     <div class="carousel-preview" *ngIf="state.selectedImage.urlPath">
@@ -132,7 +132,14 @@
                 </div>
               </div>
 
+              <div class="row" *ngIf="state.roomImages.length == 0">
+                <div class="col-md-12">
+                  <div class="carousel-custom-outer">
+                    <p>No Image Found</p>
+                  </div>
+                </div>
 
+              </div>
 
               <br><br>
 
