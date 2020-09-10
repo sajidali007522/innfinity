@@ -1,6 +1,8 @@
-import {AfterViewInit, Component, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../http.service";
+import {RoomsService} from "../_services/rooms.service";
+import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-room',
@@ -8,7 +10,14 @@ import {HttpService} from "../http.service";
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit,AfterViewInit {
+  keyword='text';
+  error;
+  bsConfig: Partial<BsDatepickerConfig>;
+  minDate: Date;
+
   state= {
+    roomList: <any>[],
+    searchRooms: false,
     isLoadingRoom: false,
     isLoadingImages: false,
     siteId: '',
@@ -30,10 +39,7 @@ export class RoomComponent implements OnInit,AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private _http: HttpService,
     private renderer: Renderer2
-  ) {
-    this.addJsToElement('assets/js/slick.min.js');
-    this.addJsToElement('assets/js/hp.js');
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -51,7 +57,7 @@ export class RoomComponent implements OnInit,AfterViewInit {
 
   }
 
-  EditImage(image) {
+  editImage(image) {
     this.state.selectedImage = image;
   }
 
@@ -69,16 +75,43 @@ export class RoomComponent implements OnInit,AfterViewInit {
     this._http._get('housekeeping/'+this.state.siteId+'/RoomImages/'+roomID)
       .subscribe(data =>{
         this.state.roomImages = data;
+        this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
         this.state.isLoadingImages = false;
       })
   }
 
-  addJsToElement(src: string): HTMLScriptElement {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = src;
-    this.renderer.appendChild(document.body, script);
-    return script;
+
+  //search section
+  selectRoom (item) {
+    console.log(item);
+    this.loadRoomDetails(item.value);
+    this.loadRoomImages(item.value);
+
+  }
+
+  searchCleared() {
+    this.state.roomList = [];
+  }
+
+  getServerResponse(event) {
+    this.error = '';
+    this.state.searchRooms = true;
+
+    let params = {searchTerm: event};
+
+    this._http._get("housekeeping/RoomSearch", params)
+      .subscribe(data => {
+        if (data == undefined) {
+          this.state.roomList = [];
+          this.error = data['Error'];
+        } else {
+          this.state.roomList = data;
+        }
+        this.state.searchRooms = false;
+      },error => {
+        this.error = error;
+        this.state.searchRooms = false;
+      });
   }
 
 }

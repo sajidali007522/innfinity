@@ -235,7 +235,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   fileChangeEvent(event: any, room:any): void {
     this.state.selectedRoom = room;
     this.imageChangedEvent = event;
-    this.state.roomImage.name = event.target.files[0].name+" of "+room.roomNumber;
+    this.state.roomImage.name = "Picture of "+room.roomNumber;
     $(".trigger-image-crop-model").trigger('click');
   }
   imageCropped(event: ImageCroppedEvent) {

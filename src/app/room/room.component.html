@@ -1,5 +1,4 @@
-<app-loader *ngIf="state.isLoadingRoom || state.isLoadingImages "></app-loader>
-<div class="accordion custom-accordion" id="accordionExample" *ngIf="!state.isLoadingRoom && !state.isLoadingImages ">
+<div class="accordion custom-accordion" id="accordionExample">
   <div class="mb-3">
     <div class="card-header" id="headingOne">
       <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-1" aria-expanded="true">
@@ -14,6 +13,45 @@
             <h3 class="active"><a href="javascript:void(0)">Search</a></h3>
             <div class="custom-accordion-content exp">
               <div class="form-primary">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label>Search Room</label>
+                    <div class="field-wrap">
+                      <ng-autocomplete
+                        [data]="state.roomList"
+                        [searchKeyword]="keyword"
+                        (selected)='selectRoom($event)'
+                        (inputChanged)='getServerResponse($event)'
+                        [itemTemplate]="itemTemplateRemote_"
+                        (inputCleared)="searchCleared()"
+                        [notFoundTemplate]="notFoundTemplate_"
+                        [debounceTime]="400"
+                        [isLoading]="state.searchRooms"
+                        [minQueryLength]="3"
+                        placeHolder="Search Room."
+                        name="search_room"
+                      >
+                      </ng-autocomplete>
+
+                      <ng-template #itemTemplateRemote_ let-item>
+                        <a href="javascript:void(0)">
+                          <div class="auto-txtwrap">
+                            <div class="autotxt">
+                              <strong [innerHTML]="item.name"></strong><span>({{item.description}})</span>
+                            </div>
+                          </div>
+                        </a>
+                      </ng-template>
+
+                      <ng-template #notFoundTemplate_ let-notFound>
+                        {{error}}
+                      </ng-template>
+                      <div class="" *ngIf="error">
+                        <label class="error">{{error}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="mb-3">
@@ -34,7 +72,7 @@
                     </div>
                   </div>
                 </div>
-                <p><a href="javascript:void(0)" class="btn btn-success">Search</a></p>
+                <p><a href="#" class="btn btn-success">Search</a></p>
               </div>
             </div>
 
@@ -44,64 +82,61 @@
             <h3 class="active"><a href="javascript:void(0)">Uploded Photos</a></h3>
             <div class="custom-accordion-content exp">
 
-              <div class="carousel-wrap">
-                <div class="slider-for">
-                  <div *ngFor="let image of state.roomImages">
-                    <div class="main-photo">
-<!--                      <img src="{{image.urlPath}}" alt="">-->
-                      <img src="/assets/images/carousel/carousel-12.jpg" alt="">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="carousel-custom-outer">
+                    <div class="carousel-preview" *ngIf="state.selectedImage.urlPath">
+                      <div>
+                        <div class="main-photo">
+                          <img src="{{state.selectedImage.urlPath}}" alt="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="carousel-thumbnails clearfix">
+                      <div *ngFor="let image of state.roomImages">
+                        <div class="carousel-thumbnail" (click)="editImage(image)">
+                          <a href="javascript:void(0)"><img src="{{image.urlPath}}" alt=""></a>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-primary">
 
-                <div class="slider-nav">
-                  <div *ngFor="let image of state.roomImages">
-                    <div class="carousel-thumbnail">
-                      <img src="/assets/images/carousel/carousel-12.jpg" alt="">
+                    <label>Name</label>
+                    <div class="field-wrap mb-3">
+                      <input type="text" placeholder="" class="form-control" [(ngModel)]="state.selectedImage.name">
+                    </div>
+                    <label>Date</label>
+                    <div class="field-wrap mb-3">
+                      <input type="text" placeholder="" class="form-control has-icon" bsDatepicker #dp="bsDatepicker" [(ngModel)]="state.selectedImage.createDate">
+                      <span class="fa fa-calendar-o"></span>
+                    </div>
+
+                    <label>Description</label>
+                    <div class="field-wrap mb-3">
+                      <textarea cols="5" rows="5" class="form-control" [(ngModel)]="state.selectedImage.description"></textarea>
+                    </div>
+                    <div class="btns-wrap">
+                      <p>
+                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="#" class="btn btn-success"><i class="fa fa-save"></i> Save</a>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-close"></i> Cancel</a>
+                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-trash"></i> Delete</a>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
+
+
 
               <br><br>
-              <div class="form-primary" *ngIf="state.selectedImage">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label>Name</label>
-                      <div class="field-wrap">
-                        <input type="text" [(ngModel)]="state.selectedImage.roomNumber" placeholder="" class="form-control">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label>Date</label>
-                      <div class="field-wrap">
-                        <input type="text" placeholder="" [(ngModel)]="state.selectedImage.createdDate" class="form-control has-icon" bsDatepicker #dp="bsDatepicker">
-                        <span class="fa fa-calendar-o"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="mb-3">
-                      <label>Description</label>
-                      <div class="field-wrap">
-                        <textarea cols="5" rows="5" [(ngModel)]="state.selectedImage.description" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="btns-wrap">
-                  <p>
-                    <a href="javascript:void(0)" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i> Edit</a>
-                    <a href="javascript:void(0)" class="btn btn-success"><i class="fa fa-save"></i> Save</a>
-                    <a href="javascript:void(0)" class="btn btn-secondary"><i class="fa fa-close"></i> Cancel</a>
-                    <a href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-trash"></i> Delete</a>
-                  </p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
