@@ -299,10 +299,11 @@
             <td data-title="Files">
 
               <div class="table-btns">
-                <div class="fileUpload">
+                <div class="fileUpload" *ngIf="!row.uploading">
                   <label for="file-upload" class="btn btn-success">Upload</label>
                   <input style="position: initial" type="file" id="file-upload" (change)="fileChangeEvent($event, row)" />
                 </div>
+                <span class="fa fa-spin fa-spinner" *ngIf="row.uploading"></span>
                 <a href="javascript:void(0)"  class="btn btn-info" routerLink="{{'/house-keeping/'+this.pageFilters.sites+'/room/'+row.roomId}}">
                   Edit
                 </a>

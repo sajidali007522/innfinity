@@ -256,6 +256,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
 
   doneWithCrop () {
     let image = this.croppedImage.split(",");
+    this.state.selectedRoom['uploading']=true;
     this._http._post('housekeeping/'+this.pageFilters.sites+'/RoomImage/'+this.state.selectedRoom.roomId,
       {
             value:  image[1]
@@ -264,12 +265,16 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         imageName: this.state.roomImage.name,
         imageDescription: this.state.roomImage.description
       })
-      .subscribe(data=> {
+      .subscribe((data )=> {
         //this.router.navigate(['/house-keeping/'+this.pageFilters.sites+'/room/'+this.state.selectedRoom.roomId]);
+        console.log(data);
+        this.state.selectedRoom['uploading']=false;
+        alert("image attached");
       },
-        err => {
-        console.log(err);
-        })
+        (err) => {
+          this.state.selectedRoom['uploading']=false;
+          alert(err);
+        });
 
   }
 
