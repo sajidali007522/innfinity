@@ -2,7 +2,7 @@
   <div class="mb-3">
     <div class="card-header" id="headingOne">
       <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-1" aria-expanded="true">
-        {{state.room.roomNumber}}
+        Search Room
       </h2>
     </div>
 
@@ -14,7 +14,17 @@
             <div class="custom-accordion-content exp">
               <div class="form-primary">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>Site</label>
+                      <div class="field-wrap">
+                        <select [(ngModel)]="state.siteId" class="form-control">
+                          <option *ngFor="let site of state.filters.sites" value="{{site.value}}"> {{site.text}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
                     <label>Search Room</label>
                     <div class="field-wrap">
                       <ng-autocomplete
@@ -72,121 +82,39 @@
                     </div>
                   </div>
                 </div>
-                <p><a href="#" class="btn btn-success">Search</a></p>
+                <p><a href="javascript:void(0)" class="btn btn-success">Search</a></p>
               </div>
             </div>
 
-          </div>
-
-          <div class="custom-accordion">
-            <h3 class="active"><a href="javascript:void(0)">Uploded Photos</a></h3>
-            <div class="custom-accordion-content exp">
-              <div class="row" *ngIf="state.roomImages.length > 0">
-                <div class="col-md-6">
-                  <div class="carousel-custom-outer">
-                    <div class="carousel-preview" *ngIf="state.selectedImage.urlPath">
-                      <div>
-                        <div class="main-photo">
-                          <img src="{{state.selectedImage.urlPath}}" alt="">
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="carousel-thumbnails clearfix">
-                      <div *ngFor="let image of state.roomImages">
-                        <div class="carousel-thumbnail" (click)="editImage(image)">
-                          <a href="javascript:void(0)"><img src="{{image.urlPath}}" alt=""></a>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-primary">
-
-                    <label>Name</label>
-                    <div class="field-wrap mb-3">
-                      <input type="text" placeholder="" class="form-control" [(ngModel)]="state.selectedImage.name">
-                    </div>
-                    <label>Date</label>
-                    <div class="field-wrap mb-3">
-                      <input type="text" placeholder="" class="form-control has-icon" bsDatepicker #dp="bsDatepicker" [(ngModel)]="state.selectedImage.createDate">
-                      <span class="fa fa-calendar-o"></span>
-                    </div>
-
-                    <label>Description</label>
-                    <div class="field-wrap mb-3">
-                      <textarea cols="5" rows="5" class="form-control" [(ngModel)]="state.selectedImage.description"></textarea>
-                    </div>
-                    <div class="btns-wrap">
-                      <p>
-                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="#" class="btn btn-success"><i class="fa fa-save"></i> Save</a>
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-close"></i> Cancel</a>
-                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-trash"></i> Delete</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" *ngIf="state.roomImages.length == 0">
-                <div class="col-md-12">
-                  <div class="carousel-custom-outer">
-                    <p>No Image Found</p>
-                  </div>
-                </div>
-
-              </div>
-              <br><br>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Photo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="/assets/images/carousel/carousel-2.jfif" alt="">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-        <button type="button" class="btn btn-success">Save</button>
-      </div>
+<app-loader *ngIf="state.isLoadingRoom"></app-loader>
+<div class="accordion custom-accordion" *ngIf="state.room == null && !state.isLoadingRoom">
+  <div class="mb-3">
+    <div class="card-header">
+      <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-2" aria-expanded="true">
+        <p>Room Details not available</p>
+      </h2>
     </div>
   </div>
 </div>
+<div class="accordion custom-accordion" *ngIf="state.room && !state.isLoadingRoom">
+  <div class="mb-3">
+    <div class="card-header">
+      <h2 class="accordion-link" data-toggle="collapse" data-target="#collaps-2" aria-expanded="true">
+        {{state.room.roomNumber}}
+      </h2>
+    </div>
 
-<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="sure-wrap">
-          <h2 class="text-success">Are you sure? </h2>
-          <p>You want to delete this Photo</p>
+    <div id="collaps-2" class="collapse show" data-parent="#accordionExample">
+      <div class="box box-lr">
+        <div class="custom-accordion-wrap">
+          <app-room-image [room]="state.room" [siteId]="state.siteId"></app-room-image>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-success">Yes</button>
       </div>
     </div>
   </div>

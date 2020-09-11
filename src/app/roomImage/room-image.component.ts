@@ -6,6 +6,7 @@ import {HttpService} from "../http.service";
   templateUrl: './room-image.component.html',
   styleUrls: ['./room-image.component.css']
 })
+
 export class RoomImageComponent implements OnInit,OnChanges {
   @Input() siteId;
   @Input() room;
@@ -32,15 +33,15 @@ export class RoomImageComponent implements OnInit,OnChanges {
 
   ngOnInit(): void {}
   ngOnChanges() {
-    console.log("riiin unage on changes");
-    console.log(this.siteId, this.room)
     this.loadRoomImages();
   }
   loadRoomImages() {
-    if(!this.siteId || !this.room.roomId) { return;}
+    if(!this.siteId || !this.room.roomId || this.state.isLoadingImages) {
+      return;
+    }
     this.state.isLoadingImages=true;
     this._http._get('housekeeping/'+this.siteId+'/RoomImages/'+this.room.roomId)
-      .subscribe(data =>{
+      .subscribe((data) => {
         this.state.roomImages = data;
         this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
         this.state.selectedIndex = this.state.roomImages.length-1;
@@ -65,7 +66,7 @@ export class RoomImageComponent implements OnInit,OnChanges {
     this.state.roomImages.splice(this.state.selectedIndex, 1);
   }
   reset(){
-    this.state.componentState.isViewMode=false;
+    this.state.componentState.isViewMode=true;
     this.state.selectedImage = JSON.parse(JSON.stringify(this.state.componentState.selectedImage));
   }
 }

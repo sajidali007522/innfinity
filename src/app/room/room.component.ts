@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../http.service";
 import {RoomsService} from "../_services/rooms.service";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
+import {HouseKeepingService} from "../_services/house-keeping.service";
 
 @Component({
   selector: 'app-room',
@@ -16,67 +17,46 @@ export class RoomComponent implements OnInit,AfterViewInit {
   minDate: Date;
 
   state= {
+    isLoading: false,
+    filters: {sites: []},
     roomList: <any>[],
     searchRooms: false,
     isLoadingRoom: false,
     isLoadingImages: false,
     siteId: '',
     roomId: '',
-    selectedImage: <any>{
-      roomNumber: '',
-      description: '',
-      createdDate: ''
-    },
-    room: <any>{
-      roomNumber:"",
-      description: '',
-      createdDate: ''
-    },
-    roomImages: <any>[]
+    selectedRoom: {roomId: ''},
+    room: null
   }
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private _http: HttpService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private HKService: HouseKeepingService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.state.siteId = params["site_id"];
-      this.state.roomId = params['room_id'];
-    });
-    console.log(this.state.siteId, this.state.roomId)
-    if (this.state.roomId) {
-      this.loadRoomDetails(this.state.roomId);
-      this.loadRoomImages(this.state.roomId);
-    }
+    this.state.isLoading = true;
+    this.HKService.loadInitialConfig().subscribe(data => {
+        this.state.filters.sites = data['sites'];
+        this.state.isLoading=false;
+      },
+      err => {
+        //handle errors here
+        console.log(err);
+        this.state.isLoading = false;
+      });
   }
 
-  ngAfterViewInit() {
-
-  }
-
-  editImage(image) {
-    this.state.selectedImage = image;
-  }
+  ngAfterViewInit() {}
 
   loadRoomDetails(roomID){
     this.state.isLoadingRoom = true;
     this._http._get('housekeeping/'+this.state.siteId+'/Rooms/'+roomID)
-      .subscribe(data => {
+      .subscribe((data) => {
         this.state.room = data;
         this.state.isLoadingRoom = false;
-      })
-  }
-
-  loadRoomImages(roomID) {
-    this.state.isLoadingImages=true;
-    this._http._get('housekeeping/'+this.state.siteId+'/RoomImages/'+roomID)
-      .subscribe(data =>{
-        this.state.roomImages = data;
-        this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
-        this.state.isLoadingImages = false;
       })
   }
 
@@ -85,7 +65,6 @@ export class RoomComponent implements OnInit,AfterViewInit {
   selectRoom (item) {
     console.log(item);
     this.loadRoomDetails(item.value);
-    this.loadRoomImages(item.value);
 
   }
 
