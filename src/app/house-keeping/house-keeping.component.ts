@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
   Renderer2,
-  AfterViewChecked, OnDestroy
+  AfterViewChecked, OnDestroy, ViewChild
 } from '@angular/core';
 import {Shift} from "../interfaces/Shift";
 import { ImageCroppedEvent } from 'ngx-image-cropper';
@@ -28,7 +28,6 @@ const SHIFTS: Shift [] = [
   styleUrls: ['./house-keeping.component.css']
 })
 export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
-
   data;
   pageFilters= {
     isHousekeeperAdmin: true,
@@ -41,6 +40,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   imageChangedEvent: any = '';
   croppedImage: any = '';
   state = {
+    showRoomImages:  false,
     selectedRoom: {roomId: '', roomNumber: ''},
     roomImage: {
       name: '',
@@ -277,7 +277,14 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         });
 
   }
+  closeRoomDetail(){
+    this.state.selectedRoom = {roomId: '', roomNumber: ''};
+  }
 
+  setRoom (room) {
+    this.state.showRoomImages = true;
+    this.state.selectedRoom=room;
+  }
   cancelImageCrop () {
     this.imageChangedEvent = null;
     this.croppedImage = null;

@@ -66,6 +66,7 @@ import { SingleColumnLayoutComponent } from './layouts/single-column-layout/sing
 import { ReservationStaticComponent } from './reservation-static/reservation-static.component';
 import { RoomComponent } from './room/room.component';
 import { RoomImagesComponent } from './room-images/room-images.component';
+import { RoomImageComponent } from './roomImage/room-image.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { RoomImagesComponent } from './room-images/room-images.component';
     SingleColumnLayoutComponent,
     ReservationStaticComponent,
     RoomComponent,
-    RoomImagesComponent
+    RoomImagesComponent,
+    RoomImageComponent
   ],
   imports: [
     BrowserModule,

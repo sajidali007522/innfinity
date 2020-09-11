@@ -37,7 +37,7 @@
                         <a href="javascript:void(0)">
                           <div class="auto-txtwrap">
                             <div class="autotxt">
-                              <strong [innerHTML]="item.name"></strong><span>({{item.description}})</span>
+                              <span [innerHTML]="item.text"></span>
                             </div>
                           </div>
                         </a>
@@ -81,7 +81,6 @@
           <div class="custom-accordion">
             <h3 class="active"><a href="javascript:void(0)">Uploded Photos</a></h3>
             <div class="custom-accordion-content exp">
-
               <div class="row" *ngIf="state.roomImages.length > 0">
                 <div class="col-md-6">
                   <div class="carousel-custom-outer">
@@ -131,7 +130,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row" *ngIf="state.roomImages.length == 0">
                 <div class="col-md-12">
                   <div class="carousel-custom-outer">
@@ -140,10 +138,7 @@
                 </div>
 
               </div>
-
               <br><br>
-
-
             </div>
           </div>
         </div>
