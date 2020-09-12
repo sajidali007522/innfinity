@@ -519,6 +519,9 @@ body .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     padding: 14px 20px;
     height: auto;
   }
+  .form-control:disabled{
+    background: #ddd !important;
+  }
   .auto-complete-primary .autocomplete-container .input-container input{
     border: 1px solid #bebebe !important;
     line-height: inherit;
