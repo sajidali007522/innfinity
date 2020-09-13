@@ -67,6 +67,7 @@ import { ReservationStaticComponent } from './reservation-static/reservation-sta
 import { RoomComponent } from './room/room.component';
 import { RoomImagesComponent } from './room-images/room-images.component';
 import { RoomImageComponent } from './roomImage/room-image.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { RoomImageComponent } from './roomImage/room-image.component';
     ReservationStaticComponent,
     RoomComponent,
     RoomImagesComponent,
-    RoomImageComponent
+    RoomImageComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@
               <a href="javascript:void(0)" class="btn btn-info" *ngIf="state.componentState.isViewMode" (click)="edit()"><i class="fa fa-pencil"></i> Edit</a>
               <a href="javascript:void(0)" class="btn btn-success" *ngIf="!state.componentState.isViewMode" (click)="save()"><i class="fa fa-save"></i> Save</a>
               <a href="javascript:void(0)" class="btn btn-secondary" (click)="reset()"><i class="fa fa-close"></i> Cancel</a>
-              <a href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-trash"></i> Delete</a>
+              <a href="javascript:void(0)" class="btn btn-danger" (click)="openModal()"><i class="fa fa-trash"></i> Delete</a>
             </p>
           </div>
         </div>
@@ -62,48 +62,4 @@
   </div>
 </div>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Photo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="/assets/images/carousel/carousel-2.jfif" alt="">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
-        <button type="button" class="btn btn-success">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalDelete" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="sure-wrap">
-          <h2 class="text-success">Are you sure? </h2>
-          <p>You want to delete this Photo</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-success" (click)="deleteImage()">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
+<app-confirm-modal [confirmationMessage]="'You want to delete this Photo'" (isConfirmed)="deleteImage($event)"></app-confirm-modal>

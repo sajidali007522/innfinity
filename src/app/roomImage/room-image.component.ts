@@ -1,5 +1,6 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from "../http.service";
+import {ConfirmModalComponent} from "../components/confirm-modal/confirm-modal.component";
 
 @Component({
   selector: 'app-room-image',
@@ -10,7 +11,7 @@ import {HttpService} from "../http.service";
 export class RoomImageComponent implements OnInit,OnChanges {
   @Input() siteId;
   @Input() room;
-
+  @ViewChild(ConfirmModalComponent) childcomp: ConfirmModalComponent;
   state={
     isLoadingImages:false,
     roomImages: <any>[],
@@ -35,6 +36,11 @@ export class RoomImageComponent implements OnInit,OnChanges {
   ngOnChanges() {
     this.loadRoomImages();
   }
+
+  openModal(){
+    this.childcomp.openModal();
+  }
+
   loadRoomImages() {
     if(!this.siteId || !this.room.roomId || this.state.isLoadingImages) {
       return;
@@ -61,9 +67,14 @@ export class RoomImageComponent implements OnInit,OnChanges {
     this.state.componentState.isViewMode=false;
     this.state.componentState.selectedImage = JSON.parse(JSON.stringify(this.state.selectedImage));
   }
-  deleteImage() {
+  deleteImage(event) {
     //delete logic
-    this.state.roomImages.splice(this.state.selectedIndex, 1);
+    if(event) {
+      this.state.roomImages.splice(this.state.selectedIndex, 1);
+      this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
+      this.state.selectedIndex = this.state.roomImages.length-1;
+      this.state.componentState.isViewMode=true;
+    }
   }
   reset(){
     this.state.componentState.isViewMode=true;
