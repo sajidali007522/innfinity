@@ -286,8 +286,8 @@ export class ResultListComponent implements OnInit,AfterViewInit {
     this.resetPriceState('');
     if(isMultipleArray){
       for (let i=0; i < this.state.gridFilter.rows.length; i++) {
-        if (i != row) { continue; }
-        this.parseFilterResultSetByGrid(this.state.gridFilter.rows[i].items, row, -100);
+        if (i != row && row != -1) { continue; }
+        this.parseFilterResultSetByGrid(this.state.gridFilter.rows[i].items, row, (column == -1 ? -100 : column));
       }
     }
     else {
@@ -296,6 +296,7 @@ export class ResultListComponent implements OnInit,AfterViewInit {
   }
 
   parseFilterResultSetByGrid(items, row, column) {
+    console.log(row, column);
     for (let i=0; i < items.length; i++) {
       if(i!=column && column != -100) { continue;}
       if(i==column || column == -100) {
