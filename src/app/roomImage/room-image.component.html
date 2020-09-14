@@ -14,8 +14,8 @@
           </div>
 
           <div class="carousel-thumbnails clearfix">
-            <div *ngFor="let image of state.roomImages">
-              <div class="carousel-thumbnail" (click)="editImage(image)">
+            <div *ngFor="let image of state.roomImages; let index = index;">
+              <div class="carousel-thumbnail" (click)="editImage(image, index)">
                 <a href="javascript:void(0)"><img src="{{image.urlPath}}" alt=""></a>
               </div>
             </div>
@@ -28,17 +28,17 @@
 
           <label>Name</label>
           <div class="field-wrap mb-3">
-            <input type="text" placeholder="" class="form-control" [readOnly]="state.componentState.isViewMode" [(ngModel)]="state.selectedImage.name">
+            <input type="text" placeholder="" class="form-control" [disabled]="state.componentState.isViewMode" [(ngModel)]="state.selectedImage.name">
           </div>
           <label>Date</label>
           <div class="field-wrap mb-3">
-            <input type="text" placeholder="" class="form-control has-icon" [readOnly]="state.componentState.isViewMode"  bsDatepicker #dp="bsDatepicker" [(ngModel)]="state.selectedImage.createDate">
+            <input type="text" placeholder="" class="form-control has-icon" [disabled]="state.componentState.isViewMode"  bsDatepicker #dp="bsDatepicker" [(ngModel)]="state.selectedImage.createDate">
             <span class="fa fa-calendar-o"></span>
           </div>
 
           <label>Description</label>
           <div class="field-wrap mb-3">
-            <textarea cols="5" rows="5" class="form-control"  [readOnly]="state.componentState.isViewMode" [(ngModel)]="state.selectedImage.description"></textarea>
+            <textarea cols="5" rows="5" class="form-control"  [disabled]="state.componentState.isViewMode" [(ngModel)]="state.selectedImage.description"></textarea>
           </div>
           <div class="btns-wrap">
             <p>

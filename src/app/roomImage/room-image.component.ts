@@ -42,7 +42,7 @@ export class RoomImageComponent implements OnInit,OnChanges {
   }
 
   loadRoomImages() {
-    if(!this.siteId || !this.room.roomId || this.state.isLoadingImages) {
+    if(this.siteId == '' || this.room.roomId == '' || this.state.isLoadingImages) {
       return;
     }
     this.state.isLoadingImages=true;
@@ -53,29 +53,51 @@ export class RoomImageComponent implements OnInit,OnChanges {
         this.state.selectedIndex = this.state.roomImages.length-1;
         this.state.isLoadingImages = false;
         this.ref.detectChanges();
-      });
+      },
+      error => { console.log(error)},
+      ()=>{this.state.isLoadingImages = false;console.log('completed')});
   }
-  editImage(image) {
+  editImage(image, index) {
     this.state.selectedImage = image;
+    this.state.selectedIndex = index;
   }
 
   save(){
-    this.state.componentState.isViewMode=true;
+    this.state.isLoadingImages = true;
+    this._http._patch('housekeeping/'+this.siteId+'/RoomImage/'+this.room.roomId+'/'+this.state.selectedImage.documentArchiveIndexID, {},
+      {
+        name: this.state.selectedImage.name,
+        description: this.state.selectedImage.description
+      })
+      .subscribe(data => {
+        this.state.componentState.isViewMode=true;
+      },
+        error => { console.log(error)},
+      ()=>{this.state.isLoadingImages = false;console.log('completed'); this.ref.detectChanges();});
   }
 
   edit(){
     this.state.componentState.isViewMode=false;
     this.state.componentState.selectedImage = JSON.parse(JSON.stringify(this.state.selectedImage));
   }
+
   deleteImage(event) {
     //delete logic
     if(event) {
-      this.state.roomImages.splice(this.state.selectedIndex, 1);
-      this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
-      this.state.selectedIndex = this.state.roomImages.length-1;
-      this.state.componentState.isViewMode=true;
+      this.state.isLoadingImages = true;
+      this._http._delete('housekeeping/'+this.siteId+'/RoomImage/'+this.room.roomId+'/'+this.state.selectedImage.documentArchiveIndexID)
+        .subscribe(data => {
+          this.state.roomImages.splice(this.state.selectedIndex, 1);
+          this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
+          this.state.selectedIndex = this.state.roomImages.length-1;
+          this.state.componentState.isViewMode=true;
+          this.state.isLoadingImages = false;
+        },
+        error => { console.log(error)},
+        ()=>{this.state.isLoadingImages = false; this.ref.detectChanges();console.log('completed')});
     }
   }
+
   reset(){
     this.state.componentState.isViewMode=true;
     this.state.selectedImage = JSON.parse(JSON.stringify(this.state.componentState.selectedImage));

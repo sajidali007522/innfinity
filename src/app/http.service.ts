@@ -31,6 +31,22 @@ export class HttpService {
     //  .pipe(shareReplay({ bufferSize: 1, refCount: true }));
   }
 
+  public _delete(url, params={}){
+    let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
+    return this.http.delete(this.appConfigService.apiBaseUrl+url, {
+      params: params,
+      headers: headers
+    });
+  }
+
+  public _patch(url, body={}, params={}){
+    let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
+    return this.http.patch(this.appConfigService.apiBaseUrl+url, body, {
+      params: params,
+      headers: headers
+    });
+  }
+
   public _getApi (url, params={}) {
     let headers = new HttpHeaders().set(this._auth.getAuthKey(),  this._auth.getToken());
     return this.http.get(this.appConfigService.apiBaseUrl, {

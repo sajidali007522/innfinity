@@ -13,6 +13,8 @@ import {HouseKeepingService} from "../_services/house-keeping.service";
 import {RoomsService} from "../_services/rooms.service";
 import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
+import {RoomImageComponent} from "../roomImage/room-image.component";
+import {ConfirmModalComponent} from "../components/confirm-modal/confirm-modal.component";
 declare var $:JQueryStatic;
 
 const SHIFTS: Shift [] = [
@@ -28,6 +30,8 @@ const SHIFTS: Shift [] = [
   styleUrls: ['./house-keeping.component.css']
 })
 export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
+  //@ViewChild(RoomImageComponent) roomImage:RoomImageComponent;
+
   data;
   pageFilters= {
     isHousekeeperAdmin: true,
