@@ -54,10 +54,10 @@
                 </p>
               </div>
               <div class="col-lg-4">
-                <label>Droom</label>
+                <label>Dorm</label>
                 <p>
                   <select class="form-control">
-                    <option>Droom 1</option>
+                    <option>Dorm 1</option>
                   </select>
                 </p>
               </div>
@@ -87,7 +87,7 @@
               <option>Room #</option>
               <option>Features</option>
               <option>FD Status</option>
-              <option>HS Status</option>
+              <option>Hk Status</option>
               <option>HouseKeeper</option>
               <option>Shift</option>
               <option>Linen Status</option>
@@ -106,7 +106,7 @@
               <th class="sort-custom">Room #</th>
               <th class="sort-custom" >Feature</th>
               <th class="sort-custom">FD Status</th>
-              <th class="sort-custom">HS Status</th>
+              <th class="sort-custom">Hk Status</th>
               <th class="sort-custom">Admin Status</th>
               <th class="sort-custom">HouseKeeper</th>
               <th class="sort-custom">Shift</th>
@@ -213,7 +213,7 @@
             <th class="sort-custom" data-breakpoint="md" (click)="setSortingParams('hkStatusId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'hkStatusId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'hkStatusId' && state.pagination.sortOrder
-                }">HS Status</th>
+                }">Hk Status</th>
             <th class="sort-custom" data-breakpoint="sm" (click)="setSortingParams('adminStatusId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'adminStatusId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'adminStatusId' && state.pagination.sortOrder
