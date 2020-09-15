@@ -1,5 +1,6 @@
-import {BrowserModule, HAMMER_GESTURE_CONFIG,HammerGestureConfig} from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule} from '@angular/platform-browser';
 import * as Hammer from "hammerjs";
+
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
@@ -72,7 +73,9 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-    swipe: { direction: Hammer.DIRETION_ALLL }
+    swipe: { direction: Hammer.DIRECTION_HORIZONTAL },
+    pinch: { enable: false },
+    rotate: { enable: false }
   };
 }
 
@@ -142,7 +145,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DragDropModule,
     SignaturePadModule,
     NgJsonEditorModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    HammerModule
   ],
   providers: [
     {
@@ -156,7 +160,7 @@ export class MyHammerConfig extends HammerGestureConfig {
         };
       },
     },
-    {provide:HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
+    { provide:HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },

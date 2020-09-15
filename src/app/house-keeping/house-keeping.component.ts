@@ -17,6 +17,16 @@ import {RoomImageComponent} from "../roomImage/room-image.component";
 import {ConfirmModalComponent} from "../components/confirm-modal/confirm-modal.component";
 import {AuthenticationService} from "../_services/authentication.service";
 import {ConfigService} from "../config.service";
+
+import {MyHammerConfig} from "./../app.module"
+
+import {
+  HammerGestureConfig,
+  HAMMER_GESTURE_CONFIG
+} from "@angular/platform-browser";
+import { fromEvent } from "rxjs";
+import {takeWhile} from "rxjs/operators"
+
 declare var $:JQueryStatic;
 
 const SHIFTS: Shift [] = [
@@ -41,7 +51,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     features: '00000000-0000-0000-0000-000000000000',
     housekeepingStatuses: '',
     adminStatuses: '',
-    housekeepers: ''
+    housekeepers: '',
+    searchText: '',
+    searchField: '',
+
   }
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -69,6 +82,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
       shifts: [],
       hsStatus: [],
       adminStatuses: [],
+
     }
   }
   textFormattedObjects={};
@@ -80,9 +94,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
                private _http: HttpService,
                private router: Router,
                private appConfigService: ConfigService
-  ) {
+  ) {}
 
-  }
   ngOnDestroy() {
     this.data = [];
     this.pageFilters={
@@ -91,7 +104,9 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
       features: '00000000-0000-0000-0000-000000000000',
       housekeepingStatuses: '',
       adminStatuses: '',
-      housekeepers: ''
+      housekeepers: '',
+      searchText: '',
+      searchField: '',
     }
   }
 
@@ -128,7 +143,9 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
       features: this.state.filterConfigs.sites[0].value,
       housekeepingStatuses: '',
       adminStatuses: '',
-      housekeepers: ''
+      housekeepers: '',
+      searchText: '',
+      searchField: '',
     }
     this.loadRooms();
   }
@@ -164,6 +181,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
       featureId : this.pageFilters.features,
       pageNum: this.state.pagination.pageNum,
       pageSize: (this.isMobileDevice() ? 1 :this.state.pagination.pageSize),
+      searchField:this.pageFilters.searchField,
+      searchText:this.pageFilters.searchText,
       sortBy: this.state.pagination.sortBy,
       sortOrder: this.state.pagination.sortOrder ? 'DESC' : 'ASC'
     }).subscribe(data => {
@@ -294,6 +313,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         (err) => {
           this.state.selectedRoom['uploading']=false;
           alert(err);
+          this.ref.detectChanges();
         });
 
   }
@@ -329,6 +349,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
 
   isMobileDevice(){
     return this.appConfigService['userDevice'] == 'mobile';
+  }
+
+  setPagination(){
+    this.state.pagination.pageNum=1;
   }
 
 }
