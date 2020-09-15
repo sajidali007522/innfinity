@@ -288,6 +288,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
 
   }
   closeRoomDetail(){
+    this.state.showRoomImages = false;
     this.state.selectedRoom = {roomId: '', roomNumber: ''};
   }
 
