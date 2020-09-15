@@ -47,8 +47,14 @@ export class RoomImageComponent implements OnInit,OnChanges {
     }
     this.state.isLoadingImages=true;
     this._http._get('housekeeping/'+this.siteId+'/RoomImages/'+this.room.roomId)
-      .subscribe((data) => {
-        this.state.roomImages = data;
+      .subscribe((data:any) => {
+        this.state.roomImages = [];
+        data.filter(r=> {
+          //createDate
+          let d = new Date(Date.parse(r.createDate))
+          r.createDate = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDay()+" "+d.getHours()+":"+d.getMinutes();
+          this.state.roomImages.push(r);
+        })
         this.state.selectedImage = this.state.roomImages[this.state.roomImages.length-1];
         this.state.selectedIndex = this.state.roomImages.length-1;
         this.state.isLoadingImages = false;

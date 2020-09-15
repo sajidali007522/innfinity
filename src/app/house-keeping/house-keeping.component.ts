@@ -78,7 +78,8 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
                private _http: HttpService,
                private router: Router
   ) {
-
+    this.addJsToElement('assets/js/slick.min.js');
+    this.addJsToElement('assets/js/hp.js');
   }
   ngOnDestroy() {
   }
@@ -293,4 +294,5 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     this.imageChangedEvent = null;
     this.croppedImage = null;
   }
+
 }
