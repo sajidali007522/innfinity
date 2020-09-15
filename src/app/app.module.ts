@@ -1,4 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG,HammerGestureConfig} from '@angular/platform-browser';
+import * as Hammer from "hammerjs";
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { TreeModule } from 'angular-tree-component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
@@ -68,6 +69,12 @@ import { RoomComponent } from './room/room.component';
 import { RoomImagesComponent } from './room-images/room-images.component';
 import { RoomImageComponent } from './roomImage/room-image.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: Hammer.DIRETION_ALLL }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -147,8 +154,9 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
           //Make sure to return a promise!
           return appConfigService.loadAppConfig();
         };
-      }
+      },
     },
+    {provide:HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },

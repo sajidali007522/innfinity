@@ -270,8 +270,14 @@
         </div>
       </div>
 
-      <div *ngIf="!isMobileDevice()" class="table-responsive table-housekeeping-wrap" [ngClass]="{'table-loader': state.isLoadingRooms}">
-        <table class="table table-striped table-bordered row-border hover room-table jsmartable table-skin">
+      <div *ngIf="!isMobileDevice()" class="table-responsive table-housekeeping-wrap"
+           [ngClass]="{'table-loader': state.isLoadingRooms}"
+      >
+        <table class="table table-striped table-bordered row-border hover room-table jsmartable table-skin"
+               id="room_container"
+               (swipeleft)="previousPage()"
+               (swiperight)="nextPage()"
+        >
           <thead>
           <tr>
             <th class="sort-custom" (click)="setSortingParams('roomNumber');" [ngClass]="{
