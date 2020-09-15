@@ -84,6 +84,15 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
 
   }
   ngOnDestroy() {
+    this.data = [];
+    this.pageFilters={
+      isHousekeeperAdmin: true,
+      sites:'',
+      features: '00000000-0000-0000-0000-000000000000',
+      housekeepingStatuses: '',
+      adminStatuses: '',
+      housekeepers: ''
+    }
   }
 
   ngOnInit(): void {
@@ -109,6 +118,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         console.log(err);
         this.state.isLoading = false;
       });
+
   }
 
   public refreshFilter () {
