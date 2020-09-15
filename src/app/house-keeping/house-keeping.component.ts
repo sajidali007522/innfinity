@@ -15,6 +15,8 @@ import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
 import {RoomImageComponent} from "../roomImage/room-image.component";
 import {ConfirmModalComponent} from "../components/confirm-modal/confirm-modal.component";
+import {AuthenticationService} from "../_services/authentication.service";
+import {ConfigService} from "../config.service";
 declare var $:JQueryStatic;
 
 const SHIFTS: Shift [] = [
@@ -76,10 +78,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
                private ref: ChangeDetectorRef,
                private renderer: Renderer2,
                private _http: HttpService,
-               private router: Router
+               private router: Router,
+               private appConfigService: ConfigService
   ) {
-    this.addJsToElement('assets/js/slick.min.js');
-    this.addJsToElement('assets/js/hp.js');
+
   }
   ngOnDestroy() {
   }
@@ -100,6 +102,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         this.state.isLoading=false;
         this.ref.detectChanges();
         this.loadRooms();
+
       },
       err => {
         //handle errors here
@@ -150,7 +153,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     this.roomService.loadRooms(this.pageFilters.sites, {
       featureId : this.pageFilters.features,
       pageNum: this.state.pagination.pageNum,
-      pageSize: this.state.pagination.pageSize,
+      pageSize: (this.isMobileDevice() ? 1 :this.state.pagination.pageSize),
       sortBy: this.state.pagination.sortBy,
       sortOrder: this.state.pagination.sortOrder ? 'DESC' : 'ASC'
     }).subscribe(data => {
@@ -173,7 +176,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   }
 
   public updateHouseKeeping(roomId, roomRow, key, editKey) {
-    console.log(roomId, roomRow, key, editKey);
+    //console.log(roomId, roomRow, key, editKey);
     roomRow[editKey] = false;
   }
 
@@ -215,10 +218,12 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
       var elem = $(e.currentTarget);
       if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight()) {
         if(this.state.isLoading || this.state.isLoadingRooms || this.state.isLoadingMoreRooms) return;
-        console.log("bottom");
+        //console.log("bottom");
         this.state.pagination.pageNum++;
         this.state.isLoadingMoreRooms = true;
-        this.loadRooms (true);
+        if(!this.isMobileDevice()) {
+          this.loadRooms(true);
+        }
       }
     });
 
@@ -293,6 +298,23 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   cancelImageCrop () {
     this.imageChangedEvent = null;
     this.croppedImage = null;
+  }
+
+  public nextPage() {
+    //if(this.state.pagination.pageNum > this.state.paginatin.totalRecords == this.state.pagination.pageNum)
+    this.state.pagination.pageNum++;
+    this.loadRooms()
+  }
+  public previousPage() {
+    if(this.state.pagination.pageNum == 1){
+      return;
+    }
+    this.state.pagination.pageNum--;
+    this.loadRooms()
+  }
+
+  isMobileDevice(){
+    return this.appConfigService['userDevice'] == 'mobile';
   }
 
 }

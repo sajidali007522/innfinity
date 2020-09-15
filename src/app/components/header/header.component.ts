@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   isFullWidth;
   language;
   custom_configs;
+  userDevice;
+
   constructor( private renderer: Renderer2,
                public translate: TranslateService,
                public router: Router,
@@ -27,6 +29,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.switchSkinColor();
     this.switchContainerWidth();
+    var ua = navigator.userAgent;
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
+      this.appConfigService['userDevice'] = 'mobile';
+    }
+    else {
+      this.appConfigService['userDevice'] = 'desktop';
+    }
   }
 
   setTheme ($event, theme='dark') {

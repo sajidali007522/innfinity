@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from "../http.service";
 import {ConfirmModalComponent} from "../components/confirm-modal/confirm-modal.component";
+import {AuthenticationService} from "../_services/authentication.service";
+import {ConfigService} from "../config.service";
 
 @Component({
   selector: 'app-room-image',
@@ -30,11 +32,13 @@ export class RoomImageComponent implements OnInit,OnChanges {
       }
     }
   };
-  constructor(private _http: HttpService, private ref: ChangeDetectorRef) {}
+  constructor(private _http: HttpService, private ref: ChangeDetectorRef,
+              private appConfigService: ConfigService) {}
 
   ngOnInit(): void {}
   ngOnChanges() {
     this.loadRoomImages();
+    console.log(this.appConfigService)
   }
 
   openModal(){
