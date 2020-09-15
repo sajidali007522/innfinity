@@ -72,26 +72,42 @@
       <!-- for mobile start -->
       <div *ngIf="isMobileDevice() && !state.isLoadingRooms"  class="for-mobile-table">
         <div class="table-top-wrap">
-          <div class="jump-section">
-            <label>Jump to Page:</label>
-            <input type="number" class="form-control" placeholder="enter page number"/>
-          </div>
-          <div class="jump-section">
-            <label>Search By:</label>
-            <select>
-              <option>Room #</option>
-              <option>Features</option>
-              <option>FD Status</option>
-              <option>Hk Status</option>
-              <option>HouseKeeper</option>
-              <option>Shift</option>
-              <option>Linen Status</option>
-              <option>Image</option>
-            </select>
+          <div class="row">
+            <div class="col-6">
+              <div class="jump-section">
+                <label>Jump to Page:</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" placeholder="Page Number"/>
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button"> <span class="fa fa-search"></span> </button>
+                  </div>
+                </div>  
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="jump-section">
+                <label>Search By:</label>
+                <select>
+                  <option>Room #</option>
+                  <option>Features</option>
+                  <option>FD Status</option>
+                  <option>Hk Status</option>
+                  <option>HouseKeeper</option>
+                  <option>Shift</option>
+                  <option>Linen Status</option>
+                  <option>Image</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         <div class="table-search">
-          <input type="text" class="form-control" placeholder="Search">
+          <div class="input-group">
+            <input type="text" class="form-control rounded-0" placeholder="Search">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button"> <span class="fa fa-search"></span> </button>
+            </div>
+          </div>  
         </div>
 
         <div class="table-responsive table-housekeeping-wrap">
@@ -213,7 +229,7 @@
       <!-- for mobile end -->
 
 
-      <div *ngIf="!isMobileDevice()" class="jump-section">
+      <!-- <div *ngIf="!isMobileDevice()" class="jump-section">
         <label>Page:</label>
         <select [(ngModel)]="state.pagination.pageNum" (change)="loadRooms()">
           <option value="10">10</option>
@@ -221,6 +237,37 @@
           <option value="30">30</option>
           <option value="40">40</option>
         </select>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="!isMobileDevice()" class="jump-section">
+            <label>Jump to Page:</label>
+            <select name="" id="" class="form-control jump-w120">
+              <option></option>
+              <option>2</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 ml-auto">
+          <div class="jump-wrap">
+            <div *ngIf="!isMobileDevice()" class="jump-section">
+              <label>Search By:</label>
+              <select name="" id="">
+                <option>Room #</option>
+              </select>
+            </div>
+            <div *ngIf="!isMobileDevice()" class="jump-section">
+              <label>Search:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="">
+                <div class="input-group-append">
+                  <button class="btn btn-success" type="button"> <span class="fa fa-search"></span> </button>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
       </div>
 
       <div *ngIf="!isMobileDevice()" class="table-responsive table-housekeeping-wrap" [ngClass]="{'table-loader': state.isLoadingRooms}">

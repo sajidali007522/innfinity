@@ -177,18 +177,12 @@
     .filter-section{
         padding: 25px 15px 15px;
     }
-    .table-top-wrap{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .table-top-wrap > div:last-child{
-        margin-left: auto;
-    }
     .table-top-wrap .jump-section label{
         display: block;
         margin: 0 0 3px;
     }
-    .table-top-wrap .jump-section select{
+    .table-top-wrap .jump-section select,
+    .table-top-wrap .jump-section .form-control{
         border-color: #999;
     }
     .table-search{
