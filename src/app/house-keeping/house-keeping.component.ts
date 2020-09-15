@@ -301,14 +301,17 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   }
 
   public nextPage() {
+    this.state.isLoadingMoreRooms = true;
     //if(this.state.pagination.pageNum > this.state.paginatin.totalRecords == this.state.pagination.pageNum)
     this.state.pagination.pageNum++;
     this.loadRooms()
   }
   public previousPage() {
+
     if(this.state.pagination.pageNum == 1){
       return;
     }
+    this.state.isLoadingMoreRooms = true;
     this.state.pagination.pageNum--;
     this.loadRooms()
   }

@@ -70,7 +70,7 @@
       </div>
 
       <!-- for mobile start -->
-      <div *ngIf="isMobileDevice()" class="for-mobile-table">
+      <div *ngIf="isMobileDevice() && !state.isLoadingRooms"  class="for-mobile-table">
         <div class="table-top-wrap">
           <div class="jump-section">
             <label>Jump to Page:</label>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="table-responsive table-housekeeping-wrap">
-          <table *ngIf="!state.isLoadingRooms" class="table table-bordered row-border hover room-table table-skin">
+          <table *ngIf="!state.isLoadingMoreRooms" class="table table-bordered row-border hover room-table table-skin">
             <thead>
             <tr>
               <th class="sort-custom">Room #</th>
@@ -186,7 +186,7 @@
             </tr>
             </tbody>
           </table>
-          <app-loader *ngIf="state.isLoadingRooms" [className]="'loader-small'"></app-loader>
+          <app-loader *ngIf="state.isLoadingMoreRooms"></app-loader>
         </div>
         <ul class="pagination justify-content-center">
           <li class="page-item page-prev">
@@ -210,7 +210,7 @@
         </ul>
         <br><br><br><br><br>
       </div>
-
+      <app-loader *ngIf="isMobileDevice() && state.isLoadingRooms "></app-loader>
       <!-- for mobile end -->
 
 
@@ -298,7 +298,6 @@
                 >
                   <option *ngFor="let adStatus of state.filterConfigs.adminStatuses" [ngValue]="adStatus.value">{{adStatus.text}}</option>
                 </select>
-
               </span>
             </td>
             <td data-title="HouseKeeper">
