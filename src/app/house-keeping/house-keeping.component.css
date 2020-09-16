@@ -1,3 +1,6 @@
+.position-relative{
+    z-index: 1;
+}
 .admin-mode{
     position: absolute;
     right: 30px;
@@ -193,6 +196,9 @@
         padding: 7px 15px;
         height: auto;
     }
+    .table-housekeeping-wrap{
+        min-height: 410px;
+    }
     .table-housekeeping-wrap thead{
         display: none;
     }
@@ -249,8 +255,8 @@
     }
         .page-link{
             padding: 5px 10px;
-            border:none;
-            color: #333;
+            color: #fff;
+            background-color: #17a2b8;
             margin: 0 2px;
         }
         .page-item.active .page-link{
