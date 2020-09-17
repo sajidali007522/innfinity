@@ -1004,6 +1004,9 @@ body.menu-fullwidth .reservation-content-area{
     width: auto;
     min-width: 120px;
   }
+  .table-housekeeping-wrap .box.loader{
+    min-height: 400px;
+  }
 }
 
 tr.active td{ background-color: darkblue; color: white; }
