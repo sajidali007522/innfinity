@@ -134,6 +134,17 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
         this.state.isLoading = false;
       });
 
+    /*const hammerConfig = new HammerGestureConfig()
+    //or if you use another class as provider:
+    //    const hammerConfig=new MyHammerConfig()
+
+    const hammer=hammerConfig.buildHammer(document.documentElement)
+    fromEvent(hammer, "swipe")
+      .subscribe((res: any) => {
+        console.log(res.deltaX);
+        res.deltaX<0 ? this.nextPage(): this.previousPage();
+      });
+    */
   }
 
   public refreshFilter () {
@@ -354,5 +365,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   setPagination(){
     this.state.pagination.pageNum=1;
   }
+
+  scrolling(){ return true; }
 
 }

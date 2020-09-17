@@ -73,9 +73,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-    swipe: { direction: Hammer.DIRECTION_ALL },
-    pinch: { enable: false },
-    rotate: { enable: false }
+    swipe: { direction: Hammer.DIRECTION_ALL }
   };
 }
 
@@ -160,7 +158,7 @@ export class MyHammerConfig extends HammerGestureConfig {
         };
       },
     },
-    { provide:HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
+    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
