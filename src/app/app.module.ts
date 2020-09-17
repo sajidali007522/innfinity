@@ -73,8 +73,10 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-    swipe: { direction: Hammer.DIRECTION_ALL }
-  };
+    swipe: { direction: Hammer.DIRECTION_ALL },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  }
 }
 
 @NgModule({

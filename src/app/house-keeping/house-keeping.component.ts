@@ -345,7 +345,7 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
   public nextPage() {
     this.state.isLoadingMoreRooms = true;
     //if(this.state.pagination.pageNum > this.state.paginatin.totalRecords == this.state.pagination.pageNum)
-    this.state.pagination.pageNum++;
+    this.state.pagination.pageNum = Number(this.state.pagination.pageNum)+1;
     this.loadRooms()
   }
   public previousPage() {
@@ -353,8 +353,10 @@ export class HouseKeepingComponent implements OnInit, AfterViewInit, AfterViewCh
     if(this.state.pagination.pageNum == 1){
       return;
     }
+    //console.log(this.state.pagination.pageNum);
     this.state.isLoadingMoreRooms = true;
-    this.state.pagination.pageNum--;
+    this.state.pagination.pageNum= Number(this.state.pagination.pageNum)-1;
+    //console.log(this.state.pagination.pageNum);
     this.loadRooms()
   }
 
