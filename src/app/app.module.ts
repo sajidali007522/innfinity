@@ -70,6 +70,7 @@ import { RoomComponent } from './room/room.component';
 import { RoomImagesComponent } from './room-images/room-images.component';
 import { RoomImageComponent } from './roomImage/room-image.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { AvailabilityComponent } from './availability/availability.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -119,7 +120,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     RoomComponent,
     RoomImagesComponent,
     RoomImageComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    AvailabilityComponent
   ],
   imports: [
     BrowserModule,

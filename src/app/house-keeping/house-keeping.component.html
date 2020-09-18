@@ -300,7 +300,7 @@
             <th class="sort-custom" data-breakpoint="md" (click)="setSortingParams('housekeeperId');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'housekeeperId' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'housekeeperId' && state.pagination.sortOrder
-                }">HouseKeeper</th>
+                }">House Keeper</th>
             <th class="sort-custom" data-breakpoint="sm" (click)="setSortingParams('shift');" [ngClass]="{
                 'sort-custom-asc' : state.pagination.sortBy == 'shift' && !state.pagination.sortOrder,
                 'sort-custom-dsc' : state.pagination.sortBy == 'shift' && state.pagination.sortOrder
@@ -349,7 +349,7 @@
                 </select>
               </span>
             </td>
-            <td data-title="HouseKeeper">
+            <td data-title="House Keeper">
               <span>
                 <select [(ngModel)]="row.housekeeperId"
                         [ngClass]="{'view-mode': !row.$editHousekeeper, 'form-control': row.$editHousekeeper}"

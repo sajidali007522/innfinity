@@ -28,6 +28,7 @@ import {SingleColumnLayoutComponent} from "./layouts/single-column-layout/single
 import {ReservationStaticComponent} from "./reservation-static/reservation-static.component";
 import {RoomComponent} from "./room/room.component";
 import {RoomImagesComponent} from "./room-images/room-images.component";
+import {AvailabilityComponent} from "./availability/availability.component";
 
 const routes: Routes = [
   {path: "login", component:LoginComponent },
@@ -35,6 +36,12 @@ const routes: Routes = [
   {path: "reservation-result", component:ResultListComponent },
   {path: "register", component:RegisterComponent },
   //{path: "make-reservation", component:ReservationPageComponent },
+  {
+    path: "availability", component: SingleColumnLayoutComponent, canActivate: [AuthGuard],
+    children: [
+      {path: "", component:AvailabilityComponent, canActivate: [AuthGuard] },
+    ]
+  },
   {path:  "booking", component: SingleColumnLayoutComponent,  canActivate: [AuthGuard],
     children: [
       {path: "search", component:ReservationPageComponent, canActivate: [AuthGuard] },
